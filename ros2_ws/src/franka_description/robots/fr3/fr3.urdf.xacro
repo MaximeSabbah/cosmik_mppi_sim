@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fr3">
+
+  <xacro:include filename="$(find franka_description)/robots/common/franka_robot.xacro"/>
+
+  <!--
+    DEPRECATION NOTICE
+    argument arm_id is no longer supported and will be removed in the future.
+    This argument is ignored.
+  -->
+  <xacro:arg name="arm_id" default="fr3" />
+
+  <!-- Path to controller configuration when using Gazebo -->
+  <!-- Empty string defaults to "$(find franka_gazebo_bringup)/config/franka_gazebo_controllers.yaml" -->
+  <xacro:arg name="franka_controllers_params" default="" />
+  
+  <!-- Don't print a prefix for joints, visuals, and links? -->
+  <xacro:arg name="no_prefix" default="false"/>
+
+  <!-- Should an end-effector be mounted at the flange?" -->
+  <xacro:arg name="hand" default="true" />
+
+  <!-- Which end-effector would be mounted at the flange?" -->
+  <xacro:arg name="ee_id" default="franka_hand" />
+
+  <!-- Is the robot being simulated in gazebo?" -->
+  <xacro:arg name="gazebo" default="false" />
+  <!-- If `gazebo` arg is set, to which frame shall $(arm_id)_link0 be parented. Empty string for not fixing at all -->
+  <xacro:arg name="parent" default="world" />
+  <!-- If `gazebo` arg is set and `parent` not empty, what position offset between `parent` & $(arm_id)_link0 -->
+  <xacro:arg name="xyz" default="0 0 0" />
+  <!-- If `gazebo` arg is set and `parent` not empty, what rotation offset between `parent` & $(arm_id)_link0 -->
+  <xacro:arg name="rpy" default="0 0 0" />
+
+  <!-- Should self-collision be enabled? -->
+  <xacro:arg name="with_sc" default="false" />
+
+  <!-- Is the robot being controlled with ros2_control?" -->
+  <xacro:arg name="ros2_control" default="false" />
+  <!-- IP address or hostname of the robot" -->
+  <xacro:arg name="robot_ip" default="" />
+  <!-- Should a fake hardware be used? -->
+  <xacro:arg name="use_fake_hardware" default="false" />
+  <!-- Should fake sensors be used? -->
+  <xacro:arg name="fake_sensor_commands" default="false" />
+  <!-- Should the robot be spawned in Gazebo with effort interfaces? -->
+  <xacro:arg name="gazebo_effort" default="false" />
+
+  <!-- For a multi arm setup, we need a threaded robot running async-->
+  <xacro:arg name="multi_arm" default="false" />
+
+  <!-- Should force torque sensors be used? -->
+  <xacro:arg name="use_ft_sensor" default="false" />
+
+  <!-- Should RealSense d435i be loaded? -->
+  <xacro:arg name="use_camera" default="false" />
+
+  <!-- Safety distance for capsules used by the robot -->
+  <xacro:arg name="robot_safety_distance" default="0.03" />
+  <!-- Initial configuration used in Gazebo -->
+  <xacro:arg name="initial_joint_position" default="0.0 -0.78 0.0 -2.35 0.0 1.57 0.78 0.0" />
+
+
+  <xacro:franka_robot arm_id="fr3"
+                      joint_limits="${xacro.load_yaml('$(find franka_description)/robots/fr3/joint_limits.yaml')}"
+                      inertials="${xacro.load_yaml('$(find franka_description)/robots/fr3/inertials.yaml')}"
+                      kinematics="${xacro.load_yaml('$(find franka_description)/robots/fr3/kinematics.yaml')}"
+                      franka_controllers_params='$(arg franka_controllers_params)'
+                      dynamics="${xacro.load_yaml('$(find franka_description)/robots/fr3/dynamics.yaml')}"
+                      gazebo="$(arg gazebo)"
+                      hand="$(arg hand)"
+                      ee_id="$(arg ee_id)"
+                      with_sc="$(arg with_sc)"
+                      ros2_control="$(arg ros2_control)"
+                      robot_ip="$(arg robot_ip)"
+                      use_fake_hardware="$(arg use_fake_hardware)"
+                      fake_sensor_commands="$(arg fake_sensor_commands)"
+                      gazebo_effort="$(arg gazebo_effort)"
+                      no_prefix="$(arg no_prefix)"
+                      arm_prefix= ""
+                      connected_to= "base"
+                      use_ft_sensor="$(arg use_ft_sensor)"
+                      use_camera="$(arg use_camera)"
+                      robot_safety_distance="$(arg robot_safety_distance)">
+                      initial_joint_position="$(arg initial_joint_position)">
+  </xacro:franka_robot>
+
+</robot>

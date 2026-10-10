@@ -1,0 +1,13 @@
+---
+# Translation between fer_hand and camera_link. Calibration LAAS, FT sensor mount
+# Since calibration is robot-specific hardcoding of the camera link name can be acceptable here
+camera:
+  parent_frame: fer_ati_mini45_with_compact_camera
+  x: 0.006888278639995686
+  y: 0.050769726294516156
+  z: 0.008388742061072227
+  roll: -1.4039230981493704
+  pitch: -1.5628220422235166
+  yaw: 0.1899099983133322
+
+

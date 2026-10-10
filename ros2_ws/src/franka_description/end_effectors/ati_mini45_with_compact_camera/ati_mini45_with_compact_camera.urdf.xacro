@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ati_mini45_with_compact_camera">
+  <xacro:include filename="$(find franka_description)/end_effectors/common/utils.xacro" />
+  <xacro:include filename="$(find franka_description)/end_effectors/common/ee_with_one_link.xacro" />
+
+  <xacro:macro name="ati_mini45_with_compact_camera"
+    params="prefix parent_link rpy_ee:='0 0 0' xyz_ee:='0 0 0' ip_address rdt_sampling_rate internal_filter_rate use_hardware_biasing sensor_inertials safety_distance:=0 gazebo:=false description_pkg:=franka_description with_sc:=false measurement_frame_name:='ati_mini45_with_compact_camera_measurement_reference'">
+
+    <xacro:property name="prefix_expanded" value="${'' if prefix == '' else prefix + '_'}" />
+
+    <!-- length and radius of the sensor with mounting plates -->
+    <xacro:property name="radius" value="0.0315" />
+    <xacro:property name="length" value="0.0327" />
+    <xacro:property name="ee_inertials" value="${sensor_inertials}" />
+
+    <joint name="${prefix_expanded}ati_mini45_with_compact_camera_base_joint" type="fixed">
+      <parent link="${parent_link}" />
+      <child link="${prefix_expanded}ati_mini45_with_compact_camera" />
+      <origin xyz="${xyz_ee}" rpy="${rpy_ee}" />
+    </joint>
+
+    <!-- sub-link defining detailed meshes for collision with environment -->
+    <link name="${prefix_expanded}ati_mini45_with_compact_camera">
+      <visual name="${prefix_expanded}ati_mini45_with_compact_camera_visual">
+        <geometry>
+          <mesh
+            filename="package://${description_pkg}/meshes/robot_ee/ati_mini45_with_compact_camera/visual/ati_mini45_with_compact_camera.dae" />
+        </geometry>
+      </visual>
+      <collision name="${prefix_expanded}ati_mini45_with_compact_camera_collision">
+        <geometry>
+          <mesh
+            filename="package://${description_pkg}/meshes/robot_ee/ati_mini45_with_compact_camera/collision/ati_mini45_with_compact_camera.stl" />
+        </geometry>
+      </collision>
+      <xacro:ee-inertials name="ati_mini45_with_compact_camera_base" />
+    </link>
+
+    <!-- sub-link defining coarse geometries of real end-effector's internal self-collision -->
+    <xacro:if value="${with_sc}">
+      <link name="${prefix_expanded}ati_mini45_with_compact_camera_sc">
+        <xacro:unless value="${gazebo}">
+          <xacro:collision_capsule xyz="0 0 ${length / 2}" direction="z" radius="${radius+safety_distance}" length="${length}" />
+        </xacro:unless>
+      </link>
+      <!-- fixed joint between both sub-links -->
+      <joint name="${prefix_expanded}ati_mini45_with_compact_camera_sc_joint" type="fixed">
+        <origin rpy="${rpy}" />
+        <parent link="${prefix_expanded}ati_mini45_with_compact_camera" />
+        <child link="${prefix_expanded}ati_mini45_with_compact_camera_sc" />
+      </joint>
+    </xacro:if>
+
+    <joint name="${measurement_frame_name}_joint" type="fixed">
+      <parent link="${prefix_expanded}ati_mini45_with_compact_camera" />
+      <child link="${measurement_frame_name}" />
+      <origin xyz="0 0 0.017785" rpy="${pi} 0.0 ${(pi / 4) + (pi / 3 * 2)}" />
+    </joint>
+    
+    <link name="${measurement_frame_name}" />
+
+    <joint name="${prefix_expanded}ati_mini45_with_compact_camera_tool_joint" type="fixed">
+      <parent link="${measurement_frame_name}" />
+      <child link="${prefix_expanded}ati_mini45_with_compact_camera_tool" />
+      <origin xyz="0 0 -0.07885" rpy="${pi} 0.0 ${pi / 3 * 2}" />
+    </joint>
+
+    <link name="${prefix_expanded}ati_mini45_with_compact_camera_tool">
+      <collision name="${prefix_expanded}ati_mini45_with_compact_camera_collision">
+        <geometry>
+          <sphere radius="0.013"/>
+        </geometry>
+      </collision>
+      <xacro:ee-inertials name="ati_mini45_with_compact_camera_tool" />
+      <xacro:if value="${with_sc}">
+        <xacro:collision_capsule xyz="0 0 -0.02" direction="z" radius="${0.012+safety_distance}" length="0.1" />
+      </xacro:if>
+    </link>
+
+
+    <xacro:unless value="${gazebo}">
+      <xacro:include filename="$(find franka_description)/end_effectors/ft_sensors/ati_mini45.ros2_control.urdf.xacro"/>
+      <xacro:net_ft_sensor_ros2_control
+          ip_address="${ip_address}"
+          rdt_sampling_rate="${rdt_sampling_rate}"
+          internal_filter_rate="${internal_filter_rate}"
+          use_hardware_biasing="${use_hardware_biasing}"
+          ft_sensor_frame_name="${measurement_frame_name}"/>
+    </xacro:unless>
+  </xacro:macro>
+</robot>

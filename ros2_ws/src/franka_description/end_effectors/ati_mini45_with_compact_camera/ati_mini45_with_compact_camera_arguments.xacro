@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- IP address or hostname of the force-torque -->
+  <xacro:arg name="ft_sensor_ip" default="" />
+
+  <!-- Sampling frequency used by the sensor -->
+  <xacro:arg name="ft_sensor_rdt_sampling_rate" default="7000" />
+
+  <!-- Sampling frequency used by the sensor -->
+  <xacro:arg name="internal_filter_rate" default="0" />
+
+  <!-- Sampling frequency used by the sensor -->
+  <xacro:arg name="use_hardware_biasing" default="true" />
+
+  <!-- Position offset between ee and parent frame -->
+  <xacro:arg name="xyz_ee" default="0 0 0" />
+
+  <!-- Rotation offset between ee and parent frame -->
+  <xacro:arg name="rpy_ee" default= "0 0 ${-pi/4}" />
+
+  <!-- Position offset between ee frame and tcp frame -->
+  <xacro:arg name="tcp_xyz" default="0 0 0.1034" />
+
+  <!-- Rotation offset between ee frame and tcp frame -->
+  <xacro:arg name="tcp_rpy" default="0 0 0" />
+
+    <!-- Safety distance for the collision capsules -->
+  <xacro:arg name="safety_distance" default="0.0" />
+
+  <!-- Name of the description package -->
+  <xacro:arg name="description_pkg" default="franka_description" />
+
+</robot>

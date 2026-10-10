@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- IP address or hostname of the force-torque -->
+  <xacro:arg name="ft_sensor_ip" default="" />
+
+  <!-- Sampling frequency used by the sensor -->
+  <xacro:arg name="ft_sensor_rdt_sampling_rate" default="7000" />
+
+  <!-- Sampling frequency used by the sensor -->
+  <xacro:arg name="internal_filter_rate" default="0" />
+
+  <!-- Sampling frequency used by the sensor -->
+  <xacro:arg name="use_hardware_biasing" default="true" />
+
+</robot>

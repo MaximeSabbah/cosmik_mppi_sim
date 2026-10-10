@@ -1,0 +1,27 @@
+# Values obtained from measuring real parts and then
+# inputting their masses into CAD to then calculate inertia
+ati_mini45_with_compact_camera_base:
+  origin:
+    xyz: 0.0007 0.005 0.005
+    rpy: 0 0 0
+  mass: 0.195
+  inertia:
+    xx: 0.00016863
+    yy: 0.0001194
+    zz: 0.00025817
+    xy: -0.00001172
+    xz: 0.0000003621
+    yz: 0.00000773
+
+ati_mini45_with_compact_camera_tool:
+  origin:
+    xyz: 0.0 0.0 -0.048
+    rpy: 0 0 0
+  mass: 0.165
+  inertia:
+    xx: 0.00015969
+    yy: 0.00015945
+    zz: 0.00004036
+    xy: 0.000000001368
+    xz: 0.000000003187
+    yz: 0.000000004844

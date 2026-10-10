@@ -1,0 +1,208 @@
+# @package _global_
+use_cuda: True
+cuda_device_num: 0
+
+control_dt: 0.02
+run_open_loop: False
+control_space: 'acc'
+float_dtype: 'float32'
+state_filter_coeff: {'position':0.1, 'velocity':0.0, 'acceleration':0.0}
+cmd_filter_coeff: {'position':1.0, 'velocity':1.0, 'acceleration':0.3}
+enable_command_filter: false # Maybe todo
+
+model:
+  # any link that is not specified as learnable will be initialized from urdf
+  urdf_path: "urdf/franka_description/franka_panda_no_gripper.urdf"
+  learnable_rigid_body_config:
+    learnable_links: []
+  name: "franka_panda"
+  max_acc: 50.0
+  dt: 0.02 #TODO: what do they do ??
+  dt_traj_params:
+    base_dt: 0.02
+    base_ratio: 0.5 # discard
+    max_dt: 0.02
+  #control_freq: 10
+  #sim_freq: 100
+  ee_link_name: "ee_link"
+  init_state: [0.8, 0.3, 0.0, -1.57, 0.0, 1.86, 0.]
+  link_names: ['panda_link1','panda_link2','panda_link3','panda_link4','panda_link5', 'panda_link6','panda_hand']
+  #link_names: ['panda_link6']
+  vel_scale: 1.0
+  collision_spheres: '../robot/franka.yml'
+  
+  robot_collision_params:
+    urdf: "urdf/franka_description/franka_panda_no_gripper.urdf"
+    sample_points: 100
+    link_objs: ['panda_link1','panda_link2', 'panda_link3','panda_link4','panda_link5', 'panda_link6','panda_hand']
+    #link_objs: ['panda_link6']
+    threshold: 0.35
+    bounds: [[-0.8, -0.8, 0.0],[0.8,0.8,2.0]]
+    collision_spheres: '../robot/franka.yml'
+    self_collision_weights: 'robot_self/franka_self_sdf.pt'
+    dof: 7
+
+  world_collision_params:
+    #model_path: '/home/bala/code/scenecollisionnet/weights/scene_coll_nn/'
+    model_path: 'scene_coll_nn/'
+    label_map: {'robot':2, 'ground':0}
+    bounds: [[-1.0, -1.0, -0.2],[1.0,1.0,1.0]]
+    #bounds: [[-0.5, -0.8, 0.0],[0.5,0.8,1.0]]
+    grid_resolution: 0.05
+
+
+cost:
+  goal_pose:
+    vec_weight: [0.75, 0.75, 0.75, 1.0, 1.0, 0.75]
+    weight: [15.0, 100.0]
+    position_gaussian_params: {'n':0, 'c':0.0, 's':0.0, 'r':10.0}
+    orientation_gaussian_params: {'n':0, 'c':0.0, 's':0.0, 'r':10.0}
+    hinge_val: -1
+    convergence_val: [0.0, 0.0] # orientation, position
+
+  zero_vel:
+    weight: 0.0
+    hinge_val: 0.0 #0.2
+    gaussian_params: {'n':0, 'c':0.2, 's':0, 'r':1.0}
+
+  zero_acc:
+    weight: 0.0 # 0.01
+    hinge_val: 
+    gaussian_params: {'n':0, 'c':0.2, 's':0, 'r':5.0}
+  
+  collision:
+    weight: 0.0
+    gaussian_params: {'n':0, 'c':0.5, 's':0, 'r':5.0}
+    
+  primitive_collision:
+    weight: 1000.0
+    distance_threshold: 0.1 # 0.05
+    violation_clip_max: 0.2
+    violation_scale: 1.0
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+
+  # Dedicated cost for the active pick/place target box -- separate from primitive_collision
+  # above so it can use its own (much tighter) threshold. distance_threshold: 0.0 means only
+  # actual contact/penetration is penalized, no standoff margin, since the robot is expected
+  # to approach and touch this object. Only contributes to cost while the gripper is fully
+  # open (box_collision_active, driven by live gripper width -- see storm_mppi_planner_node.py)
+  # -- once the gripper starts closing to grasp it, touching it is intentional.
+  box_collision:
+    weight: 1000.0
+    distance_threshold: -0.01
+    violation_clip_max: 0.2
+    violation_scale: 1.0
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+
+  # Dedicated cost for the table -- separate from primitive_collision above so it can be
+  # tuned independently (e.g. stricter clearance during pick/place descent).
+  table_collision:
+    weight: 1000.0
+    distance_threshold: -0.01
+    violation_clip_max: 0.2
+    violation_scale: 1.0
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+
+  robot_self_collision:
+    weight: 100.0
+    distance_threshold: 0.025
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+    
+
+  null_space:
+    weight: 0.1 #0.01
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':1.0}
+    vec_weight: [0.1, 1.0, 1.0, 1.0, 1.0, 0.1, 0.0]
+
+  manipulability:
+    weight: 30.0  #100.0 #0.05 #0.5 #1.0
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+    thresh: 0.03 # 0.03
+
+  joint_l2:
+    weight: 0.0 # NOT USED !
+    gaussian_params: {'n':0, 'c':0.2, 's':0, 'r':5.0}
+
+  ee_vel:
+    weight: 0.0
+    vec_weight: [1.0, 1.0, 1.0] #, 0.0, 0.0, 0.0]
+    gaussian_params: {'n':0, 'c':0.0, 's':0.0, 'r':5.0}
+    
+  scene_collision:
+    weight: 0.0 #5000.0
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+    #threshold: 0.35
+    
+  stop_cost:
+    weight: 0.1 # 5.0
+    max_nlimit: 1.0 #0.2
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':1.0}
+
+  stop_cost_acc:
+    weight: 100.0 #10.0
+    max_limit: 1.5 #0.2
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':1.0}
+
+  voxel_collision:
+    weight: 0.0 #5000.0
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':100.0}
+    distance_threshold: 0.05
+    grid_resolution: 0.05
+
+  smooth: 
+    weight: 0.1 # 0.05
+    gaussian_params: {'n':0, 'c':0.2, 's':0, 'r':10.0}
+    order: 3
+
+  state_bound:
+    weight: 1000.0
+    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+    bound_thresh: 0.025
+  
+  retract_state : [0.00, 0.0, 0.00, -1.5, 0.00, 2.0, 0.0]
+  # retract_state : [0.00, 0.0, 0.00, 0.0, 0.0, 0.0, 0.0]
+  retract_weight: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0,1.0]
+
+mppi:
+  horizon           : 50
+  init_cov          : 0.05 # start tight; update_cov grows this only if actually stuck
+  gamma             : 0.98
+  n_iters           : 1
+  step_size_mean    : 0.9
+  step_size_cov     : 0.8
+  beta              : 5.0
+  alpha             : 1 # 0 = control-effort term on, 1 = off
+  num_particles     : 1000
+  update_cov        : False
+  cov_type          : 'full_AxA'
+  kappa             : 0.05
+  null_act_frac     : 0.01
+  sample_mode       : 'mean'
+  base_action       : 'null'
+  squash_fn         : 'clamp' #tanh
+  hotstart          : True
+  visual_traj       : 'ee_pos_seq'
+  sample_params:
+    type: 'multiple'
+    fixed_samples: True
+    sample_ratio: {'halton':0.0, 'halton-knot':1.0, 'random':0.0, 'random-knot':0.0}
+    seed: 0
+    filter_coeffs: None #[0.3, 0.3, 0.4] # not_used
+    knot_scale: 4
+
+  cat_primitive_collision:
+    enabled: false
+    p_max: 0.01
+    tau_c: 0.95
+    tau_b: 0.95 # Shift used in both cats
+    eps: 1.0e-6
+    distance_threshold: 0.05
+    violation_clip_max: 0.2
+    violation_scale: 0.25
+
+  cat_state_bound:
+    enabled: false
+    p_max: 0.1
+    tau_c: 0.95
+    eps: 1.0e-6
+    bound_thresh: 0.2

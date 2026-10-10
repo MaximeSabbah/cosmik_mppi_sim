@@ -1,0 +1,2 @@
+     0x6000d8 "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/rviz/pick_place.rviz* - RViz": ("mutter-x11-frames" "mutter-x11-frames")  1308x866+6+28  +6+28
+        0x2a00013 "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/rviz/pick_place.rviz* - RViz": ("rviz2" "rviz2")  1280x800+14+49  +20+77

@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="franka_robot"
+              params="arm_id
+                      joint_limits
+                      kinematics
+                      inertials
+                      dynamics
+                      franka_controllers_params=''
+                      parent:='world'
+                      xyz:='0 0 0'
+                      rpy:='0 0 0'
+                      hand:='true'
+                      ee_id:=none
+                      gazebo:='false'
+                      with_sc:='false'
+                      ros2_control:=false
+                      robot_ip:=''
+                      use_fake_hardware:=false
+                      fake_sensor_commands:=false
+                      gazebo_effort:=false
+                      no_prefix:='false'
+                      arm_prefix:=''
+                      connected_to:='base'
+                      multi_arm:=false
+                      use_ft_sensor:='false'
+                      use_camera:='false'
+                      robot_safety_distance:=0.03
+                      initial_joint_position:='0.0 -0.78 0.0 -2.35 0.0 1.57 0.78 0.0'">
+    <xacro:include filename="$(find franka_description)/robots/common/utils.xacro" />
+
+    <xacro:include filename="$(find franka_description)/robots/common/franka_arm.xacro" />
+    <xacro:property name="arm_prefix_modified" value="${'' if arm_prefix == '' else arm_prefix + '_'}" />
+    <xacro:franka_arm
+      arm_id="${arm_id}"
+      arm_prefix="${arm_prefix_modified}"
+      no_prefix="${no_prefix}"
+      xyz="${xyz}"
+      rpy="${rpy}"
+      safety_distance="${robot_safety_distance}"
+      gazebo="${gazebo}"
+      joint_limits="${joint_limits}"
+      kinematics="${kinematics}"
+      inertials="${inertials}"
+      dynamics="${dynamics}"
+      with_sc="${with_sc}"
+      connected_to="${connected_to}"
+    />
+
+    <xacro:if value="${use_ft_sensor}">
+      <xacro:property name="ft_sensor_measurement_frame_name" value="${arm_prefix_modified}ati_mini45_measurement_reference" />
+      <xacro:if value="${hand and 'ati_mini45' not in ee_id}">
+        <xacro:include filename="$(find franka_description)/end_effectors/ft_sensors/ati_mini45.urdf.xacro" />
+        <xacro:include filename="$(find franka_description)/end_effectors/ft_sensors/ati_mini45_arguments.xacro" />
+        <xacro:ati_mini45 
+          parent_link="${arm_id}_link8"
+          prefix="${arm_prefix_modified}"
+          ip_address="$(arg ft_sensor_ip)"
+          gazebo="${gazebo}"
+          rdt_sampling_rate="$(arg rdt_sampling_rate)"
+          internal_filter_rate="$(arg internal_filter_rate)"
+          use_hardware_biasing="$(arg use_hardware_biasing)"
+          sensor_inertials="${xacro.load_yaml('$(find franka_description)/end_effectors/ft_sensors/inertials.yaml')}"
+          measurement_frame_name="${ft_sensor_measurement_frame_name}" />
+      </xacro:if>
+    </xacro:if>
+    <xacro:unless value="${use_ft_sensor}">
+      <xacro:property name="ft_sensor_measurement_frame_name" value="${arm_prefix_modified}ati_mini45_measurement_reference" />
+    </xacro:unless>
+
+
+    <xacro:if value="${hand and ee_id == 'franka_hand'}">
+      <xacro:include filename="$(find franka_description)/end_effectors/common/franka_hand.xacro"/>
+      <xacro:include filename="$(find franka_description)/end_effectors/common/utils.xacro" />
+      <xacro:include filename="$(find franka_description)/end_effectors/$(arg ee_id)/$(arg ee_id)_arguments.xacro" />
+      <xacro:if value="${arm_id == 'fp3'}">
+        <xacro:property name="ee_color" value="black" />
+      </xacro:if>
+      <xacro:if value="${arm_id == 'fr3' or arm_id == 'fer'}">
+        <xacro:property name="ee_color" value="white" />
+      </xacro:if>
+      <xacro:property name="special_connection" value="$(arg special_connection)" />
+      <xacro:property name="default_connection" value="${(arm_id + '_link8') if not use_ft_sensor else 'ati_mini45_tool_mount'}" />
+      <xacro:property name="connection" value="${special_connection if special_connection != '' else default_connection}" />
+      <xacro:franka_hand
+        connected_to="${arm_prefix_modified}${connection}"
+        arm_id="${arm_id}"
+        arm_prefix="${arm_prefix_modified}"
+        ee_id="${ee_id}_${ee_color}"
+        ee_inertials="${xacro.load_yaml('$(find franka_description)/end_effectors/$(arg ee_id)/inertials.yaml')}"
+        rpy_ee="$(arg rpy_ee)"
+        xyz_ee="$(arg xyz_ee)"
+        tcp_xyz="$(arg tcp_xyz)"
+        tcp_rpy="$(arg tcp_rpy)"
+        safety_distance="$(arg safety_distance)"
+        gazebo="${gazebo}"
+        description_pkg="$(arg description_pkg)"
+        with_sc="${with_sc}"
+      />
+    </xacro:if>
+
+    <xacro:if value="${hand and ee_id == 'ati_mini45_with_camera'}">
+      <xacro:include filename="$(find franka_description)/end_effectors/common/utils.xacro" />
+      <xacro:include filename="$(find franka_description)/end_effectors/$(arg ee_id)/$(arg ee_id).urdf.xacro" />
+      <xacro:include filename="$(find franka_description)/end_effectors/$(arg ee_id)/$(arg ee_id)_arguments.xacro" />
+      <xacro:property name="default_connection" value="${arm_id + '_link8'}" />
+      <xacro:ati_mini45_with_camera
+          parent_link="${arm_prefix_modified}${default_connection}"
+          prefix="${arm_prefix_modified}${arm_id}"
+          ip_address="$(arg ft_sensor_ip)"
+          gazebo="${gazebo}"
+          rpy_ee="$(arg rpy_ee)"
+          xyz_ee="$(arg xyz_ee)"
+          rdt_sampling_rate="$(arg rdt_sampling_rate)"
+          internal_filter_rate="$(arg internal_filter_rate)"
+          use_hardware_biasing="$(arg use_hardware_biasing)"
+          sensor_inertials="${xacro.load_yaml('$(find franka_description)/end_effectors/$(arg ee_id)/inertials.yaml')}"
+          measurement_frame_name="${ft_sensor_measurement_frame_name}" 
+          with_sc="${with_sc}" />
+    </xacro:if>
+
+    <xacro:if value="${hand and ee_id == 'ati_mini45_no_camera'}">
+      <xacro:include filename="$(find franka_description)/end_effectors/common/utils.xacro" />
+      <xacro:include filename="$(find franka_description)/end_effectors/$(arg ee_id)/$(arg ee_id).urdf.xacro" />
+      <xacro:include filename="$(find franka_description)/end_effectors/$(arg ee_id)/$(arg ee_id)_arguments.xacro" />
+      <xacro:property name="default_connection" value="${arm_id + '_link8'}" />
+      <xacro:ati_mini45_no_camera
+          parent_link="${arm_prefix_modified}${default_connection}"
+          prefix="${arm_prefix_modified}${arm_id}"
+          ip_address="$(arg ft_sensor_ip)"
+          gazebo="${gazebo}"
+          rpy_ee="$(arg rpy_ee)"
+          xyz_ee="$(arg xyz_ee)"
+          rdt_sampling_rate="$(arg rdt_sampling_rate)"
+          internal_filter_rate="$(arg internal_filter_rate)"
+          use_hardware_biasing="$(arg use_hardware_biasing)"
+          sensor_inertials="${xacro.load_yaml('$(find franka_description)/end_effectors/$(arg ee_id)/inertials.yaml')}"
+          measurement_frame_name="${ft_sensor_measurement_frame_name}" 
+          with_sc="${with_sc}" />
+    </xacro:if>
+
+    <xacro:if value="${hand and ee_id == 'ati_mini45_with_compact_camera'}">
+      <xacro:include filename="$(find franka_description)/end_effectors/common/utils.xacro" />
+      <xacro:include filename="$(find franka_description)/end_effectors/$(arg ee_id)/$(arg ee_id).urdf.xacro" />
+      <xacro:include filename="$(find franka_description)/end_effectors/$(arg ee_id)/$(arg ee_id)_arguments.xacro" />
+      <xacro:property name="default_connection" value="${arm_id + '_link8'}" />
+      <xacro:ati_mini45_with_compact_camera
+          parent_link="${arm_prefix_modified}${default_connection}"
+          prefix="${arm_prefix_modified}${arm_id}"
+          ip_address="$(arg ft_sensor_ip)"
+          gazebo="${gazebo}"
+          rpy_ee="$(arg rpy_ee)"
+          xyz_ee="$(arg xyz_ee)"
+          rdt_sampling_rate="$(arg rdt_sampling_rate)"
+          internal_filter_rate="$(arg internal_filter_rate)"
+          use_hardware_biasing="$(arg use_hardware_biasing)"
+          sensor_inertials="${xacro.load_yaml('$(find franka_description)/end_effectors/$(arg ee_id)/inertials.yaml')}"
+          measurement_frame_name="${ft_sensor_measurement_frame_name}" 
+          with_sc="${with_sc}" />
+    </xacro:if>
+
+    <xacro:if value="${hand and ee_id != 'none' and ee_id != 'franka_hand' and 'ati_mini45' not in ee_id}">
+      <xacro:include filename="$(find franka_description)/end_effectors/common/ee_with_one_link.xacro"/>
+      <xacro:include filename="$(find franka_description)/end_effectors/common/utils.xacro" />
+      <xacro:include filename="$(find franka_description)/end_effectors/$(arg ee_id)/$(arg ee_id)_arguments.xacro" />
+      <xacro:property name="default_connection" value="${(arm_id + '_link8') if not use_ft_sensor else 'ati_mini45_tool_mount'}" />
+      <xacro:ee_with_one_link
+        connected_to="${arm_prefix_modified}${default_connection}"
+        arm_id="${arm_id}"
+        arm_prefix="${arm_prefix_modified}"
+        ee_id="${ee_id}"
+        ee_inertials="${xacro.load_yaml('$(find franka_description)/end_effectors/$(arg ee_id)/inertials.yaml')}"
+        rpy_ee="$(arg rpy_ee)"
+        xyz_ee="$(arg xyz_ee)"
+        tcp_xyz="$(arg tcp_xyz)"
+        tcp_rpy="$(arg tcp_rpy)"
+        safety_distance="$(arg safety_distance)"
+        gazebo="${gazebo}"
+        description_pkg="$(arg description_pkg)"
+        with_sc="${with_sc}"
+      />
+    </xacro:if>
+
+    <xacro:if value="${use_camera}">
+
+      <!-- D435 camera -->
+      <!-- TODO: pass location of calibrated_params -->
+      <xacro:property name="camera_pose_file"
+                      value="$(find franka_description)/end_effectors/$(arg ee_id)/${arm_id}/calibrated_params.yaml" />
+      <xacro:property name="camera_pose" value="${xacro.load_yaml(camera_pose_file)}"/>
+
+      <link name="${arm_id}_ref_camera_link">
+        <xacro:if value="${with_sc}">
+          <xacro:collision_capsule xyz="0.002 0 0.012" direction="y" radius="${0.015+robot_safety_distance}" length="0.13" />
+        </xacro:if>
+      </link>
+
+      <joint name="${arm_id}_ref_camera_joint" type="fixed">
+        <parent link="${camera_pose['camera']['parent_frame']}"/>
+        <child link="${arm_id}_ref_camera_link"/>
+        <origin xyz="${camera_pose['camera']['x']}
+                      ${camera_pose['camera']['y']}
+                      ${camera_pose['camera']['z']}"
+          rpy="${camera_pose['camera']['roll']}
+                      ${camera_pose['camera']['pitch']}
+                      ${camera_pose['camera']['yaw']}"/>
+      </joint>
+      <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+
+      <!-- use_mesh="true" produces an error when visualizing with rviz2
+      because the generated urdf contains mesh filename paths that do not start with file:// -->
+      <xacro:sensor_d435 parent="${arm_id}_ref_camera_link" name="camera" use_nominal_extrinsics="true" use_mesh="true">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </xacro:sensor_d435>
+
+      <!-- camera support -->
+      <xacro:unless value="${ee_id == 'ati_mini45_with_camera' or ee_id == 'ati_mini45_with_compact_camera'}">
+        <link name="${arm_id}_camera_support_link">
+          <inertial>
+            <mass value="0.010"/>
+            <origin xyz="0 0 0"/>
+            <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" iyz="0" ixz="0"/>
+          </inertial>
+          <visual>
+            <origin xyz="0.022 0 -0.012" rpy="${pi} 0 -${pi / 2}"/>
+            <geometry>
+              <mesh filename="package://franka_description/meshes/camera_support.stl" />
+            </geometry>
+            <material name="camera_support">
+              <color rgba="0 0.0 0.0 1.0"/>
+            </material>
+          </visual>
+          <collision>
+            <origin xyz="0.022 0 -0.012" rpy="${pi} 0 -${pi / 2}"/>
+            <geometry>
+              <mesh filename="package://franka_description/meshes/camera_support.stl" />
+            </geometry>
+          </collision>
+        </link>
+        <joint name="${arm_id}_camera_support_joint" type="fixed">
+          <parent link="${camera_pose['camera']['parent_frame']}"/>
+          <child link="${arm_id}_camera_support_link"/>
+          <origin xyz="0 0 0" rpy="${pi} 0 0"/>
+        </joint>
+      </xacro:unless>
+     </xacro:if>
+
+     <!-- Definition of additional Gazebo tags -->
+    <xacro:if value="${gazebo}">
+
+      <xacro:if value="${parent != ''}">
+        <!-- Gazebo requires a joint to a link called "world" for statically mounted robots -->
+        <xacro:if value="${parent == 'world'}">
+          <link name="${parent}" />
+        </xacro:if>
+        <joint name="${parent}_joint" type="fixed">
+          <origin xyz="${xyz}" rpy="${rpy}" />
+          <parent link="${parent}" />
+          <child  link="${arm_id}_link0" />
+        </joint>
+      </xacro:if>
+
+      <xacro:gazebo-joint joint="${arm_id}_joint1" transmission="hardware_interface/PositionJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint2" transmission="hardware_interface/PositionJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint3" transmission="hardware_interface/PositionJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint4" transmission="hardware_interface/PositionJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint5" transmission="hardware_interface/PositionJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint6" transmission="hardware_interface/PositionJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint7" transmission="hardware_interface/PositionJointInterface" />
+
+      <xacro:gazebo-joint joint="${arm_id}_joint1" transmission="hardware_interface/VelocityJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint2" transmission="hardware_interface/VelocityJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint3" transmission="hardware_interface/VelocityJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint4" transmission="hardware_interface/VelocityJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint5" transmission="hardware_interface/VelocityJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint6" transmission="hardware_interface/VelocityJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint7" transmission="hardware_interface/VelocityJointInterface" />
+
+      <xacro:gazebo-joint joint="${arm_id}_joint1" transmission="hardware_interface/EffortJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint2" transmission="hardware_interface/EffortJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint3" transmission="hardware_interface/EffortJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint4" transmission="hardware_interface/EffortJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint5" transmission="hardware_interface/EffortJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint6" transmission="hardware_interface/EffortJointInterface" />
+      <xacro:gazebo-joint joint="${arm_id}_joint7" transmission="hardware_interface/EffortJointInterface" />
+
+      <xacro:transmission-franka-state arm_id="${arm_id}" />
+      <xacro:transmission-franka-model arm_id="${arm_id}"
+         root="${arm_id}_joint1"
+         tip="${arm_id}_joint8"
+       />
+
+      <xacro:if value="${ee_id == 'franka_hand'}">
+        <xacro:gazebo-joint joint="${arm_id}_finger_joint1" transmission="hardware_interface/EffortJointInterface" />
+        <xacro:gazebo-joint joint="${arm_id}_finger_joint2" transmission="hardware_interface/EffortJointInterface" />
+        <!-- Friction specific material for Rubber/Rubber contact -->
+        <xacro:gazebo-friction link="${arm_id}_leftfinger" mu="1.13" />
+        <xacro:gazebo-friction link="${arm_id}_rightfinger" mu="1.13" />
+      </xacro:if>
+    </xacro:if>
+
+    <xacro:if value="${ros2_control}">
+      <xacro:include filename="$(find franka_description)/robots/common/franka_arm.ros2_control.xacro"/>
+      <xacro:franka_arm_ros2_control
+          arm_id="${arm_id}"
+          robot_ip="${robot_ip}"
+          franka_controllers_params="${franka_controllers_params}"
+          use_fake_hardware="$(arg use_fake_hardware)"
+          fake_sensor_commands="$(arg fake_sensor_commands)"
+          gazebo="$(arg gazebo)"
+          hand="$(arg hand)"
+          gazebo_effort="$(arg gazebo_effort)"
+          arm_prefix="${arm_prefix}"
+          multi_arm="$(arg multi_arm)"
+          use_ft_sensor="${use_ft_sensor}"
+          ft_sensor_frame_name="${ft_sensor_measurement_frame_name}"
+          initial_joint_position="${initial_joint_position}"
+      />
+    </xacro:if>
+
+  </xacro:macro>
+</robot>

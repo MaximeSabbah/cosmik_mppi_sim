@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-09",
+  "source_workspace": "/workspace/handoff/cosmik-mppi-sim",
+  "relocated_workspace": "/tmp/cosmik-mppi-relocation/cosmik-mppi-sim",
+  "ros_packages_built": 13,
+  "unit_tests_passed": 17,
+  "baseline_configs_unchanged": 7,
+  "original_hardware_workspace_edited": false,
+  "rviz_inspected": true,
+  "container_built": true,
+  "no-human": {
+    "pass": true,
+    "arrivals": {
+      "B": 2,
+      "A": 1
+    },
+    "timeout_events": 3
+  },
+  "moving-capsule": {
+    "pass": true,
+    "arrivals": {
+      "B": 3,
+      "A": 1
+    },
+    "timeout_events": 3
+  },
+  "relocated-moving-capsule": {
+    "pass": true,
+    "arrivals": {
+      "B": 2,
+      "A": 1
+    },
+    "timeout_events": 4
+  },
+  "updated": "2026-10-10",
+  "docker_acceptance": "validation/docker-20261010/result.json",
+  "user_gui_review": "supervisor_reported_acceptable",
+  "user_gui_review_note": "Supervisor reported \"ok it seems quite ok\" after the kurai GUI runs on 2026-10-10; qualitative feedback only."
+}

@@ -1,0 +1,1637 @@
+diff --git a/.gitignore b/.gitignore
+index fc06709..6912084 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -13,6 +13,8 @@ __pycache__/
+ *$py.class
+ 
+ *.json
++# Runtime provenance required by the real FER self-collision model.
++!/content/assets/robot/fer_real/coverage.json
+ 
+ # C extensions
+ *.so
+diff --git a/content/configs/gym/collision_primitives_3d.yml b/content/configs/gym/collision_primitives_3d.yml
+index 7871992..34f006b 100644
+--- a/content/configs/gym/collision_primitives_3d.yml
++++ b/content/configs/gym/collision_primitives_3d.yml
+@@ -24,23 +24,44 @@ world_model:
+   coll_objs:
+     sphere: {}
+     cube:
+-      floor:
++      # floor:
++      #   frame: fer_link0
++      #   dims: [3.0, 3.0, 0.01] # x, y, z
++      #   pose: [0.0, 0.0, -0.05, 0, 0, 0, 1.0] # x, y, z, qx, qy, qz, qw
++      table:
+         frame: fer_link0
+-        dims: [3.0, 3.0, 0.01] # x, y, z
+-        pose: [0.0, 0.0, -0.05, 0, 0, 0, 1.0] # x, y, z, qx, qy, qz, qw
+-      brick1:
++        dims: [1.5, 2.0, 0.05] # large flat surface in x-y
++        pose: [0.35, 0.0, -0.025, 0.0, 0.0, 0.0, 1.0] # centered in front of robot, just below z=0
++      # Two static poles ("poto_l"/"poto_r"). STORM's world collision only supports sphere/cube
++      # primitives (no native cylinder -- see storm_kit/geom/sdf/world.py), so each is a square
++      # cross-section box circumscribing a r=3.5cm cylinder (dims.x=dims.y=2*radius=0.07), same
++      # approximation the bridge already applies to RViz CYLINDER markers. Span floor (z=-0.05,
++      # matching the table's bottom face) up to robot_base+22cm / +24cm.
++      poto_l:
+         frame: fer_link0
+-        pose: [0.32, 0.0, 0.07, 0.0, 0.0, 0.0, 1.0]
+-        dims: [0.11, 0.22, 0.20]
+-      brick2:
++        dims: [0.10, 0.10, 0.30] # 2*0.035 radius x/y, height = -0.05 (floor) to 0.22 (base+22cm)
++        pose: [-0.55, -0.43, 0.075, 0.0, 0.0, 0.0, 1.0]
++      poto_r:
+         frame: fer_link0
+-        pose: [0.63, 0.0, 0.09, 0.0, 0.0, 0.0, 1.0]
+-        dims: [0.11, 0.22, 0.20]
+-      box1:
+-        frame: fer_link0
+-        pose: [0.79, 0.0, 0.09, 0.0, 0.0, 0.0, 1.0]
+-        dims: [0.20, 0.35, 0.20]
+-      box2:
+-        frame: fer_link0
+-        pose: [0.47, 0.0, 0.08, 0.0, 0.0, 0.0, 1.0]
+-        dims: [0.20, 0.35, 0.20]
++        dims: [0.10, 0.10, 0.30] # 2*0.035 radius x/y, height = -0.05 (floor) to 0.24 (base+24cm)
++        pose: [-0.55, 0.32, 0.085, 0.0, 0.0, 0.0, 1.0]
++      # base:
++      #   frame: fer_link0
++      #   dims: [0.15, 0.15, 0.5] # large flat surface in x-y
++      #   pose: [0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 1.0] 
++      # brick1:
++      #   frame: fer_link0
++      #   pose: [0.32, 0.0, 0.07, 0.0, 0.0, 0.0, 1.0]
++      #   dims: [0.11, 0.22, 0.20]
++      # brick2:
++      #   frame: fer_link0
++      #   pose: [0.63, 0.0, 0.09, 0.0, 0.0, 0.0, 1.0]
++      #   dims: [0.11, 0.22, 0.20]
++      # box1:
++      #   frame: fer_link0
++      #   pose: [0.79, 0.0, 0.09, 0.0, 0.0, 0.0, 1.0]
++      #   dims: [0.20, 0.35, 0.20]
++      # box2:
++      #   frame: fer_link0
++      #   pose: [0.47, 0.0, 0.08, 0.0, 0.0, 0.0, 1.0]
++      #   dims: [0.20, 0.35, 0.20]
+diff --git a/content/configs/mpc/franka_reacher.yml b/content/configs/mpc/franka_reacher.yml
+index 320f435..e1aa9b5 100644
+--- a/content/configs/mpc/franka_reacher.yml
++++ b/content/configs/mpc/franka_reacher.yml
+@@ -8,7 +8,7 @@ control_space: 'acc'
+ float_dtype: 'float32'
+ state_filter_coeff: {'position':0.1, 'velocity':0.0, 'acceleration':0.0}
+ cmd_filter_coeff: {'position':1.0, 'velocity':1.0, 'acceleration':0.3}
+-enable_command_filter: true
++enable_command_filter: false # Maybe todo
+ 
+ model:
+   # any link that is not specified as learnable will be initialized from urdf
+@@ -16,8 +16,8 @@ model:
+   learnable_rigid_body_config:
+     learnable_links: []
+   name: "franka_panda"
+-  max_acc: 10.0
+-  dt: 0.02
++  max_acc: 50.0
++  dt: 0.02 #TODO: what do they do ??
+   dt_traj_params:
+     base_dt: 0.02
+     base_ratio: 0.5 # discard
+@@ -26,7 +26,7 @@ model:
+   #sim_freq: 100
+   ee_link_name: "ee_link"
+   init_state: [0.8, 0.3, 0.0, -1.57, 0.0, 1.86, 0.]
+-  link_names: ['panda_link2','panda_link3','panda_link4','panda_link5', 'panda_link6','panda_hand']
++  link_names: ['panda_link1','panda_link2','panda_link3','panda_link4','panda_link5', 'panda_link6','panda_hand']
+   #link_names: ['panda_link6']
+   vel_scale: 1.0
+   collision_spheres: '../robot/franka.yml'
+@@ -34,7 +34,7 @@ model:
+   robot_collision_params:
+     urdf: "urdf/franka_description/franka_panda_no_gripper.urdf"
+     sample_points: 100
+-    link_objs: ['panda_link2', 'panda_link3','panda_link4','panda_link5', 'panda_link6','panda_hand']
++    link_objs: ['panda_link1','panda_link2', 'panda_link3','panda_link4','panda_link5', 'panda_link6','panda_hand']
+     #link_objs: ['panda_link6']
+     threshold: 0.35
+     bounds: [[-0.8, -0.8, 0.0],[0.8,0.8,2.0]]
+@@ -53,8 +53,8 @@ model:
+ 
+ cost:
+   goal_pose:
+-    vec_weight: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+-    weight: [100.0, 200.0]
++    vec_weight: [0.75, 0.75, 0.75, 1.0, 1.0, 0.75]
++    weight: [15.0, 100.0]
+     position_gaussian_params: {'n':0, 'c':0.0, 's':0.0, 'r':10.0}
+     orientation_gaussian_params: {'n':0, 'c':0.0, 's':0.0, 'r':10.0}
+     hinge_val: -1
+@@ -62,12 +62,12 @@ cost:
+ 
+   zero_vel:
+     weight: 0.0
+-    hinge_val: 0.2 #0.2
++    hinge_val: 0.0 #0.2
+     gaussian_params: {'n':0, 'c':0.2, 's':0, 'r':1.0}
+ 
+   zero_acc:
+-    weight: 0.01
+-    hinge_val: 0.1
++    weight: 0.0 # 0.01
++    hinge_val: 
+     gaussian_params: {'n':0, 'c':0.2, 's':0, 'r':5.0}
+   
+   collision:
+@@ -75,30 +75,52 @@ cost:
+     gaussian_params: {'n':0, 'c':0.5, 's':0, 'r':5.0}
+     
+   primitive_collision:
+-    weight: 0.0
+-    distance_threshold: 0.05
++    weight: 1000.0
++    distance_threshold: 0.1 # 0.05
+     violation_clip_max: 0.2
+-    violation_scale: 0.25
++    violation_scale: 1.0
++    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
++
++  # Dedicated cost for the active pick/place target box -- separate from primitive_collision
++  # above so it can use its own (much tighter) threshold. distance_threshold: 0.0 means only
++  # actual contact/penetration is penalized, no standoff margin, since the robot is expected
++  # to approach and touch this object. Only contributes to cost while the gripper is fully
++  # open (box_collision_active, driven by live gripper width -- see storm_mppi_planner_node.py)
++  # -- once the gripper starts closing to grasp it, touching it is intentional.
++  box_collision:
++    weight: 1000.0
++    distance_threshold: -0.01
++    violation_clip_max: 0.2
++    violation_scale: 1.0
++    gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
++
++  # Dedicated cost for the table -- separate from primitive_collision above so it can be
++  # tuned independently (e.g. stricter clearance during pick/place descent).
++  table_collision:
++    weight: 1000.0
++    distance_threshold: -0.01
++    violation_clip_max: 0.2
++    violation_scale: 1.0
+     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+ 
+   robot_self_collision:
+-    weight: 0.0
+-    distance_threshold: 0.05
++    weight: 100.0
++    distance_threshold: 0.025
+     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+     
+ 
+   null_space:
+-    weight: 0.0 #0.01 #0.05 #0.5 #1.0
++    weight: 0.1 #0.01
+     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':1.0}
+-    vec_weight: [1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5]
+-    #retract_state : [-1.57, -1.2, 1.9, -1.383, -1.57, 0.00]
++    vec_weight: [0.1, 1.0, 1.0, 1.0, 1.0, 0.1, 0.0]
++
+   manipulability:
+-    weight: 0.0 #100.0 #0.05 #0.5 #1.0
++    weight: 30.0  #100.0 #0.05 #0.5 #1.0
+     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+-    thresh: 0.03
++    thresh: 0.03 # 0.03
+ 
+   joint_l2:
+-    weight: 0.0
++    weight: 0.0 # NOT USED !
+     gaussian_params: {'n':0, 'c':0.2, 's':0, 'r':5.0}
+ 
+   ee_vel:
+@@ -112,16 +134,15 @@ cost:
+     #threshold: 0.35
+     
+   stop_cost:
+-    weight: 5.0 # 5.0
+-    max_nlimit: 1.5 #0.2
++    weight: 0.1 # 5.0
++    max_nlimit: 1.0 #0.2
+     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':1.0}
+ 
+   stop_cost_acc:
+-    weight: 10.0 #10.0
+-    max_limit: 0.1 #0.2
++    weight: 100.0 #10.0
++    max_limit: 1.5 #0.2
+     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':1.0}
+ 
+-
+   voxel_collision:
+     weight: 0.0 #5000.0
+     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':100.0}
+@@ -129,35 +150,36 @@ cost:
+     grid_resolution: 0.05
+ 
+   smooth: 
+-    weight: 0.05
++    weight: 0.1 # 0.05
+     gaussian_params: {'n':0, 'c':0.2, 's':0, 'r':10.0}
+-    order: 1
++    order: 3
+ 
+   state_bound:
+-    weight: 1000.0 
++    weight: 1000.0
+     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
+-    bound_thresh: 0.15
++    bound_thresh: 0.025
+   
+   retract_state : [0.00, 0.0, 0.00, -1.5, 0.00, 2.0, 0.0]
++  # retract_state : [0.00, 0.0, 0.00, 0.0, 0.0, 0.0, 0.0]
+   retract_weight: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0,1.0]
+ 
+ mppi:
+   horizon           : 50
+-  init_cov          : 0.05 #.5 #.5
++  init_cov          : 0.05 # start tight; update_cov grows this only if actually stuck
+   gamma             : 0.98
+   n_iters           : 1
+-  step_size_mean    : 0.65
+-  step_size_cov     : 0.7
+-  beta              : 1.0
+-  alpha             : 1
+-  num_particles     : 1500
+-  update_cov        : True
+-  cov_type          : 'full_AxA' 
+-  kappa             : 0.005
++  step_size_mean    : 0.9
++  step_size_cov     : 0.8
++  beta              : 5.0
++  alpha             : 1 # 0 = control-effort term on, 1 = off
++  num_particles     : 1000
++  update_cov        : False
++  cov_type          : 'full_AxA'
++  kappa             : 0.05
+   null_act_frac     : 0.01
+   sample_mode       : 'mean'
+-  base_action       : 'repeat'
+-  squash_fn         : 'clamp'
++  base_action       : 'null'
++  squash_fn         : 'clamp' #tanh
+   hotstart          : True
+   visual_traj       : 'ee_pos_seq'
+   sample_params:
+@@ -165,7 +187,7 @@ mppi:
+     fixed_samples: True
+     sample_ratio: {'halton':0.0, 'halton-knot':1.0, 'random':0.0, 'random-knot':0.0}
+     seed: 0
+-    filter_coeffs: None #[0.3, 0.3, 0.4]
++    filter_coeffs: None #[0.3, 0.3, 0.4] # not_used
+     knot_scale: 4
+ 
+   cat_primitive_collision:
+diff --git a/content/configs/robot/franka.yml b/content/configs/robot/franka.yml
+index b9896d1..41a987e 100644
+--- a/content/configs/robot/franka.yml
++++ b/content/configs/robot/franka.yml
+@@ -142,3 +142,21 @@ collision_spheres:
+           "radius": 0.024
+         - "center": [0.0, 0.075, 0.05]
+           "radius": 0.024
++        # Fingertips: STORM's URDF (franka_panda_no_gripper.urdf) has no separate finger
++        # links, so these are rigidly attached to panda_hand like everything else above --
++        # the previous spheres stop at z=0.05, leaving the outer ~5cm of the fingers (up to
++        # the real rubber gripping pad at z~0.104) with zero collision coverage. Position is
++        # the center of the real "rubber tip" collision box from the real robot's URDF
++        # (fer_finger_joint origin z=0.0584 + local pad center y=0.00758,z=0.04525), evaluated
++        # at the width this robot is actually commanded to (gripper_open_width=0.07m ->
++        # 0.035m half-width per finger -- NOT the URDF's absolute mechanical max of 0.04m,
++        # which this gripper never actually reaches). Small radius so the sphere stays within
++        # the physical fingertip pad, not the whole finger. Static approximation, like every
++        # other sphere here -- does not track live gripper width, matches wherever the
++        # fingers actually sit while box_collision is active (gripper fully open).
++        - "center": [0.0, 0.0426, 0.1036]
++          "radius": 0.010
++        - "center": [0.0, -0.0426, 0.1036]
++          "radius": 0.010
++        # - "center": [0.0, 0.0, 0.1036]
++        #   "radius": 0.015
+diff --git a/scripts/validate_shifted_cat_primitive_collision.py b/scripts/validate_shifted_cat_primitive_collision.py
+index 1b23d54..9af9de1 100644
+--- a/scripts/validate_shifted_cat_primitive_collision.py
++++ b/scripts/validate_shifted_cat_primitive_collision.py
+@@ -117,14 +117,20 @@ def _validate_disabled_path() -> None:
+ 
+     if "costs" not in traj:
+         raise RuntimeError("disabled path: rollout missing 'costs'.")
+-    for key in (
+-        "primitive_collision_costs",
+-        "primitive_collision_violation",
+-        "state_bound_costs",
+-        "state_bound_violation",
+-    ):
++    # Rollouts now always expose diagnostics, even when CaT is disabled.
++    # Test the behavioral contract: those channels must not affect MPPI weights.
++    reference = controller._exp_util(traj["costs"], traj["actions"], trajectories=None)
++    with_diagnostics = controller._exp_util(traj["costs"], traj["actions"], trajectories=traj)
++    torch.testing.assert_close(with_diagnostics, reference)
++    poisoned = dict(traj)
++    for key in ("primitive_collision_costs", "primitive_collision_violation",
++                "state_bound_costs", "state_bound_violation"):
+         if key in traj:
+-            raise RuntimeError(f"disabled path: rollout unexpectedly contains '{key}'.")
++            if traj[key].shape != traj["costs"].shape or not torch.isfinite(traj[key]).all():
++                raise RuntimeError(f"disabled path: invalid diagnostic channel {key}")
++            poisoned[key] = torch.full_like(traj[key], float("nan"))
++    ignored = controller._exp_util(traj["costs"], traj["actions"], trajectories=poisoned)
++    torch.testing.assert_close(ignored, reference)
+ 
+     controller._update_distribution(traj)
+     controller.optimize(state, shift_steps=0, n_iters=1)
+diff --git a/storm_kit/mpc/control/control_base.py b/storm_kit/mpc/control/control_base.py
+index 776593c..8c78f37 100644
+--- a/storm_kit/mpc/control/control_base.py
++++ b/storm_kit/mpc/control/control_base.py
+@@ -23,6 +23,7 @@
+ # DEALINGS IN THE SOFTWARE.#
+ from abc import ABC, abstractmethod
+ import copy
++import time
+ 
+ import numpy as np
+ import torch
+@@ -232,12 +233,21 @@ class Controller(ABC):
+         state.to(**self.tensor_args)
+ 
+         info = dict(rollout_time=0.0, entropy=[])
++        # Diagnostic-only phase timing (see mpc_process_wrapper.py / storm_mppi_planner_node.py
++        # "MPPI phase timing" log): wall-clock cost of each optimize() phase this call, reset
++        # fresh every call. torch.cuda.synchronize() is required before each timestamp -- CUDA
++        # kernel launches are async, so an unsynchronized time.time() would just measure how
++        # fast the *launch* returned, not how long the GPU actually took to finish the work.
++        _sync = torch.cuda.synchronize if torch.cuda.is_available() else (lambda: None)
++        self.last_phase_timing = {}
++        _t_shift0 = time.time()
+         # shift distribution to hotstart from previous timestep
+         if self.hotstart:
+             self._shift(shift_steps)
+         else:
+             self.reset_distribution()
+-            
++        _sync()
++        self.last_phase_timing['shift'] = time.time() - _t_shift0
+ 
+         with torch.cuda.amp.autocast(enabled=True):
+             with torch.no_grad():
+@@ -246,8 +256,13 @@ class Controller(ABC):
+                     trajectory = self.generate_rollouts(state)
+ 
+                     # update distribution parameters
++                    _t_update0 = time.time()
+                     with profiler.record_function("mppi_update"):
+                         self._update_distribution(trajectory)
++                    _sync()
++                    self.last_phase_timing['update_distribution'] = (
++                        self.last_phase_timing.get('update_distribution', 0.0) + (time.time() - _t_update0)
++                    )
+                     info['rollout_time'] += trajectory['rollout_time']
+ 
+                     # check if converged
+diff --git a/storm_kit/mpc/control/mppi.py b/storm_kit/mpc/control/mppi.py
+index 82bd64d..baa03b0 100644
+--- a/storm_kit/mpc/control/mppi.py
++++ b/storm_kit/mpc/control/mppi.py
+@@ -75,7 +75,12 @@ class MPPI(OLGaussianMPC):
+                  tensor_args={'device':torch.device('cpu'), 'dtype':torch.float32},
+                  cat_primitive_collision=None,
+                  visual_traj='state_seq',
+-                 cat_state_bound=None):
++                 cat_state_bound=None,
++                 cat_joint_torque=None,
++                 cat_self_collision=None,
++                 cat_equation_mode="legacy",
++                 cov_min=None,
++                 cov_max=None):
+         
+         super(MPPI, self).__init__(d_action,
+                                    action_lows, 
+@@ -98,11 +103,22 @@ class MPPI(OLGaussianMPC):
+                                    seed,
+                                    sample_params=sample_params,
+                                    tensor_args=tensor_args)
++        if cat_equation_mode not in ("legacy", "paper"):
++            raise ValueError("cat_equation_mode must be legacy or paper")
++        self._cat_equation_mode = cat_equation_mode
+         self.beta = beta
+         self.alpha = alpha  # 0 means control cost is on, 1 means off
+         self.update_cov = update_cov
+         self.kappa = kappa
+         self.visual_traj = visual_traj
++        # Hard bounds on the adaptive covariance's diagonal (per-action-dim variance), applied
++        # every _shift() after the kappa floor-add. kappa alone only sets a soft resting floor
++        # (see the step_size_cov/kappa fixed-point derivation) -- there is otherwise no ceiling
++        # anywhere in this update rule, so cov_action can in principle grow unboundedly when
++        # particles persistently disagree. None (default) preserves the old unbounded behavior
++        # exactly -- these are opt-in.
++        self.cov_min = float(cov_min) if cov_min is not None else None
++        self.cov_max = float(cov_max) if cov_max is not None else None
+ 
+         cat_pc_cfg = cat_primitive_collision if isinstance(cat_primitive_collision, dict) else {}
+         self._cat_pc_enabled = bool(cat_pc_cfg.get('enabled', False))
+@@ -132,6 +148,21 @@ class MPPI(OLGaussianMPC):
+         if self._cat_sb_eps <= 0.0:
+             raise ValueError(f"cat_state_bound.eps must be > 0, got {self._cat_sb_eps}.")
+ 
++        torque_cfg = cat_joint_torque if isinstance(cat_joint_torque, dict) else {}
++        self._cat_torque_enabled = bool(torque_cfg.get('enabled', False))
++        self._cat_torque_p_max = float(torque_cfg.get('p_max', 1.0))
++        self._cat_torque_tau_c = float(torque_cfg.get('tau_c', 0.95))
++        self._cat_torque_eps = float(torque_cfg.get('eps', 1.e-6))
++        if not 0 < self._cat_torque_p_max <= 1 or not 0 <= self._cat_torque_tau_c < 1 or self._cat_torque_eps <= 0:
++            raise ValueError('Invalid CaT joint-torque hazard parameters')
++        self_cfg = cat_self_collision if isinstance(cat_self_collision,dict) else {}
++        self._cat_self_enabled=bool(self_cfg.get('enabled',False))
++        self._cat_self_p_max=float(self_cfg.get('p_max',1.))
++        self._cat_self_tau_c=float(self_cfg.get('tau_c',.95))
++        if not 0 < self._cat_self_p_max <= 1 or not 0 <= self._cat_self_tau_c < 1:
++            raise ValueError('Invalid CaT self collision hazard')
++        self._cat_self_cmax_ema=None
++        self._cat_torque_cmax_ema = None
+         self._cat_pc_cmax_ema = None
+         self._cat_pc_bmax_ema = None
+         self._cat_sb_cmax_ema = None
+@@ -249,6 +280,18 @@ class MPPI(OLGaussianMPC):
+             # self.scale_tril = torch.cholesky(self.cov_action)
+ 
+         
++    def _clamp_cov_diagonal(self, is_matrix: bool):
++        """Applies self.cov_min/cov_max (if set) to cov_action's diagonal in place. For the
++        vector cov_types (sigma_I/diag_AxA) cov_action IS the diagonal; for the matrix types
++        (full_AxA/full_HAxHA) only the diagonal is clamped -- off-diagonal correlation terms
++        are left as computed. torch.Tensor.diagonal() returns a view for 2D tensors, so
++        clamp_() on it mutates cov_action's diagonal directly, no copy-back needed.
++        """
++        if self.cov_min is None and self.cov_max is None:
++            return
++        target = self.cov_action.diagonal() if is_matrix else self.cov_action
++        target.clamp_(min=self.cov_min, max=self.cov_max)
++
+     def _shift(self, shift_steps):
+         """
+             Predict good parameters for the next time step by
+@@ -261,21 +304,24 @@ class MPPI(OLGaussianMPC):
+         if self.update_cov:
+             if self.cov_type == 'sigma_I':
+                 self.cov_action += self.kappa #* self.init_cov_action
++                self._clamp_cov_diagonal(is_matrix=False)
+                 self.scale_tril = torch.sqrt(self.cov_action)
+                 # self.inv_cov_action = 1.0 / self.cov_action
+ 
+             elif self.cov_type == 'diag_AxA':
+                 self.cov_action += self.kappa #* self.init_cov_action
+                 #self.cov_action[self.cov_action < 0.0005] = 0.0005
++                self._clamp_cov_diagonal(is_matrix=False)
+                 self.scale_tril = torch.sqrt(self.cov_action)
+                 # self.inv_cov_action = 1.0 / self.cov_action
+-                
++
+             elif self.cov_type == 'full_AxA':
+                 self.cov_action += self.kappa*self.I
++                self._clamp_cov_diagonal(is_matrix=True)
+                 self.scale_tril = matrix_cholesky(self.cov_action) # torch.cholesky(self.cov_action) #
+                 # self.scale_tril = torch.cholesky(self.cov_action)
+                 # self.inv_cov_action = torch.cholesky_inverse(self.scale_tril)
+-            
++
+             elif self.cov_type == 'full_HAxHA':
+                 self.cov_action += self.kappa * self.I
+ 
+@@ -295,7 +341,8 @@ class MPPI(OLGaussianMPC):
+                 self.cov_action[-shift_dim:,:].zero_()
+                 self.cov_action[:,-shift_dim:].zero_()
+                 #set bottom right AxA block to init_cov value
+-                self.cov_action[-shift_dim:, -shift_dim:] = self.init_cov*I2 
++                self.cov_action[-shift_dim:, -shift_dim:] = self.init_cov*I2
++                self._clamp_cov_diagonal(is_matrix=True)
+                 #update cholesky decomp
+                 self.scale_tril = torch.cholesky(self.cov_action)
+                 # self.inv_cov_action = torch.cholesky_inverse(self.scale_tril)
+@@ -311,16 +358,31 @@ class MPPI(OLGaussianMPC):
+             cmax_ema = tau_c * cmax_ema + (1.0 - tau_c) * batch_vmax.detach()
+         setattr(self, ema_attr, cmax_ema)
+ 
+-        cmax = torch.maximum(torch.maximum(cmax_ema, batch_vmax), eps_t)
++        # COSMIK-MPPI Eq. 17 and CaT Eq. 7 normalize by the EMA itself.
++        # A batch-max lower bound weakens abrupt violations; retain it only
++        # for explicit reproduction of the previous implementation.
++        cmax = torch.maximum(cmax_ema, eps_t)
++        if getattr(self, '_cat_equation_mode', 'legacy') == 'legacy':
++            cmax = torch.maximum(cmax, batch_vmax)
+         delta = p_max * torch.clamp(violation / cmax, min=0.0, max=1.0)
+         delta = torch.clamp(delta, min=0.0, max=p_max)
+         return delta
+ 
++    def _cat_reward_baseline(self, batch_bmax):
++        eps = torch.as_tensor(self._cat_pc_eps, **self.tensor_args)
++        previous = self._cat_pc_bmax_ema
++        average = batch_bmax.detach().clone() if previous is None else (
++            self._cat_pc_tau_b * previous + (1.0-self._cat_pc_tau_b)*batch_bmax.detach())
++        baseline = torch.maximum(average, batch_bmax) + eps
++        # Eq. 20 stores the upper envelope, not the unbounded EMA candidate.
++        self._cat_pc_bmax_ema = (baseline if self._cat_equation_mode == 'paper' else average).detach().clone()
++        return baseline
++
+     def _exp_util(self, costs, actions, trajectories=None):
+         """
+             Calculate weights using exponential utility
+         """
+-        any_cat_enabled = self._cat_pc_enabled or self._cat_sb_enabled
++        any_cat_enabled = self._cat_pc_enabled or self._cat_sb_enabled or self._cat_torque_enabled or self._cat_self_enabled
+         if not any_cat_enabled:
+             self._cat_pc_debug = {}
+             traj_costs = cost_to_go(costs, self.gamma_seq)
+@@ -337,6 +399,10 @@ class MPPI(OLGaussianMPC):
+             if self._cat_sb_enabled:
+                 required_keys.extend(["state_bound_costs", "state_bound_violation"])
+ 
++            if self._cat_torque_enabled:
++                required_keys.extend(["joint_torque_costs", "joint_torque_violation"])
++            if self._cat_self_enabled:
++                required_keys.extend(["self_collision_costs", "self_collision_violation"])
+             missing = [k for k in required_keys if k not in trajectories]
+             if missing:
+                 raise RuntimeError(
+@@ -399,6 +465,27 @@ class MPPI(OLGaussianMPC):
+                 debug_stats["cat_sb_delta_max"] = float(torch.max(delta_sb).item())
+                 debug_stats["cat_sb_cmax_ema"] = float(self._cat_sb_cmax_ema.item())
+ 
++            if self._cat_torque_enabled:
++                torque_costs = trajectories['joint_torque_costs'].to(**self.tensor_args)
++                torque_violation = trajectories['joint_torque_violation'].to(**self.tensor_args)
++                if torque_costs.shape != all_costs.shape or torque_violation.shape != all_costs.shape:
++                    raise RuntimeError('CaT joint torque arrays must match [particles,horizon] costs')
++                task_costs = task_costs - torque_costs
++                delta_torque = self._cat_build_delta(torque_violation,
++                    ema_attr='_cat_torque_cmax_ema', tau_c=self._cat_torque_tau_c,
++                    p_max=self._cat_torque_p_max, eps=self._cat_torque_eps)
++                delta_list.append(delta_torque)
++                debug_stats['cat_torque_delta_max'] = float(delta_torque.max().item())
++                debug_stats['cat_torque_relative_excess_max'] = float(torque_violation.max().item())
++            if self._cat_self_enabled:
++                self_costs=trajectories['self_collision_costs'].to(**self.tensor_args)
++                self_violation=trajectories['self_collision_violation'].to(**self.tensor_args)
++                if self_costs.shape!=all_costs.shape or self_violation.shape!=all_costs.shape:
++                    raise RuntimeError('CaT self-collision arrays must match rollout costs')
++                task_costs=task_costs-self_costs
++                delta_self=self._cat_build_delta(self_violation,ema_attr='_cat_self_cmax_ema',tau_c=self._cat_self_tau_c,p_max=self._cat_self_p_max,eps=1.e-6)
++                delta_list.append(delta_self)
++                debug_stats['cat_self_delta_max']=float(delta_self.max().item())
+             if len(delta_list) == 0:
+                 raise RuntimeError("Shifted-CaT enabled but no cat hazards were built.")
+ 
+@@ -418,15 +505,7 @@ class MPPI(OLGaussianMPC):
+             eps_shift = torch.as_tensor(self._cat_pc_eps, **self.tensor_args)
+             batch_bmax = torch.max(task_costs)
+             debug_stats["cat_task_cost_max"] = float(batch_bmax.item())
+-            if self._cat_pc_bmax_ema is None:
+-                self._cat_pc_bmax_ema = batch_bmax.detach().clone()
+-            else:
+-                self._cat_pc_bmax_ema = (
+-                    self._cat_pc_tau_b * self._cat_pc_bmax_ema
+-                    + (1.0 - self._cat_pc_tau_b) * batch_bmax.detach()
+-                )
+-
+-            b = torch.maximum(self._cat_pc_bmax_ema, batch_bmax) + eps_shift
++            b = self._cat_reward_baseline(batch_bmax)
+             r_shift = b - task_costs
+             if torch.min(r_shift) < -1.0e-6:
+                 raise RuntimeError(
+@@ -443,10 +522,10 @@ class MPPI(OLGaussianMPC):
+             debug_stats["cat_pc_survival_final_mean"] = debug_stats["cat_survival_final_mean"]
+             debug_stats["cat_pc_bmax_ema"] = float(self._cat_pc_bmax_ema.item())
+             self._cat_pc_debug = debug_stats
+-        #control_costs = self._control_costs(actions)
++        control_costs = self._control_costs(actions)
++
++        total_costs = traj_costs + self.beta * control_costs
+ 
+-        total_costs = traj_costs #+ self.beta * control_costs
+-        
+         
+         # #calculate soft-max
+         w = torch.softmax((-1.0/self.beta) * total_costs, dim=0)
+diff --git a/storm_kit/mpc/control/olgaussian_mpc.py b/storm_kit/mpc/control/olgaussian_mpc.py
+index 0d9da77..f239266 100644
+--- a/storm_kit/mpc/control/olgaussian_mpc.py
++++ b/storm_kit/mpc/control/olgaussian_mpc.py
+@@ -24,6 +24,7 @@
+ MPC with open-loop Gaussian policies
+ """
+ import copy
++import time
+ 
+ import numpy as np
+ import torch
+@@ -125,6 +126,17 @@ class OLGaussianMPC(Controller):
+             self.sample_lib = MultipleSampleLib(self.horizon, self.d_action, tensor_args=self.tensor_args, **self.sample_params)
+             self.sample_shape = torch.Size([self.num_nonzero_particles - 2])
+ 
++        elif sample_params['type'] == 'seeded-knot':
++            # Opt-in sampler: preserve the archived Halton/multiple paths above.
++            from .seeded_knot_sampling import SeededKnotSamples
++            sampler_params = dict(self.sample_params)
++            sampler_params.pop('type')
++            self.sample_lib = SeededKnotSamples(
++                self.horizon, self.d_action, tensor_args=self.tensor_args,
++                **sampler_params)
++            self.sample_shape = torch.Size([self.num_nonzero_particles - 2])
++            self.sample_lib.prepare(self.sample_shape)
++
+         self.stomp_matrix = None #self.sample_lib.stomp_cov_matrix
+         # initialize covariance types:
+         if self.cov_type == 'full_HAxHA':
+@@ -183,11 +195,6 @@ class OLGaussianMPC(Controller):
+                                                                       self.horizon,
+                                                                       self.d_action)
+ 
+-
+-
+-        #
+-        debug_act = delta[:,:,0].cpu().numpy()
+-
+         act_seq = self.mean_action.unsqueeze(0) + scaled_delta
+         
+ 
+@@ -221,11 +228,22 @@ class OLGaussianMPC(Controller):
+                 Initial state to set the simulation env to
+          """
+         
+-        act_seq = self.sample_actions(state=state) # sample noise from covariance of current control distribution
+-
++        # Diagnostic-only phase timing -- see the matching note in control_base.py's optimize().
++        _sync = torch.cuda.synchronize if torch.cuda.is_available() else (lambda: None)
++        _timing = getattr(self, 'last_phase_timing', None)
++        if _timing is None:
++            _timing = self.last_phase_timing = {}
+ 
++        _t0 = time.time()
++        act_seq = self.sample_actions(state=state) # sample noise from covariance of current control distribution
++        _sync()
++        _timing['sample_actions'] = _timing.get('sample_actions', 0.0) + (time.time() - _t0)
+ 
++        _t0 = time.time()
+         trajectories = self._rollout_fn(state, act_seq)
++        _sync()
++        _timing['rollout_fn'] = _timing.get('rollout_fn', 0.0) + (time.time() - _t0)
++
+         return trajectories
+     
+     def _shift(self, shift_steps=1):
+diff --git a/storm_kit/mpc/control/sample_libs.py b/storm_kit/mpc/control/sample_libs.py
+index 0930ce3..4dc0e85 100644
+--- a/storm_kit/mpc/control/sample_libs.py
++++ b/storm_kit/mpc/control/sample_libs.py
+@@ -317,21 +317,25 @@ class MultipleSampleLib(SampleLib):
+         self.fixed_samples = fixed_samples
+         self.samples = None
+     def get_samples(self, sample_shape, base_seed=None, **kwargs):
+-        if(self.fixed_samples and self.samples is None):
+-            cat_list = []
+-            sample_shape = list(sample_shape)
+-            for ki, k in enumerate(self.sample_ratio.keys()):
+-                if(self.sample_ratio[k] == 0.0):
+-                    continue
+-                n_samples = round(sample_shape[0] * self.sample_ratio[k])
+-                s_shape = torch.Size([n_samples])
+-                #if(k == 'halton' or k == 'random'):
+-                samples = self.sample_fns[k](sample_shape=s_shape)
+-                #else:
+-                #    samples = self.sample_fns[k](sample_shape=s_shape)
+-                cat_list.append(samples)
+-                samples = torch.cat(cat_list, dim=0)
+-                self.samples = samples
++        # FIX: this previously only had a body for fixed_samples=True (populate self.samples
++        # once, cache forever). There was no regenerate-every-call path for fixed_samples=False
++        # at all -- unlike every sibling sample-lib class in this file (HaltonSampleLib,
++        # RandomSampleLib, KnotSampleLib), which all correctly redraw on every call when not
++        # fixed. self.samples stayed None forever and this returned None unconditionally,
++        # crashing the first tensor op downstream the moment fixed_samples was set False.
++        if(self.fixed_samples and self.samples is not None):
++            return self.samples
++
++        cat_list = []
++        sample_shape = list(sample_shape)
++        for k in self.sample_ratio.keys():
++            if(self.sample_ratio[k] == 0.0):
++                continue
++            n_samples = round(sample_shape[0] * self.sample_ratio[k])
++            s_shape = torch.Size([n_samples])
++            samples = self.sample_fns[k](sample_shape=s_shape)
++            cat_list.append(samples)
++        self.samples = torch.cat(cat_list, dim=0)
+         return self.samples
+         
+ class HaltonStompSampleLib(SampleLib):
+diff --git a/storm_kit/mpc/cost/primitive_collision_cost.py b/storm_kit/mpc/cost/primitive_collision_cost.py
+index b78b184..60acd52 100644
+--- a/storm_kit/mpc/cost/primitive_collision_cost.py
++++ b/storm_kit/mpc/cost/primitive_collision_cost.py
+@@ -26,12 +26,25 @@ import torch.nn as nn
+ from ...geom.sdf.robot_world import RobotWorldCollisionPrimitive
+ from .gaussian_projection import GaussianProjection
+ 
++def sphere_pair_link_distance(robot_spheres, world_spheres):
++    """Maximum signed overlap over every robot/world sphere pair for one link.
++
++    The compiled form fuses broadcast, norm and reduction to avoid materializing
++    the enormous [particles*horizon, robot spheres, human spheres, xyz] tensor.
++    Pair membership, sign convention and geometry are unchanged.
++    """
++    difference = robot_spheres[:, :, :3].unsqueeze(2) - world_spheres[:, :3].view(1, 1, -1, 3)
++    signed = world_spheres[:, 3].view(1, 1, -1) - torch.linalg.vector_norm(difference, dim=-1) + robot_spheres[:, :, 3].unsqueeze(-1)
++    return torch.amax(signed, dim=(1, 2))
++
++
+ class PrimitiveCollisionCost(nn.Module):
+     def __init__(self, weight=None, world_params=None, robot_params=None, gaussian_params={},
+                  distance_threshold=0.1,
+                  violation_clip_max=0.2,
+                  violation_scale=0.25,
+-                 tensor_args={'device':torch.device('cpu'), 'dtype':torch.float32}):
++                 tensor_args={'device':torch.device('cpu'), 'dtype':torch.float32},
++                 fused_dynamic_collision=False):
+         super(PrimitiveCollisionCost, self).__init__()
+         
+         self.tensor_args = tensor_args
+@@ -53,6 +66,9 @@ class PrimitiveCollisionCost(nn.Module):
+         self.distance_threshold = distance_threshold
+         self.violation_clip_max = float(violation_clip_max)
+         self.violation_scale = float(violation_scale)
++        self.fused_dynamic_collision = bool(fused_dynamic_collision)
++        # Lazy compilation keeps the controller serializable before worker startup.
++        self._dynamic_pair_kernel = None
+         self._dynamic_world_spheres = None
+         self._empty_world_dist = None
+         self._dynamic_link_dist = None
+@@ -61,6 +77,12 @@ class PrimitiveCollisionCost(nn.Module):
+         if self.violation_scale <= 0.0:
+             raise ValueError(f"violation_scale must be > 0, got {self.violation_scale}.")
+ 
++    def __getstate__(self):
++        state = super().__getstate__()
++        # Recompile in the optimizer worker after restoring a warmed controller.
++        state['_dynamic_pair_kernel'] = None
++        return state
++
+     @staticmethod
+     def _shape_violation(
+         dist,
+@@ -110,6 +132,11 @@ class PrimitiveCollisionCost(nn.Module):
+ 
+         for link_idx in range(n_links):
+             robot_spheres = link_spheres[link_idx]
++            if getattr(self, 'fused_dynamic_collision', False):
++                if self._dynamic_pair_kernel is None:
++                    self._dynamic_pair_kernel = torch.compile(sphere_pair_link_distance, fullgraph=True, dynamic=True)
++                dist[:, link_idx] = self._dynamic_pair_kernel(robot_spheres, self._dynamic_world_spheres)
++                continue
+             robot_centers = robot_spheres[:, :, :3]
+             robot_radii = robot_spheres[:, :, 3].unsqueeze(-1)
+             center_distance = torch.norm(robot_centers.unsqueeze(2) - world_centers, dim=-1)
+diff --git a/storm_kit/mpc/rollout/arm_base.py b/storm_kit/mpc/rollout/arm_base.py
+index 4fa2550..043545d 100644
+--- a/storm_kit/mpc/rollout/arm_base.py
++++ b/storm_kit/mpc/rollout/arm_base.py
+@@ -20,6 +20,8 @@
+ # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ # DEALINGS IN THE SOFTWARE.#
++import time
++
+ import torch
+ import torch.autograd.profiler as profiler
+ 
+@@ -34,6 +36,13 @@ from ...mpc.model.integration_utils import build_fd_matrix
+ from ...mpc.rollout.rollout_base import RolloutBase
+ from ..cost.robot_self_collision_cost import RobotSelfCollisionCost
+ 
++# Placeholder world for box_collision_cost/table_collision_cost at construction time -- the
++# real content arrives via update_params(box_world_params=..., table_world_params=...) right
++# after the bridge finishes building the task (see storm_mppi_planner_node.py), same pattern
++# already used for dynamic_world_spheres/goal_ee_pos.
++_EMPTY_WORLD_PARAMS = {"world_model": {"coll_objs": {"sphere": {}, "cube": {}}}}
++
++
+ class ArmBase(RolloutBase):
+     """
+     This rollout function is for reaching a cartesian pose for a robot
+@@ -60,6 +69,10 @@ class ArmBase(RolloutBase):
+             self.cat_primitive_collision_violation_scale = float(self.cat_primitive_collision_violation_scale)
+         cat_sb_cfg = self.exp_params.get('mppi', {}).get('cat_state_bound', {})
+         self.cat_state_bound_enabled = bool(cat_sb_cfg.get('enabled', False))
++        self.cat_self_enabled = bool(mppi_params.get('cat_self_collision', {}).get('enabled',False))
++        self.explicit_self = bool(exp_params['cost']['robot_self_collision'].get('explicit_geometry',False))
++        if self.cat_self_enabled and not self.explicit_self:
++            raise ValueError('CaT self-collision requires explicit geometry')
+         self.cat_state_bound_bound_thresh = cat_sb_cfg.get('bound_thresh', None)
+         if self.cat_state_bound_bound_thresh is not None:
+             self.cat_state_bound_bound_thresh = float(self.cat_state_bound_bound_thresh)
+@@ -81,6 +94,20 @@ class ArmBase(RolloutBase):
+                                                  dt_traj_params=exp_params['model']['dt_traj_params'],
+                                                  control_space=exp_params['control_space'],
+                                                  vel_scale=exp_params['model']['vel_scale'])
++        torque_cfg = exp_params['cost'].get('joint_torque', {})
++        self.torque_weight = float(torque_cfg.get('weight', 0.0))
++        self.torque_limit_scale = float(torque_cfg.get('limit_scale', 1.0))
++        self.cat_torque_enabled = bool(mppi_params.get('cat_joint_torque', {}).get('enabled', False))
++        if not 0.0 < self.torque_limit_scale <= 1.0 or self.torque_weight < 0:
++            raise ValueError('Torque limit_scale must be in (0,1] and weight nonnegative')
++        self.torque_model = None
++        if self.torque_weight > 0 or self.cat_torque_enabled:
++            from ..model.batched_inverse_dynamics import BatchedInverseDynamics
++            self.torque_model = BatchedInverseDynamics(
++                join_path(assets_path, model_params['urdf_path']), self.tensor_args,
++                backend=torque_cfg.get('backend', 'matrix'))
++            self.torque_limits = self.torque_model.effort_limits * self.torque_limit_scale
++
+         self.dt = self.dynamics_model.dt
+         self.n_dofs = self.dynamics_model.n_dofs
+         # rollout traj_dt starts from dt->dt*(horizon+1) as tstep 0 is the current state
+@@ -102,7 +129,7 @@ class ArmBase(RolloutBase):
+         
+         self.null_cost = ProjectedDistCost(ndofs=self.n_dofs, device=device, float_dtype=float_dtype,
+                                            **exp_params['cost']['null_space'])
+-        
++
+         self.manipulability_cost = ManipulabilityCost(ndofs=self.n_dofs, device=device,
+                                                       float_dtype=float_dtype,
+                                                       **exp_params['cost']['manipulability'])
+@@ -135,13 +162,38 @@ class ArmBase(RolloutBase):
+             self.voxel_collision_cost = VoxelCollisionCost(robot_params=robot_params,
+                                                            tensor_args=self.tensor_args,
+                                                            **self.exp_params['cost']['voxel_collision'])
+-            
++
+         self.primitive_collision_cost = None
+         if(exp_params['cost']['primitive_collision']['weight'] > 0.0 or self.cat_primitive_collision_enabled):
+             self.primitive_collision_cost = PrimitiveCollisionCost(world_params=world_params, robot_params=robot_params, tensor_args=self.tensor_args, **self.exp_params['cost']['primitive_collision'])
+ 
+-        if(exp_params['cost']['robot_self_collision']['weight'] > 0.0):
+-            self.robot_self_collision_cost = RobotSelfCollisionCost(robot_params=robot_params, tensor_args=self.tensor_args, **self.exp_params['cost']['robot_self_collision'])
++        # Dedicated collision costs for pick-object boxes and the table, kept separate from
++        # primitive_collision_cost above so each gets its own threshold/weight (typically
++        # distance_threshold: 0.0 for boxes -- only real contact/penetration counts, no
++        # standoff margin, since the robot must approach and touch these). Always active, like
++        # table_collision_cost below -- the *content* of box_world_params is what changes over
++        # time (the bridge excludes whichever specific box is currently held by the gripper,
++        # via update_params(box_world_params=...), while every other box stays a real obstacle).
++        self.box_collision_cost = None
++        if exp_params['cost'].get('box_collision', {}).get('weight', 0.0) > 0.0:
++            self.box_collision_cost = PrimitiveCollisionCost(
++                world_params=_EMPTY_WORLD_PARAMS, robot_params=robot_params,
++                tensor_args=self.tensor_args, **self.exp_params['cost']['box_collision'],
++            )
++
++        self.table_collision_cost = None
++        if exp_params['cost'].get('table_collision', {}).get('weight', 0.0) > 0.0:
++            self.table_collision_cost = PrimitiveCollisionCost(
++                world_params=_EMPTY_WORLD_PARAMS, robot_params=robot_params,
++                tensor_args=self.tensor_args, **self.exp_params['cost']['table_collision'],
++            )
++
++        if exp_params['cost']['robot_self_collision']['weight'] > 0.0 or self.cat_self_enabled:
++            if self.explicit_self:
++                from ..cost.explicit_self_collision_cost import ExplicitSelfCollisionCost
++                self.robot_self_collision_cost = ExplicitSelfCollisionCost(robot_params=robot_params, tensor_args=self.tensor_args, **exp_params['cost']['robot_self_collision'])
++            else:
++                self.robot_self_collision_cost = RobotSelfCollisionCost(robot_params=robot_params, tensor_args=self.tensor_args, **exp_params['cost']['robot_self_collision'])
+ 
+ 
+         self.ee_vel_cost = EEVelCost(ndofs=self.n_dofs,device=device, float_dtype=float_dtype,**exp_params['cost']['ee_vel'])
+@@ -155,18 +207,17 @@ class ArmBase(RolloutBase):
+         self.link_rot_seq = torch.zeros((1, 1, len(self.dynamics_model.link_names), 3, 3), **self.tensor_args)
+ 
+     def cost_fn(self, state_dict, action_batch, no_coll=False, horizon_cost=True, return_breakdown=False):
+-        
++
+         ee_pos_batch, ee_rot_batch = state_dict['ee_pos_seq'], state_dict['ee_rot_seq']
+         state_batch = state_dict['state_seq']
+         lin_jac_batch, ang_jac_batch = state_dict['lin_jac_seq'], state_dict['ang_jac_seq']
+         link_pos_batch, link_rot_batch = state_dict['link_pos_seq'], state_dict['link_rot_seq']
+         prev_state = state_dict['prev_state_seq']
+         prev_state_tstep = state_dict['prev_state_seq'][:,-1]
+-        
++
+         retract_state = self.retract_state
+-        
+-        
+-        
++        breakdown = {} if return_breakdown else None
++
+         J_full = torch.cat((lin_jac_batch, ang_jac_batch), dim=-2)
+         
+ 
+@@ -177,8 +228,15 @@ class ArmBase(RolloutBase):
+                                                 J_full,
+                                                 proj_type='identity',
+                                                 dist_type='squared_l2')
++        if breakdown is not None:
++            # Snapshot before `cost = null_disp_cost` aliases the tensor -- every later
++            # `cost += ...` in this function is an in-place op that would otherwise silently
++            # accumulate into null_disp_cost too, corrupting this breakdown entry.
++            breakdown["null_space"] = null_disp_cost.clone()
+         cost = null_disp_cost
+ 
++        self_cost = torch.zeros_like(cost)
++        self_violation = torch.zeros_like(cost)
+         primitive_cost = None
+         primitive_violation = None
+         state_bound_cost = None
+@@ -191,6 +249,10 @@ class ArmBase(RolloutBase):
+                 state_bound_cost = torch.zeros_like(cost)
+                 state_bound_violation = torch.zeros_like(cost)
+                 return cost, {
++                    "self_collision_costs": torch.zeros_like(cost),
++                    "self_collision_violation": torch.zeros_like(cost),
++                    "joint_torque_costs": torch.zeros_like(cost),
++                    "joint_torque_violation": torch.zeros_like(cost),
+                     "primitive_collision_costs": primitive_cost,
+                     "primitive_collision_violation": primitive_violation,
+                     "state_bound_costs": state_bound_cost,
+@@ -198,15 +260,20 @@ class ArmBase(RolloutBase):
+                 }
+             return cost
+         if(self.exp_params['cost']['manipulability']['weight'] > 0.0):
+-            cost += self.manipulability_cost.forward(J_full)
+-        
+-        
++            _c = self.manipulability_cost.forward(J_full)
++            cost += _c
++            if breakdown is not None: breakdown["manipulability"] = _c
++
+         if(horizon_cost):
+             if self.exp_params['cost']['stop_cost']['weight'] > 0:
+-                cost += self.stop_cost.forward(state_batch[:, :, self.n_dofs:self.n_dofs * 2])
++                _c = self.stop_cost.forward(state_batch[:, :, self.n_dofs:self.n_dofs * 2])
++                cost += _c
++                if breakdown is not None: breakdown["stop_cost"] = _c
+ 
+             if self.exp_params['cost']['stop_cost_acc']['weight'] > 0:
+-                cost += self.stop_cost_acc.forward(state_batch[:, :, self.n_dofs*2 :self.n_dofs * 3])
++                _c = self.stop_cost_acc.forward(state_batch[:, :, self.n_dofs*2:self.n_dofs * 3])
++                cost += _c
++                if breakdown is not None: breakdown["stop_cost_acc"] = _c
+ 
+             if self.exp_params['cost']['smooth']['weight'] > 0:
+                 order = self.exp_params['cost']['smooth']['order']
+@@ -217,7 +284,9 @@ class ArmBase(RolloutBase):
+                 p_state = p_state.expand(state.shape[0], -1, -1)
+                 state_buffer = torch.cat((p_state, state), dim=1)
+                 traj_dt = torch.cat((prev_dt, self.traj_dt))
+-                cost += self.smooth_cost.forward(state_buffer, traj_dt)
++                _c = self.smooth_cost.forward(state_buffer, traj_dt)
++                cost += _c
++                if breakdown is not None: breakdown["smooth"] = _c
+ 
+ 
+         if return_breakdown:
+@@ -234,18 +303,21 @@ class ArmBase(RolloutBase):
+             cost += self.bound_cost.forward(state_batch[:,:,:self.n_dofs * 3])
+ 
+         if self.exp_params['cost']['ee_vel']['weight'] > 0:
+-            cost += self.ee_vel_cost.forward(state_batch, lin_jac_batch)
++            _c = self.ee_vel_cost.forward(state_batch, lin_jac_batch)
++            cost += _c
++            if breakdown is not None: breakdown["ee_vel"] = _c
+ 
+ 
+ 
+         if(not no_coll):
+-            if self.exp_params['cost']['robot_self_collision']['weight'] > 0:
+-                coll_cost = self.robot_self_collision_cost.forward(
+-                    state_batch[:, :, : self.n_dofs],
+-                    link_pos_seq=link_pos_batch,
+-                    link_rot_seq=link_rot_batch,
+-                )
+-                cost += coll_cost
++            if self.exp_params['cost']['robot_self_collision']['weight'] > 0 or self.cat_self_enabled:
++                kwargs=dict(link_pos_seq=link_pos_batch,link_rot_seq=link_rot_batch)
++                if self.explicit_self:
++                    self_cost,self_violation=self.robot_self_collision_cost.forward(state_batch[:,:,:self.n_dofs],return_violation=True,**kwargs)
++                else:
++                    self_cost=self.robot_self_collision_cost.forward(state_batch[:,:,:self.n_dofs],**kwargs)
++                cost += self_cost
++                if breakdown is not None:breakdown['robot_self_collision']=self_cost
+             primitive_weight_enabled = self.exp_params['cost']['primitive_collision']['weight'] > 0.0
+             if self.primitive_collision_cost is not None and (primitive_weight_enabled or return_breakdown):
+                 if return_breakdown:
+@@ -276,11 +348,39 @@ class ArmBase(RolloutBase):
+                 elif primitive_weight_enabled:
+                     coll_cost = self.primitive_collision_cost.forward(link_pos_batch, link_rot_batch)
+                     cost += coll_cost
++
++            if self.box_collision_cost is not None:
++                box_cost = self.box_collision_cost.forward(link_pos_batch, link_rot_batch)
++                cost += box_cost
++                if breakdown is not None:
++                    breakdown["box_collision"] = box_cost
++
++            if self.table_collision_cost is not None:
++                table_cost = self.table_collision_cost.forward(link_pos_batch, link_rot_batch)
++                cost += table_cost
++                if breakdown is not None:
++                    breakdown["table_collision"] = table_cost
++
+             if self.exp_params['cost']['voxel_collision']['weight'] > 0:
+                 coll_cost = self.voxel_collision_cost.forward(link_pos_batch, link_rot_batch)
+                 cost += coll_cost
+ 
++        torque_cost = torch.zeros_like(cost)
++        torque_violation = torch.zeros_like(cost)
++        if self.torque_model is not None:
++            tau = self.torque_model(state_batch[..., :self.n_dofs],
++                                    state_batch[..., self.n_dofs:2*self.n_dofs],
++                                    state_batch[..., 2*self.n_dofs:3*self.n_dofs])
++            excess = torch.relu(torch.abs(tau) / self.torque_limits - 1.0)
++            torque_violation = excess.amax(dim=-1)
++            torque_cost = self.torque_weight * excess.square().sum(dim=-1)
++            cost += torque_cost
+         if return_breakdown:
++            breakdown["self_collision_costs"] = self_cost
++            breakdown["self_collision_violation"] = self_violation
++            breakdown["joint_torque"] = torque_cost
++            breakdown["joint_torque_costs"] = torque_cost
++            breakdown["joint_torque_violation"] = torque_violation
+             if primitive_cost is None:
+                 primitive_cost = torch.zeros_like(cost)
+             if primitive_violation is None:
+@@ -289,12 +389,12 @@ class ArmBase(RolloutBase):
+                 state_bound_cost = torch.zeros_like(cost)
+             if state_bound_violation is None:
+                 state_bound_violation = torch.zeros_like(cost)
+-            breakdown = {
+-                "primitive_collision_costs": primitive_cost,
+-                "primitive_collision_violation": primitive_violation,
+-                "state_bound_costs": state_bound_cost,
+-                "state_bound_violation": state_bound_violation,
+-            }
++            breakdown["primitive_collision"] = primitive_cost
++            breakdown["state_bound"] = state_bound_cost
++            breakdown["primitive_collision_costs"] = primitive_cost
++            breakdown["primitive_collision_violation"] = primitive_violation
++            breakdown["state_bound_costs"] = state_bound_cost
++            breakdown["state_bound_violation"] = state_bound_violation
+             return cost, breakdown
+ 
+         return cost
+@@ -308,44 +408,62 @@ class ArmBase(RolloutBase):
+         ----------
+         action_seq: torch.Tensor [num_particles, horizon, d_act]
+         """
+-        # rollout_start_time = time.time()
+-        #print("computing rollout")
+-        #print(act_seq)
+-        #print('step...')
++        # Diagnostic-only sub-phase timing -- see the matching note in control_base.py's
++        # optimize(). Stored on self (the rollout_fn owner, a *different* object than the
++        # controller that owns last_phase_timing in olgaussian_mpc.py's generate_rollouts) so
++        # the bridge can merge both dicts -- see mpc_process_wrapper.py.
++        _sync = torch.cuda.synchronize if torch.cuda.is_available() else (lambda: None)
++        self.last_rollout_phase_timing = {}
++
+         with profiler.record_function("robot_model"):
++            _t0 = time.time()
+             state_dict = self.dynamics_model.rollout_open_loop(start_state, act_seq)
+-        
+-        
++            _sync()
++            self.last_rollout_phase_timing['robot_model'] = time.time() - _t0
++
+         #link_pos_seq, link_rot_seq = self.dynamics_model.get_link_poses()
+         with profiler.record_function("cost_fns"):
+-            if self.cat_primitive_collision_enabled or self.cat_state_bound_enabled:
+-                cost_seq, cost_breakdown = self.cost_fn(state_dict, act_seq, return_breakdown=True)
+-            else:
+-                cost_seq = self.cost_fn(state_dict, act_seq)
++            _t0 = time.time()
++            cost_seq, cost_breakdown = self.cost_fn(state_dict, act_seq, return_breakdown=True)
++            _sync()
++            self.last_rollout_phase_timing['cost_fns'] = time.time() - _t0
++
++        # Store mean cost per named term (sum over horizon, mean over particles) as plain floats.
++        # Keys match YAML cost names so the bridge can publish them by name.
++        _skip = {"primitive_collision_costs", "primitive_collision_violation",
++                 "state_bound_costs", "state_bound_violation",
++                 "joint_torque_costs", "joint_torque_violation",
++                 "self_collision_costs", "self_collision_violation"}
++        self.last_cost_breakdown = {
++            k: float(v.sum(dim=-1).mean().item())
++            for k, v in cost_breakdown.items()
++            if k not in _skip
++        }
+ 
+         sim_trajs = dict(
+-            actions=act_seq,#.clone(),
+-            costs=cost_seq,#clone(),
+-            ee_pos_seq=state_dict['ee_pos_seq'],#.clone(),
+-            #link_pos_seq=link_pos_seq,
+-            #link_rot_seq=link_rot_seq,
+-            rollout_time=0.0
++            self_collision_costs=cost_breakdown["self_collision_costs"],
++            self_collision_violation=cost_breakdown["self_collision_violation"],
++            joint_torque_costs=cost_breakdown["joint_torque_costs"],
++            joint_torque_violation=cost_breakdown["joint_torque_violation"],
++            actions=act_seq,
++            costs=cost_seq,
++            ee_pos_seq=state_dict['ee_pos_seq'],
++            rollout_time=0.0,
++            primitive_collision_costs=cost_breakdown["primitive_collision_costs"],
++            primitive_collision_violation=cost_breakdown["primitive_collision_violation"],
++            state_bound_costs=cost_breakdown["state_bound_costs"],
++            state_bound_violation=cost_breakdown["state_bound_violation"],
+         )
+ 
+-        if self.cat_primitive_collision_enabled or self.cat_state_bound_enabled:
+-            sim_trajs["primitive_collision_costs"] = cost_breakdown["primitive_collision_costs"]
+-            sim_trajs["primitive_collision_violation"] = cost_breakdown["primitive_collision_violation"]
+-            sim_trajs["state_bound_costs"] = cost_breakdown["state_bound_costs"]
+-            sim_trajs["state_bound_violation"] = cost_breakdown["state_bound_violation"]
+-        
+         return sim_trajs
+ 
+-    def update_params(self, retract_state=None, world_params=None, dynamic_world_spheres=None):
++    def update_params(self, retract_state=None, world_params=None, dynamic_world_spheres=None,
++                       box_world_params=None, table_world_params=None):
+         """
+         Updates the goal targets for the cost functions.
+ 
+         """
+-        
++
+         if(retract_state is not None):
+             self.retract_state = torch.as_tensor(retract_state, **self.tensor_args).unsqueeze(0)
+ 
+@@ -357,9 +475,25 @@ class ArmBase(RolloutBase):
+                 **self.exp_params['cost']['primitive_collision'],
+             )
+ 
++        if box_world_params is not None and self.box_collision_cost is not None:
++            self.box_collision_cost = PrimitiveCollisionCost(
++                world_params=box_world_params,
++                robot_params=self.exp_params['robot_params'],
++                tensor_args=self.tensor_args,
++                **self.exp_params['cost']['box_collision'],
++            )
++
++        if table_world_params is not None and self.table_collision_cost is not None:
++            self.table_collision_cost = PrimitiveCollisionCost(
++                world_params=table_world_params,
++                robot_params=self.exp_params['robot_params'],
++                tensor_args=self.tensor_args,
++                **self.exp_params['cost']['table_collision'],
++            )
++
+         if dynamic_world_spheres is not None and self.primitive_collision_cost is not None:
+             self.primitive_collision_cost.set_dynamic_world_spheres(dynamic_world_spheres)
+-        
++
+         return True
+     
+     def __call__(self, start_state, act_seq):
+diff --git a/storm_kit/mpc/rollout/arm_reacher.py b/storm_kit/mpc/rollout/arm_reacher.py
+index 2af8f98..f404e2d 100644
+--- a/storm_kit/mpc/rollout/arm_reacher.py
++++ b/storm_kit/mpc/rollout/arm_reacher.py
+@@ -107,6 +107,18 @@ class ArmReacher(ArmBase):
+             cost += self.zero_vel_cost.forward(state_batch[:, :, self.n_dofs:self.n_dofs*2], goal_dist=goal_dist)
+ 
+         if return_breakdown:
++            breakdown["goal_pose"] = goal_cost
++            if self.exp_params['cost']['joint_l2']['weight'] > 0.0 and goal_state is not None:
++                disp_vec = state_batch[:, :, 0:self.n_dofs] - goal_state[:, 0:self.n_dofs]
++                breakdown["joint_l2"] = self.dist_cost.forward(disp_vec)
++            if self.exp_params['cost']['zero_acc']['weight'] > 0:
++                breakdown["zero_acc"] = self.zero_acc_cost.forward(
++                    state_batch[:, :, self.n_dofs * 2:self.n_dofs * 3], goal_dist=goal_dist
++                )
++            if self.exp_params['cost']['zero_vel']['weight'] > 0:
++                breakdown["zero_vel"] = self.zero_vel_cost.forward(
++                    state_batch[:, :, self.n_dofs:self.n_dofs * 2], goal_dist=goal_dist
++                )
+             return cost, breakdown
+ 
+         return cost
+@@ -121,6 +133,8 @@ class ArmReacher(ArmBase):
+         goal_ee_quat=None,
+         world_params=None,
+         dynamic_world_spheres=None,
++        box_world_params=None,
++        table_world_params=None,
+     ):
+         """
+         Update params for the cost terms and dynamics model.
+@@ -130,11 +144,13 @@ class ArmReacher(ArmBase):
+         goal_ee_quat: 4
+ 
+         """
+-        
++
+         super(ArmReacher, self).update_params(
+             retract_state=retract_state,
+             world_params=world_params,
+             dynamic_world_spheres=dynamic_world_spheres,
++            box_world_params=box_world_params,
++            table_world_params=table_world_params,
+         )
+         
+         if(goal_ee_pos is not None):
+diff --git a/storm_kit/mpc/task/arm_task.py b/storm_kit/mpc/task/arm_task.py
+index 59e2d4e..a197e1d 100644
+--- a/storm_kit/mpc/task/arm_task.py
++++ b/storm_kit/mpc/task/arm_task.py
+@@ -117,6 +117,13 @@ class ArmTask(BaseTask):
+             mppi_params['init_mean'] = init_action
+         mppi_params['rollout_fn'] = rollout_fn
+         mppi_params['tensor_args'] = self.tensor_args
+-        controller = MPPI(**mppi_params)
++        if exp_params.get('common_ocp'):
++            if exp_params['common_settings']['method'] == 'croco':
++                from controllers.croco_async import CommonCrocoControl as CommonController
++            else:
++                from controllers.sampling import CommonMPPI as CommonController
++            controller = CommonController(common_settings=exp_params['common_settings'], **mppi_params)
++        else:
++            controller = MPPI(**mppi_params)
+         self.exp_params = exp_params
+         return controller
+diff --git a/storm_kit/mpc/task/reacher_task.py b/storm_kit/mpc/task/reacher_task.py
+index 263fad5..68811a0 100644
+--- a/storm_kit/mpc/task/reacher_task.py
++++ b/storm_kit/mpc/task/reacher_task.py
+@@ -52,5 +52,8 @@ class ReacherTask(ArmTask):
+                          world_file=world_file, tensor_args=tensor_args, world_params=world_params)
+ 
+     def get_rollout_fn(self, **kwargs):
++        if kwargs['exp_params'].get('common_ocp'):
++            from controllers.sampling import CommonArmReacher
++            return CommonArmReacher(**kwargs)
+         rollout_fn = ArmReacher(**kwargs)
+         return rollout_fn
+diff --git a/storm_kit/mpc/task/task_base.py b/storm_kit/mpc/task/task_base.py
+index d3a9749..530332d 100644
+--- a/storm_kit/mpc/task/task_base.py
++++ b/storm_kit/mpc/task/task_base.py
+@@ -35,7 +35,7 @@ class BaseTask():
+         self.state_filter = JointStateFilter(filter_coeff=self.exp_params['state_filter_coeff'], dt=self.exp_params['control_dt'])
+ 
+         self.command_filter = JointStateFilter(filter_coeff=self.exp_params['cmd_filter_coeff'], dt=self.exp_params['control_dt'])
+-        self.control_process = ControlProcess(self.controller)
++        self.control_process = ControlProcess(self.controller, exact_latency_prediction=bool(self.exp_params.get('exact_latency_prediction', False)))
+         self.n_dofs = self.controller.rollout_fn.dynamics_model.n_dofs
+         self.zero_acc = np.zeros(self.n_dofs)
+         # Tier 3a: command_filter (above) was constructed but never invoked anywhere in this
+@@ -61,6 +61,29 @@ class BaseTask():
+         self.control_process.update_params(**kwargs)
+         return True
+ 
++    def reset(self) -> None:
++        """Full reset for a fresh rollout, instead of hotstart silently warm-starting from
++        whatever plan/belief existed before. Two parts:
++          - Requests MPPI's mean_action -> init_mean (zero action for control_space='acc') and
++            cov_action -> init_cov, applied on the next get_command() round trip (optimize()
++            runs in a separate process -- see ControlProcess.request_reset).
++          - Zeroes THIS process's own state_filter belief of velocity/acceleration directly
++            (that state lives here, not in the child process).
++        Call this right after a disarmed hold ends (e.g. gripper close/open completes) so the
++        resumed rollout assumes velocity/acceleration are genuinely zero -- which they are,
++        the arm was held stationary -- instead of continuing from whatever it was doing right
++        before the hold started. Position is left alone: it should keep tracking wherever the
++        arm actually is, not reset to anything.
++        """
++        self.control_process.request_reset()
++        self.prev_qdd_des = None
++        if self.state_filter.cmd_joint_state is not None:
++            self.state_filter.cmd_joint_state['velocity'] = np.zeros_like(
++                self.state_filter.cmd_joint_state['velocity']
++            )
++            self.state_filter.cmd_joint_state['acceleration'] = np.zeros_like(
++                self.state_filter.cmd_joint_state['acceleration']
++            )
+ 
+     def get_command(self, t_step, curr_state, control_dt, WAIT=False):
+ 
+@@ -142,3 +165,25 @@ class BaseTask():
+     def effective_sample_size(self):
+         return self.control_process.effective_sample_size
+ 
++    @property
++    def cost_breakdown(self):
++        return getattr(self.control_process, "cost_breakdown", {})
++
++    @property
++    def cov_diagonal(self):
++        """Exploration covariance diagonal actually used by the most recent optimize() call.
++        For cov_type in (sigma_I, diag_AxA, full_AxA): a flat list of length d_action -- the
++        same width applied uniformly to every horizon step. For full_HAxHA: a [horizon,
++        d_action] nested list -- genuinely different per horizon step. None if unavailable.
++        """
++        return getattr(self.control_process, "cov_diag", None)
++
++    @property
++    def phase_timing(self):
++        """Diagnostic-only wall-clock breakdown (seconds) of the most recent optimize() call:
++        shift, sample_actions, rollout_fn (== rollout_fn.robot_model + rollout_fn.cost_fns,
++        broken out separately too), update_distribution. See control_base.py/olgaussian_mpc.py/
++        arm_base.py for where each is measured.
++        """
++        return getattr(self.control_process, "phase_timing", {})
++
+diff --git a/storm_kit/mpc/utils/mpc_process_wrapper.py b/storm_kit/mpc/utils/mpc_process_wrapper.py
+index ee75f9c..a2f4ec4 100644
+--- a/storm_kit/mpc/utils/mpc_process_wrapper.py
++++ b/storm_kit/mpc/utils/mpc_process_wrapper.py
+@@ -22,6 +22,7 @@
+ # DEALINGS IN THE SOFTWARE.#
+ import os, sys
+ import traceback
++import json
+ import time
+ import copy
+ 
+@@ -37,7 +38,8 @@ from torch.multiprocessing import Pool, Process, set_start_method, Queue
+ import numpy as np
+ 
+ class ControlProcess(object):
+-    def __init__(self, controller, control_space='acc', control_dt=0.01):
++    def __init__(self, controller, control_space='acc', control_dt=0.01, exact_latency_prediction=False):
++        self.exact_latency_prediction = bool(exact_latency_prediction)
+         try:
+             controller.rollout_fn.dynamics_model.robot_model.delete_lxml_objects()
+         except Exception:
+@@ -69,23 +71,62 @@ class ControlProcess(object):
+         self.top_values = None
+         self.top_idx = None
+         self.effective_sample_size = float('nan')
++        self.cost_breakdown = {}
++        self.cov_diag = None
++        self.phase_timing = {}
+         self.control_space = control_space
++        # Set by request_reset(), consumed by the next get_command() -> optimize_process round
++        # trip (see request_reset's docstring for why this exists).
++        self._reset_requested = False
+         
+         #
+         self.result_queue = Queue(maxsize=1)
+         self.opt_queue = Queue(maxsize=1)
+ 
+         
+-        self.opt_process = Process(
+-            target=optimize_process,
+-            args=(self._control_cache_path, self.opt_queue, self.result_queue),
+-        )
+-        self.opt_process.daemon = True
+-        self.opt_process.start()
++        # Headless evaluation calls get_command_debug(), which optimizes synchronously
++        # and never consumes this worker. Allow that mode to skip an otherwise unused
++        # CUDA subprocess (forking after CUDA initialization is invalid in PyTorch).
++        self.opt_process = None
++        if os.environ.get("STORM_DISABLE_OPT_PROCESS", "0") != "1":
++            self.opt_process = Process(
++                target=optimize_process,
++                args=(self._control_cache_path, self.opt_queue, self.result_queue),
++            )
++            self.opt_process.daemon = True
++            self.opt_process.start()
+         self.controller = controller
+         self.control_dt = control_dt
+         self.prev_mpc_tstep = 0.0
++    def _predict_next_state_exact(self, t_step, curr_state):
++        """Integrate precisely the requested latency over the action time grid.
++
++        command_tstep holds interval endpoints. A partial first/last interval
++        contributes only its overlap with [t_step, t_step + mpc_dt].
++        """
++        duration = max(0.0, float(self.mpc_dt))
++        if duration == 0.0:
++            return curr_state
++        endpoints = np.asarray(self.command_tstep, dtype=float)
++        end = float(t_step) + duration
++        if endpoints.size == 0 or end > endpoints[-1] + 1e-9:
++            return curr_state  # No known policy covers the requested interval.
++        now = float(t_step)
++        first = int(np.searchsorted(endpoints, now, side='right'))
++        for index in range(first, len(endpoints)):
++            stop = min(end, float(endpoints[index]))
++            dt = stop - now
++            if dt > 0.0:
++                curr_state = self.controller.rollout_fn.dynamics_model.get_next_state(
++                    curr_state, self.command[0][index], dt)
++                now = stop
++            if now >= end - 1e-9:
++                break
++        return curr_state
++
+     def predict_next_state(self, t_step, curr_state):
++        if getattr(self, 'exact_latency_prediction', False):
++            return self._predict_next_state_exact(t_step, curr_state)
+         # predict next state
+         # given current t_step, integrate to t_step+mpc_dt
+         t1 = find_first_idx(self.command_tstep, t_step)
+@@ -142,28 +183,38 @@ class ControlProcess(object):
+         act = self.controller.rollout_fn.dynamics_model.integrate_action_step(command_buffer[0], self.control_dt)
+         return act, command_tstep_buffer, self.command[1], command_buffer
+ 
++    def request_reset(self):
++        """Requests a full MPPI distribution reset (mean_action -> init_mean [zero action for
++        control_space='acc'], cov_action -> init_cov) on the next get_command() round trip --
++        see BaseTask.reset() for why/when this gets called (e.g. right after a disarmed
++        gripper hold ends, so the resumed rollout doesn't warm-start from a stale, pre-hold
++        plan). One-shot: consumed and cleared the next time get_command() enqueues a request.
++        """
++        self._reset_requested = True
++
+     def get_command(self, t_step, curr_state, debug=False, control_dt=0.01):
+         if(self.opt_queue.empty()):# and self.command is None):
+             # integrate current state to mpc_dt:
+             #
+             if(self.command is not None):
+                 curr_state = self.predict_next_state(t_step, curr_state)
+-            
++
+             curr_state = np.append(curr_state, t_step + self.mpc_dt)
+-            
++
+             # planned command:
+-            
++
+             shift_steps = find_first_idx(self.command_tstep, t_step + self.mpc_dt) #- 1
+             if(shift_steps < 0):
+                 shift_steps = 0
+-            
+-            opt_data = {'state': curr_state, 't_step':t_step + self.mpc_dt, 'done':self.done, 'params':self.params, 'shift_steps':shift_steps, 'pred_mpc_dt':self.mpc_dt}
+-            
++
++            opt_data = {'state': curr_state, 't_step':t_step + self.mpc_dt, 'done':self.done, 'params':self.params, 'shift_steps':shift_steps, 'pred_mpc_dt':self.mpc_dt, 'reset': self._reset_requested}
++
+             self.start_time = time.time()
+             self.mpc_dt = t_step - self.prev_mpc_tstep
+-            
++
+             self.opt_queue.put(opt_data)
+             self.params = None
++            self._reset_requested = False
+ 
+         # wait for first command
+         while(self.command is None and self.result_queue.empty()):
+@@ -182,6 +233,9 @@ class ControlProcess(object):
+             self.top_trajs = command_data['top_trajs']
+             self.top_idx = command_data['top_idx']
+             self.effective_sample_size = command_data.get('effective_sample_size', float('nan'))
++            self.cost_breakdown = command_data.get('cost_breakdown', {})
++            self.cov_diag = command_data.get('cov_diag')
++            self.phase_timing = command_data.get('phase_timing', {})
+             
+             
+             
+@@ -205,15 +259,19 @@ class ControlProcess(object):
+         return command[f_idx:], command_tstep[f_idx:]
+ 
+     def update_params(self, **kwargs):
+-        
+-        self.params = kwargs
++        # Merge rather than replace: self.params is only actually applied (and cleared) on the
++        # next get_command() -> optimize_process round trip. Independent update_params() calls
++        # within the same tick (e.g. a goal update and a world-collision update) previously
++        # clobbered each other here since the second call's kwargs fully replaced the first's.
++        self.params = {**(self.params or {}), **kwargs}
+ 
+  
+     def close(self):
+         self.done = True
+-        opt_data = {'state': None, 'dt':None, 'done':self.done, 'params':None}
+-        self.opt_queue.put(opt_data)
+-        self.opt_process.join()
++        if self.opt_process is not None:
++            opt_data = {'state': None, 'dt':None, 'done':self.done, 'params':None}
++            self.opt_queue.put(opt_data)
++            self.opt_process.join()
+         try:
+             if getattr(self, "_control_cache_path", None):
+                 os.remove(self._control_cache_path)
+@@ -238,6 +296,12 @@ def optimize_process(control_string, opt_queue, result_queue):
+         controller.rollout_fn.dynamics_model.robot_model.load_lxml_objects()
+     except Exception:
+         pass
++    timing_path = os.environ.get('HUMAN_BENCHMARK_TIMINGS')
++    timing_file = open(timing_path, 'w', buffering=1) if timing_path else None
++    plan_path = os.environ.get('HUMAN_BENCHMARK_PLANS')
++    plan_file = open(plan_path, 'wb') if plan_path else None
++    raw_path = os.environ.get('HUMAN_BENCHMARK_RAW_PLANS')
++    raw_file = open(raw_path, 'wb') if raw_path else None
+     i = 0
+     start_time = time.time()
+     state_tensor = torch.zeros((1, 2 * controller.rollout_fn.dynamics_model.n_dofs), **controller.tensor_args)
+@@ -250,7 +314,15 @@ def optimize_process(control_string, opt_queue, result_queue):
+         state_tensor = torch.as_tensor(current_state,**controller.tensor_args).unsqueeze(0)
+         shift_steps = opt_data['shift_steps']
+ 
+-        
++        # Full distribution reset requested (see ControlProcess.request_reset /
++        # BaseTask.reset): mean_action -> init_mean (zero action for control_space='acc'),
++        # cov_action -> init_cov. Before update_params/optimize so a simultaneous goal change
++        # (e.g. the next pick/place target) still applies normally on top of the fresh state,
++        # instead of hotstart carrying forward a plan built for whatever was happening right
++        # before the gripper hold.
++        if opt_data.get('reset'):
++            controller.reset_distribution()
++
+         # update goal pose if it's not none
+         if(opt_data['params'] is not None):
+             #print('updating goal...')
+@@ -260,6 +332,7 @@ def optimize_process(control_string, opt_queue, result_queue):
+                 #controller.reset_mean()
+                 controller.reset_covariance()
+ 
++        benchmark_start = time.perf_counter()
+         mpc_time = time.time()
+         command = list(controller.optimize(state_tensor, shift_steps=shift_steps))
+         mpc_time = time.time() - mpc_time
+@@ -271,10 +344,75 @@ def optimize_process(control_string, opt_queue, result_queue):
+         effective_sample_size = getattr(controller, 'effective_sample_size', float('nan'))
+ 
+         command[0] = command[0].cpu().numpy()
++        benchmark_end = time.perf_counter()
++        if timing_file is not None:
++            rollout = controller.rollout_fn
++            if hasattr(rollout, 'geometry'):
++                geometry_metadata = dict(collision_backend='common_capsules',
++                    robot_primitives=len(rollout.geometry['robot']),
++                    human_capsules=len(rollout.human),
++                    human_pairs=len(rollout.geometry['robot'])*len(rollout.human),
++                    self_pairs=len(rollout.geometry['self_pairs']))
++            else:
++                collision = rollout.primitive_collision_cost
++                link_spheres = collision.robot_world_coll.robot_coll.get_batch_robot_link_spheres()
++                world = collision._dynamic_world_spheres
++                geometry_metadata = dict(robot_spheres_per_link=[int(v.shape[1]) for v in link_spheres],
++                    human_spheres=0 if world is None else int(world.shape[0]))
++            timing_file.write(json.dumps(dict(t_step=float(opt_data['t_step']),
++                solve_ms=1000*(benchmark_end-benchmark_start),
++                wall_start_s=benchmark_start,wall_end_s=benchmark_end,
++                native_opt_ms=1000*mpc_time,
++                effective_sample_size=float(effective_sample_size),
++                cat_diagnostics=getattr(controller, '_cat_pc_debug', {}),
++                solver_diagnostics=getattr(controller, 'solver_diagnostics', {}),
++                **geometry_metadata))+'\n')
++
++        if plan_file is not None:
++            rollout = controller.rollout_fn
++            # Append fixed-width rows; evaluation of the selected mean plan is offline.
++            row = np.r_[float(opt_data['t_step']), np.asarray(current_state).reshape(-1)[:14],
++                rollout.goal_ee_pos.detach().cpu().numpy().reshape(-1),
++                rollout.goal_ee_rot.detach().cpu().numpy().reshape(-1), command[0].reshape(-1)]
++            np.save(plan_file, row, allow_pickle=False)
++            plan_file.flush()
++        if raw_file is not None and getattr(controller, 'raw_plan', None) is not None:
++            rp = controller.raw_plan
++            np.save(raw_file, np.r_[float(opt_data['t_step']), benchmark_start, benchmark_end, rp['goal'].ravel(), rp['rotation'].ravel(), rp['xs'].ravel(), rp['us'].ravel()], allow_pickle=False)
++            raw_file.flush()
++        cost_breakdown = getattr(controller.rollout_fn, "last_cost_breakdown", {})
++
++        # Diagnostic-only phase timing for this optimize() call -- merges the controller-level
++        # breakdown (shift/sample_actions/rollout_fn/update_distribution, set in
++        # control_base.py's optimize() and olgaussian_mpc.py's generate_rollouts) with the
++        # rollout_fn-level sub-breakdown of its own "rollout_fn" slice (robot_model/cost_fns,
++        # set in arm_base.py's rollout_fn). See storm_mppi_planner_node.py's "MPPI phase
++        # timing" log for where this surfaces.
++        phase_timing = dict(getattr(controller, "last_phase_timing", {}) or {})
++        rollout_phase_timing = getattr(controller.rollout_fn, "last_rollout_phase_timing", {}) or {}
++        for k, v in rollout_phase_timing.items():
++            phase_timing[f"rollout_fn.{k}"] = v
++
++        # Exploration covariance actually used for this optimize() call, for debug printing on
++        # the bridge side (see BaseTask.cov_diagonal / storm_mppi_planner_node.py). full_cov
++        # handles all cov_type variants uniformly: sigma_I/diag_AxA/full_AxA give one value per
++        # action dim (same width applied at every horizon step); full_HAxHA genuinely varies
++        # per horizon step, so that case is reshaped to [horizon, d_action] instead of flattened.
++        try:
++            cov_diag_flat = controller.full_cov.diagonal().detach().cpu().numpy()
++            if controller.cov_type == 'full_HAxHA':
++                cov_diag = cov_diag_flat.reshape(controller.horizon, controller.d_action).tolist()
++            else:
++                cov_diag = cov_diag_flat.reshape(-1).tolist()
++        except Exception:
++            cov_diag = None
+ 
+         result = {'command':command, 't_step': opt_data['t_step'], 'mpc_dt': mpc_time,
+                   'top_values':top_values, 'top_trajs':top_trajs, 'top_idx':top_idx,
+-                  'effective_sample_size': effective_sample_size}
++                  'effective_sample_size': effective_sample_size,
++                  'cost_breakdown': cost_breakdown,
++                  'cov_diag': cov_diag,
++                  'phase_timing': phase_timing}
+         result_queue.put(result)
+         i = time.time() - start_time
+     return True

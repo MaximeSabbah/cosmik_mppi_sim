@@ -1,0 +1,27 @@
+test_bad_history_or_times_rejected (test_prediction.PredictionTests) ... ok
+test_cv_preserves_geometry_and_matches_reordered_ids (test_prediction.PredictionTests) ... ok
+test_hold_is_stationary_at_all_rollout_times (test_prediction.PredictionTests) ... ok
+test_new_id_holds (test_prediction.PredictionTests) ... ok
+test_nonfinite_and_duplicate_id_rejected (test_prediction.PredictionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.013s
+
+OK
+test_backwards_simulation_time_restarts_target_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+test_cycle_cap_still_stops_after_place_timeout (test_target_timeout.TargetTimeoutTest) ... ok
+test_existing_phase_abort_is_preserved (test_target_timeout.TargetTimeoutTest) ... ok
+test_gripper_phase_finishes_before_switching (test_target_timeout.TargetTimeoutTest) ... ok
+test_phase_changes_do_not_restart_target_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+test_place_place_mode_also_switches (test_target_timeout.TargetTimeoutTest) ... ok
+test_role_swap_at_same_pose_keeps_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+test_simulation_pause_does_not_consume_timeout (test_target_timeout.TargetTimeoutTest) ... ok
+test_spatial_arrival_advances_before_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+test_stalled_targets_alternate_at_ten_seconds (test_target_timeout.TargetTimeoutTest) ... ok
+test_wall_clock_adjustment_does_not_expire_target (test_target_timeout.TargetTimeoutTest) ... ok
+test_zero_disables_timed_alternation (test_target_timeout.TargetTimeoutTest) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.027s
+
+OK

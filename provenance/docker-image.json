@@ -1,0 +1,14 @@
+{
+  "validated_on": "2026-10-10",
+  "host": "kurai",
+  "image_tag": "cosmik-mppi-sim:baseline",
+  "image_id": "sha256:f22ff33ad9e5ab0673f78646c8f70168cb00fca8b4672391bc7873eb35453f1f",
+  "base_image": "osrf/ros:humble-desktop@sha256:fb07245b32187d74350be25323d8ad2f8ca5c25c325759911a1eff2267a49c1e",
+  "report": "validation/docker-20261010/result.json",
+  "user_gui_review": "supervisor_reported_acceptable",
+  "notes": "Fresh image built and tested with only a results directory mounted. No source or original ROS overlay was mounted. Exported image contains the tested runtime; source guide also contains subsequent handoff documentation.",
+  "export_filename": "cosmik-mppi-sim-2026-10-10.image.tar.gz",
+  "export_bytes": 4683075340,
+  "export_sha256": "bef4d055cfc3d435d2586e98a693c00e792ffde3b3fee4a6a9c59596267a0e73",
+  "user_gui_review_note": "Supervisor reported \"ok it seems quite ok\" after the kurai GUI runs on 2026-10-10; qualitative feedback only."
+}

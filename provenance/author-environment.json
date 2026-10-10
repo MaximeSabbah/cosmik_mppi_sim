@@ -1,0 +1,55 @@
+{
+  "python": "3.10.12",
+  "ros_distro": "humble",
+  "prefix_paths": [
+    "/workspace/ros2_ws/install/storm_tower_demo",
+    "/workspace/ros2_ws/install/storm_pick_place_benchmark",
+    "/workspace/ros2_ws/install/storm_pick_place_demo",
+    "/workspace/ros2_ws/install/storm_agimus_bridge",
+    "/workspace/ros2_ws/install/agimus_demo_09_mpc_pick_place_bench",
+    "/workspace/ros2_ws/install/agimus_demos_common",
+    "/workspace/ros2_ws/install/linear_feedback_controller",
+    "/workspace/ros2_ws/install/linear_feedback_controller_msgs",
+    "/workspace/ros2_ws/install/franka_robot_state_broadcaster",
+    "/workspace/ros2_ws/install/franka_semantic_components",
+    "/workspace/ros2_ws/install/franka_ign_ros2_control",
+    "/workspace/ros2_ws/install/franka_hardware",
+    "/workspace/ros2_ws/install/franka_gripper",
+    "/workspace/ros2_ws/install/franka_msgs",
+    "/workspace/ros2_ws/install/franka_description",
+    "/opt/ros/humble"
+  ],
+  "versions": {
+    "torch": "2.5.1",
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "PyYAML": "6.0.3",
+    "triton": "3.1.0",
+    "urdf-parser-py": "0.0.4"
+  },
+  "ros_packages": {
+    "storm_pick_place_demo": "/workspace/ros2_ws/install/storm_pick_place_demo",
+    "storm_agimus_bridge": "/workspace/ros2_ws/install/storm_agimus_bridge",
+    "agimus_demos_common": "/workspace/ros2_ws/install/agimus_demos_common",
+    "franka_description": "/workspace/ros2_ws/install/franka_description",
+    "franka_ign_ros2_control": "/workspace/ros2_ws/install/franka_ign_ros2_control",
+    "linear_feedback_controller": "/workspace/ros2_ws/install/linear_feedback_controller",
+    "linear_feedback_controller_msgs": "/workspace/ros2_ws/install/linear_feedback_controller_msgs",
+    "linear_feedback_controller_msgs_py": null,
+    "ros_gz_sim": "/opt/ros/humble",
+    "ros_ign_gazebo": null,
+    "agimus_msgs": null,
+    "agimus_controller": null,
+    "hpp_interfaces": null,
+    "example-robot-data": null
+  },
+  "pinocchio": {
+    "version": "3.8.0",
+    "file": "/opt/ros/humble/lib/python3.10/site-packages/pinocchio/__init__.py"
+  },
+  "torch": {
+    "version": "2.5.1+cu124",
+    "built_cuda": "12.4",
+    "file": "/usr/local/lib/python3.10/dist-packages/torch/__init__.py"
+  }
+}

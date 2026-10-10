@@ -1,0 +1,151 @@
+{
+  "urdf": "fer_storm.urdf",
+  "spheres": "fer_spheres.yml",
+  "coverage": [
+    {
+      "source": "fer_leftfinger_0",
+      "link": "panda_hand",
+      "spheres": 1,
+      "radius_inflation_m": null,
+      "geometry": "Box"
+    },
+    {
+      "source": "fer_leftfinger_1",
+      "link": "panda_hand",
+      "spheres": 1,
+      "radius_inflation_m": null,
+      "geometry": "Box"
+    },
+    {
+      "source": "fer_leftfinger_2",
+      "link": "panda_hand",
+      "spheres": 1,
+      "radius_inflation_m": null,
+      "geometry": "Box"
+    },
+    {
+      "source": "fer_leftfinger_3",
+      "link": "panda_hand",
+      "spheres": 1,
+      "radius_inflation_m": null,
+      "geometry": "Box"
+    },
+    {
+      "source": "fer_rightfinger_0",
+      "link": "panda_hand",
+      "spheres": 1,
+      "radius_inflation_m": null,
+      "geometry": "Box"
+    },
+    {
+      "source": "fer_rightfinger_1",
+      "link": "panda_hand",
+      "spheres": 1,
+      "radius_inflation_m": null,
+      "geometry": "Box"
+    },
+    {
+      "source": "fer_rightfinger_2",
+      "link": "panda_hand",
+      "spheres": 1,
+      "radius_inflation_m": null,
+      "geometry": "Box"
+    },
+    {
+      "source": "fer_rightfinger_3",
+      "link": "panda_hand",
+      "spheres": 1,
+      "radius_inflation_m": null,
+      "geometry": "Box"
+    },
+    {
+      "source": "fer_hand_sc_capsule_0",
+      "link": "panda_hand",
+      "spheres": 3,
+      "radius_inflation_m": 0.0011073132666394592,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_hand_sc_capsule_1",
+      "link": "panda_hand",
+      "spheres": 3,
+      "radius_inflation_m": 0.0015388203202207629,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link7_sc_capsule_0",
+      "link": "panda_link7",
+      "spheres": 5,
+      "radius_inflation_m": 0.002014609003746823,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link7_sc_capsule_1",
+      "link": "panda_link7",
+      "spheres": 2,
+      "radius_inflation_m": 0.0012882533606563135,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link6_sc_capsule_0",
+      "link": "panda_link6",
+      "spheres": 4,
+      "radius_inflation_m": 0.0017176711475417467,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link5_sc_capsule_0",
+      "link": "panda_link5",
+      "spheres": 4,
+      "radius_inflation_m": 0.0017426053257396795,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link5_sc_capsule_1",
+      "link": "panda_link5",
+      "spheres": 7,
+      "radius_inflation_m": 0.0020004664162869834,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link4_sc_capsule_0",
+      "link": "panda_link4",
+      "spheres": 5,
+      "radius_inflation_m": 0.0011795930190200005,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link3_sc_capsule_0",
+      "link": "panda_link3",
+      "spheres": 5,
+      "radius_inflation_m": 0.001391971496284658,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link2_sc_capsule_0",
+      "link": "panda_link2",
+      "spheres": 6,
+      "radius_inflation_m": 0.0012836338173729672,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link1_sc_capsule_0",
+      "link": "panda_link1",
+      "spheres": 6,
+      "radius_inflation_m": 0.0011055569106517282,
+      "geometry": "Capsule"
+    },
+    {
+      "source": "fer_link0_sc_capsule_0",
+      "link": "panda_link0",
+      "spheres": 4,
+      "radius_inflation_m": 0.0008188394836839974,
+      "geometry": "Capsule"
+    }
+  ],
+  "sphere_count": 62,
+  "gripper": "fixed closed",
+  "ee_link": "FER TCP",
+  "human_sphere_chain": "conservative radius sqrt(r^2+(spacing/2)^2)",
+  "source_asset_directory": "human_benchmark_20260907/torque_study_20260921/runs/P01_none_cat_torque_paper_self_r0/assets"
+}

@@ -1,0 +1,74 @@
+/usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+{
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "root": "/opt/cosmik-mppi-sim",
+  "domain": "83",
+  "packages": {
+    "torch": {
+      "path": "/usr/local/lib/python3.10/dist-packages/torch/__init__.py",
+      "version": "2.5.1+cu124"
+    },
+    "numpy": {
+      "path": "/usr/local/lib/python3.10/dist-packages/numpy/__init__.py",
+      "version": "1.26.4"
+    },
+    "scipy": {
+      "path": "/usr/local/lib/python3.10/dist-packages/scipy/__init__.py",
+      "version": "1.15.3"
+    },
+    "yaml": {
+      "path": "/usr/local/lib/python3.10/dist-packages/yaml/__init__.py",
+      "version": "6.0.3"
+    },
+    "pinocchio": {
+      "path": "/opt/ros/humble/lib/python3.10/site-packages/pinocchio/__init__.py",
+      "version": "4.0.0"
+    },
+    "trimesh": {
+      "path": "/usr/local/lib/python3.10/dist-packages/trimesh/__init__.py",
+      "version": "4.11.2"
+    },
+    "urdf_parser_py": {
+      "path": "/usr/local/lib/python3.10/dist-packages/urdf_parser_py/__init__.py",
+      "version": ""
+    },
+    "storm_kit": {
+      "path": "/opt/cosmik-mppi-sim/storm/storm_kit/__init__.py",
+      "version": ""
+    },
+    "storm_kit.mpc.task.reacher_task": {
+      "path": "/opt/cosmik-mppi-sim/storm/storm_kit/mpc/task/reacher_task.py",
+      "version": ""
+    },
+    "storm_agimus_bridge.storm_mppi_planner_node": {
+      "path": "/opt/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/local/lib/python3.10/dist-packages/storm_agimus_bridge/storm_mppi_planner_node.py",
+      "version": ""
+    },
+    "storm_pick_place_demo.pick_place_task_manager_node": {
+      "path": "/opt/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/local/lib/python3.10/dist-packages/storm_pick_place_demo/pick_place_task_manager_node.py",
+      "version": ""
+    },
+    "linear_feedback_controller_msgs_py": {
+      "path": "/opt/cosmik-mppi-sim/ros2_ws/install/linear_feedback_controller_msgs/local/lib/python3.10/dist-packages/linear_feedback_controller_msgs_py/__init__.py",
+      "version": ""
+    },
+    "franka_description": {
+      "prefix": "/opt/cosmik-mppi-sim/ros2_ws/install/franka_description"
+    },
+    "franka_ign_ros2_control": {
+      "prefix": "/opt/cosmik-mppi-sim/ros2_ws/install/franka_ign_ros2_control"
+    },
+    "linear_feedback_controller": {
+      "prefix": "/opt/cosmik-mppi-sim/ros2_ws/install/linear_feedback_controller"
+    },
+    "agimus_demos_common": {
+      "prefix": "/opt/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common"
+    }
+  },
+  "gpu": "NVIDIA RTX 5000 Ada Generation",
+  "cuda": "12.4",
+  "baseline_config_changes": [],
+  "errors": [],
+  "pass": true
+}

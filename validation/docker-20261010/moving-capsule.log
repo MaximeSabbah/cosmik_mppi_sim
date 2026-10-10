@@ -1,0 +1,66 @@
+{
+  "pass": true,
+  "scope": "Simulation transport and reaching smoke check; does not certify collision avoidance or prediction.",
+  "human": "true",
+  "wall_seconds": 66.02608523704112,
+  "cat_profile_loaded": true,
+  "dynamic_geometry_update_logs": 19,
+  "simulated_seconds_after_first_goal": 50.0,
+  "messages": {
+    "clock": 51349,
+    "joint_states": 1540,
+    "human_frames": 1540,
+    "goals": 801,
+    "ee_samples": 1001,
+    "control": 1728
+  },
+  "target_visits": [
+    {
+      "target": "A",
+      "sim_time": 1.35
+    },
+    {
+      "target": "B",
+      "sim_time": 11.4
+    },
+    {
+      "target": "A",
+      "sim_time": 21.8
+    },
+    {
+      "target": "B",
+      "sim_time": 32.8
+    },
+    {
+      "target": "A",
+      "sim_time": 35.2
+    },
+    {
+      "target": "B",
+      "sim_time": 41.8
+    },
+    {
+      "target": "A",
+      "sim_time": 47.75
+    }
+  ],
+  "spatial_arrivals": {
+    "B": 3,
+    "A": 2
+  },
+  "minimum_target_error_m": {
+    "A": 0.01397664754368222,
+    "B": 0.002077133706514359
+  },
+  "timeout_events": 3,
+  "nonfinite_state_or_command": false,
+  "joint_excursion_rad": [
+    2.688622526138151,
+    2.5204969754758713,
+    2.2282228610514436,
+    1.6027548305606987,
+    2.295787306620357,
+    3.3591866329818956,
+    2.662008392185302
+  ]
+}

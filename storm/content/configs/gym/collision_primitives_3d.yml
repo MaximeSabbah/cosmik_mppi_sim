@@ -1,0 +1,67 @@
+##
+## MIT License
+##
+## Copyright (c) 2020-2021 NVIDIA CORPORATION.
+##
+## Permission is hereby granted, free of charge, to any person obtaining a
+## copy of this software and associated documentation files (the "Software"),
+## to deal in the Software without restriction, including without limitation
+## the rights to use, copy, modify, merge, publish, distribute, sublicense,
+## and/or sell copies of the Software, and to permit persons to whom the
+## Software is furnished to do so, subject to the following conditions:
+##
+## The above copyright notice and this permission notice shall be included in
+## all copies or substantial portions of the Software.
+##
+## THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+## IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+## FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+## THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+## LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+## FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+## DEALINGS IN THE SOFTWARE.##
+world_model:
+  coll_objs:
+    sphere: {}
+    cube:
+      # floor:
+      #   frame: fer_link0
+      #   dims: [3.0, 3.0, 0.01] # x, y, z
+      #   pose: [0.0, 0.0, -0.05, 0, 0, 0, 1.0] # x, y, z, qx, qy, qz, qw
+      table:
+        frame: fer_link0
+        dims: [1.5, 2.0, 0.05] # large flat surface in x-y
+        pose: [0.35, 0.0, -0.025, 0.0, 0.0, 0.0, 1.0] # centered in front of robot, just below z=0
+      # Two static poles ("poto_l"/"poto_r"). STORM's world collision only supports sphere/cube
+      # primitives (no native cylinder -- see storm_kit/geom/sdf/world.py), so each is a square
+      # cross-section box circumscribing a r=3.5cm cylinder (dims.x=dims.y=2*radius=0.07), same
+      # approximation the bridge already applies to RViz CYLINDER markers. Span floor (z=-0.05,
+      # matching the table's bottom face) up to robot_base+22cm / +24cm.
+      poto_l:
+        frame: fer_link0
+        dims: [0.10, 0.10, 0.30] # 2*0.035 radius x/y, height = -0.05 (floor) to 0.22 (base+22cm)
+        pose: [-0.55, -0.43, 0.075, 0.0, 0.0, 0.0, 1.0]
+      poto_r:
+        frame: fer_link0
+        dims: [0.10, 0.10, 0.30] # 2*0.035 radius x/y, height = -0.05 (floor) to 0.24 (base+24cm)
+        pose: [-0.55, 0.32, 0.085, 0.0, 0.0, 0.0, 1.0]
+      # base:
+      #   frame: fer_link0
+      #   dims: [0.15, 0.15, 0.5] # large flat surface in x-y
+      #   pose: [0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 1.0] 
+      # brick1:
+      #   frame: fer_link0
+      #   pose: [0.32, 0.0, 0.07, 0.0, 0.0, 0.0, 1.0]
+      #   dims: [0.11, 0.22, 0.20]
+      # brick2:
+      #   frame: fer_link0
+      #   pose: [0.63, 0.0, 0.09, 0.0, 0.0, 0.0, 1.0]
+      #   dims: [0.11, 0.22, 0.20]
+      # box1:
+      #   frame: fer_link0
+      #   pose: [0.79, 0.0, 0.09, 0.0, 0.0, 0.0, 1.0]
+      #   dims: [0.20, 0.35, 0.20]
+      # box2:
+      #   frame: fer_link0
+      #   pose: [0.47, 0.0, 0.08, 0.0, 0.0, 0.0, 1.0]
+      #   dims: [0.20, 0.35, 0.20]

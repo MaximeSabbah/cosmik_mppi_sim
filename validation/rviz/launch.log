@@ -1,0 +1,475 @@
+[INFO] [launch]: All log files can be found below /workspace/handoff/cosmik-mppi-sim/.runtime/ros_logs/2026-10-09-23-12-32-354171-kurai-354515
+[INFO] [launch]: Default logging verbosity is set to INFO
+external_controllers_names_list =  ['linear_feedback_controller', 'joint_state_estimator']
+[INFO] [synthetic_capsules-1]: process started with pid [354579]
+[INFO] [ign gazebo-2]: process started with pid [354581]
+[INFO] [parameter_bridge-3]: process started with pid [354583]
+[INFO] [create-4]: process started with pid [354586]
+[INFO] [wait_for_non_zero_joints_node-5]: process started with pid [354588]
+[INFO] [robot_state_publisher-6]: process started with pid [354590]
+[INFO] [string_publisher-7]: process started with pid [354592]
+[INFO] [string_publisher-8]: process started with pid [354594]
+[INFO] [joint_state_publisher-9]: process started with pid [354596]
+[INFO] [rviz2-10]: process started with pid [354598]
+[INFO] [robot_state_publisher-11]: process started with pid [354600]
+[INFO] [static_transform_publisher-12]: process started with pid [354602]
+[INFO] [wait_for_non_zero_joints_node-13]: process started with pid [354604]
+[rviz2-10] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[static_transform_publisher-12] [INFO] [1791580352.927877624] [static_transform_publisher_cVNWh50FuCXnKMLQ]: Spinning until stopped - publishing transform
+[static_transform_publisher-12] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-12] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-12] from 'fer_link0' to 'robot_attachment_link'
+[create-4] [INFO] [1791580352.937845811] [ros_gz_sim]: Requesting list of world names.
+[robot_state_publisher-11] [INFO] [1791580352.944145254] [environment_publisher]: got segment robot_attachment_link
+[robot_state_publisher-6] [INFO] [1791580352.951857243] [robot_state_publisher]: got segment fer_hand
+[robot_state_publisher-6] [INFO] [1791580352.951963569] [robot_state_publisher]: got segment fer_hand_tcp
+[robot_state_publisher-6] [INFO] [1791580352.951972732] [robot_state_publisher]: got segment fer_leftfinger
+[robot_state_publisher-6] [INFO] [1791580352.951979030] [robot_state_publisher]: got segment fer_link0
+[robot_state_publisher-6] [INFO] [1791580352.951984554] [robot_state_publisher]: got segment fer_link1
+[robot_state_publisher-6] [INFO] [1791580352.951990103] [robot_state_publisher]: got segment fer_link2
+[robot_state_publisher-6] [INFO] [1791580352.951995636] [robot_state_publisher]: got segment fer_link3
+[robot_state_publisher-6] [INFO] [1791580352.952000982] [robot_state_publisher]: got segment fer_link4
+[robot_state_publisher-6] [INFO] [1791580352.952006229] [robot_state_publisher]: got segment fer_link5
+[robot_state_publisher-6] [INFO] [1791580352.952011357] [robot_state_publisher]: got segment fer_link6
+[robot_state_publisher-6] [INFO] [1791580352.952016574] [robot_state_publisher]: got segment fer_link7
+[robot_state_publisher-6] [INFO] [1791580352.952021591] [robot_state_publisher]: got segment fer_link8
+[robot_state_publisher-6] [INFO] [1791580352.952026633] [robot_state_publisher]: got segment fer_rightfinger
+[robot_state_publisher-6] [INFO] [1791580352.952032098] [robot_state_publisher]: got segment world
+[wait_for_non_zero_joints_node-5] [INFO] [1791580353.155139920] [wait_for_non_zero_joints_node]: Node initialized, waiting for '/joint_states' to be published...
+[joint_state_publisher-9] [INFO] [1791580353.173657004] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[wait_for_non_zero_joints_node-13] [INFO] [1791580353.238364929] [wait_for_non_zero_joints_node]: Node initialized, waiting for '/joint_states' to be published...
+[rviz2-10] [INFO] [1791580353.251154375] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-10] [INFO] [1791580353.251221334] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[rviz2-10] [INFO] [1791580353.262061907] [rviz2]: Stereo is NOT SUPPORTED
+[create-4] [INFO] [1791580353.333349124] [ros_gz_sim]: Waiting messages on topic [/robot_description].
+[create-4] [INFO] [1791580353.344611899] [ros_gz_sim]: Requested creation of entity.
+[create-4] [INFO] [1791580353.344635698] [ros_gz_sim]: OK creation of entity.
+[INFO] [create-4]: process has finished cleanly [pid 354586]
+[INFO] [spawner-14]: process started with pid [354963]
+[spawner-14] [INFO] [1791580353.640940638] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[parameter_bridge-3] [INFO] [1791580353.952260247] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[ign gazebo-2] [INFO] [1791580355.076321641] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_state_publisher
+[ign gazebo-2] [INFO] [1791580355.076343006] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_description
+[ign gazebo-2] [INFO] [1791580355.425402292] [gz_ros2_control]: [ign_ros2_control] Fixed joint [world_joint] (Entity=49)] is skipped
+[ign gazebo-2] [INFO] [1791580355.426648293] [gz_ros2_control]: connected to service!! robot_state_publisher asking for robot_description
+[robot_state_publisher-6] [WARN] [1791580355.526835385] [robot_state_publisher.rclcpp]: failed to send response to /robot_state_publisher/get_parameters (timeout): client will not receive response, at ./src/rmw_response.cpp:154, at ./src/rcl/service.c:314
+[ign gazebo-2] [WARN] [1791580357.426748241] [gz_ros2_control]: Robot description response timed out; retrying.
+[ign gazebo-2] [INFO] [1791580357.427747546] [gz_ros2_control]: Received URDF from param server
+[ign gazebo-2] text not specified in the prefix tag
+[ign gazebo-2] text not specified in the prefix tag
+[ign gazebo-2] [INFO] [1791580357.434019475] [gz_ros2_control]: The position_proportional_gain has been set to: 0.1
+[ign gazebo-2] [INFO] [1791580357.434060989] [gz_ros2_control]: Loading joint: fer_joint1
+[ign gazebo-2] [INFO] [1791580357.434071596] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434075415] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434082890] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791580357.434087919] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434091466] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434096523] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434099736] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434110841] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434117164] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434125465] [gz_ros2_control]: Loading joint: fer_joint2
+[ign gazebo-2] [INFO] [1791580357.434128987] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434132096] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434135599] [gz_ros2_control]: 			 found initial value: -0.780000
+[ign gazebo-2] [INFO] [1791580357.434139592] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434143049] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434146121] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434149171] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434153206] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434156659] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434162221] [gz_ros2_control]: Loading joint: fer_joint3
+[ign gazebo-2] [INFO] [1791580357.434165595] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434168769] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434171933] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791580357.434175625] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434178818] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434182793] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434186053] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434190262] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434194039] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434200208] [gz_ros2_control]: Loading joint: fer_joint4
+[ign gazebo-2] [INFO] [1791580357.434203611] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434206845] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434210016] [gz_ros2_control]: 			 found initial value: -2.350000
+[ign gazebo-2] [INFO] [1791580357.434213509] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434216973] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434219955] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434223182] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434227087] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434230768] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434236255] [gz_ros2_control]: Loading joint: fer_joint5
+[ign gazebo-2] [INFO] [1791580357.434239370] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434242389] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434245383] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791580357.434248912] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434251818] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434254438] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434257315] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434261297] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434265403] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434269296] [gz_ros2_control]: Loading joint: fer_joint6
+[ign gazebo-2] [INFO] [1791580357.434271147] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434272897] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434274682] [gz_ros2_control]: 			 found initial value: 1.570000
+[ign gazebo-2] [INFO] [1791580357.434276764] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434279330] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434297020] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434298913] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434301323] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434303925] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434308014] [gz_ros2_control]: Loading joint: fer_joint7
+[ign gazebo-2] [INFO] [1791580357.434309940] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434311801] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434313713] [gz_ros2_control]: 			 found initial value: 0.780000
+[ign gazebo-2] [INFO] [1791580357.434316144] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434318027] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434319897] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434321726] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434324260] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434326486] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434330247] [gz_ros2_control]: Loading joint: fer_finger_joint1
+[ign gazebo-2] [INFO] [1791580357.434332470] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434334413] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434336228] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791580357.434338444] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434340332] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434342281] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434344208] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434346678] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434348892] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434352257] [gz_ros2_control]: Loading joint: fer_finger_joint2
+[ign gazebo-2] [INFO] [1791580357.434357505] [gz_ros2_control]: Joint 'fer_finger_joint2'is mimicking joint 'fer_finger_joint1' with multiplier: 1
+[ign gazebo-2] [INFO] [1791580357.434363164] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791580357.434365079] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434366990] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434368894] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434370725] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791580357.434372513] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791580357.434375076] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791580357.434377281] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791580357.434427070] [resource_manager]: Initialize hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [WARN] [1791580357.434435912] [gz_ros2_control]: On init...
+[ign gazebo-2] [INFO] [1791580357.434466115] [resource_manager]: Successful initialization of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791580357.434495136] [resource_manager]: 'configure' hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [INFO] [1791580357.434496989] [gz_ros2_control]: System Successfully configured!
+[ign gazebo-2] [INFO] [1791580357.434501365] [resource_manager]: Successful 'configure' of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791580357.434507665] [resource_manager]: 'activate' hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [INFO] [1791580357.434509898] [resource_manager]: Successful 'activate' of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791580357.434512567] [gz_ros2_control]: Loading controller_manager
+[wait_for_non_zero_joints_node-13] [INFO] [1791580357.482166363] [wait_for_non_zero_joints_node]: Joint state message received.
+[wait_for_non_zero_joints_node-13] [INFO] [1791580357.482526343] [wait_for_non_zero_joints_node]: Received non-zero joint position.
+[wait_for_non_zero_joints_node-13] [WARN] [1791580357.482930931] [wait_for_non_zero_joints_node]: Done waiting.
+[INFO] [wait_for_non_zero_joints_node-13]: process has finished cleanly [pid 354604]
+[INFO] [object_manager_node-15]: process started with pid [355100]
+[INFO] [storm_mppi_planner_node-16]: process started with pid [355102]
+[INFO] [pick_place_task_manager_node-17]: process started with pid [355104]
+[ign gazebo-2] [INFO] [1791580357.647187835] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-14] [INFO] [1791580357.658321032] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[ign gazebo-2] [INFO] [1791580357.661925315] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[ign gazebo-2] [INFO] [1791580357.662045812] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[wait_for_non_zero_joints_node-5] [INFO] [1791580357.679134309] [wait_for_non_zero_joints_node]: Joint state message received.
+[wait_for_non_zero_joints_node-5] [INFO] [1791580357.679512829] [wait_for_non_zero_joints_node]: Received non-zero joint position.
+[wait_for_non_zero_joints_node-5] [WARN] [1791580357.679918825] [wait_for_non_zero_joints_node]: Done waiting.
+[spawner-14] [INFO] [1791580357.682010167] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[ign gazebo-2] [INFO] [1791580357.683007042] [controller_manager]: Loading controller 'gripper_action_controller'
+[spawner-14] [INFO] [1791580357.702384670] [spawner_joint_state_broadcaster]: [94mLoaded [1mgripper_action_controller[0m
+[ign gazebo-2] [INFO] [1791580357.702926493] [controller_manager]: Configuring controller 'gripper_action_controller'
+[ign gazebo-2] [INFO] [1791580357.703003097] [gripper_action_controller]: Action status changes will be monitored at 20.000000 Hz.
+[spawner-14] [INFO] [1791580357.710971685] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mgripper_action_controller[0m
+[INFO] [wait_for_non_zero_joints_node-5]: process has finished cleanly [pid 354588]
+[INFO] [spawner-18]: process started with pid [355203]
+[INFO] [spawner-14]: process has finished cleanly [pid 354963]
+[object_manager_node-15] [INFO] [1791580357.896522715] [object_manager]: object_manager publishing TF + markers on /storm_pick_place/objects_markers @ 10.0 Hz
+[pick_place_task_manager_node-17] [INFO] [1791580357.927826123] [pick_place_task_manager]: Using arm_id 'fer'.
+[pick_place_task_manager_node-17] [INFO] [1791580357.969591550] [pick_place_task_manager]: PickPlace task manager ready. mode=pick_place armed=True auto_start=True
+[spawner-18] [INFO] [1791580358.031947832] [spawner_linear_feedback_controller]: waiting for service /controller_manager/list_controllers to become available...
+[pick_place_task_manager_node-17] [INFO] [1791580358.555144940] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791580358.555563670] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-17] [INFO] [1791580358.555685595] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-17] [INFO] [1791580358.556127299] [pick_place_task_manager]: [task-event] pregrasp(A)
+[storm_mppi_planner_node-16] [INFO] [1791580358.582555319] [storm_mppi_planner]: Subscribing to gripper joint states on '/joint_states'.
+[storm_mppi_planner_node-16] [INFO] [1791580358.587857126] [storm_mppi_planner]: Using collision MarkerArray topic: /rtcosmik/collision_markers
+[storm_mppi_planner_node-16] [INFO] [1791580358.590304681] [storm_mppi_planner]: storm_mppi_planner ready. Waiting for robot_description + sensor. Collision inputs: objects_markers_topic=/storm_pick_place/objects_markers, collision_markers_topic=/rtcosmik/collision_markers, collision_poses_topic=<disabled>, dynamic_collision_mode=True. Goal topic: /goal_pose.
+[spawner-18] [INFO] [1791580358.787540488] [spawner_linear_feedback_controller]: [96mSetting controller param "params_file" to "['/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/linear_feedback_controller_params.yaml']" for [1mlinear_feedback_controller[0m
+[spawner-18] [INFO] [1791580358.791756771] [spawner_linear_feedback_controller]: [96mSetting controller param "type" to "linear_feedback_controller/LinearFeedbackController" for [1mlinear_feedback_controller[0m
+[ign gazebo-2] [INFO] [1791580358.792451813] [controller_manager]: Loading controller 'linear_feedback_controller'
+[ign gazebo-2] Robot model:
+[ign gazebo-2] Nb joints = 10 (nq=9,nv=9)
+[ign gazebo-2]   Joint 0 universe: parent=0
+[ign gazebo-2]   Joint 1 fer_joint1: parent=0
+[ign gazebo-2]   Joint 2 fer_joint2: parent=1
+[ign gazebo-2]   Joint 3 fer_joint3: parent=2
+[ign gazebo-2]   Joint 4 fer_joint4: parent=3
+[ign gazebo-2]   Joint 5 fer_joint5: parent=4
+[ign gazebo-2]   Joint 6 fer_joint6: parent=5
+[ign gazebo-2]   Joint 7 fer_joint7: parent=6
+[ign gazebo-2]   Joint 8 fer_finger_joint1: parent=7
+[ign gazebo-2]   Joint 9 fer_finger_joint2: parent=7
+[ign gazebo-2] 
+[spawner-18] [INFO] [1791580358.807359557] [spawner_linear_feedback_controller]: [94mLoaded [1mlinear_feedback_controller[0m
+[ign gazebo-2] [INFO] [1791580358.807970788] [controller_manager]: Configuring controller 'linear_feedback_controller'
+[spawner-18] [INFO] [1791580358.812877517] [spawner_linear_feedback_controller]: [96mSetting controller param "params_file" to "['/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/linear_feedback_controller_params.yaml']" for [1mjoint_state_estimator[0m
+[spawner-18] [INFO] [1791580358.816426684] [spawner_linear_feedback_controller]: [96mSetting controller param "type" to "linear_feedback_controller/JointStateEstimator" for [1mjoint_state_estimator[0m
+[ign gazebo-2] [INFO] [1791580358.816535123] [controller_manager]: Loading controller 'joint_state_estimator'
+[spawner-18] [INFO] [1791580358.823597440] [spawner_linear_feedback_controller]: [94mLoaded [1mjoint_state_estimator[0m
+[ign gazebo-2] [INFO] [1791580358.823747235] [controller_manager]: Configuring controller 'joint_state_estimator'
+[ign gazebo-2] [INFO] [1791580358.823807811] [joint_state_estimator]: configure successful
+[INFO] [spawner-18]: process has finished cleanly [pid 355203]
+[INFO] [ros2-19]: process started with pid [355286]
+[ign gazebo-2] [INFO] [1791580360.256413298] [linear_feedback_controller]: Successful activation.
+[ros2-19] Successfully switched controllers
+[storm_mppi_planner_node-16] [INFO] [1791580360.258192822] [storm_mppi_planner]: Derived moving_joint_names from sensor (7 joints).
+[INFO] [ros2-19]: process has finished cleanly [pid 355286]
+[storm_mppi_planner_node-16] /usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+[storm_mppi_planner_node-16]   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[storm_mppi_planner_node-16] [INFO] [1791580360.921538289] [storm_mppi_planner]: Raw STORM task YAML (pre-load): path='/workspace/handoff/cosmik-mppi-sim/storm/content/configs/mpc/franka_reacher_cat_real.yml', cost.collision.weight=0.0, cost.primitive_collision.weight=1000.0, mppi.cat_primitive_collision.enabled=True, mppi.cat_state_bound.enabled=True.
+[storm_mppi_planner_node-16] no dynamics information for link: base
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link0_sc
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link1_sc
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link2_sc
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link3_sc
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link4_sc
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link5_sc
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link6_sc
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link7_sc
+[storm_mppi_planner_node-16] no dynamics information for link: panda_link8
+[storm_mppi_planner_node-16] no dynamics information for link: panda_hand_sc
+[storm_mppi_planner_node-16] no dynamics information for link: ee_link
+[storm_mppi_planner_node-16] no dynamics information for link: panda_leftfinger
+[storm_mppi_planner_node-16] no dynamics information for link: panda_rightfinger
+[storm_mppi_planner_node-16] /usr/local/lib/python3.10/dist-packages/torch/functional.py:2033: UserWarning: torch.chain_matmul is deprecated and will be removed in a future PyTorch release. Use torch.linalg.multi_dot instead, which accepts a list of two or more tensors rather than multiple parameters. (Triggered internally at ../aten/src/ATen/native/LinearAlgebra.cpp:1105.)
+[storm_mppi_planner_node-16]   return _VF.chain_matmul(matrices)  # type: ignore[attr-defined]
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-16]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/cost/pose_cost.py:50: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3683.)
+[storm_mppi_planner_node-16]   self.px = torch.tensor([1.0,0.0,0.0], **self.tensor_args).T
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_utils.py:121: UserWarning: torch.cholesky is deprecated in favor of torch.linalg.cholesky and will be removed in a future PyTorch release.
+[storm_mppi_planner_node-16] L = torch.cholesky(A)
+[storm_mppi_planner_node-16] should be replaced with
+[storm_mppi_planner_node-16] L = torch.linalg.cholesky(A)
+[storm_mppi_planner_node-16] and
+[storm_mppi_planner_node-16] U = torch.cholesky(A, upper=True)
+[storm_mppi_planner_node-16] should be replaced with
+[storm_mppi_planner_node-16] U = torch.linalg.cholesky(A).mH
+[storm_mppi_planner_node-16] This transform will produce equivalent results for all valid (symmetric positive definite) inputs. (Triggered internally at ../aten/src/ATen/native/BatchLinearAlgebra.cpp:1691.)
+[storm_mppi_planner_node-16]   scale_tril = torch.cholesky(cov)
+[storm_mppi_planner_node-16] [INFO] [1791580361.523439732] [storm_mppi_planner]: Loaded STORM task config: storm_task_file='franka_reacher_cat_real.yml' (resolved='/workspace/handoff/cosmik-mppi-sim/storm/content/configs/mpc/franka_reacher_cat_real.yml'), cost.collision.weight=0.0, cost.primitive_collision.weight=1000.0, mppi.cat_primitive_collision.enabled=True, mppi.cat_state_bound.enabled=True.
+[storm_mppi_planner_node-16] [INFO] [1791580361.523809836] [storm_mppi_planner]: STORM controller profile: control_space=acc, cat_equation_mode=paper, cat_self_collision=True, cat_joint_torque=True, sampler=multiple, antithetic=True, torque_backend=fused, horizon=50, particles=1000, exact_latency_prediction=True.
+[storm_mppi_planner_node-16] [INFO] [1791580361.539541610] [storm_mppi_planner]: Loaded 62 robot collision spheres across 9 links from '/workspace/handoff/cosmik-mppi-sim/storm/content/configs/mpc/../../assets/robot/fer_real/fer_spheres.yml'.
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-16]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] [INFO] [1791580362.221978783] [storm_mppi_planner]: Goal frame mapping: ROS tcp parent='fer_hand' -> STORM ee parent='panda_hand' using fixed-joint transforms.
+[storm_mppi_planner_node-16] [INFO] [1791580362.222444601] [storm_mppi_planner]: Initialized dynamic collision slots: slots=1 total_spheres=5.
+[storm_mppi_planner_node-16] [INFO] [1791580362.223294536] [storm_mppi_planner]: Timing summary: loop rate_hz=50.000 (dt=0.0200s), control_dt=0.0200s, model.dt=0.0200s, dt_traj.base_dt=0.0200s, dt_traj.max_dt=0.0200s, dt_traj.base_ratio=0.500
+[storm_mppi_planner_node-16] [INFO] [1791580362.223524608] [storm_mppi_planner]: storm_mppi_planner initialized. Publishing linear_feedback_controller_msgs/Control at ~50.0 Hz (armed=True), reference-smoothing fast timer ~200.0 Hz (enabled=False). base=fer_link0 ee=fer_hand_tcp.
+[storm_mppi_planner_node-16] [INFO] [1791580362.225257708] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/utils/mpc_process_wrapper.py:294: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-16]   controller = torch.load(control_string)
+[storm_mppi_planner_node-16] /usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+[storm_mppi_planner_node-16]   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-16]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py:252: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+[storm_mppi_planner_node-16]   with torch.cuda.amp.autocast(enabled=True):
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/differentiable_robot_model/differentiable_robot_model.py:582: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+[storm_mppi_planner_node-16] Please either pass the dim explicitly or simply use torch.linalg.cross.
+[storm_mppi_planner_node-16] The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at ../aten/src/ATen/native/Cross.cpp:62.)
+[storm_mppi_planner_node-16]   lin_jac[:, :, i] = torch.cross(z_i, ee_pos - p_i)
+[pick_place_task_manager_node-17] [INFO] [1791580369.766174271] [pick_place_task_manager]: [task-event] target-timeout(A, elapsed=10.00s); advancing to the other target.
+[pick_place_task_manager_node-17] [INFO] [1791580369.766691542] [pick_place_task_manager]: [task-event] preplace(B)
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/mppi.py:209: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3683.)
+[storm_mppi_planner_node-16]   weighted_seq = w.T * actions.T
+[storm_mppi_planner_node-16] [INFO] [1791580373.347376701] [storm_mppi_planner]: MPPI timing: loop~nanHz, get_command~0.1Hz, opt~0.1Hz (opt_dt~9371.1ms), control_dt=0.0200s, mpc_dt=0.0000s, N_eff~267.0
+[storm_mppi_planner_node-16] [INFO] [1791580373.347773894] [storm_mppi_planner]: MPPI costs:  null_space: 6.96  |  stop_cost: 0.35  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 0.00  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 10.44  |  goal_pose: 485.54
+[storm_mppi_planner_node-16] [INFO] [1791580373.348136925] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-16] [INFO] [1791580373.348482320] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 851.8ms  |  rollout_fn: 8487.6ms  |  update_distribution: 28.7ms  |  rollout_fn.robot_model: 134.0ms  |  rollout_fn.cost_fns: 8351.1ms
+[ign gazebo-2] [INFO] [1791580373.349385912] [linear_feedback_controller]: Received control msgs.
+[storm_mppi_planner_node-16] [INFO] [1791580373.359642336] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py:252: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+[storm_mppi_planner_node-16]   with torch.cuda.amp.autocast(enabled=True):
+[storm_mppi_planner_node-16] [INFO] [1791580374.367235400] [storm_mppi_planner]: MPPI timing: loop~13.4Hz, get_command~19.7Hz, opt~13.0Hz (opt_dt~76.8ms), control_dt=0.0200s, mpc_dt=0.0214s, N_eff~570.4
+[storm_mppi_planner_node-16] [INFO] [1791580374.367612708] [storm_mppi_planner]: MPPI costs:  null_space: 14.29  |  stop_cost: 2.93  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 0.51  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 22.44  |  state_bound: 1.89  |  goal_pose: 209.98
+[storm_mppi_planner_node-16] [INFO] [1791580374.367978159] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-16] [INFO] [1791580374.368320121] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.4ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.6ms
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-16]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-16] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-16] [INFO] [1791580375.372532344] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-16] [INFO] [1791580375.373253245] [storm_mppi_planner]: MPPI timing: loop~24.7Hz, get_command~233.7Hz, opt~35.3Hz (opt_dt~28.3ms), control_dt=0.0200s, mpc_dt=0.0562s, N_eff~305.5
+[storm_mppi_planner_node-16] [INFO] [1791580375.373614319] [storm_mppi_planner]: MPPI costs:  null_space: 18.53  |  stop_cost: 2.75  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 2.87  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 85.15  |  state_bound: 1.38  |  goal_pose: 176.98
+[storm_mppi_planner_node-16] [INFO] [1791580375.373960079] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-16] [INFO] [1791580375.374296056] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 22.7ms  |  update_distribution: 1.6ms  |  rollout_fn.robot_model: 6.0ms  |  rollout_fn.cost_fns: 16.0ms
+[storm_mppi_planner_node-16] [INFO] [1791580376.383709715] [storm_mppi_planner]: MPPI timing: loop~48.8Hz, get_command~455.8Hz, opt~42.7Hz (opt_dt~23.4ms), control_dt=0.0200s, mpc_dt=0.0233s, N_eff~527.2
+[storm_mppi_planner_node-16] [INFO] [1791580376.383896349] [storm_mppi_planner]: MPPI costs:  null_space: 29.92  |  stop_cost: 1.14  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 31.31  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 66.75  |  goal_pose: 91.72
+[storm_mppi_planner_node-16] [INFO] [1791580376.384051321] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-16] [INFO] [1791580376.384207976] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 21.8ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 6.8ms  |  rollout_fn.cost_fns: 14.7ms
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [pick_place_task_manager_node-17]: sending signal 'SIGINT' to process[pick_place_task_manager_node-17]
+[INFO] [storm_mppi_planner_node-16]: sending signal 'SIGINT' to process[storm_mppi_planner_node-16]
+[INFO] [object_manager_node-15]: sending signal 'SIGINT' to process[object_manager_node-15]
+[INFO] [static_transform_publisher-12]: sending signal 'SIGINT' to process[static_transform_publisher-12]
+[INFO] [robot_state_publisher-11]: sending signal 'SIGINT' to process[robot_state_publisher-11]
+[INFO] [rviz2-10]: sending signal 'SIGINT' to process[rviz2-10]
+[INFO] [joint_state_publisher-9]: sending signal 'SIGINT' to process[joint_state_publisher-9]
+[ERROR] [static_transform_publisher-12]: process has died [pid 354602, exit code -2, cmd '/opt/ros/humble/lib/tf2_ros/static_transform_publisher --frame-id fer_link0 --child-frame-id robot_attachment_link --x 0.0 --y 0.0 --z 0.0 --qx 0.0 --qy 0.0 --qz 0.0 --qw 1.0 --ros-args'].
+[ERROR] [robot_state_publisher-11]: process has died [pid 354600, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __node:=environment_publisher --params-file /tmp/launch_params_2o0nyqlb -r robot_description:=environment_description'].
+[INFO] [string_publisher-8]: sending signal 'SIGINT' to process[string_publisher-8]
+[INFO] [string_publisher-7]: sending signal 'SIGINT' to process[string_publisher-7]
+[ERROR] [pick_place_task_manager_node-17]: process has died [pid 355104, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/pick_place_task_manager_node --ros-args -r __node:=pick_place_task_manager --params-file /tmp/launch_params_1jpuggxd --params-file /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/pick_place_task_manager_params.yaml --params-file /tmp/launch_params_ah6mk_xp -r /fer_gripper/gripper_action:=/gripper_action_controller/gripper_cmd'].
+[INFO] [robot_state_publisher-6]: sending signal 'SIGINT' to process[robot_state_publisher-6]
+[INFO] [parameter_bridge-3]: sending signal 'SIGINT' to process[parameter_bridge-3]
+[ERROR] [object_manager_node-15]: process has died [pid 355100, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/object_manager_node --ros-args -r __node:=object_manager --params-file /tmp/launch_params_1kxvld7m --params-file /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/object_manager_params.yaml'].
+[ERROR] [string_publisher-8]: process has died [pid 354594, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher --ros-args -r __node:=robot_srdf_description_publisher --params-file /tmp/launch_params_dcw8bq6y'].
+[ERROR] [string_publisher-7]: process has died [pid 354592, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher --ros-args -r __node:=robot_description_with_collision_publisher --params-file /tmp/launch_params_dpz4avi9 --params-file /tmp/launch_params_vveqrenk'].
+[INFO] [ign gazebo-2]: sending signal 'SIGINT' to process[ign gazebo-2]
+[ERROR] [joint_state_publisher-9]: process has died [pid 354596, exit code -2, cmd '/opt/ros/humble/lib/joint_state_publisher/joint_state_publisher --ros-args --params-file /tmp/launch_params_r_u2oeih --params-file /tmp/launch_params_jkrocp4a'].
+[INFO] [synthetic_capsules-1]: sending signal 'SIGINT' to process[synthetic_capsules-1]
+[ERROR] [robot_state_publisher-6]: process has died [pid 354590, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args --params-file /tmp/launch_params_h70zi2el --params-file /tmp/launch_params_65qdexi0'].
+[rviz2-10] [INFO] [1791580377.227335142] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-6] [INFO] [1791580377.227329221] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[static_transform_publisher-12] [INFO] [1791580377.227338645] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-11] [INFO] [1791580377.227343365] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-2] [INFO] [1791580377.227407292] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-2] [INFO] [1791580377.227459275] [controller_manager]: Shutdown request received....
+[ign gazebo-2] [INFO] [1791580377.227494706] [controller_manager]: Shutting down all controllers in the controller manager.
+[ign gazebo-2] [INFO] [1791580377.227505810] [controller_manager]: Deactivating controller 'joint_state_broadcaster'
+[ign gazebo-2] [INFO] [1791580377.227532559] [controller_manager]: Shutting down controller 'joint_state_broadcaster'
+[ign gazebo-2] [INFO] [1791580377.227553556] [controller_manager]: Deactivating controller 'gripper_action_controller'
+[ign gazebo-2] [INFO] [1791580377.227569276] [controller_manager]: Shutting down controller 'gripper_action_controller'
+[ign gazebo-2] [INFO] [1791580377.227576871] [controller_manager]: Deactivating controller 'joint_state_estimator'
+[ign gazebo-2] [INFO] [1791580377.227590345] [controller_manager]: Shutting down controller 'joint_state_estimator'
+[ign gazebo-2] [INFO] [1791580377.227597747] [controller_manager]: Deactivating controller 'linear_feedback_controller'
+[ign gazebo-2] [INFO] [1791580377.227612385] [linear_feedback_controller]: Successful deactivation.
+[ign gazebo-2] [INFO] [1791580377.227623935] [controller_manager]: Shutting down controller 'linear_feedback_controller'
+[ign gazebo-2] [INFO] [1791580377.227641565] [resource_manager]: 'deactivate' hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [INFO] [1791580377.227645803] [resource_manager]: Successful 'deactivate' of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791580377.227648003] [resource_manager]: 'shutdown' hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [INFO] [1791580377.227650741] [resource_manager]: Successful 'shutdown' of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791580377.227652993] [controller_manager]: Shutting down the controller manager.
+[parameter_bridge-3] [INFO] [1791580377.227426307] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[storm_mppi_planner_node-16] Process Process-1:
+[storm_mppi_planner_node-16] Traceback (most recent call last):
+[storm_mppi_planner_node-16]   File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+[storm_mppi_planner_node-16]     self.run()
+[storm_mppi_planner_node-16]   File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+[storm_mppi_planner_node-16]     self._target(*self._args, **self._kwargs)
+[storm_mppi_planner_node-16]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/utils/mpc_process_wrapper.py", line 337, in optimize_process
+[storm_mppi_planner_node-16]     command = list(controller.optimize(state_tensor, shift_steps=shift_steps))
+[storm_mppi_planner_node-16]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py", line 256, in optimize
+[storm_mppi_planner_node-16]     trajectory = self.generate_rollouts(state)
+[storm_mppi_planner_node-16]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/olgaussian_mpc.py", line 243, in generate_rollouts
+[storm_mppi_planner_node-16]     trajectories = self._rollout_fn(state, act_seq)
+[storm_mppi_planner_node-16]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/rollout/arm_base.py", line 500, in __call__
+[storm_mppi_planner_node-16]     return self.rollout_fn(start_state, act_seq)
+[storm_mppi_planner_node-16]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/rollout/arm_base.py", line 428, in rollout_fn
+[storm_mppi_planner_node-16]     _sync()
+[storm_mppi_planner_node-16]   File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 954, in synchronize
+[storm_mppi_planner_node-16]     return torch._C._cuda_synchronize()
+[storm_mppi_planner_node-16] KeyboardInterrupt
+[string_publisher-8] Traceback (most recent call last):
+[string_publisher-8]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher", line 33, in <module>
+[string_publisher-8]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'string_publisher')())
+[string_publisher-8]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 45, in main
+[string_publisher-8]     rclpy.shutdown()
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[string_publisher-8]     _shutdown(context=context)
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[string_publisher-8]     return context.shutdown()
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[string_publisher-8]     self.__context.shutdown()
+[string_publisher-8] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[pick_place_task_manager_node-17] Traceback (most recent call last):
+[pick_place_task_manager_node-17]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/pick_place_task_manager_node", line 6, in <module>
+[pick_place_task_manager_node-17]     main()
+[pick_place_task_manager_node-17]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/local/lib/python3.10/dist-packages/storm_pick_place_demo/pick_place_task_manager_node.py", line 969, in main
+[pick_place_task_manager_node-17]     rclpy.shutdown()
+[pick_place_task_manager_node-17]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[pick_place_task_manager_node-17]     _shutdown(context=context)
+[pick_place_task_manager_node-17]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[pick_place_task_manager_node-17]     return context.shutdown()
+[pick_place_task_manager_node-17]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[pick_place_task_manager_node-17]     self.__context.shutdown()
+[pick_place_task_manager_node-17] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[string_publisher-7] Traceback (most recent call last):
+[string_publisher-7]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher", line 33, in <module>
+[string_publisher-7]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'string_publisher')())
+[string_publisher-7]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 45, in main
+[string_publisher-7]     rclpy.shutdown()
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[string_publisher-7]     _shutdown(context=context)
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[string_publisher-7]     return context.shutdown()
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[string_publisher-7]     self.__context.shutdown()
+[string_publisher-7] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[object_manager_node-15] Traceback (most recent call last):
+[object_manager_node-15]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/object_manager_node", line 6, in <module>
+[object_manager_node-15]     main()
+[object_manager_node-15]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/local/lib/python3.10/dist-packages/storm_pick_place_demo/object_manager_node.py", line 260, in main
+[object_manager_node-15]     rclpy.shutdown()
+[object_manager_node-15]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[object_manager_node-15]     _shutdown(context=context)
+[object_manager_node-15]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[object_manager_node-15]     return context.shutdown()
+[object_manager_node-15]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[object_manager_node-15]     self.__context.shutdown()
+[object_manager_node-15] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[rviz2-10] [INFO] [1791580377.237432539] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-3] [INFO] [1791580377.242945350] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-2] terminate called after throwing an instance of 'std::runtime_error'
+[ign gazebo-2]   what():  Node needs to be associated with an executor.
+[ign gazebo-2] Stack trace (most recent call last):
+[ign gazebo-2] #31   Object "ign gazebo /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_description/share/franka_description/worlds/empty.sdf -r -s --gui-config /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/share/agimus_demos_common/config/gz_gui.config", at 0x598c350f317e, in 
+[ign gazebo-2] #30   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x77423f098e19, in ruby_run_node
+[ign gazebo-2] #29   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x77423f095317, in 
+[ign gazebo-2] #28   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x77423f22a30c, in rb_vm_exec
+[ign gazebo-2] #27   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x77423f224c96, in 
+[ign gazebo-2] #26   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x77423f221fc5, in 
+[ign gazebo-2] #25   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x77423f21fc34, in 
+[ign gazebo-2] #24   Object "/usr/lib/x86_64-linux-gnu/ruby/3.0.0/fiddle.so", at 0x77423b27c44b, in 
+[ign gazebo-2] #23   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x77423f1ed088, in rb_nogvl
+[ign gazebo-2] #22   Object "/usr/lib/x86_64-linux-gnu/ruby/3.0.0/fiddle.so", at 0x77423b27bd6b, in 
+[ign gazebo-2] #21   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x77423b2ab492, in 
+[ign gazebo-2] #20   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x77423b2aee2d, in 
+[ign gazebo-2] #19   Object "/usr/lib/x86_64-linux-gnu/libignition-gazebo6-ign.so.6.16.0", at 0x77423a7a9e8c, in runServer
+[ign gazebo-2] #18   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x77423a385a94, in ignition::gazebo::v6::Server::~Server()
+[ign gazebo-2] #17   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x77423a3923f6, in 
+[ign gazebo-2] #16   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x77423a39ee3c, in ignition::gazebo::v6::SimulationRunner::~SimulationRunner()
+[ign gazebo-2] #15   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x77423a39e301, in 
+[ign gazebo-2] #14   Object "/lib/x86_64-linux-gnu/libignition-gazebo6-gui.so.6", at 0x77423a5953bc, in ignition::plugin::SpecializedPlugin<ignition::gazebo::v6::System, ignition::gazebo::v6::ISystemConfigure, ignition::gazebo::v6::ISystemPreUpdate, ignition::gazebo::v6::ISystemUpdate, ignition::gazebo::v6::ISystemPostUpdate>::~SpecializedPlugin()
+[ign gazebo-2] #13   Object "/lib/x86_64-linux-gnu/libignition-plugin1.so.1", at 0x77423b25e5ec, in ignition::plugin::Plugin::~Plugin()
+[ign gazebo-2] #12   Object "/lib/x86_64-linux-gnu/libignition-plugin1.so.1", at 0x77423b25e1d0, in 
+[ign gazebo-2] #11   Object "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_ign_ros2_control/lib/libfranka_ign_ros2_control-system.so", at 0x7741a11ad978, in std::_Function_handler<void (void*), ignition::plugin::detail::Registrar<ign_ros2_control::IgnitionROS2ControlPlugin, ignition::gazebo::v6::System, ignition::gazebo::v6::ISystemConfigure, ignition::gazebo::v6::ISystemPreUpdate, ignition::gazebo::v6::ISystemPostUpdate>::MakeInfo()::{lambda(void*)#2}>::_M_invoke(std::_Any_data const&, void*&&)
+[ign gazebo-2] #10   Object "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_ign_ros2_control/lib/libfranka_ign_ros2_control-system.so", at 0x7741a1178a19, in ign_ros2_control::IgnitionROS2ControlPlugin::~IgnitionROS2ControlPlugin()
+[ign gazebo-2] #9    Object "/opt/ros/humble/lib/librclcpp.so", at 0x7741a0e2e61c, in 
+[ign gazebo-2] #8    Object "/lib/x86_64-linux-gnu/libgcc_s.so.1", at 0x77423b0122dc, in _Unwind_Resume
+[ign gazebo-2] #7    Object "/lib/x86_64-linux-gnu/libgcc_s.so.1", at 0x77423b011883, in 
+[ign gazebo-2] #6    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77423b0c8958, in __gxx_personality_v0
+[ign gazebo-2] #5    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77423b0c81e8, in 
+[ign gazebo-2] #4    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77423b0c920b, in 
+[ign gazebo-2] #3    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77423b0bdb9d, in 
+[ign gazebo-2] #2    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x77423edef7f2, in abort
+[ign gazebo-2] #1    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x77423ee09475, in raise
+[ign gazebo-2] #0    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x77423ee5d9fc, in pthread_kill
+[ign gazebo-2] Aborted (Signal sent by tkill() 354584 0)
+[ERROR] [synthetic_capsules-1]: process has died [pid 354579, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/synthetic_capsules --ros-args -r __node:=synthetic_capsules --params-file /tmp/launch_params_ue6cnogg'].
+[ign gazebo-2] Aborted (core dumped)
+[ERROR] [ign gazebo-2]: process has died [pid 354581, exit code -2, cmd 'ruby /usr/bin/ign gazebo /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_description/share/franka_description/worlds/empty.sdf -r -s  --gui-config /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/share/agimus_demos_common/config/gz_gui.config --force-version 6'].
+[INFO] [launch]: process[ign gazebo-2] was required: shutting down launched system
+[INFO] [parameter_bridge-3]: process has finished cleanly [pid 354583]
+[INFO] [rviz2-10]: process has finished cleanly [pid 354598]
+[storm_mppi_planner_node-16] [W1009 23:12:57.549641723 CudaIPCTypes.cpp:16] Producer process has been terminated before all shared CUDA tensors released. See Note [Sharing CUDA tensors]
+[ERROR] [storm_mppi_planner_node-16]: process[storm_mppi_planner_node-16] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [storm_mppi_planner_node-16]: sending signal 'SIGTERM' to process[storm_mppi_planner_node-16]

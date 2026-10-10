@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+"""Repeatable cylinder proxy, in the same MarkerArray format as live COSMIK.
+
+This is an input fixture, not a human biomechanics model. Motion is a function
+of Gazebo time, so pausing physics pauses the obstacle too.
+"""
+import math
+
+import rclpy
+from rclpy.node import Node
+from visualization_msgs.msg import Marker, MarkerArray
+
+
+class SyntheticCapsules(Node):
+    def __init__(self):
+        super().__init__('synthetic_capsules')
+        self.declare_parameter('topic', '/rtcosmik/collision_markers')
+        self.publisher = self.create_publisher(MarkerArray, self.get_parameter('topic').value, 1)
+        self.timer = self.create_timer(1.0 / 30.0, self.publish)
+
+    def publish(self):
+        now = self.get_clock().now()
+        t = now.nanoseconds * 1.0e-9
+        if t <= 0:
+            return
+        angle = 2.0 * math.pi * t / 12.0
+        m = Marker()
+        m.header.frame_id = 'world'  # world -> fer_link0 is identity in the Gazebo URDF.
+        m.header.stamp = now.to_msg()
+        m.ns = 'synthetic_forearm'
+        m.id = 0  # Keep (namespace, id) stable: this is one moving object.
+        m.type = Marker.CYLINDER
+        m.action = Marker.ADD
+        m.pose.orientation.w = 1.0
+        m.pose.position.x = -0.70 + 0.25 * math.sin(angle)
+        m.pose.position.y = 0.20 * math.sin(angle + math.pi / 2.0)
+        m.pose.position.z = 0.45
+        m.scale.x = m.scale.y = 0.16  # Diameter, metres.
+        m.scale.z = 0.50
+        m.color.r, m.color.g, m.color.b, m.color.a = 0.95, 0.3, 0.15, 0.8
+        m.lifetime.sec = 1
+        self.publisher.publish(MarkerArray(markers=[m]))
+
+
+def main():
+    rclpy.init()
+    node = SyntheticCapsules()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()

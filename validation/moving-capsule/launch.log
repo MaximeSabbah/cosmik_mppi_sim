@@ -1,0 +1,676 @@
+[INFO] [launch]: All log files can be found below /workspace/handoff/cosmik-mppi-sim/.runtime/ros_logs/2026-10-09-23-02-12-803850-kurai-340363
+[INFO] [launch]: Default logging verbosity is set to INFO
+external_controllers_names_list =  ['linear_feedback_controller', 'joint_state_estimator']
+[INFO] [synthetic_capsules-1]: process started with pid [340425]
+[INFO] [ign gazebo-2]: process started with pid [340427]
+[INFO] [parameter_bridge-3]: process started with pid [340429]
+[INFO] [create-4]: process started with pid [340432]
+[INFO] [wait_for_non_zero_joints_node-5]: process started with pid [340434]
+[INFO] [robot_state_publisher-6]: process started with pid [340436]
+[INFO] [string_publisher-7]: process started with pid [340438]
+[INFO] [string_publisher-8]: process started with pid [340440]
+[INFO] [joint_state_publisher-9]: process started with pid [340442]
+[INFO] [robot_state_publisher-10]: process started with pid [340444]
+[INFO] [static_transform_publisher-11]: process started with pid [340446]
+[INFO] [wait_for_non_zero_joints_node-12]: process started with pid [340448]
+[static_transform_publisher-11] [INFO] [1791579733.326305882] [static_transform_publisher_VDYxbotrtSCLksRa]: Spinning until stopped - publishing transform
+[static_transform_publisher-11] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-11] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-11] from 'fer_link0' to 'robot_attachment_link'
+[create-4] [INFO] [1791579733.337819463] [ros_gz_sim]: Requesting list of world names.
+[robot_state_publisher-10] [INFO] [1791579733.341418330] [environment_publisher]: got segment robot_attachment_link
+[robot_state_publisher-6] [INFO] [1791579733.352556959] [robot_state_publisher]: got segment fer_hand
+[robot_state_publisher-6] [INFO] [1791579733.352620421] [robot_state_publisher]: got segment fer_hand_tcp
+[robot_state_publisher-6] [INFO] [1791579733.352624435] [robot_state_publisher]: got segment fer_leftfinger
+[robot_state_publisher-6] [INFO] [1791579733.352626517] [robot_state_publisher]: got segment fer_link0
+[robot_state_publisher-6] [INFO] [1791579733.352628525] [robot_state_publisher]: got segment fer_link1
+[robot_state_publisher-6] [INFO] [1791579733.352630278] [robot_state_publisher]: got segment fer_link2
+[robot_state_publisher-6] [INFO] [1791579733.352631908] [robot_state_publisher]: got segment fer_link3
+[robot_state_publisher-6] [INFO] [1791579733.352633737] [robot_state_publisher]: got segment fer_link4
+[robot_state_publisher-6] [INFO] [1791579733.352635361] [robot_state_publisher]: got segment fer_link5
+[robot_state_publisher-6] [INFO] [1791579733.352637073] [robot_state_publisher]: got segment fer_link6
+[robot_state_publisher-6] [INFO] [1791579733.352638674] [robot_state_publisher]: got segment fer_link7
+[robot_state_publisher-6] [INFO] [1791579733.352640285] [robot_state_publisher]: got segment fer_link8
+[robot_state_publisher-6] [INFO] [1791579733.352641987] [robot_state_publisher]: got segment fer_rightfinger
+[robot_state_publisher-6] [INFO] [1791579733.352643829] [robot_state_publisher]: got segment world
+[wait_for_non_zero_joints_node-12] [INFO] [1791579733.513497307] [wait_for_non_zero_joints_node]: Node initialized, waiting for '/joint_states' to be published...
+[joint_state_publisher-9] [INFO] [1791579733.523351225] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[wait_for_non_zero_joints_node-5] [INFO] [1791579733.529329171] [wait_for_non_zero_joints_node]: Node initialized, waiting for '/joint_states' to be published...
+[create-4] [INFO] [1791579733.731995796] [ros_gz_sim]: Waiting messages on topic [/robot_description].
+[create-4] [INFO] [1791579733.743249764] [ros_gz_sim]: Requested creation of entity.
+[create-4] [INFO] [1791579733.743269408] [ros_gz_sim]: OK creation of entity.
+[INFO] [create-4]: process has finished cleanly [pid 340432]
+[INFO] [spawner-13]: process started with pid [340774]
+[spawner-13] [INFO] [1791579734.020568133] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[parameter_bridge-3] [INFO] [1791579734.357173309] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[ign gazebo-2] [INFO] [1791579735.547078763] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_state_publisher
+[ign gazebo-2] [INFO] [1791579735.547096819] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_description
+[ign gazebo-2] [INFO] [1791579735.892821000] [gz_ros2_control]: [ign_ros2_control] Fixed joint [world_joint] (Entity=49)] is skipped
+[ign gazebo-2] [INFO] [1791579735.894792830] [gz_ros2_control]: connected to service!! robot_state_publisher asking for robot_description
+[ign gazebo-2] [INFO] [1791579735.895056129] [gz_ros2_control]: Received URDF from param server
+[ign gazebo-2] text not specified in the prefix tag
+[ign gazebo-2] text not specified in the prefix tag
+[ign gazebo-2] [INFO] [1791579735.899286002] [gz_ros2_control]: The position_proportional_gain has been set to: 0.1
+[ign gazebo-2] [INFO] [1791579735.899322198] [gz_ros2_control]: Loading joint: fer_joint1
+[ign gazebo-2] [INFO] [1791579735.899329097] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899332937] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899340256] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791579735.899344659] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899348600] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899354070] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899357108] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899368099] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899374706] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899382765] [gz_ros2_control]: Loading joint: fer_joint2
+[ign gazebo-2] [INFO] [1791579735.899386195] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899389425] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899392810] [gz_ros2_control]: 			 found initial value: -0.780000
+[ign gazebo-2] [INFO] [1791579735.899396858] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899400342] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899403835] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899407019] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899411645] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899415653] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899421551] [gz_ros2_control]: Loading joint: fer_joint3
+[ign gazebo-2] [INFO] [1791579735.899425214] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899428893] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899432058] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791579735.899436022] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899439341] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899443352] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899446287] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899450834] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899454805] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899461136] [gz_ros2_control]: Loading joint: fer_joint4
+[ign gazebo-2] [INFO] [1791579735.899464871] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899468380] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899472182] [gz_ros2_control]: 			 found initial value: -2.350000
+[ign gazebo-2] [INFO] [1791579735.899476150] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899479629] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899482794] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899485756] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899490062] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899493827] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899499565] [gz_ros2_control]: Loading joint: fer_joint5
+[ign gazebo-2] [INFO] [1791579735.899502979] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899506059] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899509365] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791579735.899517205] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899520981] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899524465] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899527503] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899532075] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899535705] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899542114] [gz_ros2_control]: Loading joint: fer_joint6
+[ign gazebo-2] [INFO] [1791579735.899546891] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899550229] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899553218] [gz_ros2_control]: 			 found initial value: 1.570000
+[ign gazebo-2] [INFO] [1791579735.899557271] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899563602] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899567075] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899570080] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899588944] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899593700] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899599218] [gz_ros2_control]: Loading joint: fer_joint7
+[ign gazebo-2] [INFO] [1791579735.899602580] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899605978] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899609206] [gz_ros2_control]: 			 found initial value: 0.780000
+[ign gazebo-2] [INFO] [1791579735.899612943] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899616357] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899619601] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899622844] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899627321] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899631323] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899636841] [gz_ros2_control]: Loading joint: fer_finger_joint1
+[ign gazebo-2] [INFO] [1791579735.899639793] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899642473] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899645083] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-2] [INFO] [1791579735.899648568] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899651476] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899653645] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899655450] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899658361] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899660623] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899671904] [gz_ros2_control]: Loading joint: fer_finger_joint2
+[ign gazebo-2] [INFO] [1791579735.899678206] [gz_ros2_control]: Joint 'fer_finger_joint2'is mimicking joint 'fer_finger_joint1' with multiplier: 1
+[ign gazebo-2] [INFO] [1791579735.899684180] [gz_ros2_control]: 	State:
+[ign gazebo-2] [INFO] [1791579735.899686199] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899688262] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899690091] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899692069] [gz_ros2_control]: 	Command:
+[ign gazebo-2] [INFO] [1791579735.899693835] [gz_ros2_control]: 		 position
+[ign gazebo-2] [INFO] [1791579735.899696488] [gz_ros2_control]: 		 velocity
+[ign gazebo-2] [INFO] [1791579735.899698599] [gz_ros2_control]: 		 effort
+[ign gazebo-2] [INFO] [1791579735.899737436] [resource_manager]: Initialize hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [WARN] [1791579735.899744121] [gz_ros2_control]: On init...
+[ign gazebo-2] [INFO] [1791579735.899770754] [resource_manager]: Successful initialization of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791579735.899794894] [resource_manager]: 'configure' hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [INFO] [1791579735.899796693] [gz_ros2_control]: System Successfully configured!
+[ign gazebo-2] [INFO] [1791579735.899800427] [resource_manager]: Successful 'configure' of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791579735.899806838] [resource_manager]: 'activate' hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [INFO] [1791579735.899809080] [resource_manager]: Successful 'activate' of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791579735.899811418] [gz_ros2_control]: Loading controller_manager
+[wait_for_non_zero_joints_node-12] [INFO] [1791579735.946436384] [wait_for_non_zero_joints_node]: Joint state message received.
+[wait_for_non_zero_joints_node-12] [INFO] [1791579735.946602626] [wait_for_non_zero_joints_node]: Received non-zero joint position.
+[wait_for_non_zero_joints_node-12] [WARN] [1791579735.946790972] [wait_for_non_zero_joints_node]: Done waiting.
+[INFO] [wait_for_non_zero_joints_node-12]: process has finished cleanly [pid 340448]
+[INFO] [object_manager_node-14]: process started with pid [340988]
+[INFO] [storm_mppi_planner_node-15]: process started with pid [340990]
+[INFO] [pick_place_task_manager_node-16]: process started with pid [340992]
+[ign gazebo-2] [INFO] [1791579736.274293449] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-13] [INFO] [1791579736.282289386] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[ign gazebo-2] [INFO] [1791579736.283088653] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[ign gazebo-2] [INFO] [1791579736.283158807] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-13] [INFO] [1791579736.289279146] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[wait_for_non_zero_joints_node-5] [INFO] [1791579736.289320502] [wait_for_non_zero_joints_node]: Joint state message received.
+[wait_for_non_zero_joints_node-5] [INFO] [1791579736.289668825] [wait_for_non_zero_joints_node]: Received non-zero joint position.
+[ign gazebo-2] [INFO] [1791579736.289800436] [controller_manager]: Loading controller 'gripper_action_controller'
+[wait_for_non_zero_joints_node-5] [WARN] [1791579736.290084933] [wait_for_non_zero_joints_node]: Done waiting.
+[spawner-13] [INFO] [1791579736.297620652] [spawner_joint_state_broadcaster]: [94mLoaded [1mgripper_action_controller[0m
+[ign gazebo-2] [INFO] [1791579736.297824352] [controller_manager]: Configuring controller 'gripper_action_controller'
+[ign gazebo-2] [INFO] [1791579736.297903568] [gripper_action_controller]: Action status changes will be monitored at 20.000000 Hz.
+[spawner-13] [INFO] [1791579736.302558776] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mgripper_action_controller[0m
+[object_manager_node-14] [INFO] [1791579736.304340588] [object_manager]: object_manager publishing TF + markers on /storm_pick_place/objects_markers @ 10.0 Hz
+[pick_place_task_manager_node-16] [INFO] [1791579736.356839346] [pick_place_task_manager]: Using arm_id 'fer'.
+[pick_place_task_manager_node-16] [INFO] [1791579736.383885463] [pick_place_task_manager]: PickPlace task manager ready. mode=pick_place armed=True auto_start=True
+[pick_place_task_manager_node-16] [INFO] [1791579736.385216745] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791579736.385524073] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-16] [INFO] [1791579736.385770532] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-16] [INFO] [1791579736.386308888] [pick_place_task_manager]: [task-event] pregrasp(A)
+[INFO] [wait_for_non_zero_joints_node-5]: process has finished cleanly [pid 340434]
+[INFO] [spawner-17]: process started with pid [341117]
+[INFO] [spawner-13]: process has finished cleanly [pid 340774]
+[spawner-17] [INFO] [1791579736.620359159] [spawner_linear_feedback_controller]: waiting for service /controller_manager/list_controllers to become available...
+[storm_mppi_planner_node-15] [INFO] [1791579736.944856862] [storm_mppi_planner]: Subscribing to gripper joint states on '/joint_states'.
+[storm_mppi_planner_node-15] [INFO] [1791579736.947839808] [storm_mppi_planner]: Using collision MarkerArray topic: /rtcosmik/collision_markers
+[storm_mppi_planner_node-15] [INFO] [1791579736.949007751] [storm_mppi_planner]: storm_mppi_planner ready. Waiting for robot_description + sensor. Collision inputs: objects_markers_topic=/storm_pick_place/objects_markers, collision_markers_topic=/rtcosmik/collision_markers, collision_poses_topic=<disabled>, dynamic_collision_mode=True. Goal topic: /goal_pose.
+[spawner-17] [INFO] [1791579737.626117346] [spawner_linear_feedback_controller]: [96mSetting controller param "params_file" to "['/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/linear_feedback_controller_params.yaml']" for [1mlinear_feedback_controller[0m
+[spawner-17] [INFO] [1791579737.632578265] [spawner_linear_feedback_controller]: [96mSetting controller param "type" to "linear_feedback_controller/LinearFeedbackController" for [1mlinear_feedback_controller[0m
+[ign gazebo-2] [INFO] [1791579737.633296218] [controller_manager]: Loading controller 'linear_feedback_controller'
+[ign gazebo-2] Robot model:
+[ign gazebo-2] Nb joints = 10 (nq=9,nv=9)
+[ign gazebo-2]   Joint 0 universe: parent=0
+[ign gazebo-2]   Joint 1 fer_joint1: parent=0
+[ign gazebo-2]   Joint 2 fer_joint2: parent=1
+[ign gazebo-2]   Joint 3 fer_joint3: parent=2
+[ign gazebo-2]   Joint 4 fer_joint4: parent=3
+[ign gazebo-2]   Joint 5 fer_joint5: parent=4
+[ign gazebo-2]   Joint 6 fer_joint6: parent=5
+[ign gazebo-2]   Joint 7 fer_joint7: parent=6
+[ign gazebo-2]   Joint 8 fer_finger_joint1: parent=7
+[ign gazebo-2]   Joint 9 fer_finger_joint2: parent=7
+[ign gazebo-2] 
+[spawner-17] [INFO] [1791579737.655060141] [spawner_linear_feedback_controller]: [94mLoaded [1mlinear_feedback_controller[0m
+[ign gazebo-2] [INFO] [1791579737.655942945] [controller_manager]: Configuring controller 'linear_feedback_controller'
+[spawner-17] [INFO] [1791579737.662876862] [spawner_linear_feedback_controller]: [96mSetting controller param "params_file" to "['/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/linear_feedback_controller_params.yaml']" for [1mjoint_state_estimator[0m
+[spawner-17] [INFO] [1791579737.666444849] [spawner_linear_feedback_controller]: [96mSetting controller param "type" to "linear_feedback_controller/JointStateEstimator" for [1mjoint_state_estimator[0m
+[ign gazebo-2] [INFO] [1791579737.666534575] [controller_manager]: Loading controller 'joint_state_estimator'
+[spawner-17] [INFO] [1791579737.671795061] [spawner_linear_feedback_controller]: [94mLoaded [1mjoint_state_estimator[0m
+[ign gazebo-2] [INFO] [1791579737.671907093] [controller_manager]: Configuring controller 'joint_state_estimator'
+[ign gazebo-2] [INFO] [1791579737.671983255] [joint_state_estimator]: configure successful
+[INFO] [spawner-17]: process has finished cleanly [pid 341117]
+[INFO] [ros2-18]: process started with pid [341180]
+[ign gazebo-2] [INFO] [1791579739.072273573] [linear_feedback_controller]: Successful activation.
+[ros2-18] Successfully switched controllers
+[storm_mppi_planner_node-15] [INFO] [1791579739.074161988] [storm_mppi_planner]: Derived moving_joint_names from sensor (7 joints).
+[INFO] [ros2-18]: process has finished cleanly [pid 341180]
+[storm_mppi_planner_node-15] /usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+[storm_mppi_planner_node-15]   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[storm_mppi_planner_node-15] [INFO] [1791579739.578543131] [storm_mppi_planner]: Raw STORM task YAML (pre-load): path='/workspace/handoff/cosmik-mppi-sim/storm/content/configs/mpc/franka_reacher_cat_real.yml', cost.collision.weight=0.0, cost.primitive_collision.weight=1000.0, mppi.cat_primitive_collision.enabled=True, mppi.cat_state_bound.enabled=True.
+[storm_mppi_planner_node-15] no dynamics information for link: base
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link0_sc
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link1_sc
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link2_sc
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link3_sc
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link4_sc
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link5_sc
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link6_sc
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link7_sc
+[storm_mppi_planner_node-15] no dynamics information for link: panda_link8
+[storm_mppi_planner_node-15] no dynamics information for link: panda_hand_sc
+[storm_mppi_planner_node-15] no dynamics information for link: ee_link
+[storm_mppi_planner_node-15] no dynamics information for link: panda_leftfinger
+[storm_mppi_planner_node-15] no dynamics information for link: panda_rightfinger
+[storm_mppi_planner_node-15] /usr/local/lib/python3.10/dist-packages/torch/functional.py:2033: UserWarning: torch.chain_matmul is deprecated and will be removed in a future PyTorch release. Use torch.linalg.multi_dot instead, which accepts a list of two or more tensors rather than multiple parameters. (Triggered internally at ../aten/src/ATen/native/LinearAlgebra.cpp:1105.)
+[storm_mppi_planner_node-15]   return _VF.chain_matmul(matrices)  # type: ignore[attr-defined]
+[storm_mppi_planner_node-15] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-15]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-15] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-15] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/cost/pose_cost.py:50: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3683.)
+[storm_mppi_planner_node-15]   self.px = torch.tensor([1.0,0.0,0.0], **self.tensor_args).T
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_utils.py:121: UserWarning: torch.cholesky is deprecated in favor of torch.linalg.cholesky and will be removed in a future PyTorch release.
+[storm_mppi_planner_node-15] L = torch.cholesky(A)
+[storm_mppi_planner_node-15] should be replaced with
+[storm_mppi_planner_node-15] L = torch.linalg.cholesky(A)
+[storm_mppi_planner_node-15] and
+[storm_mppi_planner_node-15] U = torch.cholesky(A, upper=True)
+[storm_mppi_planner_node-15] should be replaced with
+[storm_mppi_planner_node-15] U = torch.linalg.cholesky(A).mH
+[storm_mppi_planner_node-15] This transform will produce equivalent results for all valid (symmetric positive definite) inputs. (Triggered internally at ../aten/src/ATen/native/BatchLinearAlgebra.cpp:1691.)
+[storm_mppi_planner_node-15]   scale_tril = torch.cholesky(cov)
+[storm_mppi_planner_node-15] [INFO] [1791579740.125378637] [storm_mppi_planner]: Loaded STORM task config: storm_task_file='franka_reacher_cat_real.yml' (resolved='/workspace/handoff/cosmik-mppi-sim/storm/content/configs/mpc/franka_reacher_cat_real.yml'), cost.collision.weight=0.0, cost.primitive_collision.weight=1000.0, mppi.cat_primitive_collision.enabled=True, mppi.cat_state_bound.enabled=True.
+[storm_mppi_planner_node-15] [INFO] [1791579740.125550360] [storm_mppi_planner]: STORM controller profile: control_space=acc, cat_equation_mode=paper, cat_self_collision=True, cat_joint_torque=True, sampler=multiple, antithetic=True, torque_backend=fused, horizon=50, particles=1000, exact_latency_prediction=True.
+[storm_mppi_planner_node-15] [INFO] [1791579740.134572233] [storm_mppi_planner]: Loaded 62 robot collision spheres across 9 links from '/workspace/handoff/cosmik-mppi-sim/storm/content/configs/mpc/../../assets/robot/fer_real/fer_spheres.yml'.
+[storm_mppi_planner_node-15] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-15]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-15] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-15] [INFO] [1791579740.716599238] [storm_mppi_planner]: Goal frame mapping: ROS tcp parent='fer_hand' -> STORM ee parent='panda_hand' using fixed-joint transforms.
+[storm_mppi_planner_node-15] [INFO] [1791579740.717010662] [storm_mppi_planner]: Initialized dynamic collision slots: slots=1 total_spheres=5.
+[storm_mppi_planner_node-15] [INFO] [1791579740.717597039] [storm_mppi_planner]: Timing summary: loop rate_hz=50.000 (dt=0.0200s), control_dt=0.0200s, model.dt=0.0200s, dt_traj.base_dt=0.0200s, dt_traj.max_dt=0.0200s, dt_traj.base_ratio=0.500
+[storm_mppi_planner_node-15] [INFO] [1791579740.717805479] [storm_mppi_planner]: storm_mppi_planner initialized. Publishing linear_feedback_controller_msgs/Control at ~50.0 Hz (armed=True), reference-smoothing fast timer ~200.0 Hz (enabled=False). base=fer_link0 ee=fer_hand_tcp.
+[storm_mppi_planner_node-15] [INFO] [1791579740.719521313] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/utils/mpc_process_wrapper.py:294: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-15]   controller = torch.load(control_string)
+[storm_mppi_planner_node-15] /usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+[storm_mppi_planner_node-15]   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[storm_mppi_planner_node-15] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-15]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-15] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py:252: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+[storm_mppi_planner_node-15]   with torch.cuda.amp.autocast(enabled=True):
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/differentiable_robot_model/differentiable_robot_model.py:582: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+[storm_mppi_planner_node-15] Please either pass the dim explicitly or simply use torch.linalg.cross.
+[storm_mppi_planner_node-15] The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at ../aten/src/ATen/native/Cross.cpp:62.)
+[storm_mppi_planner_node-15]   lin_jac[:, :, i] = torch.cross(z_i, ee_pos - p_i)
+[pick_place_task_manager_node-16] [INFO] [1791579747.560585119] [pick_place_task_manager]: [task-event] target-timeout(A, elapsed=10.00s); advancing to the other target.
+[pick_place_task_manager_node-16] [INFO] [1791579747.561130359] [pick_place_task_manager]: [task-event] preplace(B)
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/mppi.py:209: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3683.)
+[storm_mppi_planner_node-15]   weighted_seq = w.T * actions.T
+[storm_mppi_planner_node-15] [INFO] [1791579750.836614817] [storm_mppi_planner]: MPPI timing: loop~nanHz, get_command~0.1Hz, opt~0.1Hz (opt_dt~8709.9ms), control_dt=0.0200s, mpc_dt=0.0000s, N_eff~267.0
+[storm_mppi_planner_node-15] [INFO] [1791579750.836995660] [storm_mppi_planner]: MPPI costs:  null_space: 6.96  |  stop_cost: 0.35  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 0.00  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 10.44  |  goal_pose: 485.54
+[storm_mppi_planner_node-15] [INFO] [1791579750.837344690] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579750.837676546] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 693.5ms  |  rollout_fn: 7985.1ms  |  update_distribution: 28.4ms  |  rollout_fn.robot_model: 107.1ms  |  rollout_fn.cost_fns: 7875.8ms
+[ign gazebo-2] [INFO] [1791579750.838515879] [linear_feedback_controller]: Received control msgs.
+[storm_mppi_planner_node-15] [INFO] [1791579750.847361365] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] /workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py:252: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+[storm_mppi_planner_node-15]   with torch.cuda.amp.autocast(enabled=True):
+[storm_mppi_planner_node-15] [INFO] [1791579751.842992333] [storm_mppi_planner]: MPPI timing: loop~14.1Hz, get_command~21.0Hz, opt~13.9Hz (opt_dt~71.9ms), control_dt=0.0200s, mpc_dt=0.0170s, N_eff~590.8
+[storm_mppi_planner_node-15] [INFO] [1791579751.843182365] [storm_mppi_planner]: MPPI costs:  null_space: 13.01  |  stop_cost: 3.30  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 0.19  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 41.29  |  state_bound: 2.26  |  goal_pose: 210.51
+[storm_mppi_planner_node-15] [INFO] [1791579751.843357875] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579751.843510517] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.4ms  |  rollout_fn: 20.9ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.2ms
+[storm_mppi_planner_node-15] [INFO] [1791579752.850956219] [storm_mppi_planner]: MPPI timing: loop~49.1Hz, get_command~537.1Hz, opt~43.5Hz (opt_dt~23.0ms), control_dt=0.0200s, mpc_dt=0.0190s, N_eff~253.6
+[storm_mppi_planner_node-15] [INFO] [1791579752.851429954] [storm_mppi_planner]: MPPI costs:  null_space: 20.19  |  stop_cost: 1.99  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 159.37  |  table_collision: 3349.11  |  joint_torque: 0.00  |  primitive_collision: 0.02  |  state_bound: 3.97  |  goal_pose: 86.21
+[storm_mppi_planner_node-15] [INFO] [1791579752.851793752] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579752.852139724] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.7ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.0ms
+[storm_mppi_planner_node-15] [INFO] [1791579752.870032605] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[pick_place_task_manager_node-16] [INFO] [1791579753.342382171] [pick_place_task_manager]: [task-event] place(B)
+[pick_place_task_manager_node-16] [INFO] [1791579753.392222837] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791579753.392483300] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-16] [INFO] [1791579753.392937506] [pick_place_task_manager]: [task-event] open
+[storm_mppi_planner_node-15] [INFO] [1791579753.856486128] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~542.4Hz, opt~44.6Hz (opt_dt~22.4ms), control_dt=0.0200s, mpc_dt=0.0192s, N_eff~209.5
+[storm_mppi_planner_node-15] [INFO] [1791579753.856675163] [storm_mppi_planner]: MPPI costs:  null_space: 17.92  |  stop_cost: 1.18  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 192.26  |  table_collision: 3347.18  |  joint_torque: 0.00  |  primitive_collision: 0.01  |  state_bound: 1846.38  |  goal_pose: 63.21
+[storm_mppi_planner_node-15] [INFO] [1791579753.856829718] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579753.856980489] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 21.7ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 6.6ms  |  rollout_fn.cost_fns: 14.8ms
+[pick_place_task_manager_node-16] [INFO] [1791579754.398016393] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-16] [INFO] [1791579754.448766866] [pick_place_task_manager]: [task-event] swap(cycle=1, pick=B, place=A)
+[pick_place_task_manager_node-16] [INFO] [1791579754.449159758] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791579754.449415902] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-16] [INFO] [1791579754.449686152] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-16] [INFO] [1791579754.450132410] [pick_place_task_manager]: [task-event] pregrasp(B)
+[storm_mppi_planner_node-15] [INFO] [1791579754.859542756] [storm_mppi_planner]: MPPI timing: loop~50.2Hz, get_command~722.1Hz, opt~44.7Hz (opt_dt~22.4ms), control_dt=0.0200s, mpc_dt=0.0398s, N_eff~172.5
+[storm_mppi_planner_node-15] [INFO] [1791579754.859734020] [storm_mppi_planner]: MPPI costs:  null_space: 13.23  |  stop_cost: 0.86  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 173.33  |  table_collision: 3346.78  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 7717.36  |  goal_pose: 63.31
+[storm_mppi_planner_node-15] [INFO] [1791579754.859887936] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579754.860037521] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 20.7ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-15] [INFO] [1791579754.879712040] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[pick_place_task_manager_node-16] [INFO] [1791579755.452811917] [pick_place_task_manager]: [task-event] grasp(B)
+[pick_place_task_manager_node-16] [INFO] [1791579755.503121325] [pick_place_task_manager]: Waiting for grasp server...
+[pick_place_task_manager_node-16] [WARN] [1791579755.754013255] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-16] [INFO] [1791579755.754392988] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791579755.754671452] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-16] [INFO] [1791579755.755164517] [pick_place_task_manager]: [task-event] close
+[storm_mppi_planner_node-15] [INFO] [1791579755.864126746] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~571.6Hz, opt~45.2Hz (opt_dt~22.1ms), control_dt=0.0200s, mpc_dt=0.0228s, N_eff~167.7
+[storm_mppi_planner_node-15] [INFO] [1791579755.864497549] [storm_mppi_planner]: MPPI costs:  null_space: 8.92  |  stop_cost: 0.93  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 171.22  |  table_collision: 3347.15  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 7475.38  |  goal_pose: 65.46
+[storm_mppi_planner_node-15] [INFO] [1791579755.864837505] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579755.865196056] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.8ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.8ms  |  rollout_fn.cost_fns: 14.8ms
+[pick_place_task_manager_node-16] [INFO] [1791579756.509701764] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-16] [INFO] [1791579756.560470064] [pick_place_task_manager]: [task-event] preplace(A)
+[storm_mppi_planner_node-15] [INFO] [1791579756.873866737] [storm_mppi_planner]: MPPI timing: loop~50.2Hz, get_command~607.1Hz, opt~44.7Hz (opt_dt~22.4ms), control_dt=0.0200s, mpc_dt=0.0172s, N_eff~272.6
+[storm_mppi_planner_node-15] [INFO] [1791579756.874240279] [storm_mppi_planner]: MPPI costs:  null_space: 10.28  |  stop_cost: 5.57  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 6.13  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 8129.60  |  goal_pose: 293.25
+[storm_mppi_planner_node-15] [INFO] [1791579756.874579457] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579756.874908754] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 20.9ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.1ms
+[storm_mppi_planner_node-15] [INFO] [1791579756.891725500] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579757.878201200] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~645.9Hz, opt~44.8Hz (opt_dt~22.3ms), control_dt=0.0200s, mpc_dt=0.0188s, N_eff~459.5
+[storm_mppi_planner_node-15] [INFO] [1791579757.878573991] [storm_mppi_planner]: MPPI costs:  null_space: 12.52  |  stop_cost: 0.72  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 3.44  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 25638.41  |  goal_pose: 112.13
+[storm_mppi_planner_node-15] [INFO] [1791579757.878911425] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579757.879241897] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.8ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.4ms  |  rollout_fn.cost_fns: 15.2ms
+[storm_mppi_planner_node-15] [INFO] [1791579758.884720103] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~522.3Hz, opt~44.6Hz (opt_dt~22.4ms), control_dt=0.0200s, mpc_dt=0.0183s, N_eff~388.4
+[storm_mppi_planner_node-15] [INFO] [1791579758.884909369] [storm_mppi_planner]: MPPI costs:  null_space: 10.86  |  stop_cost: 0.52  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 28.14  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 26269.01  |  goal_pose: 104.83
+[storm_mppi_planner_node-15] [INFO] [1791579758.885069718] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579758.885232043] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.7ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.9ms
+[storm_mppi_planner_node-15] [INFO] [1791579758.903099809] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579759.889812793] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~684.3Hz, opt~43.7Hz (opt_dt~22.9ms), control_dt=0.0200s, mpc_dt=0.0180s, N_eff~273.3
+[storm_mppi_planner_node-15] [INFO] [1791579759.890191815] [storm_mppi_planner]: MPPI costs:  null_space: 11.78  |  stop_cost: 0.50  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 86.09  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.42  |  state_bound: 28355.37  |  goal_pose: 95.54
+[storm_mppi_planner_node-15] [INFO] [1791579759.890531075] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579759.890864174] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.9ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.2ms
+[storm_mppi_planner_node-15] [INFO] [1791579760.896290861] [storm_mppi_planner]: MPPI timing: loop~49.8Hz, get_command~658.2Hz, opt~44.9Hz (opt_dt~22.3ms), control_dt=0.0200s, mpc_dt=0.0186s, N_eff~212.3
+[storm_mppi_planner_node-15] [INFO] [1791579760.896655349] [storm_mppi_planner]: MPPI costs:  null_space: 13.18  |  stop_cost: 0.44  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 122.69  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 3.64  |  state_bound: 28711.51  |  goal_pose: 91.00
+[storm_mppi_planner_node-15] [INFO] [1791579760.896998378] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579760.897336192] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 20.8ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.0ms
+[storm_mppi_planner_node-15] [INFO] [1791579760.917103493] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579761.902168001] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~651.5Hz, opt~44.0Hz (opt_dt~22.7ms), control_dt=0.0200s, mpc_dt=0.0176s, N_eff~309.1
+[storm_mppi_planner_node-15] [INFO] [1791579761.902354581] [storm_mppi_planner]: MPPI costs:  null_space: 9.97  |  stop_cost: 1.16  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 23.92  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 5.70  |  state_bound: 30565.59  |  goal_pose: 98.94
+[storm_mppi_planner_node-15] [INFO] [1791579761.902511062] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579761.902661651] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.7ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.5ms  |  rollout_fn.cost_fns: 14.7ms
+[storm_mppi_planner_node-15] [INFO] [1791579762.906697490] [storm_mppi_planner]: MPPI timing: loop~50.1Hz, get_command~637.0Hz, opt~44.8Hz (opt_dt~22.3ms), control_dt=0.0200s, mpc_dt=0.0182s, N_eff~394.4
+[storm_mppi_planner_node-15] [INFO] [1791579762.906885475] [storm_mppi_planner]: MPPI costs:  null_space: 10.17  |  stop_cost: 0.58  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 15.97  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 46.79  |  state_bound: 28231.05  |  goal_pose: 104.38
+[storm_mppi_planner_node-15] [INFO] [1791579762.907037015] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579762.907197641] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.6ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-15] [INFO] [1791579762.925171934] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579763.912858653] [storm_mppi_planner]: MPPI timing: loop~49.8Hz, get_command~516.7Hz, opt~44.1Hz (opt_dt~22.7ms), control_dt=0.0200s, mpc_dt=0.0195s, N_eff~364.9
+[storm_mppi_planner_node-15] [INFO] [1791579763.913045735] [storm_mppi_planner]: MPPI costs:  null_space: 12.44  |  stop_cost: 0.61  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 10.01  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 194.64  |  state_bound: 25989.56  |  goal_pose: 108.16
+[storm_mppi_planner_node-15] [INFO] [1791579763.913215075] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579763.913367043] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.7ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.9ms
+[storm_mppi_planner_node-15] [INFO] [1791579764.921168401] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~677.7Hz, opt~45.3Hz (opt_dt~22.1ms), control_dt=0.0200s, mpc_dt=0.0180s, N_eff~390.2
+[storm_mppi_planner_node-15] [INFO] [1791579764.921356750] [storm_mppi_planner]: MPPI costs:  null_space: 15.31  |  stop_cost: 0.54  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 3.82  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 272.13  |  state_bound: 24205.46  |  goal_pose: 112.66
+[storm_mppi_planner_node-15] [INFO] [1791579764.921514933] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579764.921667112] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.8ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.0ms
+[storm_mppi_planner_node-15] [INFO] [1791579764.941331830] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579765.924161418] [storm_mppi_planner]: MPPI timing: loop~49.8Hz, get_command~791.0Hz, opt~45.1Hz (opt_dt~22.2ms), control_dt=0.0200s, mpc_dt=0.0192s, N_eff~366.6
+[storm_mppi_planner_node-15] [INFO] [1791579765.924355455] [storm_mppi_planner]: MPPI costs:  null_space: 16.63  |  stop_cost: 0.55  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 17.48  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 150.10  |  state_bound: 25639.78  |  goal_pose: 105.44
+[storm_mppi_planner_node-15] [INFO] [1791579765.924509197] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579765.924655578] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.9ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.1ms
+[pick_place_task_manager_node-16] [INFO] [1791579766.668154767] [pick_place_task_manager]: [task-event] target-timeout(A, elapsed=10.00s); advancing to the other target.
+[pick_place_task_manager_node-16] [INFO] [1791579766.668360641] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791579766.668564807] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-16] [INFO] [1791579766.668659890] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-16] [INFO] [1791579766.668908693] [pick_place_task_manager]: [task-event] pregrasp(B)
+[storm_mppi_planner_node-15] [INFO] [1791579766.930233405] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~641.7Hz, opt~44.9Hz (opt_dt~22.3ms), control_dt=0.0200s, mpc_dt=0.0182s, N_eff~320.8
+[storm_mppi_planner_node-15] [INFO] [1791579766.930440669] [storm_mppi_planner]: MPPI costs:  null_space: 17.75  |  stop_cost: 0.54  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 48.60  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 22.80  |  state_bound: 26105.25  |  goal_pose: 93.32
+[storm_mppi_planner_node-15] [INFO] [1791579766.930619668] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579766.930766344] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.3ms  |  rollout_fn: 21.2ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.2ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-15] [INFO] [1791579766.950137029] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579767.939857388] [storm_mppi_planner]: MPPI timing: loop~49.2Hz, get_command~697.8Hz, opt~43.7Hz (opt_dt~22.9ms), control_dt=0.0200s, mpc_dt=0.0189s, N_eff~94.4
+[storm_mppi_planner_node-15] [INFO] [1791579767.940042517] [storm_mppi_planner]: MPPI costs:  null_space: 15.45  |  stop_cost: 5.66  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 20.09  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 15660.71  |  goal_pose: 301.53
+[storm_mppi_planner_node-15] [INFO] [1791579767.940210265] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579767.940364280] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.9ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.0ms
+[storm_mppi_planner_node-15] [INFO] [1791579768.945805381] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~660.3Hz, opt~43.8Hz (opt_dt~22.9ms), control_dt=0.0200s, mpc_dt=0.0189s, N_eff~237.6
+[storm_mppi_planner_node-15] [INFO] [1791579768.946016049] [storm_mppi_planner]: MPPI costs:  null_space: 9.16  |  stop_cost: 0.68  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 94.82  |  table_collision: 3347.81  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 5214.40  |  goal_pose: 67.34
+[storm_mppi_planner_node-15] [INFO] [1791579768.946190933] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579768.946344616] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.7ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 15.0ms
+[storm_mppi_planner_node-15] [INFO] [1791579768.966667339] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[pick_place_task_manager_node-16] [INFO] [1791579769.035324131] [pick_place_task_manager]: [task-event] grasp(B)
+[pick_place_task_manager_node-16] [INFO] [1791579769.085713981] [pick_place_task_manager]: Waiting for grasp server...
+[pick_place_task_manager_node-16] [WARN] [1791579769.336342816] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-16] [INFO] [1791579769.336537554] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791579769.336730017] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-16] [INFO] [1791579769.336983924] [pick_place_task_manager]: [task-event] close
+[storm_mppi_planner_node-15] [INFO] [1791579769.952635749] [storm_mppi_planner]: MPPI timing: loop~49.8Hz, get_command~659.5Hz, opt~44.0Hz (opt_dt~22.7ms), control_dt=0.0200s, mpc_dt=0.0181s, N_eff~194.7
+[storm_mppi_planner_node-15] [INFO] [1791579769.953004681] [storm_mppi_planner]: MPPI costs:  null_space: 6.33  |  stop_cost: 0.91  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 131.07  |  table_collision: 3347.37  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 4428.85  |  goal_pose: 59.30
+[storm_mppi_planner_node-15] [INFO] [1791579769.953354751] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579769.953688812] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.8ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.6ms  |  rollout_fn.cost_fns: 15.0ms
+[pick_place_task_manager_node-16] [INFO] [1791579770.092585025] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-16] [INFO] [1791579770.142749335] [pick_place_task_manager]: [task-event] preplace(A)
+[storm_mppi_planner_node-15] [INFO] [1791579770.957823578] [storm_mppi_planner]: MPPI timing: loop~50.1Hz, get_command~609.3Hz, opt~44.7Hz (opt_dt~22.4ms), control_dt=0.0200s, mpc_dt=0.0178s, N_eff~391.9
+[storm_mppi_planner_node-15] [INFO] [1791579770.958013522] [storm_mppi_planner]: MPPI costs:  null_space: 13.26  |  stop_cost: 1.93  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 2.54  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 10565.76  |  goal_pose: 170.87
+[storm_mppi_planner_node-15] [INFO] [1791579770.958175320] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579770.958334297] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.2ms  |  rollout_fn: 20.6ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-15] [INFO] [1791579770.975762708] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579771.965143491] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~559.5Hz, opt~43.6Hz (opt_dt~22.9ms), control_dt=0.0200s, mpc_dt=0.0190s, N_eff~584.0
+[storm_mppi_planner_node-15] [INFO] [1791579771.965385170] [storm_mppi_planner]: MPPI costs:  null_space: 13.29  |  stop_cost: 0.49  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 1.68  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 19987.96  |  goal_pose: 115.41
+[storm_mppi_planner_node-15] [INFO] [1791579771.965545561] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579771.965693989] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.3ms  |  rollout_fn: 23.6ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 7.5ms  |  rollout_fn.cost_fns: 15.9ms
+[storm_mppi_planner_node-15] [INFO] [1791579772.970780935] [storm_mppi_planner]: MPPI timing: loop~49.8Hz, get_command~652.5Hz, opt~44.6Hz (opt_dt~22.4ms), control_dt=0.0200s, mpc_dt=0.0195s, N_eff~401.0
+[storm_mppi_planner_node-15] [INFO] [1791579772.970965059] [storm_mppi_planner]: MPPI costs:  null_space: 11.75  |  stop_cost: 0.58  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 24.57  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.07  |  state_bound: 26192.97  |  goal_pose: 105.75
+[storm_mppi_planner_node-15] [INFO] [1791579772.971137421] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579772.971286134] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.7ms  |  update_distribution: 1.5ms  |  rollout_fn.robot_model: 6.1ms  |  rollout_fn.cost_fns: 14.1ms
+[storm_mppi_planner_node-15] [INFO] [1791579772.990731191] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579773.974684145] [storm_mppi_planner]: MPPI timing: loop~49.8Hz, get_command~742.8Hz, opt~44.5Hz (opt_dt~22.5ms), control_dt=0.0200s, mpc_dt=0.0174s, N_eff~256.4
+[storm_mppi_planner_node-15] [INFO] [1791579773.974873446] [storm_mppi_planner]: MPPI costs:  null_space: 11.98  |  stop_cost: 0.47  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 75.66  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 8.26  |  state_bound: 29114.26  |  goal_pose: 94.85
+[storm_mppi_planner_node-15] [INFO] [1791579773.975025362] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579773.975177357] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.8ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.9ms
+[storm_mppi_planner_node-15] [INFO] [1791579774.984288490] [storm_mppi_planner]: MPPI timing: loop~49.7Hz, get_command~644.8Hz, opt~43.3Hz (opt_dt~23.1ms), control_dt=0.0200s, mpc_dt=0.0195s, N_eff~383.3
+[storm_mppi_planner_node-15] [INFO] [1791579774.984667600] [storm_mppi_planner]: MPPI costs:  null_space: 12.97  |  stop_cost: 0.62  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 27.18  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 40.59  |  state_bound: 24571.36  |  goal_pose: 100.95
+[storm_mppi_planner_node-15] [INFO] [1791579774.985008934] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579774.985351402] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.3ms  |  rollout_fn: 24.1ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 7.3ms  |  rollout_fn.cost_fns: 16.6ms
+[storm_mppi_planner_node-15] [INFO] [1791579775.002300093] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579775.985682494] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~602.6Hz, opt~43.7Hz (opt_dt~22.9ms), control_dt=0.0200s, mpc_dt=0.0210s, N_eff~377.3
+[storm_mppi_planner_node-15] [INFO] [1791579775.985865733] [storm_mppi_planner]: MPPI costs:  null_space: 15.21  |  stop_cost: 0.57  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 7.83  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 179.39  |  state_bound: 23889.26  |  goal_pose: 108.06
+[storm_mppi_planner_node-15] [INFO] [1791579775.986019012] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579775.986173170] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.5ms  |  update_distribution: 1.9ms  |  rollout_fn.robot_model: 6.0ms  |  rollout_fn.cost_fns: 15.0ms
+[storm_mppi_planner_node-15] [INFO] [1791579776.992746967] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~633.1Hz, opt~44.5Hz (opt_dt~22.5ms), control_dt=0.0200s, mpc_dt=0.0181s, N_eff~410.2
+[storm_mppi_planner_node-15] [INFO] [1791579776.993115224] [storm_mppi_planner]: MPPI costs:  null_space: 17.75  |  stop_cost: 0.51  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 2.04  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 248.68  |  state_bound: 21438.81  |  goal_pose: 112.90
+[storm_mppi_planner_node-15] [INFO] [1791579776.993453088] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579776.993802830] [storm_mppi_planner]: MPPI phase timing:  shift: 0.2ms  |  sample_actions: 0.2ms  |  rollout_fn: 21.6ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 6.1ms  |  rollout_fn.cost_fns: 15.2ms
+[storm_mppi_planner_node-15] [INFO] [1791579777.012952386] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579777.999741594] [storm_mppi_planner]: MPPI timing: loop~49.8Hz, get_command~617.0Hz, opt~45.1Hz (opt_dt~22.2ms), control_dt=0.0200s, mpc_dt=0.0167s, N_eff~437.3
+[storm_mppi_planner_node-15] [INFO] [1791579777.999925225] [storm_mppi_planner]: MPPI costs:  null_space: 17.94  |  stop_cost: 0.52  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 6.21  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 122.64  |  state_bound: 20732.39  |  goal_pose: 107.92
+[storm_mppi_planner_node-15] [INFO] [1791579778.000090937] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579778.000251823] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.2ms  |  rollout_fn: 21.4ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.2ms  |  rollout_fn.cost_fns: 15.0ms
+[storm_mppi_planner_node-15] [INFO] [1791579779.005903517] [storm_mppi_planner]: MPPI timing: loop~49.7Hz, get_command~627.7Hz, opt~45.0Hz (opt_dt~22.2ms), control_dt=0.0200s, mpc_dt=0.0176s, N_eff~388.9
+[storm_mppi_planner_node-15] [INFO] [1791579779.006197120] [storm_mppi_planner]: MPPI costs:  null_space: 16.69  |  stop_cost: 0.57  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 27.62  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 15.46  |  state_bound: 23565.27  |  goal_pose: 99.17
+[storm_mppi_planner_node-15] [INFO] [1791579779.006376218] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579779.006528257] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.8ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 6.5ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-15] [INFO] [1791579779.025336092] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579780.010087048] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~616.7Hz, opt~44.8Hz (opt_dt~22.3ms), control_dt=0.0200s, mpc_dt=0.0224s, N_eff~296.5
+[storm_mppi_planner_node-15] [INFO] [1791579780.010457405] [storm_mppi_planner]: MPPI costs:  null_space: 16.99  |  stop_cost: 0.56  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 77.88  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.70  |  state_bound: 25177.76  |  goal_pose: 90.00
+[storm_mppi_planner_node-15] [INFO] [1791579780.010793590] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579780.011125414] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.9ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.8ms  |  rollout_fn.cost_fns: 14.8ms
+[pick_place_task_manager_node-16] [INFO] [1791579780.252019725] [pick_place_task_manager]: [task-event] target-timeout(A, elapsed=10.00s); advancing to the other target.
+[pick_place_task_manager_node-16] [INFO] [1791579780.252424257] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791579780.252720425] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-16] [INFO] [1791579780.252961975] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-16] [INFO] [1791579780.253424847] [pick_place_task_manager]: [task-event] pregrasp(B)
+[storm_mppi_planner_node-15] [INFO] [1791579781.018273226] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~653.5Hz, opt~44.7Hz (opt_dt~22.4ms), control_dt=0.0200s, mpc_dt=0.0176s, N_eff~224.9
+[storm_mppi_planner_node-15] [INFO] [1791579781.018462466] [storm_mppi_planner]: MPPI costs:  null_space: 18.41  |  stop_cost: 0.48  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 141.86  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 25355.86  |  goal_pose: 84.46
+[storm_mppi_planner_node-15] [INFO] [1791579781.018618003] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579781.018769563] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 20.6ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-15] [INFO] [1791579781.039019877] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579782.021587154] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~663.4Hz, opt~44.6Hz (opt_dt~22.4ms), control_dt=0.0200s, mpc_dt=0.0188s, N_eff~187.5
+[storm_mppi_planner_node-15] [INFO] [1791579782.021896544] [storm_mppi_planner]: MPPI costs:  null_space: 9.31  |  stop_cost: 0.90  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 98.33  |  table_collision: 3346.63  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 5681.70  |  goal_pose: 113.70
+[storm_mppi_planner_node-15] [INFO] [1791579782.022175909] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579782.022422945] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.9ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.5ms  |  rollout_fn.cost_fns: 15.1ms
+[pick_place_task_manager_node-16] [INFO] [1791579782.512896168] [pick_place_task_manager]: [task-event] grasp(B)
+[pick_place_task_manager_node-16] [INFO] [1791579782.563145035] [pick_place_task_manager]: Waiting for grasp server...
+[pick_place_task_manager_node-16] [WARN] [1791579782.814047454] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-16] [INFO] [1791579782.814431983] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-2] [INFO] [1791579782.814686723] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-16] [INFO] [1791579782.815151549] [pick_place_task_manager]: [task-event] close
+[storm_mppi_planner_node-15] [INFO] [1791579783.025343023] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~669.6Hz, opt~44.1Hz (opt_dt~22.7ms), control_dt=0.0200s, mpc_dt=0.0207s, N_eff~200.1
+[storm_mppi_planner_node-15] [INFO] [1791579783.025541664] [storm_mppi_planner]: MPPI costs:  null_space: 7.28  |  stop_cost: 0.86  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 136.37  |  table_collision: 3347.03  |  joint_torque: 0.00  |  primitive_collision: 0.16  |  state_bound: 6598.22  |  goal_pose: 59.49
+[storm_mppi_planner_node-15] [INFO] [1791579783.025693416] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579783.025840011] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.4ms  |  rollout_fn: 23.0ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 7.3ms  |  rollout_fn.cost_fns: 15.5ms
+[storm_mppi_planner_node-15] [INFO] [1791579783.046333119] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[pick_place_task_manager_node-16] [INFO] [1791579783.569620031] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-16] [INFO] [1791579783.620242852] [pick_place_task_manager]: [task-event] preplace(A)
+[storm_mppi_planner_node-15] [INFO] [1791579784.033971692] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~572.4Hz, opt~43.9Hz (opt_dt~22.8ms), control_dt=0.0200s, mpc_dt=0.0190s, N_eff~134.3
+[storm_mppi_planner_node-15] [INFO] [1791579784.034156452] [storm_mppi_planner]: MPPI costs:  null_space: 7.47  |  stop_cost: 1.48  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 50.73  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 53.59  |  state_bound: 9376.61  |  goal_pose: 468.20
+[storm_mppi_planner_node-15] [INFO] [1791579784.034305891] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579784.034448980] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 20.9ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.6ms  |  rollout_fn.cost_fns: 15.0ms
+[storm_mppi_planner_node-15] [INFO] [1791579785.041025406] [storm_mppi_planner]: MPPI timing: loop~49.7Hz, get_command~547.2Hz, opt~44.3Hz (opt_dt~22.6ms), control_dt=0.0200s, mpc_dt=0.0190s, N_eff~359.7
+[storm_mppi_planner_node-15] [INFO] [1791579785.041214186] [storm_mppi_planner]: MPPI costs:  null_space: 16.00  |  stop_cost: 5.00  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 0.00  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 13858.86  |  goal_pose: 310.89
+[storm_mppi_planner_node-15] [INFO] [1791579785.041365254] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579785.041514104] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 21.6ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.2ms  |  rollout_fn.cost_fns: 15.1ms
+[storm_mppi_planner_node-15] [INFO] [1791579785.060995480] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[storm_mppi_planner_node-15] [INFO] [1791579786.046870517] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~558.9Hz, opt~44.3Hz (opt_dt~22.6ms), control_dt=0.0200s, mpc_dt=0.0188s, N_eff~319.8
+[storm_mppi_planner_node-15] [INFO] [1791579786.047249393] [storm_mppi_planner]: MPPI costs:  null_space: 35.38  |  stop_cost: 1.64  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 0.00  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 27598.63  |  goal_pose: 244.59
+[storm_mppi_planner_node-15] [INFO] [1791579786.047592518] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579786.047925034] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.2ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.8ms  |  rollout_fn.cost_fns: 15.1ms
+[storm_mppi_planner_node-15] [INFO] [1791579787.051748657] [storm_mppi_planner]: MPPI timing: loop~50.1Hz, get_command~676.7Hz, opt~44.9Hz (opt_dt~22.3ms), control_dt=0.0200s, mpc_dt=0.0218s, N_eff~278.3
+[storm_mppi_planner_node-15] [INFO] [1791579787.051936872] [storm_mppi_planner]: MPPI costs:  null_space: 41.45  |  stop_cost: 1.37  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 2.61  |  table_collision: 3346.35  |  joint_torque: 0.00  |  primitive_collision: 11.14  |  state_bound: 28029.76  |  goal_pose: 171.37
+[storm_mppi_planner_node-15] [INFO] [1791579787.052102615] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-15] [INFO] [1791579787.052264645] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.7ms  |  update_distribution: 1.1ms  |  rollout_fn.robot_model: 5.8ms  |  rollout_fn.cost_fns: 14.7ms
+[storm_mppi_planner_node-15] [INFO] [1791579787.073617818] [storm_mppi_planner]: Updated dynamic collision spheres from live marker/pose inputs.
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [pick_place_task_manager_node-16]: sending signal 'SIGINT' to process[pick_place_task_manager_node-16]
+[INFO] [storm_mppi_planner_node-15]: sending signal 'SIGINT' to process[storm_mppi_planner_node-15]
+[INFO] [object_manager_node-14]: sending signal 'SIGINT' to process[object_manager_node-14]
+[INFO] [static_transform_publisher-11]: sending signal 'SIGINT' to process[static_transform_publisher-11]
+[INFO] [robot_state_publisher-10]: sending signal 'SIGINT' to process[robot_state_publisher-10]
+[INFO] [joint_state_publisher-9]: sending signal 'SIGINT' to process[joint_state_publisher-9]
+[INFO] [string_publisher-8]: sending signal 'SIGINT' to process[string_publisher-8]
+[ERROR] [static_transform_publisher-11]: process has died [pid 340446, exit code -2, cmd '/opt/ros/humble/lib/tf2_ros/static_transform_publisher --frame-id fer_link0 --child-frame-id robot_attachment_link --x 0.0 --y 0.0 --z 0.0 --qx 0.0 --qy 0.0 --qz 0.0 --qw 1.0 --ros-args'].
+[ERROR] [robot_state_publisher-10]: process has died [pid 340444, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __node:=environment_publisher --params-file /tmp/launch_params_9kh8h7fl -r robot_description:=environment_description'].
+[INFO] [string_publisher-7]: sending signal 'SIGINT' to process[string_publisher-7]
+[INFO] [robot_state_publisher-6]: sending signal 'SIGINT' to process[robot_state_publisher-6]
+[INFO] [parameter_bridge-3]: sending signal 'SIGINT' to process[parameter_bridge-3]
+[INFO] [ign gazebo-2]: sending signal 'SIGINT' to process[ign gazebo-2]
+[ERROR] [string_publisher-8]: process has died [pid 340440, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher --ros-args -r __node:=robot_srdf_description_publisher --params-file /tmp/launch_params_gadtegua'].
+[INFO] [synthetic_capsules-1]: sending signal 'SIGINT' to process[synthetic_capsules-1]
+[ERROR] [string_publisher-7]: process has died [pid 340438, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher --ros-args -r __node:=robot_description_with_collision_publisher --params-file /tmp/launch_params_0y2b5fzk --params-file /tmp/launch_params_w0tmlszh'].
+[ERROR] [robot_state_publisher-6]: process has died [pid 340436, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args --params-file /tmp/launch_params_npifca17 --params-file /tmp/launch_params_bclzmxt9'].
+[robot_state_publisher-10] [INFO] [1791579787.798356187] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [object_manager_node-14]: process has died [pid 340988, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/object_manager_node --ros-args -r __node:=object_manager --params-file /tmp/launch_params_luvat7z4 --params-file /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/object_manager_params.yaml'].
+[ERROR] [joint_state_publisher-9]: process has died [pid 340442, exit code -2, cmd '/opt/ros/humble/lib/joint_state_publisher/joint_state_publisher --ros-args --params-file /tmp/launch_params_r1d3hjpn --params-file /tmp/launch_params_bvj_lbe6'].
+[robot_state_publisher-6] [INFO] [1791579787.798368241] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-3] [INFO] [1791579787.798367327] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[joint_state_publisher-9] Traceback (most recent call last):
+[joint_state_publisher-9]   File "/opt/ros/humble/lib/joint_state_publisher/joint_state_publisher", line 33, in <module>
+[joint_state_publisher-9]     sys.exit(load_entry_point('joint-state-publisher==2.4.0', 'console_scripts', 'joint_state_publisher')())
+[joint_state_publisher-9]   File "/opt/ros/humble/lib/python3.10/site-packages/joint_state_publisher/joint_state_publisher.py", line 466, in main
+[joint_state_publisher-9]     rclpy.spin(jsp)
+[joint_state_publisher-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[joint_state_publisher-9]     executor.spin_once()
+[joint_state_publisher-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 773, in spin_once
+[joint_state_publisher-9]     self._spin_once_impl(timeout_sec)
+[joint_state_publisher-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 770, in _spin_once_impl
+[joint_state_publisher-9]     raise handler.exception()
+[joint_state_publisher-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 254, in __call__
+[joint_state_publisher-9]     self._handler.send(None)
+[joint_state_publisher-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 453, in handler
+[joint_state_publisher-9]     arg = take_from_wait_list(entity)
+[joint_state_publisher-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 375, in _take_subscription
+[joint_state_publisher-9]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[joint_state_publisher-9] RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[ign gazebo-2] [INFO] [1791579787.798492933] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-2] [INFO] [1791579787.798545015] [controller_manager]: Shutdown request received....
+[ign gazebo-2] [INFO] [1791579787.798578928] [controller_manager]: Shutting down all controllers in the controller manager.
+[ign gazebo-2] [INFO] [1791579787.798592087] [controller_manager]: Deactivating controller 'joint_state_broadcaster'
+[ign gazebo-2] [INFO] [1791579787.798614704] [controller_manager]: Shutting down controller 'joint_state_broadcaster'
+[ign gazebo-2] [INFO] [1791579787.798635406] [controller_manager]: Deactivating controller 'gripper_action_controller'
+[ign gazebo-2] [INFO] [1791579787.798651323] [controller_manager]: Shutting down controller 'gripper_action_controller'
+[ign gazebo-2] [INFO] [1791579787.798659180] [controller_manager]: Deactivating controller 'joint_state_estimator'
+[ign gazebo-2] [INFO] [1791579787.798672433] [controller_manager]: Shutting down controller 'joint_state_estimator'
+[ign gazebo-2] [INFO] [1791579787.798684570] [controller_manager]: Deactivating controller 'linear_feedback_controller'
+[ign gazebo-2] [INFO] [1791579787.798693957] [linear_feedback_controller]: Successful deactivation.
+[ign gazebo-2] [INFO] [1791579787.798709868] [controller_manager]: Shutting down controller 'linear_feedback_controller'
+[ign gazebo-2] [INFO] [1791579787.798727616] [resource_manager]: 'deactivate' hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [INFO] [1791579787.798751390] [resource_manager]: Successful 'deactivate' of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791579787.798775733] [resource_manager]: 'shutdown' hardware 'FrankaHardwareInterface' 
+[ign gazebo-2] [INFO] [1791579787.798787507] [resource_manager]: Successful 'shutdown' of hardware 'FrankaHardwareInterface'
+[ign gazebo-2] [INFO] [1791579787.798793163] [controller_manager]: Shutting down the controller manager.
+[static_transform_publisher-11] [INFO] [1791579787.798496654] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[storm_mppi_planner_node-15] Process Process-1:
+[storm_mppi_planner_node-15] Traceback (most recent call last):
+[storm_mppi_planner_node-15]   File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+[storm_mppi_planner_node-15]     self.run()
+[storm_mppi_planner_node-15]   File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+[storm_mppi_planner_node-15]     self._target(*self._args, **self._kwargs)
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/utils/mpc_process_wrapper.py", line 337, in optimize_process
+[storm_mppi_planner_node-15]     command = list(controller.optimize(state_tensor, shift_steps=shift_steps))
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py", line 256, in optimize
+[storm_mppi_planner_node-15]     trajectory = self.generate_rollouts(state)
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/control/olgaussian_mpc.py", line 243, in generate_rollouts
+[storm_mppi_planner_node-15]     trajectories = self._rollout_fn(state, act_seq)
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/rollout/arm_base.py", line 500, in __call__
+[storm_mppi_planner_node-15]     return self.rollout_fn(start_state, act_seq)
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/rollout/arm_base.py", line 428, in rollout_fn
+[storm_mppi_planner_node-15]     _sync()
+[storm_mppi_planner_node-15]   File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 954, in synchronize
+[storm_mppi_planner_node-15]     return torch._C._cuda_synchronize()
+[storm_mppi_planner_node-15] KeyboardInterrupt
+[object_manager_node-14] Traceback (most recent call last):
+[object_manager_node-14]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/object_manager_node", line 6, in <module>
+[object_manager_node-14]     main()
+[object_manager_node-14]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/local/lib/python3.10/dist-packages/storm_pick_place_demo/object_manager_node.py", line 260, in main
+[object_manager_node-14]     rclpy.shutdown()
+[object_manager_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[object_manager_node-14]     _shutdown(context=context)
+[object_manager_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[object_manager_node-14]     return context.shutdown()
+[object_manager_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[object_manager_node-14]     self.__context.shutdown()
+[object_manager_node-14] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[pick_place_task_manager_node-16] Traceback (most recent call last):
+[pick_place_task_manager_node-16] 
+[string_publisher-8] Traceback (most recent call last):
+[string_publisher-8]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher", line 33, in <module>
+[string_publisher-8]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'string_publisher')())
+[string_publisher-8]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 45, in main
+[string_publisher-8]     rclpy.shutdown()
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[string_publisher-8]     _shutdown(context=context)
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[string_publisher-8]     return context.shutdown()
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[string_publisher-8]     self.__context.shutdown()
+[string_publisher-8] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[string_publisher-7] Traceback (most recent call last):
+[string_publisher-7]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher", line 33, in <module>
+[string_publisher-7]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'string_publisher')())
+[string_publisher-7]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 45, in main
+[string_publisher-7]     rclpy.shutdown()
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[string_publisher-7]     _shutdown(context=context)
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[string_publisher-7]     return context.shutdown()
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[string_publisher-7]     self.__context.shutdown()
+[string_publisher-7] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[ERROR] [synthetic_capsules-1]: process has died [pid 340425, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/synthetic_capsules --ros-args -r __node:=synthetic_capsules --params-file /tmp/launch_params_jxg4kel_'].
+[parameter_bridge-3] [INFO] [1791579787.811479201] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-2] terminate called after throwing an instance of 'std::runtime_error'
+[ign gazebo-2]   what():  Node needs to be associated with an executor.
+[ign gazebo-2] Stack trace (most recent call last):
+[ign gazebo-2] #31   Object "ign gazebo /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_description/share/franka_description/worlds/empty.sdf -r -s --gui-config /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/share/agimus_demos_common/config/gz_gui.config", at 0x5a97f7fd217e, in 
+[ign gazebo-2] #30   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x7cb9e9db3e19, in ruby_run_node
+[ign gazebo-2] #29   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x7cb9e9db0317, in 
+[ign gazebo-2] #28   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x7cb9e9f4530c, in rb_vm_exec
+[ign gazebo-2] #27   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x7cb9e9f3fc96, in 
+[ign gazebo-2] #26   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x7cb9e9f3cfc5, in 
+[ign gazebo-2] #25   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x7cb9e9f3ac34, in 
+[ign gazebo-2] #24   Object "/usr/lib/x86_64-linux-gnu/ruby/3.0.0/fiddle.so", at 0x7cb9e5f9744b, in 
+[ign gazebo-2] #23   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x7cb9e9f08088, in rb_nogvl
+[ign gazebo-2] #22   Object "/usr/lib/x86_64-linux-gnu/ruby/3.0.0/fiddle.so", at 0x7cb9e5f96d6b, in 
+[ign gazebo-2] #21   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x7cb9e5fc6492, in 
+[ign gazebo-2] #20   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x7cb9e5fc9e2d, in 
+[ign gazebo-2] #19   Object "/usr/lib/x86_64-linux-gnu/libignition-gazebo6-ign.so.6.16.0", at 0x7cb9e54c4e8c, in runServer
+[ign gazebo-2] #18   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x7cb9e50a0a94, in ignition::gazebo::v6::Server::~Server()
+[ign gazebo-2] #17   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x7cb9e50ad3f6, in 
+[ign gazebo-2] #16   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x7cb9e50b9e3c, in ignition::gazebo::v6::SimulationRunner::~SimulationRunner()
+[ign gazebo-2] #15   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x7cb9e50b9301, in 
+[ign gazebo-2] #14   Object "/lib/x86_64-linux-gnu/libignition-gazebo6-gui.so.6", at 0x7cb9e52b03bc, in ignition::plugin::SpecializedPlugin<ignition::gazebo::v6::System, ignition::gazebo::v6::ISystemConfigure, ignition::gazebo::v6::ISystemPreUpdate, ignition::gazebo::v6::ISystemUpdate, ignition::gazebo::v6::ISystemPostUpdate>::~SpecializedPlugin()
+[ign gazebo-2] #13   Object "/lib/x86_64-linux-gnu/libignition-plugin1.so.1", at 0x7cb9e5f795ec, in ignition::plugin::Plugin::~Plugin()
+[ign gazebo-2] #12   Object "/lib/x86_64-linux-gnu/libignition-plugin1.so.1", at 0x7cb9e5f791d0, in 
+[ign gazebo-2] #11   Object "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_ign_ros2_control/lib/libfranka_ign_ros2_control-system.so", at 0x7cb9540e1588, in std::_Function_handler<void (void*), ignition::plugin::detail::Registrar<ign_ros2_control::IgnitionROS2ControlPlugin, ignition::gazebo::v6::System, ignition::gazebo::v6::ISystemConfigure, ignition::gazebo::v6::ISystemPreUpdate, ignition::gazebo::v6::ISystemPostUpdate>::MakeInfo()::{lambda(void*)#2}>::_M_invoke(std::_Any_data const&, void*&&)
+[ign gazebo-2] #10   Object "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_ign_ros2_control/lib/libfranka_ign_ros2_control-system.so", at 0x7cb9540ac819, in ign_ros2_control::IgnitionROS2ControlPlugin::~IgnitionROS2ControlPlugin()
+[ign gazebo-2] #9    Object "/opt/ros/humble/lib/librclcpp.so", at 0x7cb947ac061c, in 
+[ign gazebo-2] #8    Object "/lib/x86_64-linux-gnu/libgcc_s.so.1", at 0x7cb9e5d2d2dc, in _Unwind_Resume
+[ign gazebo-2] #7    Object "/lib/x86_64-linux-gnu/libgcc_s.so.1", at 0x7cb9e5d2c883, in 
+[ign gazebo-2] #6    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x7cb9e5de3958, in __gxx_personality_v0
+[ign gazebo-2] #5    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x7cb9e5de31e8, in 
+[ign gazebo-2] #4    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x7cb9e5de420b, in 
+[ign gazebo-2] #3    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x7cb9e5dd8b9d, in 
+[ign gazebo-2] #2    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7cb9e9b0a7f2, in abort
+[ign gazebo-2] #1    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7cb9e9b24475, in raise
+[ign gazebo-2] #0    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7cb9e9b789fc, in pthread_kill
+[ign gazebo-2] Aborted (Signal sent by tkill() 340430 0)
+[INFO] [parameter_bridge-3]: process has finished cleanly [pid 340429]
+[ERROR] [pick_place_task_manager_node-16]: process has died [pid 340992, exit code 1, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/pick_place_task_manager_node --ros-args -r __node:=pick_place_task_manager --params-file /tmp/launch_params_u0s19rx_ --params-file /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/pick_place_task_manager_params.yaml --params-file /tmp/launch_params_0trov3e7 -r /fer_gripper/gripper_action:=/gripper_action_controller/gripper_cmd'].
+[storm_mppi_planner_node-15] [W1009 23:03:08.076938110 CudaIPCTypes.cpp:16] Producer process has been terminated before all shared CUDA tensors released. See Note [Sharing CUDA tensors]
+[storm_mppi_planner_node-15] Traceback (most recent call last):
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/lib/storm_agimus_bridge/storm_mppi_planner_node", line 6, in <module>
+[storm_mppi_planner_node-15]     main()
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/local/lib/python3.10/dist-packages/storm_agimus_bridge/storm_mppi_planner_node.py", line 3031, in main
+[storm_mppi_planner_node-15]     node.destroy_node()
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/local/lib/python3.10/dist-packages/storm_agimus_bridge/storm_mppi_planner_node.py", line 3011, in destroy_node
+[storm_mppi_planner_node-15]     self._storm_task.close()
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/task/task_base.py", line 157, in close
+[storm_mppi_planner_node-15]     self.control_process.close()
+[storm_mppi_planner_node-15]   File "/workspace/handoff/cosmik-mppi-sim/storm/storm_kit/mpc/utils/mpc_process_wrapper.py", line 274, in close
+[storm_mppi_planner_node-15]     self.opt_process.join()
+[storm_mppi_planner_node-15]   File "/usr/lib/python3.10/multiprocessing/process.py", line 149, in join
+[storm_mppi_planner_node-15]     res = self._popen.wait(timeout)
+[storm_mppi_planner_node-15]   File "/usr/lib/python3.10/multiprocessing/popen_fork.py", line 43, in wait
+[storm_mppi_planner_node-15]     return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+[storm_mppi_planner_node-15]   File "/usr/lib/python3.10/multiprocessing/popen_fork.py", line 27, in poll
+[storm_mppi_planner_node-15]     pid, sts = os.waitpid(self.pid, flag)
+[storm_mppi_planner_node-15] KeyboardInterrupt
+[ign gazebo-2] Aborted (core dumped)
+[ERROR] [ign gazebo-2]: process has died [pid 340427, exit code -2, cmd 'ruby /usr/bin/ign gazebo /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_description/share/franka_description/worlds/empty.sdf -r -s  --gui-config /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/share/agimus_demos_common/config/gz_gui.config --force-version 6'].
+[INFO] [launch]: process[ign gazebo-2] was required: shutting down launched system
+[ERROR] [storm_mppi_planner_node-15]: process has died [pid 340990, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/lib/storm_agimus_bridge/storm_mppi_planner_node --ros-args -r __node:=storm_mppi_planner --params-file /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/share/storm_agimus_bridge/config/storm_mppi_planner_params.yaml --params-file /tmp/launch_params_hb_seird -r robot_description:=robot_description_with_collision'].

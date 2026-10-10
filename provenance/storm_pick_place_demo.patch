@@ -1,0 +1,648 @@
+diff --git a/README.md b/README.md
+index 2d526a2..8150b07 100644
+--- a/README.md
++++ b/README.md
+@@ -51,9 +51,109 @@ cd /workspace/ros2_ws
+ source install/setup.bash
+ 
+ ros2 launch storm_pick_place_demo pick_place_real.launch.py \
+-  enable_motion:=true with_rviz:=true
++  robot_ip:=172.17.1.2 arm_id:=fer enable_motion:=true with_rviz:=true
+ ```
+ 
++The established launch default remains `storm_task_file:=franka_reacher.yml`.
++Select the experimental port explicitly with
++`storm_task_file:=franka_reacher_cat_real.yml`.
++
++For live COSMIK in domain 29 on this workspace's local monitor:
++
++```bash
++ROS_DOMAIN_ID=29 DISPLAY=:1 ros2 launch storm_pick_place_demo pick_place_real.launch.py \
++  robot_ip:=172.17.1.2 arm_id:=fer enable_motion:=true with_rviz:=true \
++  storm_task_file:=franka_reacher_cat_real.yml
++```
++
++The real launch publishes an identity static transform `fer_link0` → `world`
++(or `<arm_id>_link0` → `world` for another arm ID), preserving the robot's existing
++`base` → `fer_link0` parent. This demo assumes COSMIK's world origin
++and axes coincide with the robot base; marker coordinates are used without an
++offset or rotation. The transform connects the human frames and robot frames
++for both RViz and the planner. `ROS_DOMAIN_ID` must be set when starting each
++process. The launch inherits it rather than changing the domain itself.
++
++The CaT profile uses native acceleration CaT
++with the corrected `paper` equations, seeded
++antithetic spline samples, fused inverse dynamics, explicit FER self-collision,
++and exact integration of the planner's latency prediction. The existing task
++manager still alternates the configured A/B targets; COSMIK markers still enter
++the native dynamic collision cost. Gripper phases and control gains are unchanged.
++
++For the reaching demo, `pick_place_task_manager_params.yaml` accepts arrival
++within 6 cm (and the existing 2 rad orientation tolerance), or switches to the
++other target after `target_timeout_sec: 10.0`. The timer starts when a valid
++target goal is available and spans all phases at that physical target; changing
++phase or swapping pick/place roles at the same pose does not reset it. A gripper
++action already in progress finishes before switching. Timeout events appear as
++`[task-event] target-timeout(...)` in the task log. Set `target_timeout_sec: 0.0`
++to disable timed alternation. The separate `phase_timeout_sec` retains its abort
++behavior and remains disabled here. Restart the demo to load these settings.
++
++The profile uses the existing FER model with inertias, closed-gripper collision
++coverage and SRDF exclusions, packaged under
++`/workspace/storm/content/assets/robot/fer_real`. It limits sampled acceleration
++to 5 rad/s² and considers 40% of URDF velocity limits and 80% of effort limits.
++The human clearance cost threshold remains 10 cm; explicit self-clearance is
++1 cm. These are planning constraints, not hard bounds on measured motion or
++the feedback torque. The model matches the current task's two zero gripper widths.
++All four CaT hazards use `p_max=0.15`: `p_max=1` lost its reward signal when all
++rollouts started inside a margin on the recorded moving-human example.
++The real launch applies a 0.1 rad reference inset for this CaT profile, removes
++outward velocity/acceleration at the inset, and feeds the projected reference
++back into the native integrator. Disarmed holds keep their measured position.
++
++For a comparison with the previous controller, append
++`storm_task_file:=franka_reacher.yml` to the same launch command. The original
++profile and the simulation launch remain available. No gain or temperature
++tuning from the exploratory benchmark has been promoted to this profile.
++
++Run the controller checks offline before a robot trial (these start no ROS nodes):
++
++```bash
++source /opt/ros/humble/setup.bash
++source /workspace/ros2_ws/install/setup.bash
++python3 /workspace/storm/scripts/validate_native_sampling_dynamics.py --compiled
++python3 /workspace/storm/scripts/validate_real_cat_profile.py --device cuda:0
++python3 /workspace/storm/scripts/validate_real_reference_guard.py
++python3 /workspace/storm/scripts/validate_cat_bag_replay.py --device cuda:0
++```
++
++The checks exercise the native rollout, moving obstacle updates, enabled CaT
++hazards, model/frame mapping and target alternation. They report compute times;
++they do not establish physical tracking or that this candidate has the best
++avoidance behavior. Compare reaching completion, human clearance, torque and
++jerk with the baseline on the robot using the same task and human stream.
++
++### Robot validation on 2026-10-02
++
++The port is **not yet validated for continuous human avoidance**. The actual
++arm completed A→B→A without human replay, at 10.90, 21.95 and 27.90 seconds from
++trial start, within the existing 25 mm target tolerance. About nine seconds of
++the first interval were optimizer startup/compilation. The command and task
++disarm acknowledgements succeeded.
++
++The 18-second COSMIK clip completed A and B in an ideal offline acceleration
++plant, with minimum modeled human clearance 29.2 mm and self-clearance 16.4 mm.
++The modeled pole clearance fell to 1.2 mm. These results omit physical tracking,
++state-filter behavior, asynchronous planning and startup time.
++
++Physical replay failed first with `joint_position_limits_violation` on joint 7.
++After correcting the position-only output clamp, a repeating replay reached A
++and B with at least 0.097 rad measured joint margin, then stopped on
++`self_collision_avoidance_violation` during the return toward A. That posture
++still had 74 mm clearance in the SRDF-filtered sphere model. Measured postures
++also overlapped replayed human capsules by up to 73 mm. The collision model,
++planner state/latency handling and CaT weighting need further work before this
++can be called a successful human-avoidance deployment. Raising hazard
++probabilities and self margin alone failed the offline replay and was rejected.
++
++Results and commands are in `validation/real_test/README.md`; measured telemetry,
++geometry checks, launch logs and a ROS bag of the corrected trial are beside it.
++RViz failed to open on this workspace's current X display; the controller stack
++and physical trials ran. Use `with_rviz:=false` here when a display is unavailable.
++
+ ## Key Topics
+ 
+ - Input state: `sensor` (`linear_feedback_controller_msgs/Sensor`)
+@@ -68,3 +168,16 @@ ros2 launch storm_pick_place_demo pick_place_real.launch.py \
+ - STORM fails to import under `ros2 launch`:
+   - Ensure `/workspace/storm` exists and `storm_kit/` is present.
+   - Launch files set `STORM_ROOT=/workspace/storm` and prepend it to `PYTHONPATH`.
++- RViz exits with `could not connect to display localhost:10.0`:
++  - The inherited SSH X forwarding display is unavailable. On 2026-10-02,
++    `xdpyinfo -display :1` and `DISPLAY=:1 glxinfo -B` verified the local monitor
++    display and NVIDIA OpenGL rendering in this workspace.
++  - Open RViz separately on that local display without restarting the robot:
++    `DISPLAY=:1 rviz2 -d /workspace/ros2_ws/src/storm_pick_place_demo/rviz/pick_place.rviz`
++  - For a future launch on the local monitor, prefix the existing launch command
++    with `DISPLAY=:1`. For a window forwarded to an SSH client, reconnect from
++    the client with working X forwarding and use that session's `DISPLAY`.
++  - The RobotModel and Environment displays use Transient Local description
++    subscriptions so opening RViz after stack startup receives the descriptions.
++    The fixed frame is `fer_link0`; live COSMIK markers are already displayed from
++    `/rtcosmik/collision_markers`.
+diff --git a/config/agimus_controller_params.yaml b/config/agimus_controller_params.yaml
+index c5da02f..9994c43 100644
+--- a/config/agimus_controller_params.yaml
++++ b/config/agimus_controller_params.yaml
+@@ -1,28 +1,28 @@
+----
+-agimus_controller_node:
+-  ros__parameters:
+-    rate: 500.0
+-    publish_debug_data: false
+-    constant_delay: false
+-    free_flyer: false
+-    collision_as_capsule: true
+-    self_collision: true
+-    robot_attachment_frame: robot_attachment_link
+-    ocp:
+-      dt: 0.002
+-      horizon_size: 1
+-      armature: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+-      max_qp_iter: 1
+-      max_iter: 1
+-      use_constraints: false
+-      activate_callback: false
+-      increasing_weights:
+-        max: 100.0
+-        percent: 0.9
+-        time_reach_percent: 6
+-      effector_frame_name: fer_link8
+-    collision_pairs_names: [cp_1]
+-    cp_1:
+-      first: fer_link7_sc_capsule_0
+-      second: fer_link3_sc_capsule_0
++# ---
++# agimus_controller_node:
++#   ros__parameters:
++#     rate: 500.0
++#     publish_debug_data: false
++#     constant_delay: false
++#     free_flyer: false
++#     collision_as_capsule: true
++#     self_collision: true
++#     robot_attachment_frame: robot_attachment_link
++#     ocp:
++#       dt: 0.002
++#       horizon_size: 1
++#       armature: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
++#       max_qp_iter: 1
++#       max_iter: 1
++#       use_constraints: false
++#       activate_callback: false
++#       increasing_weights:
++#         max: 100.0
++#         percent: 0.9
++#         time_reach_percent: 6
++#       effector_frame_name: fer_link8
++#     collision_pairs_names: [cp_1]
++#     cp_1:
++#       first: fer_link7_sc_capsule_0
++#       second: fer_link3_sc_capsule_0
+ 
+diff --git a/config/linear_feedback_controller_params.yaml b/config/linear_feedback_controller_params.yaml
+index d326d65..7dc9aa4 100644
+--- a/config/linear_feedback_controller_params.yaml
++++ b/config/linear_feedback_controller_params.yaml
+@@ -79,7 +79,7 @@ linear_feedback_controller:
+       - fer_joint7/effort
+       reference_prefix: ''
+ 
+-    joint_velocity_filter_coefficient: 0.3
++    joint_velocity_filter_coefficient: 1.0 # might be changed
+     pd_to_lf_transition_duration: 0.1
+     # Franka (Panda/FER) torque interface expects commanded effort to be added
+     # to the driver's internal gravity compensation. Remove gravity here to
+diff --git a/config/object_manager_params.yaml b/config/object_manager_params.yaml
+index 81dfeb5..964e9bc 100644
+--- a/config/object_manager_params.yaml
++++ b/config/object_manager_params.yaml
+@@ -11,7 +11,6 @@ object_manager:
+     place_xyzquat: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+     place_dims: [0.02, 0.02, 0.02]
+ 
+-
+     barrier_enabled: false
+     barrier_height: 2.0
+ 
+diff --git a/config/pick_place_task_manager_params.yaml b/config/pick_place_task_manager_params.yaml
+index a150f1f..4640cea 100644
+--- a/config/pick_place_task_manager_params.yaml
++++ b/config/pick_place_task_manager_params.yaml
+@@ -5,46 +5,42 @@ pick_place_task_manager:
+     base_frame: fer_link0
+     ee_frame: fer_hand_tcp
+ 
+-    # pick_frame: fer_link0
+-    # pick_xyzquat: [0.50, -0.30, 0.05, 1.0, 0.0, 0.0, 0.0]
+-
+-    # place_frame: fer_link0
+-    # place_xyzquat: [0.50, 0.30, 0.05, 1.0, 0.0, 0.0, 0.0]
+-    
+     pick_frame: fer_link0
+-    pick_xyzquat: [0.32, 0.0, 0.235, 1.0, 0.0, 0.0, 0.0]
++    pick_xyzquat: [-0.5, -0.5, 0.3, 1.0, 0.0, 0.0, 0.0]
+ 
+     place_frame: fer_link0
+-    place_xyzquat: [0.63, 0.0, 0.24, 1.0, 0.0, 0.0, 0.0]
+-
+-
+-    pregrasp_offset: [0.0, 0.0, 0.1]
+-    lift_offset: [0.0, 0.0, 0.1]
+-    retreat_offset: [0.0, 0.0, 0.1]
+-
+-    # pregrasp_offset: [0.0, 0.0, 0.0]
+-    # lift_offset: [0.0, 0.0, 0.0]
+-    # retreat_offset: [0.0, 0.0, 0.0]
++    place_xyzquat: [-0.5, 0.5, 0.3, 1.0, 0.0, 0.0, 0.0]
+ 
++    # pick_frame: fer_link0
++    # pick_xyzquat: [0.60, 0.2, 0.03, 1.0, 0.0, 0.0, 0.0]
+ 
+-    pos_tolerance: 0.02
+-    rot_tolerance_rad: 0.7
+-    pregrasp_preplace_pos_tolerance: 0.02
+-    pregrasp_preplace_rot_tolerance_rad: 0.7
+-    grasp_place_pos_tolerance: 0.02
+-    grasp_place_rot_tolerance_rad: 0.7
+-    phase_timeout_sec: 20.0   # <=0 disables phase timeout
++    # place_frame: fer_link0
++    # place_xyzquat: [0.60, -0.2, 0.03, 1.0, 0.0, 0.0, 0.0]
++
++    pregrasp_offset: [0.0, 0.0, 0.0]
++    lift_offset: [0.0, 0.0, 0.0]
++    retreat_offset: [0.0, 0.0, 0.0]
++
++    # Reaching-demo arrival radius; the observed +Y approach settles near 5.2 cm.
++    pos_tolerance: 0.06
++    rot_tolerance_rad: 2.0
++    pregrasp_preplace_pos_tolerance: 0.06
++    pregrasp_preplace_rot_tolerance_rad: 2.0
++    grasp_place_pos_tolerance: 0.06
++    grasp_place_rot_tolerance_rad: 2.0
++    phase_timeout_sec: 0.0   # <=0 disables phase timeout
++    target_timeout_sec: 10.0  # Alternate after this long on one target; <=0 disables.
+     loop_forever: true
+ 
+-    gripper_open_width: 0.07
++    # When true, the STORM bridge is disarmed (armed=false, holds still) during the CLOSE/OPEN
++    # gripper phases and re-armed at LIFT/RETREAT. Set to false to leave the bridge armed
++    # continuously through the whole pick/place cycle (arm is not held during gripper motion).
++    disarm_bridge_during_gripper: false
++
++    gripper_open_width: 0.0
+     gripper_open_effort: 40.0
+-    gripper_close_width: 0.0
++    gripper_close_width: 0.0 
+     gripper_close_effort: 40.0
+     wait_for_gripper_result: false
+-    gripper_open_wait_sec: 3.0
+-    gripper_close_wait_sec: 3.0
+-
+-    # gripper_open_width: 0.0
+-    # gripper_open_effort: 10.0
+-    # gripper_close_width: 0.0
+-    # gripper_close_effort: 30.0
++    gripper_open_wait_sec: 0.0
++    gripper_close_wait_sec: 0.0
+diff --git a/launch/pick_place_real.launch.py b/launch/pick_place_real.launch.py
+index 8cf03e2..0f2fe79 100644
+--- a/launch/pick_place_real.launch.py
++++ b/launch/pick_place_real.launch.py
+@@ -59,6 +59,15 @@ def launch_setup(context: LaunchContext, *args, **kwargs) -> list[LaunchDescript
+ 
+     arm_id_str = context.perform_substitution(arm_id)
+     base_frame = f"{arm_id_str}_link0"
++    # This demo defines COSMIK's world frame as the robot base frame:
++    # both frames have the same origin and axes.
++    tf_world = static_transform_publisher_node(
++        frame_id=base_frame,
++        child_frame_id="world",
++        xyz=(0.0, 0.0, 0.0),
++        rot_xyzw=(0.0, 0.0, 0.0, 1.0),
++        node_kwargs={"name": "robot_base_to_world", "output": "screen"},
++    )
+     tf_env = static_transform_publisher_node(
+         frame_id=base_frame,
+         child_frame_id="robot_attachment_link",
+@@ -90,7 +99,14 @@ def launch_setup(context: LaunchContext, *args, **kwargs) -> list[LaunchDescript
+         package="storm_agimus_bridge",
+         executable="storm_mppi_planner_node",
+         name="storm_mppi_planner",
+-        parameters=[storm_yaml, {"armed": armed_param}],
++        parameters=[storm_yaml, {
++            "armed": armed_param,
++            "storm_task_file": LaunchConfiguration("storm_task_file"),
++            "joint_limit_reference_margin_rad": (
++                0.1 if Path(context.perform_substitution(LaunchConfiguration("storm_task_file"))).name
++                == "franka_reacher_cat_real.yml" else 0.0
++            ),
++        }],
+         output="screen",
+         remappings=[("robot_description", "robot_description_with_collision")],
+     )
+@@ -131,6 +147,7 @@ def launch_setup(context: LaunchContext, *args, **kwargs) -> list[LaunchDescript
+         *set_hw_cfg,
+         franka_robot_launch,
+         environment_publisher_node,
++        tf_world,
+         tf_env,
+         wait_for_non_zero_joints_node,
+         start_stack_on_ready,
+@@ -139,6 +156,11 @@ def launch_setup(context: LaunchContext, *args, **kwargs) -> list[LaunchDescript
+ 
+ def generate_launch_description():
+     declared_arguments = [
++        DeclareLaunchArgument(
++            "storm_task_file",
++            default_value="franka_reacher.yml",
++            description="Native STORM controller profile. franka_reacher_cat_real.yml selects the experimental CaT port; physical human replay validation is still failing.",
++        ),
+         DeclareLaunchArgument(
+             "enable_motion",
+             default_value="false",
+diff --git a/rviz/pick_place.rviz b/rviz/pick_place.rviz
+index 4152c09..ebefff4 100644
+--- a/rviz/pick_place.rviz
++++ b/rviz/pick_place.rviz
+@@ -49,7 +49,7 @@ Visualization Manager:
+       Description Source: Topic
+       Description Topic:
+         Depth: 5
+-        Durability Policy: Volatile
++        Durability Policy: Transient Local
+         History Policy: Keep Last
+         Reliability Policy: Reliable
+         Value: /robot_description
+@@ -142,7 +142,7 @@ Visualization Manager:
+       Description Source: Topic
+       Description Topic:
+         Depth: 5
+-        Durability Policy: Volatile
++        Durability Policy: Transient Local
+         History Policy: Keep Last
+         Reliability Policy: Reliable
+         Value: /environment_description
+@@ -272,6 +272,30 @@ Visualization Manager:
+         Reliability Policy: Reliable
+         Value: /capsules_markers
+       Value: true
++    - Class: rviz_default_plugins/MarkerArray
++      Enabled: true
++      Name: STORM Robot Collision Spheres
++      Namespaces:
++        {}
++      Topic:
++        Depth: 1
++        Durability Policy: Volatile
++        History Policy: Keep Last
++        Reliability Policy: Reliable
++        Value: /storm_mppi/robot_collision_spheres
++      Value: true
++    - Class: rviz_default_plugins/MarkerArray
++      Enabled: true
++      Name: STORM World Collision Primitives
++      Namespaces:
++        {}
++      Topic:
++        Depth: 1
++        Durability Policy: Volatile
++        History Policy: Keep Last
++        Reliability Policy: Reliable
++        Value: /storm_mppi/world_collision_primitives
++      Value: true
+     - Class: rviz_default_plugins/MarkerArray
+       Enabled: true
+       Name: MarkerArray
+@@ -369,4 +393,4 @@ Window Geometry:
+     collapsed: false
+   Width: 1920
+   X: 0
+-  Y: 0
+\ No newline at end of file
++  Y: 0
+diff --git a/storm_pick_place_demo/pick_place_task_manager_node.py b/storm_pick_place_demo/pick_place_task_manager_node.py
+index f06032c..77e47a6 100644
+--- a/storm_pick_place_demo/pick_place_task_manager_node.py
++++ b/storm_pick_place_demo/pick_place_task_manager_node.py
+@@ -10,8 +10,11 @@ import pinocchio as pin
+ import rclpy
+ from geometry_msgs.msg import PoseStamped
+ from visualization_msgs.msg import Marker, MarkerArray
+-from rcl_interfaces.msg import ParameterDescriptor, ParameterType
++import rcl_interfaces.msg
++from rcl_interfaces.msg import ParameterDescriptor, ParameterType, ParameterValue
++from rcl_interfaces.srv import SetParameters
+ from rclpy.node import Node
++from rclpy.parameter import Parameter
+ from rclpy.qos import QoSProfile, ReliabilityPolicy
+ from rclpy.time import Time
+ from tf2_ros import Buffer, TransformException
+@@ -98,11 +101,13 @@ class TaskParams:
+     grasp_place_pos_tolerance: float
+     grasp_place_rot_tolerance_rad: float
+     phase_timeout_sec: float
++    target_timeout_sec: float
+     loop_forever: bool
+     max_cycles: int
+     shutdown_on_done: bool
+     auto_start: bool
+     armed: bool
++    disarm_bridge_during_gripper: bool
+     gripper_open_width: float
+     gripper_open_effort: float
+     gripper_close_width: float
+@@ -129,6 +134,11 @@ class PickPlaceTaskManagerNode(Node):
+ 
+         self._gripper = FrankaGripperClient(self, arm_id=self._arm_id)
+ 
++        bridge_node = str(self.get_parameter("bridge_node_name").value)
++        self._bridge_set_params_client = self.create_client(
++            SetParameters, f"/{bridge_node}/set_parameters"
++        )
++
+         self._goal_pub = self.create_publisher(
+             PoseStamped,
+             self._params.goal_topic,
+@@ -137,6 +147,8 @@ class PickPlaceTaskManagerNode(Node):
+ 
+         self._phase: Phase = Phase.IDLE
+         self._phase_start_wall: Optional[float] = None
++        self._timed_target: Optional[tuple[str, tuple[float, ...]]] = None
++        self._target_start_monotonic: Optional[float] = None
+         self._current_goal_M: Optional[pin.SE3] = None
+         self._forward_pick_to_place: bool = True
+         self._completed_cycles: int = 0
+@@ -278,6 +290,17 @@ class PickPlaceTaskManagerNode(Node):
+             ),
+         )
+         self.declare_parameter("phase_timeout_sec", 60.0)
++        self.declare_parameter(
++            "target_timeout_sec",
++            0.0,
++            ParameterDescriptor(
++                description=(
++                    "Reaching-demo time limit per A/B target, across its motion phases. "
++                    "On expiry, skip the remaining motion phases and pursue the other target. "
++                    "Gripper actions finish before switching. <=0 disables this behavior."
++                )
++            ),
++        )
+         self.declare_parameter("loop_forever", True)
+         self.declare_parameter(
+             "max_cycles",
+@@ -296,6 +319,29 @@ class PickPlaceTaskManagerNode(Node):
+             ),
+         )
+ 
++        self.declare_parameter(
++            "bridge_node_name",
++            "storm_mppi_planner",
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_STRING,
++                description="Node name of the STORM bridge — used to flip armed=false (hold) during gripper phases.",
++            ),
++        )
++        self.declare_parameter(
++            "disarm_bridge_during_gripper",
++            True,
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_BOOL,
++                description=(
++                    "When true (default), sets the STORM bridge's armed=false during CLOSE/OPEN "
++                    "gripper phases and armed=true again at LIFT/RETREAT, holding the arm still "
++                    "while the gripper closes/opens. When false, the bridge is left armed "
++                    "continuously through the whole pick/place cycle and the arm is not held "
++                    "during gripper motion."
++                ),
++            ),
++        )
++
+         self.declare_parameter("gripper_open_width", 0.039)
+         self.declare_parameter("gripper_open_effort", 10.0)
+         self.declare_parameter("gripper_close_width", 0.01)
+@@ -360,11 +406,13 @@ class PickPlaceTaskManagerNode(Node):
+             grasp_place_pos_tolerance=grasp_place_pos_tolerance,
+             grasp_place_rot_tolerance_rad=grasp_place_rot_tolerance_rad,
+             phase_timeout_sec=float(self.get_parameter("phase_timeout_sec").value),
++            target_timeout_sec=float(self.get_parameter("target_timeout_sec").value),
+             loop_forever=b("loop_forever"),
+             max_cycles=int(self.get_parameter("max_cycles").value),
+             shutdown_on_done=b("shutdown_on_done"),
+             auto_start=b("auto_start"),
+             armed=b("armed"),
++            disarm_bridge_during_gripper=b("disarm_bridge_during_gripper"),
+             gripper_open_width=float(self.get_parameter("gripper_open_width").value),
+             gripper_open_effort=float(self.get_parameter("gripper_open_effort").value),
+             gripper_close_width=float(self.get_parameter("gripper_close_width").value),
+@@ -445,6 +493,46 @@ class PickPlaceTaskManagerNode(Node):
+             )
+         return (self._params.pos_tolerance, self._params.rot_tolerance_rad)
+ 
++    def _current_target(self) -> tuple[str, np.ndarray]:
++        if self._params.task_mode == TaskMode.PLACE_PLACE:
++            return self._active_place_target()
++        if self._phase in (Phase.PREGRASP, Phase.GRASP, Phase.CLOSE, Phase.LIFT):
++            return self._params.pick_frame, self._params.pick_xyzquat
++        return self._params.place_frame, self._params.place_xyzquat
++
++    def _target_timed_out(self) -> bool:
++        # Track the physical target, not phase names or mutable pick/place roles.
++        # In particular, RETREAT(B) -> PREGRASP(B) must retain B's deadline.
++        frame, xyzquat = self._current_target()
++        target = (frame, tuple(float(v) for v in xyzquat))
++        now = time.monotonic()
++        if target != self._timed_target or self._target_start_monotonic is None:
++            self._timed_target = target
++            self._target_start_monotonic = now
++        timeout = self._params.target_timeout_sec
++        elapsed = now - self._target_start_monotonic
++        if timeout <= 0.0 or elapsed < timeout:
++            return False
++        self.get_logger().info(
++            f"[task-event] target-timeout({self._target_label(frame, xyzquat)}, "
++            f"elapsed={elapsed:.2f}s); advancing to the other target."
++        )
++        return True
++
++    def _advance_after_target_timeout(self) -> None:
++        if self._params.task_mode == TaskMode.PLACE_PLACE:
++            self._advance_from_place_place(Phase.RETREAT)
++        elif self._phase in (Phase.PREGRASP, Phase.GRASP, Phase.LIFT):
++            self._enter_phase(Phase.PREPLACE)
++        else:
++            self._completed_cycles += 1
++            if self._cycle_cap_reached() or not self._params.loop_forever:
++                self._enter_phase(Phase.DONE)
++            else:
++                # The normal cycle swaps pick/place and visits the same pose
++                # again. A target timeout must go straight to the opposite pose.
++                self._enter_phase(Phase.PREGRASP)
++
+     def _tick(self) -> None:
+         # Refresh params that users may toggle at runtime.
+         self._params.armed = self._read_bool_param("armed")
+@@ -475,7 +563,6 @@ class PickPlaceTaskManagerNode(Node):
+                     self._open_gripper(track_result=True, reason="retry_open")
+                 else:
+                     self._close_gripper(track_result=True, reason="retry_close")
+-                return
+ 
+             if self._is_gripper_phase_complete(self._phase, require_goal=self._params.armed):
+                 next_phase = Phase.LIFT if self._phase == Phase.CLOSE else Phase.RETREAT
+@@ -494,6 +581,11 @@ class PickPlaceTaskManagerNode(Node):
+         goal_M = self._compute_phase_goal(self._phase)
+         if goal_M is None:
+             return
++        # Start the deadline when a valid goal is available. Gripper phases above
++        # finish normally; their elapsed time still counts toward this target.
++        if self._target_timed_out():
++            self._advance_after_target_timeout()
++            return
+         self._current_goal_M = goal_M
+         self._publish_goal(goal_M)
+ 
+@@ -513,6 +605,9 @@ class PickPlaceTaskManagerNode(Node):
+     def _enter_phase(self, phase: Phase) -> None:
+         self._phase = phase
+         self._phase_start_wall = time.time()
++        if phase in (Phase.IDLE, Phase.DONE):
++            self._timed_target = None
++            self._target_start_monotonic = None
+         if phase not in (Phase.CLOSE, Phase.OPEN):
+             self._clear_gripper_action_state()
+ 
+@@ -521,9 +616,16 @@ class PickPlaceTaskManagerNode(Node):
+             if self._params.armed:
+                 self.get_logger().info("[task-event] open")
+         elif phase == Phase.CLOSE:
++            if self._params.disarm_bridge_during_gripper:
++                self._set_bridge_armed(False)
+             self._close_gripper(track_result=True, reason="pick")
+         elif phase == Phase.OPEN:
++            if self._params.disarm_bridge_during_gripper:
++                self._set_bridge_armed(False)
+             self._open_gripper(track_result=True, reason="place")
++        elif phase in (Phase.LIFT, Phase.RETREAT):
++            if self._params.disarm_bridge_during_gripper and self._params.armed:
++                self._set_bridge_armed(True)
+         self.get_logger().info(f"[task-event] {self._phase_event_label(phase)}")
+         if phase == Phase.DONE and self._params.shutdown_on_done:
+             self.get_logger().info("Task reached DONE; shutting down task manager node.")
+@@ -536,6 +638,26 @@ class PickPlaceTaskManagerNode(Node):
+         self._gripper_goal_future = None
+         self._gripper_result_future = None
+ 
++    def _set_bridge_armed(self, armed: bool) -> None:
++        if not self._bridge_set_params_client.service_is_ready():
++            self.get_logger().warn(
++                f"Bridge set_parameters service not ready; cannot set armed={armed}.",
++                throttle_duration_sec=5.0,
++            )
++            return
++        pv = ParameterValue()
++        pv.type = Parameter.Type.BOOL.value
++        pv.bool_value = armed
++        req = SetParameters.Request()
++        p = rcl_interfaces.msg.Parameter()
++        p.name = "armed"
++        p.value = pv
++        req.parameters = [p]
++        future = self._bridge_set_params_client.call_async(req)
++        future.add_done_callback(
++            lambda f: self.get_logger().debug(f"Bridge armed={armed} set: {f.result()}")
++        )
++
+     def _open_gripper(self, *, track_result: bool, reason: str) -> None:
+         if not self._params.armed:
+             return

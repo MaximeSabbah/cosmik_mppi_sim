@@ -1,0 +1,129 @@
+#
+# MIT License
+#
+# Copyright (c) 2020-2021 NVIDIA CORPORATION.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.#
+import torch
+import yaml
+import numpy as np
+
+from ...util_file import get_mpc_configs_path as mpc_configs_path
+from ...mpc.rollout.arm_reacher import ArmBase
+from ...mpc.control import MPPI
+from ...mpc.utils.state_filter import JointStateFilter
+from ...mpc.utils.mpc_process_wrapper import ControlProcess
+from ...util_file import get_assets_path, join_path, load_yaml, get_gym_configs_path
+from .task_base import BaseTask
+
+
+class ArmTask(BaseTask):
+    def __init__(
+        self,
+        task_file="ur10.yml",
+        robot_file="ur10_reacher.yml",
+        world_file="collision_env.yml",
+        tensor_args={"device": "cpu", "dtype": torch.float32},
+        world_params=None,
+    ):
+
+        super().__init__(tensor_args=tensor_args)
+
+
+        self.controller = self.init_mppi(task_file, robot_file, world_file, world_params=world_params)
+        self.init_aux()
+
+    def get_rollout_fn(self, **kwargs):
+        rollout_fn = ArmBase(**kwargs)
+        return rollout_fn
+
+    def init_mppi(self, task_file, robot_file, collision_file, world_params=None):
+        robot_yml = join_path(get_gym_configs_path(), robot_file)
+
+        with open(robot_yml) as file:
+            robot_params = yaml.safe_load(file)
+
+        if world_params is None:
+            world_yml = join_path(get_gym_configs_path(), collision_file)
+            with open(world_yml) as file:
+                world_params = yaml.safe_load(file)
+
+        mpc_yml_file = join_path(mpc_configs_path(), task_file)
+
+        with open(mpc_yml_file) as file:
+            exp_params = yaml.safe_load(file)
+        exp_params['robot_params'] = exp_params['model'] #robot_params
+
+
+        rollout_fn = self.get_rollout_fn(exp_params=exp_params, tensor_args=self.tensor_args, world_params=world_params)
+
+        mppi_params = exp_params['mppi']
+        dynamics_model = rollout_fn.dynamics_model
+        mppi_params['d_action'] = dynamics_model.d_action
+
+        # FIX: action_lows/highs were always +-model.max_acc regardless of control_space --
+        # nonsensical units for 'vel' (rad/s) or 'pos' (rad, an absolute joint angle) actions,
+        # both literally just the acceleration bound reused verbatim. Each control_space now
+        # reads its own bound, with new optional model.* keys (all backward compatible: existing
+        # 'acc'-mode yaml files are untouched and need none of them).
+        control_space = exp_params['control_space']
+        if control_space == 'acc':
+            action_bound = float(exp_params['model']['max_acc'])
+        elif control_space == 'vel':
+            # rad/s. Default well inside the hardware ceiling (2.175-2.61 rad/s for this arm).
+            action_bound = float(exp_params['model'].get('max_vel', 1.0))
+        elif control_space == 'pos':
+            # rad, a hard clamp on the *sampled action* only -- not a substitute for real
+            # per-joint URDF limits, which the existing state_bound cost (weight 1000) already
+            # enforces precisely. This is intentionally a touch conservative (most of this
+            # arm's 7 joints have a +-2.8ish rad range; joint2 is tighter at +-1.76) so the
+            # state_bound cost corrects the rare violation rather than this clamp mattering much.
+            action_bound = float(exp_params['model'].get('max_pos_action', 2.5))
+        elif control_space == 'jerk':
+            action_bound = float(exp_params['model'].get('max_jerk', 100.0))
+        else:
+            raise ValueError(f"Unknown control_space '{control_space}'")
+        mppi_params['action_lows'] = -action_bound * torch.ones(dynamics_model.d_action, **self.tensor_args)
+        mppi_params['action_highs'] = action_bound * torch.ones(dynamics_model.d_action, **self.tensor_args)
+
+        init_q = torch.tensor(exp_params['model']['init_state'], **self.tensor_args)
+        init_action = torch.zeros((mppi_params['horizon'], dynamics_model.d_action), **self.tensor_args)
+        init_action[:,:] += init_q
+        # FIX: 'vel' (and 'jerk') had no branch here at all, leaving mppi_params['init_mean']
+        # unset -> MPPI.__init__() crashes immediately with a missing-argument TypeError before
+        # this fix (confirmed). 'vel'/'jerk' start from zero action (zero velocity / zero jerk),
+        # matching 'acc' mode's own "start from zero action" convention; only 'pos' starts from
+        # the robot's current joint configuration, since a zero *position* action would be a
+        # nonsensical initial target.
+        if control_space in ('acc', 'vel', 'jerk'):
+            mppi_params['init_mean'] = init_action * 0.0 # device=device)
+        elif control_space == 'pos':
+            mppi_params['init_mean'] = init_action
+        mppi_params['rollout_fn'] = rollout_fn
+        mppi_params['tensor_args'] = self.tensor_args
+        if exp_params.get('common_ocp'):
+            if exp_params['common_settings']['method'] == 'croco':
+                from controllers.croco_async import CommonCrocoControl as CommonController
+            else:
+                from controllers.sampling import CommonMPPI as CommonController
+            controller = CommonController(common_settings=exp_params['common_settings'], **mppi_params)
+        else:
+            controller = MPPI(**mppi_params)
+        self.exp_params = exp_params
+        return controller

@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-09",
+  "scope": "Current native CaT ROS/Gazebo reaching demo; human prediction research handoff",
+  "profile": {
+    "control_dt": 0.02,
+    "horizon": 50,
+    "num_particles": 1000,
+    "init_cov": 1.0,
+    "sampling": {
+      "type": "multiple",
+      "fixed_samples": true,
+      "sample_ratio": {
+        "halton": 0.0,
+        "halton-knot": 1.0,
+        "random": 0.0,
+        "random-knot": 0.0
+      },
+      "seed": 0,
+      "knot_scale": 4,
+      "antithetic": true
+    },
+    "max_acc": 50.0,
+    "vel_scale": 1.0,
+    "goal_weights": [
+      1.0,
+      10.0
+    ],
+    "human_clearance": 0.1
+  },
+  "task": {
+    "pick_xyzquat": [
+      -0.5,
+      -0.5,
+      0.3,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "place_xyzquat": [
+      -0.5,
+      0.5,
+      0.3,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "pos_tolerance": 0.06,
+    "pregrasp_preplace_pos_tolerance": 0.06,
+    "grasp_place_pos_tolerance": 0.06,
+    "target_timeout_sec": 10.0,
+    "phase_timeout_sec": 0.0
+  },
+  "file_sha256": {
+    "storm/content/configs/mpc/franka_reacher_cat_real.yml": "200c6933250582e492e9828c984b90b0c33f8e7620e97b70a0504abe954321c9",
+    "storm/content/configs/gym/collision_primitives_3d.yml": "99b1890897b252af4e41c8ebd904ec00020feae693afc5473a3de8c0811da043",
+    "storm/content/configs/robot/franka.yml": "daee33c0e2f554ce9af58429534086aee7602aa524542921f8b35e6a27cba9e2",
+    "ros2_ws/src/storm_agimus_bridge/config/storm_mppi_planner_params.yaml": "a3b659273b2aaa6eb207e68075fd9dd4cb3a61c75509d862c5186936587de52b",
+    "ros2_ws/src/storm_pick_place_demo/config/pick_place_task_manager_params.yaml": "1acc3d7a2cb780522103866c344a54d160b7d2e585625dba227e5ff9af56e34a",
+    "ros2_ws/src/storm_pick_place_demo/config/linear_feedback_controller_params.yaml": "e50f4f020cb5a1791639cbf37f8e8c75b8d0dd4513cba8c9bc9a52feb1b56a5f",
+    "ros2_ws/src/storm_pick_place_demo/config/object_manager_params.yaml": "502cb7017e695b124a539c37331e0bb73a55f821a33e1dab0a40549e68bd0545"
+  },
+  "status": "Baseline snapshot; see docs/validation.md for completed independent build and simulation checks."
+}

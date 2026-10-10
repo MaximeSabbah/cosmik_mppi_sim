@@ -1,0 +1,37 @@
+services:
+  sim:
+    image: cosmik-mppi-sim:baseline
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    network_mode: host
+    shm_size: 2gb
+    environment:
+      DEMO_DOMAIN_ID: "${DEMO_DOMAIN_ID:-73}"
+      DISPLAY: "${DISPLAY:-}"
+      XAUTHORITY: /tmp/demo.xauth
+      QT_X11_NO_MITSHM: "1"
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility,graphics,display
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY:-/dev/null}:/tmp/demo.xauth:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  dev:
+    extends: sim
+    working_dir: /work/cosmik-mppi-sim
+    volumes:
+      - .:/work/cosmik-mppi-sim
+      - demo_build:/work/cosmik-mppi-sim/ros2_ws/build
+      - demo_install:/work/cosmik-mppi-sim/ros2_ws/install
+      - demo_log:/work/cosmik-mppi-sim/ros2_ws/log
+    command: ["bash", "-c", "./scripts/build.sh && ./scripts/run.sh"]
+volumes:
+  demo_build:
+  demo_install:
+  demo_log:

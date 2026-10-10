@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="net_ft_sensor_ros2_control"
+          params="ip_address
+              rdt_sampling_rate:=^|7000
+              internal_filter_rate:=^|0
+              use_hardware_biasing:=^|true
+              ft_sensor_frame_name:=''">
+      
+    
+    <ros2_control name="ati_mini45" type="sensor">
+      <hardware>
+        <plugin>net_ft_driver/NetFtHardwareInterface</plugin>
+        <param name="sensor_type">ati</param>
+        <param name="ip_address">${ip_address}</param>
+        <param name="rdt_sampling_rate">${rdt_sampling_rate}</param>
+        <param name="internal_filter_rate">${internal_filter_rate}</param>
+        <param name="use_hardware_biasing">${use_hardware_biasing}</param>
+      </hardware>
+
+      <sensor name="ati_mini45">
+        <state_interface name="force.x"/>
+        <state_interface name="force.y"/>
+        <state_interface name="force.z"/>
+        <state_interface name="torque.x"/>
+        <state_interface name="torque.y"/>
+        <state_interface name="torque.z"/>
+        <param name="frame_id">${ft_sensor_frame_name}</param>
+      </sensor>
+
+      <gpio name="diagnostic">
+        <state_interface name="packet_count"/>
+        <state_interface name="lost_packets"/>
+        <state_interface name="out_of_order_count"/>
+        <state_interface name="status"/>
+      </gpio>
+    </ros2_control>
+  </xacro:macro>
+</robot>

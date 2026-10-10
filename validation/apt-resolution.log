@@ -1,0 +1,406 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version (12.9ubuntu3).
+libeigen3-dev is already the newest version (3.4.0-2ubuntu2).
+libeigen3-dev set to manually installed.
+libfmt-dev is already the newest version (8.1.1+ds1-2).
+libfmt-dev set to manually installed.
+libpoco-dev is already the newest version (1.11.0-3).
+cmake is already the newest version (3.22.1-1ubuntu1.22.04.2).
+python3-jinja2 is already the newest version (3.0.3-1ubuntu0.4).
+python3-tk is already the newest version (3.10.8-1~22.04).
+python3-tk set to manually installed.
+python3-pip is already the newest version (22.0.2+dfsg-1ubuntu0.7).
+libignition-plugin-dev is already the newest version (1.4.0-1~jammy).
+python3-colcon-common-extensions is already the newest version (0.3.0-100).
+python3-vcstool is already the newest version (0.3.0-1).
+The following package was automatically installed and is no longer required:
+  ros-humble-hpp-fcl
+Use 'apt autoremove' to remove it.
+The following additional packages will be installed:
+  ignition-transport11-cli libexpected-dev libignition-common4
+  libignition-common4-av libignition-common4-av-dev
+  libignition-common4-core-dev libignition-common4-dev
+  libignition-common4-events libignition-common4-events-dev
+  libignition-common4-graphics libignition-common4-graphics-dev
+  libignition-common4-profiler libignition-common4-profiler-dev
+  libignition-fuel-tools7 libignition-fuel-tools7-dev libignition-gazebo6
+  libignition-gazebo6-plugins libignition-gui6 libignition-gui6-dev
+  libignition-math6 libignition-math6-dev libignition-math6-eigen3-dev
+  libignition-physics5 libignition-physics5-bullet
+  libignition-physics5-bullet-dev libignition-physics5-core-dev
+  libignition-physics5-dartsim libignition-physics5-dartsim-dev
+  libignition-physics5-dev libignition-physics5-heightmap-dev
+  libignition-physics5-mesh-dev libignition-physics5-sdf-dev
+  libignition-physics5-tpe libignition-physics5-tpe-dev
+  libignition-physics5-tpelib libignition-physics5-tpelib-dev
+  libignition-rendering6 libignition-rendering6-core-dev
+  libignition-rendering6-dev libignition-rendering6-ogre1
+  libignition-rendering6-ogre1-dev libignition-rendering6-ogre2
+  libignition-rendering6-ogre2-dev libignition-sensors6
+  libignition-sensors6-air-pressure libignition-sensors6-air-pressure-dev
+  libignition-sensors6-altimeter libignition-sensors6-altimeter-dev
+  libignition-sensors6-boundingbox-camera
+  libignition-sensors6-boundingbox-camera-dev libignition-sensors6-camera
+  libignition-sensors6-camera-dev libignition-sensors6-core-dev
+  libignition-sensors6-depth-camera libignition-sensors6-depth-camera-dev
+  libignition-sensors6-dev libignition-sensors6-force-torque
+  libignition-sensors6-force-torque-dev libignition-sensors6-gpu-lidar
+  libignition-sensors6-gpu-lidar-dev libignition-sensors6-imu
+  libignition-sensors6-imu-dev libignition-sensors6-lidar
+  libignition-sensors6-lidar-dev libignition-sensors6-logical-camera
+  libignition-sensors6-logical-camera-dev libignition-sensors6-magnetometer
+  libignition-sensors6-magnetometer-dev libignition-sensors6-navsat
+  libignition-sensors6-navsat-dev libignition-sensors6-rendering
+  libignition-sensors6-rendering-dev libignition-sensors6-rgbd-camera
+  libignition-sensors6-rgbd-camera-dev
+  libignition-sensors6-segmentation-camera
+  libignition-sensors6-segmentation-camera-dev
+  libignition-sensors6-thermal-camera libignition-sensors6-thermal-camera-dev
+  libignition-transport11 libignition-transport11-core-dev
+  libignition-transport11-dev libignition-transport11-log
+  libignition-transport11-log-dev libignition-transport11-parameters
+  libignition-transport11-parameters-dev libsdformat12 libsdformat12-dev
+  ros-humble-ackermann-msgs ros-humble-ackermann-steering-controller
+  ros-humble-admittance-controller ros-humble-bicycle-steering-controller
+  ros-humble-diff-drive-controller ros-humble-effort-controllers
+  ros-humble-forward-command-controller ros-humble-gpio-controllers
+  ros-humble-imu-sensor-broadcaster ros-humble-joint-limits
+  ros-humble-kinematics-interface ros-humble-mecanum-drive-controller
+  ros-humble-pid-controller ros-humble-pose-broadcaster
+  ros-humble-position-controllers ros-humble-range-sensor-broadcaster
+  ros-humble-steering-controllers-library ros-humble-transmission-interface
+  ros-humble-tricycle-controller ros-humble-tricycle-steering-controller
+  ros-humble-velocity-controllers sdformat12-sdf
+Suggested packages:
+  gettext-base git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui
+  gitk gitweb git-cvs git-mediawiki git-svn
+Recommended packages:
+  less
+The following NEW packages will be installed:
+  libexpected-dev ros-humble-ackermann-msgs
+  ros-humble-ackermann-steering-controller ros-humble-admittance-controller
+  ros-humble-bicycle-steering-controller ros-humble-diff-drive-controller
+  ros-humble-effort-controllers ros-humble-forward-command-controller
+  ros-humble-gpio-controllers ros-humble-imu-sensor-broadcaster
+  ros-humble-joint-limits ros-humble-kinematics-interface
+  ros-humble-mecanum-drive-controller ros-humble-pid-controller
+  ros-humble-pose-broadcaster ros-humble-position-controllers
+  ros-humble-range-sensor-broadcaster ros-humble-ros2-control
+  ros-humble-ros2-controllers ros-humble-steering-controllers-library
+  ros-humble-transmission-interface ros-humble-tricycle-controller
+  ros-humble-tricycle-steering-controller ros-humble-velocity-controllers
+The following packages will be upgraded:
+  git ignition-transport11-cli libignition-common4 libignition-common4-av
+  libignition-common4-av-dev libignition-common4-core-dev
+  libignition-common4-dev libignition-common4-events
+  libignition-common4-events-dev libignition-common4-graphics
+  libignition-common4-graphics-dev libignition-common4-profiler
+  libignition-common4-profiler-dev libignition-fuel-tools7
+  libignition-fuel-tools7-dev libignition-gazebo6 libignition-gazebo6-dev
+  libignition-gazebo6-plugins libignition-gui6 libignition-gui6-dev
+  libignition-math6 libignition-math6-dev libignition-math6-eigen3-dev
+  libignition-physics5 libignition-physics5-bullet
+  libignition-physics5-bullet-dev libignition-physics5-core-dev
+  libignition-physics5-dartsim libignition-physics5-dartsim-dev
+  libignition-physics5-dev libignition-physics5-heightmap-dev
+  libignition-physics5-mesh-dev libignition-physics5-sdf-dev
+  libignition-physics5-tpe libignition-physics5-tpe-dev
+  libignition-physics5-tpelib libignition-physics5-tpelib-dev
+  libignition-rendering6 libignition-rendering6-core-dev
+  libignition-rendering6-dev libignition-rendering6-ogre1
+  libignition-rendering6-ogre1-dev libignition-rendering6-ogre2
+  libignition-rendering6-ogre2-dev libignition-sensors6
+  libignition-sensors6-air-pressure libignition-sensors6-air-pressure-dev
+  libignition-sensors6-altimeter libignition-sensors6-altimeter-dev
+  libignition-sensors6-boundingbox-camera
+  libignition-sensors6-boundingbox-camera-dev libignition-sensors6-camera
+  libignition-sensors6-camera-dev libignition-sensors6-core-dev
+  libignition-sensors6-depth-camera libignition-sensors6-depth-camera-dev
+  libignition-sensors6-dev libignition-sensors6-force-torque
+  libignition-sensors6-force-torque-dev libignition-sensors6-gpu-lidar
+  libignition-sensors6-gpu-lidar-dev libignition-sensors6-imu
+  libignition-sensors6-imu-dev libignition-sensors6-lidar
+  libignition-sensors6-lidar-dev libignition-sensors6-logical-camera
+  libignition-sensors6-logical-camera-dev libignition-sensors6-magnetometer
+  libignition-sensors6-magnetometer-dev libignition-sensors6-navsat
+  libignition-sensors6-navsat-dev libignition-sensors6-rendering
+  libignition-sensors6-rendering-dev libignition-sensors6-rgbd-camera
+  libignition-sensors6-rgbd-camera-dev
+  libignition-sensors6-segmentation-camera
+  libignition-sensors6-segmentation-camera-dev
+  libignition-sensors6-thermal-camera libignition-sensors6-thermal-camera-dev
+  libignition-transport11 libignition-transport11-core-dev
+  libignition-transport11-dev libignition-transport11-log
+  libignition-transport11-log-dev libignition-transport11-parameters
+  libignition-transport11-parameters-dev libsdformat12 libsdformat12-dev
+  ros-humble-ament-cmake-auto ros-humble-ament-cmake-python
+  ros-humble-control-toolbox ros-humble-controller-manager
+  ros-humble-generate-parameter-library
+  ros-humble-generate-parameter-library-py ros-humble-joint-state-publisher
+  ros-humble-jrl-cmakemodules ros-humble-kdl-parser ros-humble-pal-statistics
+  ros-humble-parameter-traits ros-humble-pinocchio ros-humble-ros-gz
+  ros-humble-rviz2 ros-humble-tf2-eigen ros-humble-tf2-geometry-msgs
+  ros-humble-xacro sdformat12-sdf
+106 upgraded, 24 newly installed, 0 to remove and 613 not upgraded.
+Inst git [1:2.34.1-1ubuntu1.15] (1:2.34.1-1ubuntu1.17 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])
+Inst libexpected-dev (1.0.0~dfsg-2 Ubuntu:22.04/jammy [all])
+Inst libignition-common4-graphics-dev [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) [libignition-common4-dev:amd64 ]
+Inst libignition-common4-events-dev [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) [libignition-common4-dev:amd64 ]
+Inst libignition-common4-av-dev [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) [libignition-common4-dev:amd64 ]
+Inst libignition-common4-core-dev [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) [libignition-common4-profiler-dev:amd64 libignition-common4-dev:amd64 ]
+Inst libignition-common4-dev [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) [libignition-common4-profiler-dev:amd64 ]
+Inst libignition-common4-profiler-dev [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-common4-profiler [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-math6-dev [6.15.1-1~jammy] (6.16.0-1~jammy ROS jammy:jammy [amd64]) [libignition-math6-eigen3-dev:amd64 ]
+Inst libignition-math6-eigen3-dev [6.15.1-1~jammy] (6.16.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-math6 [6.15.1-1~jammy] (6.16.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-common4-graphics [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-common4-events [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-common4-av [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-common4 [4.7.0-1~jammy] (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Inst libignition-fuel-tools7-dev [7.3.0-1~jammy] (7.3.1-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-fuel-tools7 [7.3.0-1~jammy] (7.3.1-1~jammy ROS jammy:jammy [amd64])
+Inst ignition-transport11-cli [11.4.1-1~jammy] (11.4.2-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-transport11-dev [11.4.1-1~jammy] (11.4.2-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-transport11-parameters-dev [11.4.1-1~jammy] (11.4.2-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-transport11-log-dev [11.4.1-1~jammy] (11.4.2-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-transport11-core-dev [11.4.1-1~jammy] (11.4.2-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-transport11 [11.4.1-1~jammy] (11.4.2-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-transport11-parameters [11.4.1-1~jammy] (11.4.2-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-transport11-log [11.4.1-1~jammy] (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Inst libignition-rendering6-dev [6.6.3-1~jammy] (6.6.4-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-rendering6-ogre2-dev [6.6.3-1~jammy] (6.6.4-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-rendering6-ogre1-dev [6.6.3-1~jammy] (6.6.4-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-rendering6-core-dev [6.6.3-1~jammy] (6.6.4-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-rendering6 [6.6.3-1~jammy] (6.6.4-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-rendering6-ogre2 [6.6.3-1~jammy] (6.6.4-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-rendering6-ogre1 [6.6.3-1~jammy] (6.6.4-1~jammy ROS jammy:jammy [amd64])
+Inst libignition-gui6-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-gui6 [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Inst libignition-physics5-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-bullet-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-tpe-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-dartsim-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-sdf-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-mesh-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-heightmap-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-core-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5 [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst sdformat12-sdf [12.7.2-1~jammy] (12.9.0-1~jammy ROS jammy:jammy [all]) []
+Inst libsdformat12-dev [12.7.2-1~jammy] (12.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libsdformat12 [12.7.2-1~jammy] (12.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-dartsim [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-tpelib-dev [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-tpelib [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-tpe [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-physics5-bullet [5.3.2-1~jammy] (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Inst libignition-sensors6-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-air-pressure-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-thermal-camera-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-segmentation-camera-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-rgbd-camera-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-rendering-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-navsat-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-magnetometer-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-logical-camera-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-gpu-lidar-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-lidar-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-imu-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-force-torque-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-depth-camera-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-camera-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-boundingbox-camera-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-altimeter-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-core-dev [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6 [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-air-pressure [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-rendering [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-depth-camera [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-camera [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-thermal-camera [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-segmentation-camera [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-rgbd-camera [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-navsat [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-magnetometer [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-logical-camera [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-lidar [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-gpu-lidar [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-imu [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-force-torque [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-boundingbox-camera [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-sensors6-altimeter [6.8.0-1~jammy] (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Inst libignition-gazebo6-dev [6.16.0-2~jammy] (6.18.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-gazebo6-plugins [6.16.0-2~jammy] (6.18.0-1~jammy ROS jammy:jammy [amd64]) []
+Inst libignition-gazebo6 [6.16.0-2~jammy] (6.18.0-1~jammy ROS jammy:jammy [amd64])
+Inst ros-humble-ackermann-msgs (2.0.2-3jammy.20260718.021632 ROS jammy:jammy [amd64])
+Inst ros-humble-generate-parameter-library-py [0.6.0-1jammy.20251207.164907] (0.7.5-1jammy.20260725.080336 ROS jammy:jammy [amd64])
+Inst ros-humble-parameter-traits [0.6.0-1jammy.20251228.100836] (0.7.5-1jammy.20260726.122158 ROS jammy:jammy [amd64])
+Inst ros-humble-generate-parameter-library [0.6.0-1jammy.20251228.101026] (0.7.5-1jammy.20260726.123214 ROS jammy:jammy [amd64])
+Inst ros-humble-tf2-geometry-msgs [0.25.18-1jammy.20251228.100805] (0.25.22-1jammy.20260804.194827 ROS jammy:jammy [amd64])
+Inst ros-humble-steering-controllers-library (2.53.3-1jammy.20260804.211305 ROS jammy:jammy [amd64])
+Inst ros-humble-ackermann-steering-controller (2.53.3-1jammy.20260804.211824 ROS jammy:jammy [amd64])
+Inst ros-humble-control-toolbox [3.6.3-1jammy.20251228.101326] (3.7.0-1jammy.20260726.123443 ROS jammy:jammy [amd64])
+Inst ros-humble-kinematics-interface (0.4.2-1jammy.20260724.031959 ROS jammy:jammy [amd64])
+Inst ros-humble-tf2-eigen [0.25.18-1jammy.20251228.112434] (0.25.22-1jammy.20260804.194912 ROS jammy:jammy [amd64])
+Inst ros-humble-admittance-controller (2.53.3-1jammy.20260804.210602 ROS jammy:jammy [amd64])
+Inst ros-humble-ament-cmake-auto [1.3.12-1jammy.20250701.023608] (1.3.14-1jammy.20260304.074922 ROS jammy:jammy [amd64])
+Inst ros-humble-ament-cmake-python [1.3.12-1jammy.20250701.011622] (1.3.14-1jammy.20260226.005145 ROS jammy:jammy [amd64])
+Inst ros-humble-bicycle-steering-controller (2.53.3-1jammy.20260804.211818 ROS jammy:jammy [amd64])
+Inst ros-humble-controller-manager [2.53.0-1jammy.20251228.105526] (2.54.0-1jammy.20260804.205225 ROS jammy:jammy [amd64])
+Inst ros-humble-diff-drive-controller (2.53.3-1jammy.20260804.211259 ROS jammy:jammy [amd64])
+Inst ros-humble-forward-command-controller (2.53.3-1jammy.20260804.210805 ROS jammy:jammy [amd64])
+Inst ros-humble-effort-controllers (2.53.3-1jammy.20260804.211342 ROS jammy:jammy [amd64])
+Inst ros-humble-gpio-controllers (2.53.3-1jammy.20260804.210800 ROS jammy:jammy [amd64])
+Inst ros-humble-imu-sensor-broadcaster (2.53.3-1jammy.20260804.211410 ROS jammy:jammy [amd64])
+Inst ros-humble-joint-limits (2.54.0-1jammy.20260726.111049 ROS jammy:jammy [amd64])
+Inst ros-humble-joint-state-publisher [2.4.0-1jammy.20251222.194432] (2.4.0-1jammy.20260726.122104 ROS jammy:jammy [amd64])
+Inst ros-humble-jrl-cmakemodules [1.1.2-1jammy.20251108.011147] (1.1.2-1jammy.20260226.011115 ROS jammy:jammy [amd64])
+Inst ros-humble-kdl-parser [2.6.4-1jammy.20251218.031100] (2.6.4-1jammy.20260718.021412 ROS jammy:jammy [amd64])
+Inst ros-humble-mecanum-drive-controller (2.53.3-1jammy.20260804.211244 ROS jammy:jammy [amd64])
+Inst ros-humble-pal-statistics [2.7.0-1jammy.20251228.094746] (2.7.0-1jammy.20260724.032558 ROS jammy:jammy [amd64])
+Inst ros-humble-pid-controller (2.53.3-1jammy.20260804.211051 ROS jammy:jammy [amd64])
+Inst ros-humble-pinocchio [3.8.0-1jammy.20251015.151927] (4.0.0-2jammy.20260606.100000 ROS jammy:jammy [amd64])
+Inst ros-humble-pose-broadcaster (2.53.3-1jammy.20260804.210906 ROS jammy:jammy [amd64])
+Inst ros-humble-position-controllers (2.53.3-1jammy.20260804.211344 ROS jammy:jammy [amd64])
+Inst ros-humble-range-sensor-broadcaster (2.53.3-1jammy.20260804.211219 ROS jammy:jammy [amd64])
+Inst ros-humble-ros-gz [0.244.20-1jammy.20251228.131502] (0.244.25-1jammy.20260804.223901 ROS jammy:jammy [amd64])
+Inst ros-humble-transmission-interface (2.54.0-1jammy.20260724.032538 ROS jammy:jammy [amd64])
+Inst ros-humble-ros2-control (2.54.0-1jammy.20260804.213423 ROS jammy:jammy [amd64])
+Inst ros-humble-tricycle-controller (2.53.3-1jammy.20260804.211347 ROS jammy:jammy [amd64])
+Inst ros-humble-tricycle-steering-controller (2.53.3-1jammy.20260804.211920 ROS jammy:jammy [amd64])
+Inst ros-humble-velocity-controllers (2.53.3-1jammy.20260804.211420 ROS jammy:jammy [amd64])
+Inst ros-humble-ros2-controllers (2.53.3-1jammy.20260804.212633 ROS jammy:jammy [amd64])
+Inst ros-humble-rviz2 [11.2.25-1jammy.20251228.130645] (11.2.28-1jammy.20260804.222726 ROS jammy:jammy [amd64])
+Inst ros-humble-xacro [2.1.1-1jammy.20250829.093455] (2.1.1-1jammy.20260304.195513 ROS jammy:jammy [amd64])
+Conf git (1:2.34.1-1ubuntu1.17 Ubuntu:22.04/jammy-updates, Ubuntu:22.04/jammy-security [amd64])
+Conf libexpected-dev (1.0.0~dfsg-2 Ubuntu:22.04/jammy [all])
+Conf libignition-common4-graphics-dev (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-events-dev (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-av-dev (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-core-dev (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-dev (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-profiler-dev (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-profiler (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-math6-dev (6.16.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-math6-eigen3-dev (6.16.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-math6 (6.16.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-graphics (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-events (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4-av (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-common4 (4.8.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-fuel-tools7-dev (7.3.1-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-fuel-tools7 (7.3.1-1~jammy ROS jammy:jammy [amd64])
+Conf ignition-transport11-cli (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-transport11-dev (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-transport11-parameters-dev (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-transport11-log-dev (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-transport11-core-dev (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-transport11 (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-transport11-parameters (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-transport11-log (11.4.2-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-rendering6-dev (6.6.4-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-rendering6-ogre2-dev (6.6.4-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-rendering6-ogre1-dev (6.6.4-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-rendering6-core-dev (6.6.4-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-rendering6 (6.6.4-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-rendering6-ogre2 (6.6.4-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-rendering6-ogre1 (6.6.4-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-gui6-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-gui6 (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-bullet-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-tpe-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-dartsim-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-sdf-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-mesh-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-heightmap-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-core-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5 (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf sdformat12-sdf (12.9.0-1~jammy ROS jammy:jammy [all])
+Conf libsdformat12-dev (12.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libsdformat12 (12.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-dartsim (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-tpelib-dev (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-tpelib (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-tpe (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-physics5-bullet (5.4.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-air-pressure-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-thermal-camera-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-segmentation-camera-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-rgbd-camera-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-rendering-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-navsat-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-magnetometer-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-logical-camera-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-gpu-lidar-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-lidar-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-imu-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-force-torque-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-depth-camera-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-camera-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-boundingbox-camera-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-altimeter-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-core-dev (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6 (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-air-pressure (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-rendering (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-depth-camera (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-camera (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-thermal-camera (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-segmentation-camera (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-rgbd-camera (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-navsat (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-magnetometer (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-logical-camera (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-lidar (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-gpu-lidar (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-imu (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-force-torque (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-boundingbox-camera (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-sensors6-altimeter (6.9.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-gazebo6-dev (6.18.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-gazebo6-plugins (6.18.0-1~jammy ROS jammy:jammy [amd64])
+Conf libignition-gazebo6 (6.18.0-1~jammy ROS jammy:jammy [amd64])
+Conf ros-humble-ackermann-msgs (2.0.2-3jammy.20260718.021632 ROS jammy:jammy [amd64])
+Conf ros-humble-generate-parameter-library-py (0.7.5-1jammy.20260725.080336 ROS jammy:jammy [amd64])
+Conf ros-humble-parameter-traits (0.7.5-1jammy.20260726.122158 ROS jammy:jammy [amd64])
+Conf ros-humble-generate-parameter-library (0.7.5-1jammy.20260726.123214 ROS jammy:jammy [amd64])
+Conf ros-humble-tf2-geometry-msgs (0.25.22-1jammy.20260804.194827 ROS jammy:jammy [amd64])
+Conf ros-humble-steering-controllers-library (2.53.3-1jammy.20260804.211305 ROS jammy:jammy [amd64])
+Conf ros-humble-ackermann-steering-controller (2.53.3-1jammy.20260804.211824 ROS jammy:jammy [amd64])
+Conf ros-humble-control-toolbox (3.7.0-1jammy.20260726.123443 ROS jammy:jammy [amd64])
+Conf ros-humble-kinematics-interface (0.4.2-1jammy.20260724.031959 ROS jammy:jammy [amd64])
+Conf ros-humble-tf2-eigen (0.25.22-1jammy.20260804.194912 ROS jammy:jammy [amd64])
+Conf ros-humble-admittance-controller (2.53.3-1jammy.20260804.210602 ROS jammy:jammy [amd64])
+Conf ros-humble-ament-cmake-auto (1.3.14-1jammy.20260304.074922 ROS jammy:jammy [amd64])
+Conf ros-humble-ament-cmake-python (1.3.14-1jammy.20260226.005145 ROS jammy:jammy [amd64])
+Conf ros-humble-bicycle-steering-controller (2.53.3-1jammy.20260804.211818 ROS jammy:jammy [amd64])
+Conf ros-humble-controller-manager (2.54.0-1jammy.20260804.205225 ROS jammy:jammy [amd64])
+Conf ros-humble-diff-drive-controller (2.53.3-1jammy.20260804.211259 ROS jammy:jammy [amd64])
+Conf ros-humble-forward-command-controller (2.53.3-1jammy.20260804.210805 ROS jammy:jammy [amd64])
+Conf ros-humble-effort-controllers (2.53.3-1jammy.20260804.211342 ROS jammy:jammy [amd64])
+Conf ros-humble-gpio-controllers (2.53.3-1jammy.20260804.210800 ROS jammy:jammy [amd64])
+Conf ros-humble-imu-sensor-broadcaster (2.53.3-1jammy.20260804.211410 ROS jammy:jammy [amd64])
+Conf ros-humble-joint-limits (2.54.0-1jammy.20260726.111049 ROS jammy:jammy [amd64])
+Conf ros-humble-joint-state-publisher (2.4.0-1jammy.20260726.122104 ROS jammy:jammy [amd64])
+Conf ros-humble-jrl-cmakemodules (1.1.2-1jammy.20260226.011115 ROS jammy:jammy [amd64])
+Conf ros-humble-kdl-parser (2.6.4-1jammy.20260718.021412 ROS jammy:jammy [amd64])
+Conf ros-humble-mecanum-drive-controller (2.53.3-1jammy.20260804.211244 ROS jammy:jammy [amd64])
+Conf ros-humble-pal-statistics (2.7.0-1jammy.20260724.032558 ROS jammy:jammy [amd64])
+Conf ros-humble-pid-controller (2.53.3-1jammy.20260804.211051 ROS jammy:jammy [amd64])
+Conf ros-humble-pinocchio (4.0.0-2jammy.20260606.100000 ROS jammy:jammy [amd64])
+Conf ros-humble-pose-broadcaster (2.53.3-1jammy.20260804.210906 ROS jammy:jammy [amd64])
+Conf ros-humble-position-controllers (2.53.3-1jammy.20260804.211344 ROS jammy:jammy [amd64])
+Conf ros-humble-range-sensor-broadcaster (2.53.3-1jammy.20260804.211219 ROS jammy:jammy [amd64])
+Conf ros-humble-ros-gz (0.244.25-1jammy.20260804.223901 ROS jammy:jammy [amd64])
+Conf ros-humble-transmission-interface (2.54.0-1jammy.20260724.032538 ROS jammy:jammy [amd64])
+Conf ros-humble-ros2-control (2.54.0-1jammy.20260804.213423 ROS jammy:jammy [amd64])
+Conf ros-humble-tricycle-controller (2.53.3-1jammy.20260804.211347 ROS jammy:jammy [amd64])
+Conf ros-humble-tricycle-steering-controller (2.53.3-1jammy.20260804.211920 ROS jammy:jammy [amd64])
+Conf ros-humble-velocity-controllers (2.53.3-1jammy.20260804.211420 ROS jammy:jammy [amd64])
+Conf ros-humble-ros2-controllers (2.53.3-1jammy.20260804.212633 ROS jammy:jammy [amd64])
+Conf ros-humble-rviz2 (11.2.28-1jammy.20260804.222726 ROS jammy:jammy [amd64])
+Conf ros-humble-xacro (2.1.1-1jammy.20260304.195513 ROS jammy:jammy [amd64])

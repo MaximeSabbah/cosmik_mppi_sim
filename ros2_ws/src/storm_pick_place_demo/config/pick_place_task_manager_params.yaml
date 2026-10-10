@@ -1,0 +1,46 @@
+pick_place_task_manager:
+  ros__parameters:
+    goal_topic: /goal_pose
+    task_mode: pick_place  # pick_place | place_place
+    base_frame: fer_link0
+    ee_frame: fer_hand_tcp
+
+    pick_frame: fer_link0
+    pick_xyzquat: [-0.5, -0.5, 0.3, 1.0, 0.0, 0.0, 0.0]
+
+    place_frame: fer_link0
+    place_xyzquat: [-0.5, 0.5, 0.3, 1.0, 0.0, 0.0, 0.0]
+
+    # pick_frame: fer_link0
+    # pick_xyzquat: [0.60, 0.2, 0.03, 1.0, 0.0, 0.0, 0.0]
+
+    # place_frame: fer_link0
+    # place_xyzquat: [0.60, -0.2, 0.03, 1.0, 0.0, 0.0, 0.0]
+
+    pregrasp_offset: [0.0, 0.0, 0.0]
+    lift_offset: [0.0, 0.0, 0.0]
+    retreat_offset: [0.0, 0.0, 0.0]
+
+    # Reaching-demo arrival radius; the observed +Y approach settles near 5.2 cm.
+    pos_tolerance: 0.06
+    rot_tolerance_rad: 2.0
+    pregrasp_preplace_pos_tolerance: 0.06
+    pregrasp_preplace_rot_tolerance_rad: 2.0
+    grasp_place_pos_tolerance: 0.06
+    grasp_place_rot_tolerance_rad: 2.0
+    phase_timeout_sec: 0.0   # <=0 disables phase timeout
+    target_timeout_sec: 10.0  # Alternate after this long on one target; <=0 disables.
+    loop_forever: true
+
+    # When true, the STORM bridge is disarmed (armed=false, holds still) during the CLOSE/OPEN
+    # gripper phases and re-armed at LIFT/RETREAT. Set to false to leave the bridge armed
+    # continuously through the whole pick/place cycle (arm is not held during gripper motion).
+    disarm_bridge_during_gripper: false
+
+    gripper_open_width: 0.0
+    gripper_open_effort: 40.0
+    gripper_close_width: 0.0 
+    gripper_close_effort: 40.0
+    wait_for_gripper_result: false
+    gripper_open_wait_sec: 0.0
+    gripper_close_wait_sec: 0.0

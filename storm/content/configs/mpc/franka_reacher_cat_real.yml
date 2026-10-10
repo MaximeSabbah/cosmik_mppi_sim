@@ -1,0 +1,349 @@
+# Native acceleration CaT profile for pick_place_real.launch.py.
+# Derived from franka_reacher.yml; preserves the existing task objective, state
+# filter, gains (in the ROS bridge YAML), 20 ms step, H=50 and 1000 particles.
+# FER assets provide inertias and closed-gripper coverage for the current demo
+# (both configured gripper widths are zero). No benchmark adapter is loaded:
+# streamed dynamic_world_spheres still enter ArmReacher's native collision cost.
+# Physical bounds come from the existing torque-aware native profile: 5 rad/s^2,
+# 40% of URDF velocity limits, 80% of effort limits, 10 mm self-clearance.
+# The human clearance remains the current demo's 100 mm cost threshold.
+# CaT hazards are planning costs, not hard limits on measured robot motion.
+# This profile requires offline and robot behavior validation; it is not an
+# established best-performing tuning. Baseline: storm_task_file:=franka_reacher.yml
+use_cuda: true
+cuda_device_num: 0
+control_dt: 0.02
+run_open_loop: false
+control_space: acc
+float_dtype: float32
+state_filter_coeff:
+  position: 0.1
+  velocity: 0.0
+  acceleration: 0.0
+cmd_filter_coeff:
+  position: 1.0
+  velocity: 1.0
+  acceleration: 0.3
+enable_command_filter: false
+model:
+  urdf_path: robot/fer_real/fer_storm.urdf
+  learnable_rigid_body_config:
+    learnable_links: []
+  name: franka_panda
+  max_acc: 50.0
+  dt: 0.02
+  dt_traj_params:
+    base_dt: 0.02
+    base_ratio: 0.5
+    max_dt: 0.02
+  ee_link_name: ee_link
+  init_state:
+  - 0.8
+  - 0.3
+  - 0.0
+  - -1.57
+  - 0.0
+  - 1.86
+  - 0.0
+  link_names:
+  - panda_link0
+  - panda_link1
+  - panda_link2
+  - panda_link3
+  - panda_link4
+  - panda_link5
+  - panda_link6
+  - panda_link7
+  - panda_hand
+  vel_scale: 1.0
+  collision_spheres: ../../assets/robot/fer_real/fer_spheres.yml
+  robot_collision_params:
+    urdf: robot/fer_real/fer_storm.urdf
+    sample_points: 100
+    link_objs:
+    - panda_link0
+    - panda_link1
+    - panda_link2
+    - panda_link3
+    - panda_link4
+    - panda_link5
+    - panda_link6
+    - panda_link7
+    - panda_hand
+    threshold: 0.35
+    bounds:
+    - - -0.8
+      - -0.8
+      - 0.0
+    - - 0.8
+      - 0.8
+      - 2.0
+    collision_spheres: ../../assets/robot/fer_real/fer_spheres.yml
+    self_collision_weights: robot_self/franka_self_sdf.pt
+    dof: 7
+  world_collision_params:
+    model_path: scene_coll_nn/
+    label_map:
+      robot: 2
+      ground: 0
+    bounds:
+    - - -1.0
+      - -1.0
+      - -0.2
+    - - 1.0
+      - 1.0
+      - 1.0
+    grid_resolution: 0.05
+cost:
+  goal_pose:
+    vec_weight:
+    - 0.2
+    - 0.2
+    - 0.2
+    - 1.0
+    - 1.0
+    - 1.0
+    weight:
+    - 1.0
+    - 10.0
+    position_gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0.0
+      r: 10.0
+    orientation_gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0.0
+      r: 10.0
+    hinge_val: -1
+    convergence_val:
+    - 0.0
+    - 0.0
+  zero_vel:
+    weight: 0.0
+    hinge_val: 0.0
+    gaussian_params:
+      n: 0
+      c: 0.2
+      s: 0
+      r: 1.0
+  zero_acc:
+    weight: 0.0
+    hinge_val: null
+    gaussian_params:
+      n: 0
+      c: 0.2
+      s: 0
+      r: 5.0
+  collision:
+    weight: 0.0
+    gaussian_params:
+      n: 0
+      c: 0.5
+      s: 0
+      r: 5.0
+  primitive_collision:
+    weight: 1000.0
+    distance_threshold: 0.05
+    violation_clip_max: 0.2
+    violation_scale: 1.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 10.0
+    fused_dynamic_collision: true
+  box_collision:
+    weight: 1000.0
+    distance_threshold: -0.01
+    violation_clip_max: 0.2
+    violation_scale: 1.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 10.0
+  table_collision:
+    weight: 1000.0
+    distance_threshold: -0.01
+    violation_clip_max: 0.2
+    violation_scale: 1.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 10.0
+  robot_self_collision:
+    weight: 0.0
+    distance_threshold: 0.01
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 10.0
+    explicit_geometry: true
+    srdf_path: robot/fer_real/fer.srdf
+  null_space:
+    weight: 0.1
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 1.0
+    vec_weight:
+    - 0.1
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    - 0.1
+    - 0.0
+  manipulability:
+    weight: 0.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 10.0
+    thresh: 0.03
+  joint_l2:
+    weight: 0.0
+    gaussian_params:
+      n: 0
+      c: 0.2
+      s: 0
+      r: 5.0
+  ee_vel:
+    weight: 0.0
+    vec_weight:
+    - 1.0
+    - 1.0
+    - 1.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0.0
+      r: 5.0
+  scene_collision:
+    weight: 0.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 10.0
+  stop_cost:
+    weight: 0.1
+    max_nlimit: 1.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 1.0
+  stop_cost_acc:
+    weight: 0.0
+    max_limit: 1.5
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 1.0
+  voxel_collision:
+    weight: 0.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 100.0
+    distance_threshold: 0.05
+    grid_resolution: 0.05
+  smooth:
+    weight: 0.1
+    gaussian_params:
+      n: 0
+      c: 0.2
+      s: 0
+      r: 10.0
+    order: 3
+  state_bound:
+    weight: 1000.0
+    gaussian_params:
+      n: 0
+      c: 0.0
+      s: 0
+      r: 10.0
+    bound_thresh: 0.25
+  retract_state:
+  - 0.0
+  - 0.0
+  - 0.0
+  - -1.5
+  - 0.0
+  - 2.0
+  - 0.0
+  retract_weight:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  joint_torque:
+    weight: 0.0
+    limit_scale: 0.8
+    backend: fused
+mppi:
+  horizon: 50
+  init_cov: 1.0  #0.05
+  gamma: 0.98
+  n_iters: 1
+  step_size_mean: 0.9
+  step_size_cov: 0.8
+  beta: 5.0
+  alpha: 1
+  num_particles: 1000
+  update_cov: false
+  cov_type: full_AxA
+  kappa: 0.05
+  null_act_frac: 0.01
+  sample_mode: mean
+  base_action: 'null'
+  squash_fn: clamp
+  hotstart: true
+  visual_traj: ee_pos_seq
+  sample_params:
+    type: multiple #seeded-knot
+    fixed_samples: true
+    sample_ratio: {'halton':0.0, 'halton-knot':1.0, 'random':0.0, 'random-knot':0.0}
+    seed: 0
+    knot_scale: 4
+    antithetic: true
+  cat_primitive_collision:
+    enabled: true
+    # Preserve a reward signal when every rollout initially violates a margin.
+    # p_max=1 collapsed to uniform updates on the moving COSMIK bag start;
+    # 0.15 completed both reaches with human/self and joint limits respected.
+    p_max: 0.15
+    tau_c: 0.95
+    tau_b: 0.95
+    eps: 1.0e-06
+    distance_threshold: 0.1
+    violation_clip_max: 0.2
+    violation_scale: 0.25
+  cat_state_bound:
+    enabled: true
+    p_max: 0.15
+    tau_c: 0.95
+    eps: 1.0e-06
+    bound_thresh: 0.025
+  cat_equation_mode: paper
+  cat_joint_torque:
+    enabled: true
+    p_max: 0.15
+    tau_c: 0.95
+  cat_self_collision:
+    enabled: true
+    p_max: 0.15
+    tau_c: 0.95
+exact_latency_prediction: true

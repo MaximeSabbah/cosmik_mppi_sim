@@ -1,0 +1,9 @@
+# The author environment's versions. PyTorch is installed from its CUDA 12.4 index.
+numpy==1.26.4
+scipy==1.15.3
+PyYAML==6.0.3
+trimesh==4.11.2
+matplotlib==3.10.8
+urdf-parser-py==0.0.4
+hydra-core==1.3.2
+omegaconf==2.3.0

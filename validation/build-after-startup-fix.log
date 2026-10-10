@@ -1,0 +1,44 @@
+Starting >>> franka_description
+Finished <<< franka_description [0.06s]
+Starting >>> franka_msgs
+Finished <<< franka_msgs [0.31s]
+Starting >>> libfranka
+Finished <<< libfranka [0.11s]
+Starting >>> linear_feedback_controller_msgs
+Finished <<< linear_feedback_controller_msgs [0.34s]
+Starting >>> franka_gripper
+Finished <<< franka_gripper [0.28s]
+Starting >>> franka_hardware
+Finished <<< franka_hardware [0.08s]
+Starting >>> linear_feedback_controller
+Finished <<< linear_feedback_controller [0.22s]
+Starting >>> storm_agimus_bridge
+Finished <<< storm_agimus_bridge [0.28s]
+Starting >>> franka_ign_ros2_control
+Finished <<< franka_ign_ros2_control [7.71s]
+Starting >>> franka_semantic_components
+Finished <<< franka_semantic_components [0.08s]
+Starting >>> franka_robot_state_broadcaster
+Finished <<< franka_robot_state_broadcaster [0.09s]
+Starting >>> agimus_demos_common
+--- stderr: agimus_demos_common
+/usr/local/lib/python3.10/dist-packages/setuptools/_distutils/cmd.py:90: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+---
+Finished <<< agimus_demos_common [0.33s]
+Starting >>> storm_pick_place_demo
+Finished <<< storm_pick_place_demo [0.30s]
+
+Summary: 13 packages finished [10.3s]
+  1 package had stderr output: agimus_demos_common

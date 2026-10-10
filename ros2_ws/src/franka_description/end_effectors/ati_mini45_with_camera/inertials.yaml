@@ -1,0 +1,29 @@
+ati_mini45_with_camera_base:
+  origin:
+    xyz: 0.038 0 -0.016
+    rpy: 0 0 0
+  # TODO COMPUTE
+  mass: 0.200
+  # TODO COMPUTE
+  inertia:
+    xx: 0.00031823
+    yy: 0.00056848
+    zz: 0.00059602
+    xy: 0
+    xz: 0
+    yz: 0
+
+ati_mini45_with_camera_tool:
+  origin:
+    xyz: 0 0 -0.03
+    rpy: 0 0 0
+  # TODO COMPUTE
+  mass: 0.15
+  # TODO COMPUTE
+  inertia:
+    xx: 0.00010845
+    yy: 0.00010845
+    zz: 0.00006593
+    xy: 0
+    xz: 0
+    yz: 0

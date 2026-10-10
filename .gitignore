@@ -1,0 +1,12 @@
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+.runtime/
+*.bag
+*.db3
+*.mcap
+# Ignore release archives at the root; retain vendored dependency archives.
+/*.tar.gz

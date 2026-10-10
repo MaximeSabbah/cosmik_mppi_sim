@@ -1,0 +1,517 @@
+ Image cosmik-mppi-sim:baseline Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 606B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.10kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/osrf/ros:humble-desktop
+#3 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 157B done
+#4 DONE 0.0s
+
+#5 [1/9] FROM docker.io/osrf/ros:humble-desktop@sha256:fb07245b32187d74350be25323d8ad2f8ca5c25c325759911a1eff2267a49c1e
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 119.37kB 0.0s done
+#6 DONE 0.0s
+
+#7 [2/9] COPY docker/apt-packages.txt /tmp/demo-apt-packages.txt
+#7 CACHED
+
+#8 [3/9] RUN apt-get update && xargs -r apt-get install -y --no-install-recommends < /tmp/demo-apt-packages.txt     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [4/9] RUN python3 -m pip install --no-cache-dir torch==2.5.1 --index-url https://download.pytorch.org/whl/cu124
+#9 0.294 Looking in indexes: https://download.pytorch.org/whl/cu124
+#9 0.476 Collecting torch==2.5.1
+#9 0.646   Downloading https://download-r2.pytorch.org/whl/cu124/torch-2.5.1%2Bcu124-cp310-cp310-linux_x86_64.whl (908.3 MB)
+#9 8.810      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 908.3/908.3 MB 112.3 MB/s eta 0:00:00
+#9 9.346 Collecting triton==3.1.0
+#9 9.368   Downloading https://download-r2.pytorch.org/whl/triton-3.1.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (209.5 MB)
+#9 11.22      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 209.5/209.5 MB 132.1 MB/s eta 0:00:00
+#9 11.34 Collecting nvidia-nvtx-cu12==12.4.127
+#9 11.53   Downloading https://pypi.nvidia.com/nvidia-nvtx-cu12/nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (99 kB)
+#9 11.56      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 99.1/99.1 KB 3.2 MB/s eta 0:00:00
+#9 11.89 Collecting nvidia-cusparse-cu12==12.3.1.170
+#9 12.06   Downloading https://pypi.nvidia.com/nvidia-cusparse-cu12/nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl (207.5 MB)
+#9 14.20      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 207.5/207.5 MB 106.3 MB/s eta 0:00:00
+#9 14.34 Collecting nvidia-cudnn-cu12==9.1.0.70
+#9 14.35   Downloading https://download.pytorch.org/whl/cu124/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl (664.8 MB)
+#9 20.18      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 664.8/664.8 MB 110.2 MB/s eta 0:00:00
+#9 20.55 Collecting nvidia-cufft-cu12==11.2.1.3
+#9 20.72   Downloading https://pypi.nvidia.com/nvidia-cufft-cu12/nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl (211.5 MB)
+#9 22.73      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 211.5/211.5 MB 107.7 MB/s eta 0:00:00
+#9 22.87 Collecting nvidia-nccl-cu12==2.21.5
+#9 23.04   Downloading https://pypi.nvidia.com/nvidia-nccl-cu12/nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl (188.7 MB)
+#9 24.78      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 188.7/188.7 MB 98.7 MB/s eta 0:00:00
+#9 24.90 Collecting sympy==1.13.1
+#9 25.12   Downloading sympy-1.13.1-py3-none-any.whl (6.2 MB)
+#9 25.30      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 36.0 MB/s eta 0:00:00
+#9 25.34 Collecting filelock
+#9 25.36   Downloading filelock-3.32.3-py3-none-any.whl (98 kB)
+#9 25.37      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.9/98.9 KB 301.9 MB/s eta 0:00:00
+#9 25.40 Collecting nvidia-cuda-cupti-cu12==12.4.127
+#9 25.43   Downloading https://pypi.nvidia.com/nvidia-cuda-cupti-cu12/nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (13.8 MB)
+#9 25.56      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.8/13.8 MB 98.4 MB/s eta 0:00:00
+#9 25.60 Collecting networkx
+#9 25.62   Downloading networkx-3.4.2-py3-none-any.whl (1.7 MB)
+#9 25.64      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 81.1 MB/s eta 0:00:00
+#9 25.65 Requirement already satisfied: jinja2 in /usr/lib/python3/dist-packages (from torch==2.5.1) (3.0.3)
+#9 25.67 Collecting nvidia-nvjitlink-cu12==12.4.127
+#9 25.69   Downloading https://pypi.nvidia.com/nvidia-nvjitlink-cu12/nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (21.1 MB)
+#9 25.89      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.1/21.1 MB 110.1 MB/s eta 0:00:00
+#9 25.92 Collecting typing-extensions>=4.8.0
+#9 25.94   Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#9 25.94      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 KB 288.7 MB/s eta 0:00:00
+#9 25.98 Collecting nvidia-cusolver-cu12==11.6.1.9
+#9 26.15   Downloading https://pypi.nvidia.com/nvidia-cusolver-cu12/nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl (127.9 MB)
+#9 27.32      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 127.9/127.9 MB 111.3 MB/s eta 0:00:00
+#9 27.42 Collecting nvidia-cuda-nvrtc-cu12==12.4.127
+#9 27.60   Downloading https://pypi.nvidia.com/nvidia-cuda-nvrtc-cu12/nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (24.6 MB)
+#9 27.93      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.6/24.6 MB 108.0 MB/s eta 0:00:00
+#9 27.98 Collecting fsspec
+#9 28.00   Downloading fsspec-2026.7.0-py3-none-any.whl (206 kB)
+#9 28.00      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 206.6/206.6 KB 114.2 MB/s eta 0:00:00
+#9 28.04 Collecting nvidia-curand-cu12==10.3.5.147
+#9 28.06   Downloading https://pypi.nvidia.com/nvidia-curand-cu12/nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl (56.3 MB)
+#9 28.59      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.3/56.3 MB 107.3 MB/s eta 0:00:00
+#9 28.65 Collecting nvidia-cuda-runtime-cu12==12.4.127
+#9 28.83   Downloading https://pypi.nvidia.com/nvidia-cuda-runtime-cu12/nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (883 kB)
+#9 28.84      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 883.7/883.7 KB 132.1 MB/s eta 0:00:00
+#9 28.91 Collecting nvidia-cublas-cu12==12.4.5.8
+#9 29.08   Downloading https://pypi.nvidia.com/nvidia-cublas-cu12/nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl (363.4 MB)
+#9 33.00      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 363.4/363.4 MB 112.2 MB/s eta 0:00:00
+#9 33.21 Collecting mpmath<1.4,>=1.1.0
+#9 33.24   Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+#9 33.24      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 KB 106.5 MB/s eta 0:00:00
+#9 33.46 Installing collected packages: mpmath, typing-extensions, sympy, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, networkx, fsspec, filelock, triton, nvidia-cusparse-cu12, nvidia-cudnn-cu12, nvidia-cusolver-cu12, torch
+#9 33.46   Attempting uninstall: mpmath
+#9 33.46     Found existing installation: mpmath 0.0.0
+#9 33.46     Not uninstalling mpmath at /usr/lib/python3/dist-packages, outside environment /usr
+#9 33.46     Can't uninstall 'mpmath'. No files were found to uninstall.
+#9 33.61   Attempting uninstall: sympy
+#9 33.61     Found existing installation: sympy 1.9
+#9 33.61     Not uninstalling sympy at /usr/lib/python3/dist-packages, outside environment /usr
+#9 33.61     Can't uninstall 'sympy'. No files were found to uninstall.
+#9 61.87 Successfully installed filelock-3.32.3 fsspec-2026.7.0 mpmath-1.3.0 networkx-3.4.2 nvidia-cublas-cu12-12.4.5.8 nvidia-cuda-cupti-cu12-12.4.127 nvidia-cuda-nvrtc-cu12-12.4.127 nvidia-cuda-runtime-cu12-12.4.127 nvidia-cudnn-cu12-9.1.0.70 nvidia-cufft-cu12-11.2.1.3 nvidia-curand-cu12-10.3.5.147 nvidia-cusolver-cu12-11.6.1.9 nvidia-cusparse-cu12-12.3.1.170 nvidia-nccl-cu12-2.21.5 nvidia-nvjitlink-cu12-12.4.127 nvidia-nvtx-cu12-12.4.127 sympy-1.13.1 torch-2.5.1+cu124 triton-3.1.0 typing-extensions-4.16.0
+#9 61.87 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#9 DONE 64.6s
+
+#10 [5/9] COPY docker/requirements.txt /tmp/demo-requirements.txt
+#10 DONE 0.0s
+
+#11 [6/9] RUN python3 -m pip install --no-cache-dir -r /tmp/demo-requirements.txt
+#11 0.889 Collecting numpy==1.26.4
+#11 1.061   Downloading numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+#11 1.351      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2 MB 88.4 MB/s eta 0:00:00
+#11 1.535 Collecting scipy==1.15.3
+#11 1.558   Downloading scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.7 MB)
+#11 1.939      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 37.7/37.7 MB 99.0 MB/s eta 0:00:00
+#11 2.018 Collecting PyYAML==6.0.3
+#11 2.039   Downloading pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (770 kB)
+#11 2.046      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 770.3/770.3 KB 131.5 MB/s eta 0:00:00
+#11 2.132 Collecting trimesh==4.11.2
+#11 2.153   Downloading trimesh-4.11.2-py3-none-any.whl (740 kB)
+#11 2.161      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 740.3/740.3 KB 116.6 MB/s eta 0:00:00
+#11 2.348 Collecting matplotlib==3.10.8
+#11 2.371   Downloading matplotlib-3.10.8-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.7 MB)
+#11 2.458      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.7/8.7 MB 100.6 MB/s eta 0:00:00
+#11 2.490 Collecting urdf-parser-py==0.0.4
+#11 2.511   Downloading urdf_parser_py-0.0.4.tar.gz (12 kB)
+#11 2.514   Preparing metadata (setup.py): started
+#11 2.589   Preparing metadata (setup.py): finished with status 'done'
+#11 2.622 Collecting hydra-core==1.3.2
+#11 2.644   Downloading hydra_core-1.3.2-py3-none-any.whl (154 kB)
+#11 2.646      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 154.5/154.5 KB 353.5 MB/s eta 0:00:00
+#11 2.786 Collecting omegaconf==2.3.0
+#11 2.808   Downloading omegaconf-2.3.0-py3-none-any.whl (79 kB)
+#11 2.809      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 KB 776.5 MB/s eta 0:00:00
+#11 2.847 Requirement already satisfied: pillow>=8 in /usr/lib/python3/dist-packages (from matplotlib==3.10.8->-r /tmp/demo-requirements.txt (line 6)) (9.0.1)
+#11 2.887 Collecting pyparsing>=3
+#11 2.908   Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+#11 2.910      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 126.4/126.4 KB 216.7 MB/s eta 0:00:00
+#11 2.911 Requirement already satisfied: fonttools>=4.22.0 in /usr/lib/python3/dist-packages (from matplotlib==3.10.8->-r /tmp/demo-requirements.txt (line 6)) (4.29.1)
+#11 2.911 Requirement already satisfied: python-dateutil>=2.7 in /usr/lib/python3/dist-packages (from matplotlib==3.10.8->-r /tmp/demo-requirements.txt (line 6)) (2.8.1)
+#11 2.911 Requirement already satisfied: cycler>=0.10 in /usr/lib/python3/dist-packages (from matplotlib==3.10.8->-r /tmp/demo-requirements.txt (line 6)) (0.11.0)
+#11 2.912 Requirement already satisfied: kiwisolver>=1.3.1 in /usr/lib/python3/dist-packages (from matplotlib==3.10.8->-r /tmp/demo-requirements.txt (line 6)) (1.3.2)
+#11 2.912 Requirement already satisfied: packaging>=20.0 in /usr/lib/python3/dist-packages (from matplotlib==3.10.8->-r /tmp/demo-requirements.txt (line 6)) (21.3)
+#11 3.008 Collecting contourpy>=1.0.1
+#11 3.030   Downloading contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (325 kB)
+#11 3.033      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 325.0/325.0 KB 133.3 MB/s eta 0:00:00
+#11 3.035 Requirement already satisfied: lxml in /usr/lib/python3/dist-packages (from urdf-parser-py==0.0.4->-r /tmp/demo-requirements.txt (line 7)) (4.8.0)
+#11 3.161 Collecting antlr4-python3-runtime==4.9.*
+#11 3.183   Downloading antlr4-python3-runtime-4.9.3.tar.gz (117 kB)
+#11 3.184      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.0/117.0 KB 287.7 MB/s eta 0:00:00
+#11 3.192   Preparing metadata (setup.py): started
+#11 3.269   Preparing metadata (setup.py): finished with status 'done'
+#11 3.287 Building wheels for collected packages: urdf-parser-py, antlr4-python3-runtime
+#11 3.287   Building wheel for urdf-parser-py (setup.py): started
+#11 3.383   Building wheel for urdf-parser-py (setup.py): finished with status 'done'
+#11 3.383   Created wheel for urdf-parser-py: filename=urdf_parser_py-0.0.4-py3-none-any.whl size=14571 sha256=852fb9042dc92f9e09d9e1fc0a4f62bb31c10b452773f2b8d504787ae8468b99
+#11 3.383   Stored in directory: /tmp/pip-ephem-wheel-cache-a1axn7rd/wheels/09/0d/9f/f0e2fb2ae580623b840d041d4aab0a9df02f5047f283f4ecd1
+#11 3.384   Building wheel for antlr4-python3-runtime (setup.py): started
+#11 3.495   Building wheel for antlr4-python3-runtime (setup.py): finished with status 'done'
+#11 3.495   Created wheel for antlr4-python3-runtime: filename=antlr4_python3_runtime-4.9.3-py3-none-any.whl size=144575 sha256=3fb7b48bd620c7204bfb8fe1fc12d2f5a98df97017abb2cad30d4071d131965e
+#11 3.495   Stored in directory: /tmp/pip-ephem-wheel-cache-a1axn7rd/wheels/12/93/dd/1f6a127edc45659556564c5730f6d4e300888f4bca2d4c5a88
+#11 3.496 Successfully built urdf-parser-py antlr4-python3-runtime
+#11 3.663 Installing collected packages: antlr4-python3-runtime, PyYAML, pyparsing, numpy, urdf-parser-py, trimesh, scipy, omegaconf, contourpy, matplotlib, hydra-core
+#11 3.697   Attempting uninstall: PyYAML
+#11 3.697     Found existing installation: PyYAML 5.4.1
+#11 3.698     Not uninstalling pyyaml at /usr/lib/python3/dist-packages, outside environment /usr
+#11 3.698     Can't uninstall 'PyYAML'. No files were found to uninstall.
+#11 3.727   Attempting uninstall: pyparsing
+#11 3.727     Found existing installation: pyparsing 2.4.7
+#11 3.728     Not uninstalling pyparsing at /usr/lib/python3/dist-packages, outside environment /usr
+#11 3.728     Can't uninstall 'pyparsing'. No files were found to uninstall.
+#11 3.759   Attempting uninstall: numpy
+#11 3.760     Found existing installation: numpy 1.21.5
+#11 3.760     Not uninstalling numpy at /usr/lib/python3/dist-packages, outside environment /usr
+#11 3.760     Can't uninstall 'numpy'. No files were found to uninstall.
+#11 4.669   Attempting uninstall: scipy
+#11 4.669     Found existing installation: scipy 1.8.0
+#11 4.670     Not uninstalling scipy at /usr/lib/python3/dist-packages, outside environment /usr
+#11 4.670     Can't uninstall 'scipy'. No files were found to uninstall.
+#11 6.224   Attempting uninstall: matplotlib
+#11 6.224     Found existing installation: matplotlib 3.5.1
+#11 6.225     Not uninstalling matplotlib at /usr/lib/python3/dist-packages, outside environment /usr
+#11 6.225     Can't uninstall 'matplotlib'. No files were found to uninstall.
+#11 6.823 Successfully installed PyYAML-6.0.3 antlr4-python3-runtime-4.9.3 contourpy-1.3.2 hydra-core-1.3.2 matplotlib-3.10.8 numpy-1.26.4 omegaconf-2.3.0 pyparsing-3.3.3 scipy-1.15.3 trimesh-4.11.2 urdf-parser-py-0.0.4
+#11 6.823 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#11 DONE 7.6s
+
+#12 [7/9] COPY . /opt/cosmik-mppi-sim
+#12 DONE 0.3s
+
+#13 [8/9] WORKDIR /opt/cosmik-mppi-sim
+#13 DONE 0.0s
+
+#14 [9/9] RUN ./scripts/build.sh && ./scripts/test.sh     && source scripts/env.sh     && python3 -c 'from storm_kit.mpc.task.reacher_task import ReacherTask'
+#14 0.380 Starting >>> franka_description
+#14 1.333 --- stderr: franka_description
+#14 1.333 CMake Warning:
+#14 1.333   Manually-specified variables were not used by the project:
+#14 1.333 
+#14 1.333     BUILD_DOCUMENTATION
+#14 1.333     BUILD_EXAMPLES
+#14 1.333     BUILD_TESTS
+#14 1.333 
+#14 1.333 
+#14 1.333 ---
+#14 1.333 Finished <<< franka_description [0.95s]
+#14 1.333 Starting >>> franka_msgs
+#14 9.292 --- stderr: franka_msgs
+#14 9.292 CMake Warning:
+#14 9.292   Manually-specified variables were not used by the project:
+#14 9.292 
+#14 9.292     BUILD_DOCUMENTATION
+#14 9.292     BUILD_EXAMPLES
+#14 9.292     BUILD_TESTS
+#14 9.292 
+#14 9.292 
+#14 9.292 ---
+#14 9.292 Finished <<< franka_msgs [7.96s]
+#14 9.292 Starting >>> libfranka
+#14 11.38 --- stderr: libfranka
+#14 11.38 CMake Warning at CMakeLists.txt:243 (MESSAGE):
+#14 11.38   Could not find clang-format-6.0
+#14 11.38 
+#14 11.38 
+#14 11.38 CMake Warning at CMakeLists.txt:271 (MESSAGE):
+#14 11.38   Could not find clang-tidy-6.0
+#14 11.38 
+#14 11.38 
+#14 11.38 CMake Warning:
+#14 11.38   Manually-specified variables were not used by the project:
+#14 11.38 
+#14 11.38     BUILD_TESTING
+#14 11.38 
+#14 11.38 
+#14 11.38 ---
+#14 11.38 Finished <<< libfranka [2.08s]
+#14 11.38 Starting >>> linear_feedback_controller_msgs
+#14 14.99 --- stderr: linear_feedback_controller_msgs
+#14 14.99 CMake Warning:
+#14 14.99   Manually-specified variables were not used by the project:
+#14 14.99 
+#14 14.99     BUILD_EXAMPLES
+#14 14.99     BUILD_TESTS
+#14 14.99 
+#14 14.99 
+#14 14.99 ---
+#14 14.99 Finished <<< linear_feedback_controller_msgs [3.62s]
+#14 14.99 Starting >>> franka_gripper
+#14 21.70 --- stderr: franka_gripper
+#14 21.70 CMake Warning:
+#14 21.70   Manually-specified variables were not used by the project:
+#14 21.70 
+#14 21.70     BUILD_DOCUMENTATION
+#14 21.70     BUILD_EXAMPLES
+#14 21.70     BUILD_TESTS
+#14 21.70 
+#14 21.70 
+#14 21.70 ---
+#14 21.70 Finished <<< franka_gripper [6.71s]
+#14 21.70 Starting >>> franka_hardware
+#14 26.23 Finished <<< franka_hardware [4.52s]
+#14 26.23 --- stderr: franka_hardware
+#14 26.23 CMake Warning:
+#14 26.23   Manually-specified variables were not used by the project:
+#14 26.23 
+#14 26.23     BUILD_DOCUMENTATION
+#14 26.23     BUILD_EXAMPLES
+#14 26.23     BUILD_TESTS
+#14 26.23 
+#14 26.23 
+#14 26.23 ---
+#14 26.23 Starting >>> linear_feedback_controller
+#14 38.71 Finished <<< linear_feedback_controller [12.5s]
+#14 38.71 --- stderr: linear_feedback_controller
+#14 38.71 CMake Warning at /usr/share/cmake-3.22/Modules/FindBoost.cmake:2201 (message):
+#14 38.71   No header defined for python310; skipping header check (note: header-only
+#14 38.71   libraries have no designated component)
+#14 38.71 Call Stack (most recent call first):
+#14 38.71   /opt/ros/humble/lib/x86_64-linux-gnu/cmake/eigenpy/boost.cmake:146 (find_package)
+#14 38.71   /opt/ros/humble/lib/x86_64-linux-gnu/cmake/eigenpy/eigenpyConfig.cmake:172 (SEARCH_FOR_BOOST_PYTHON)
+#14 38.71   /usr/share/cmake-3.22/Modules/CMakeFindDependencyMacro.cmake:47 (find_package)
+#14 38.71   /opt/ros/humble/lib/x86_64-linux-gnu/cmake/pinocchio/pinocchioConfig.cmake:184 (find_dependency)
+#14 38.71   /opt/ros/humble/share/ament_cmake_auto/cmake/ament_auto_find_build_dependencies.cmake:67 (find_package)
+#14 38.71   CMakeLists.txt:42 (ament_auto_find_build_dependencies)
+#14 38.71 
+#14 38.71 
+#14 38.71 In this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/linear_feedback_controller` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.
+#14 38.71 CMake Warning:
+#14 38.71   Manually-specified variables were not used by the project:
+#14 38.71 
+#14 38.71     BUILD_EXAMPLES
+#14 38.71     BUILD_TESTS
+#14 38.71 
+#14 38.71 
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:5,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:13:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    13 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp: In member function ‘void linear_feedback_controller::LFController::initialize(const SharedPtr&)’:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:18:14: warning: unused variable ‘joint_nq’ [-Wunused-variable]
+#14 38.71    18 |   const auto joint_nq = rmb_->get_joint_nq();
+#14 38.71       |              ^~~~~~~~
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp: In member function ‘const VectorXd& linear_feedback_controller::LFController::compute_control(const linear_feedback_controller_msgs::Eigen::Sensor&, const linear_feedback_controller_msgs::Eigen::Control&)’:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:38:61: warning: unused variable ‘sensor_js’ [-Wunused-variable]
+#14 38.71    38 |   const linear_feedback_controller_msgs::Eigen::JointState& sensor_js =
+#14 38.71       |                                                             ^~~~~~~~~
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:40:61: warning: unused variable ‘ctrl_js’ [-Wunused-variable]
+#14 38.71    40 |   const linear_feedback_controller_msgs::Eigen::JointState& ctrl_js =
+#14 38.71       |                                                             ^~~~~~~
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/pd_controller.hpp:5,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/pd_controller.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/pd_controller.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/pd_controller.hpp:12:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    12 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:5,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:13,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:13,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:13:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    13 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:14,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/pd_controller.hpp:12:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    12 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:55:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    55 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp: In member function ‘const VectorXd& linear_feedback_controller::LinearFeedbackController::compute_control(const TimePoint&, const Sensor&, const Control&, bool)’:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:53:15: warning: unused variable ‘ctrl_js’ [-Wunused-variable]
+#14 38.71    53 |   const auto& ctrl_js = control.initial_state.joint_state;
+#14 38.71       |               ^~~~~~~
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:5,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:13,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller_ros.hpp:28,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller_ros.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:13,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller_ros.hpp:28,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller_ros.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:13:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    13 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:14,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller_ros.hpp:28,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller_ros.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/pd_controller.hpp:12:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    12 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller_ros.hpp:28,
+#14 38.71                  from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller_ros.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:55:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    55 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/robot_model_builder.cpp:1:
+#14 38.71 /opt/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+#14 38.71    19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+#14 38.71       |                                  ^
+#14 38.71       |                                  -
+#14 38.71 ---
+#14 38.71 Starting >>> storm_agimus_bridge
+#14 39.30 Finished <<< storm_agimus_bridge [0.59s]
+#14 39.30 --- stderr: storm_agimus_bridge
+#14 39.30 CMake Warning:
+#14 39.30   Manually-specified variables were not used by the project:
+#14 39.30 
+#14 39.30     BUILD_DOCUMENTATION
+#14 39.30     BUILD_EXAMPLES
+#14 39.30     BUILD_TESTS
+#14 39.30 
+#14 39.30 
+#14 39.30 ---
+#14 39.30 Starting >>> franka_ign_ros2_control
+#14 48.83 Finished <<< franka_ign_ros2_control [9.53s]
+#14 48.83 --- stderr: franka_ign_ros2_control
+#14 48.83 CMake Warning:
+#14 48.83   Manually-specified variables were not used by the project:
+#14 48.83 
+#14 48.83     BUILD_DOCUMENTATION
+#14 48.83     BUILD_EXAMPLES
+#14 48.83     BUILD_TESTS
+#14 48.83 
+#14 48.83 
+#14 48.83 ---
+#14 48.83 Starting >>> franka_semantic_components
+#14 50.74 --- stderr: franka_semantic_components
+#14 50.74 CMake Warning:
+#14 50.74   Manually-specified variables were not used by the project:
+#14 50.74 
+#14 50.74     BUILD_DOCUMENTATION
+#14 50.74     BUILD_EXAMPLES
+#14 50.74     BUILD_TESTS
+#14 50.74 
+#14 50.74 
+#14 50.74 ---
+#14 50.74 Finished <<< franka_semantic_components [1.92s]
+#14 50.74 Starting >>> franka_robot_state_broadcaster
+#14 56.12 Finished <<< franka_robot_state_broadcaster [5.38s]
+#14 56.12 --- stderr: franka_robot_state_broadcaster
+#14 56.12 CMake Warning:
+#14 56.12   Manually-specified variables were not used by the project:
+#14 56.12 
+#14 56.12     BUILD_DOCUMENTATION
+#14 56.12     BUILD_EXAMPLES
+#14 56.12     BUILD_TESTS
+#14 56.12 
+#14 56.12 
+#14 56.12 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/franka_ros2/franka_robot_state_broadcaster/include/franka_robot_state_broadcaster/franka_robot_state_broadcaster.hpp:24,
+#14 56.12                  from /opt/cosmik-mppi-sim/ros2_ws/src/franka_ros2/franka_robot_state_broadcaster/src/franka_robot_state_broadcaster.cpp:15:
+#14 56.12 /opt/cosmik-mppi-sim/ros2_ws/build/franka_robot_state_broadcaster/include/franka_robot_state_broadcaster_parameters.hpp:1:193: note: ‘#pragma message: #include "franka_robot_state_broadcaster_parameters.hpp" is deprecated. Use #include <franka_robot_state_broadcaster/franka_robot_state_broadcaster_parameters.hpp> instead.’
+#14 56.12     1 | #pragma message("#include \"franka_robot_state_broadcaster_parameters.hpp\" is deprecated. Use #include <franka_robot_state_broadcaster/franka_robot_state_broadcaster_parameters.hpp> instead.")
+#14 56.12       |                                                                                                                                                                                                 ^
+#14 56.12 In file included from /opt/cosmik-mppi-sim/ros2_ws/src/franka_ros2/franka_robot_state_broadcaster/include/franka_robot_state_broadcaster/franka_robot_state_broadcaster.hpp:28,
+#14 56.12                  from /opt/cosmik-mppi-sim/ros2_ws/src/franka_ros2/franka_robot_state_broadcaster/src/franka_robot_state_broadcaster.cpp:15:
+#14 56.12 /opt/ros/humble/include/realtime_tools/realtime_tools/realtime_publisher.h:22:103: note: ‘#pragma message: This header include is deprecated. Please update your code to use 'realtime_publisher.hpp' header.’
+#14 56.12    22 |   "This header include is deprecated. Please update your code to use 'realtime_publisher.hpp' header.")  //NOLINT
+#14 56.12       |                                                                                                       ^
+#14 56.12 ---
+#14 56.12 Starting >>> agimus_demos_common
+#14 57.35 Finished <<< agimus_demos_common [1.23s]
+#14 57.35 --- stderr: agimus_demos_common
+#14 57.35 CMake Warning:
+#14 57.35   Manually-specified variables were not used by the project:
+#14 57.35 
+#14 57.35     BUILD_DOCUMENTATION
+#14 57.35     BUILD_EXAMPLES
+#14 57.35     BUILD_TESTS
+#14 57.35 
+#14 57.35 
+#14 57.35 /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+#14 57.35   warnings.warn(
+#14 57.35 ---
+#14 57.35 Starting >>> storm_pick_place_demo
+#14 58.05 --- stderr: storm_pick_place_demo
+#14 58.05 CMake Warning:
+#14 58.05   Manually-specified variables were not used by the project:
+#14 58.05 
+#14 58.05     BUILD_DOCUMENTATION
+#14 58.05     BUILD_EXAMPLES
+#14 58.05     BUILD_TESTS
+#14 58.05 
+#14 58.05 
+#14 58.05 ---
+#14 58.05 Finished <<< storm_pick_place_demo [0.69s]
+#14 58.05 
+#14 58.05 Summary: 13 packages finished [57.8s]
+#14 58.05   13 packages had stderr output: agimus_demos_common franka_description franka_gripper franka_hardware franka_ign_ros2_control franka_msgs franka_robot_state_broadcaster franka_semantic_components libfranka linear_feedback_controller linear_feedback_controller_msgs storm_agimus_bridge storm_pick_place_demo
+#14 58.26 test_bad_history_or_times_rejected (test_prediction.PredictionTests) ... ok
+#14 58.26 test_cv_preserves_geometry_and_matches_reordered_ids (test_prediction.PredictionTests) ... ok
+#14 58.27 test_hold_is_stationary_at_all_rollout_times (test_prediction.PredictionTests) ... ok
+#14 58.27 test_new_id_holds (test_prediction.PredictionTests) ... ok
+#14 58.27 test_nonfinite_and_duplicate_id_rejected (test_prediction.PredictionTests) ... ok
+#14 58.27 
+#14 58.27 ----------------------------------------------------------------------
+#14 58.27 Ran 5 tests in 0.020s
+#14 58.27 
+#14 58.27 OK
+#14 58.57 test_backwards_simulation_time_restarts_target_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.57 test_cycle_cap_still_stops_after_place_timeout (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.57 test_existing_phase_abort_is_preserved (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.57 test_gripper_phase_finishes_before_switching (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.57 test_phase_changes_do_not_restart_target_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.58 test_place_place_mode_also_switches (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.58 test_role_swap_at_same_pose_keeps_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.58 test_simulation_pause_does_not_consume_timeout (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.58 test_spatial_arrival_advances_before_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.59 test_stalled_targets_alternate_at_ten_seconds (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.59 test_wall_clock_adjustment_does_not_expire_target (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.59 test_zero_disables_timed_alternation (test_target_timeout.TargetTimeoutTest) ... ok
+#14 58.59 
+#14 58.59 ----------------------------------------------------------------------
+#14 58.59 Ran 12 tests in 0.027s
+#14 58.59 
+#14 58.59 OK
+#14 59.60 /usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+#14 59.60   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+#14 DONE 60.3s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 5.1s done
+#15 writing image sha256:f22ff33ad9e5ab0673f78646c8f70168cb00fca8b4672391bc7873eb35453f1f done
+#15 naming to docker.io/library/cosmik-mppi-sim:baseline done
+#15 DONE 5.1s
+
+#16 resolving provenance for metadata file
+#16 DONE 0.0s
+ Image cosmik-mppi-sim:baseline Built 

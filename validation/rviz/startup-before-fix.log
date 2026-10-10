@@ -1,0 +1,151 @@
+[INFO] [launch]: All log files can be found below /workspace/handoff/cosmik-mppi-sim/.runtime/ros_logs/2026-10-09-23-08-10-785908-kurai-346536
+[INFO] [launch]: Default logging verbosity is set to INFO
+external_controllers_names_list =  ['linear_feedback_controller', 'joint_state_estimator']
+[INFO] [synthetic_capsules-1]: process started with pid [346607]
+[INFO] [ign gazebo-2]: process started with pid [346609]
+[INFO] [parameter_bridge-3]: process started with pid [346611]
+[INFO] [create-4]: process started with pid [346613]
+[INFO] [wait_for_non_zero_joints_node-5]: process started with pid [346616]
+[INFO] [robot_state_publisher-6]: process started with pid [346618]
+[INFO] [string_publisher-7]: process started with pid [346620]
+[INFO] [string_publisher-8]: process started with pid [346622]
+[INFO] [joint_state_publisher-9]: process started with pid [346624]
+[INFO] [rviz2-10]: process started with pid [346626]
+[INFO] [robot_state_publisher-11]: process started with pid [346628]
+[INFO] [static_transform_publisher-12]: process started with pid [346630]
+[INFO] [wait_for_non_zero_joints_node-13]: process started with pid [346632]
+[static_transform_publisher-12] [INFO] [1791580091.301697711] [static_transform_publisher_cBge10k2mGYC18ib]: Spinning until stopped - publishing transform
+[static_transform_publisher-12] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-12] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-12] from 'fer_link0' to 'robot_attachment_link'
+[rviz2-10] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[robot_state_publisher-11] [INFO] [1791580091.318373331] [environment_publisher]: got segment robot_attachment_link
+[create-4] [INFO] [1791580091.318991651] [ros_gz_sim]: Requesting list of world names.
+[robot_state_publisher-6] [INFO] [1791580091.320324522] [robot_state_publisher]: got segment fer_hand
+[robot_state_publisher-6] [INFO] [1791580091.320402981] [robot_state_publisher]: got segment fer_hand_tcp
+[robot_state_publisher-6] [INFO] [1791580091.320411177] [robot_state_publisher]: got segment fer_leftfinger
+[robot_state_publisher-6] [INFO] [1791580091.320417118] [robot_state_publisher]: got segment fer_link0
+[robot_state_publisher-6] [INFO] [1791580091.320422399] [robot_state_publisher]: got segment fer_link1
+[robot_state_publisher-6] [INFO] [1791580091.320427365] [robot_state_publisher]: got segment fer_link2
+[robot_state_publisher-6] [INFO] [1791580091.320432410] [robot_state_publisher]: got segment fer_link3
+[robot_state_publisher-6] [INFO] [1791580091.320437525] [robot_state_publisher]: got segment fer_link4
+[robot_state_publisher-6] [INFO] [1791580091.320442571] [robot_state_publisher]: got segment fer_link5
+[robot_state_publisher-6] [INFO] [1791580091.320447551] [robot_state_publisher]: got segment fer_link6
+[robot_state_publisher-6] [INFO] [1791580091.320452487] [robot_state_publisher]: got segment fer_link7
+[robot_state_publisher-6] [INFO] [1791580091.320457344] [robot_state_publisher]: got segment fer_link8
+[robot_state_publisher-6] [INFO] [1791580091.320462419] [robot_state_publisher]: got segment fer_rightfinger
+[robot_state_publisher-6] [INFO] [1791580091.320467475] [robot_state_publisher]: got segment world
+[wait_for_non_zero_joints_node-13] [INFO] [1791580091.498623097] [wait_for_non_zero_joints_node]: Node initialized, waiting for '/joint_states' to be published...
+[wait_for_non_zero_joints_node-5] [INFO] [1791580091.502129700] [wait_for_non_zero_joints_node]: Node initialized, waiting for '/joint_states' to be published...
+[joint_state_publisher-9] [INFO] [1791580091.530667845] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[rviz2-10] [INFO] [1791580091.626744409] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-10] [INFO] [1791580091.626796207] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[rviz2-10] [INFO] [1791580091.636195244] [rviz2]: Stereo is NOT SUPPORTED
+[create-4] [INFO] [1791580091.679151892] [ros_gz_sim]: Waiting messages on topic [/robot_description].
+[create-4] [INFO] [1791580091.690238217] [ros_gz_sim]: Requested creation of entity.
+[create-4] [INFO] [1791580091.690256166] [ros_gz_sim]: OK creation of entity.
+[INFO] [create-4]: process has finished cleanly [pid 346613]
+[INFO] [spawner-14]: process started with pid [346980]
+[spawner-14] [INFO] [1791580091.975578704] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[parameter_bridge-3] [INFO] [1791580092.322038047] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[ign gazebo-2] [INFO] [1791580093.477154721] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_state_publisher
+[ign gazebo-2] [INFO] [1791580093.477176873] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_description
+[ign gazebo-2] [INFO] [1791580093.825323761] [gz_ros2_control]: [ign_ros2_control] Fixed joint [world_joint] (Entity=49)] is skipped
+[ign gazebo-2] [INFO] [1791580093.826500964] [gz_ros2_control]: connected to service!! robot_state_publisher asking for robot_description
+[robot_state_publisher-6] [WARN] [1791580093.926739370] [robot_state_publisher.rclcpp]: failed to send response to /robot_state_publisher/get_parameters (timeout): client will not receive response, at ./src/rmw_response.cpp:154, at ./src/rcl/service.c:314
+[spawner-14] [WARN] [1791580101.987347001] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-14] [INFO] [1791580101.987512212] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[robot_state_publisher-11] [INFO] [1791580105.637272386] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [spawner-14]: sending signal 'SIGINT' to process[spawner-14]
+[INFO] [wait_for_non_zero_joints_node-13]: sending signal 'SIGINT' to process[wait_for_non_zero_joints_node-13]
+[INFO] [static_transform_publisher-12]: sending signal 'SIGINT' to process[static_transform_publisher-12]
+[INFO] [robot_state_publisher-11]: sending signal 'SIGINT' to process[robot_state_publisher-11]
+[INFO] [rviz2-10]: sending signal 'SIGINT' to process[rviz2-10]
+[INFO] [joint_state_publisher-9]: sending signal 'SIGINT' to process[joint_state_publisher-9]
+[ERROR] [static_transform_publisher-12]: process has died [pid 346630, exit code -2, cmd '/opt/ros/humble/lib/tf2_ros/static_transform_publisher --frame-id fer_link0 --child-frame-id robot_attachment_link --x 0.0 --y 0.0 --z 0.0 --qx 0.0 --qy 0.0 --qz 0.0 --qw 1.0 --ros-args'].
+[ERROR] [robot_state_publisher-11]: process has died [pid 346628, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __node:=environment_publisher --params-file /tmp/launch_params_q0peibxr -r robot_description:=environment_description'].
+[ERROR] [wait_for_non_zero_joints_node-13]: process has died [pid 346632, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/wait_for_non_zero_joints_node --ros-args --params-file /tmp/launch_params_6d776bib'].
+[INFO] [string_publisher-8]: sending signal 'SIGINT' to process[string_publisher-8]
+[INFO] [string_publisher-7]: sending signal 'SIGINT' to process[string_publisher-7]
+[INFO] [robot_state_publisher-6]: sending signal 'SIGINT' to process[robot_state_publisher-6]
+[INFO] [wait_for_non_zero_joints_node-5]: sending signal 'SIGINT' to process[wait_for_non_zero_joints_node-5]
+[INFO] [parameter_bridge-3]: sending signal 'SIGINT' to process[parameter_bridge-3]
+[ERROR] [string_publisher-8]: process has died [pid 346622, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher --ros-args -r __node:=robot_srdf_description_publisher --params-file /tmp/launch_params_6i6n4rau'].
+[ERROR] [joint_state_publisher-9]: process has died [pid 346624, exit code -2, cmd '/opt/ros/humble/lib/joint_state_publisher/joint_state_publisher --ros-args --params-file /tmp/launch_params_4zp015xa --params-file /tmp/launch_params_h4qxazzg'].
+[ERROR] [string_publisher-7]: process has died [pid 346620, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher --ros-args -r __node:=robot_description_with_collision_publisher --params-file /tmp/launch_params_ogk_7oqs --params-file /tmp/launch_params_xhwvrh7o'].
+[ERROR] [robot_state_publisher-6]: process has died [pid 346618, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args --params-file /tmp/launch_params_yw3y6xe9 --params-file /tmp/launch_params_0b3audzl'].
+[INFO] [ign gazebo-2]: sending signal 'SIGINT' to process[ign gazebo-2]
+[INFO] [synthetic_capsules-1]: sending signal 'SIGINT' to process[synthetic_capsules-1]
+[ERROR] [wait_for_non_zero_joints_node-5]: process has died [pid 346616, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/wait_for_non_zero_joints_node --ros-args -r __node:=wait_for_non_zero_joints_node --params-file /tmp/launch_params_34f57tpj -r joint_states:=franka/joint_states'].
+[wait_for_non_zero_joints_node-13] Traceback (most recent call last):
+[wait_for_non_zero_joints_node-13]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/wait_for_non_zero_joints_node", line 33, in <module>
+[wait_for_non_zero_joints_node-13]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'wait_for_non_zero_joints_node')())
+[wait_for_non_zero_joints_node-13]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/wait_for_non_zero_joints_node.py", line 96, in main
+[wait_for_non_zero_joints_node-13]     rclpy.spin(wait_for_non_zero_joints_node)
+[wait_for_non_zero_joints_node-13]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[wait_for_non_zero_joints_node-13]     executor.spin_once()
+[wait_for_non_zero_joints_node-13]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 773, in spin_once
+[wait_for_non_zero_joints_node-13]     self._spin_once_impl(timeout_sec)
+[wait_for_non_zero_joints_node-13]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 762, in _spin_once_impl
+[wait_for_non_zero_joints_node-13]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[wait_for_non_zero_joints_node-13]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 745, in wait_for_ready_callbacks
+[wait_for_non_zero_joints_node-13]     return next(self._cb_iter)
+[wait_for_non_zero_joints_node-13]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 642, in _wait_for_ready_callbacks
+[wait_for_non_zero_joints_node-13]     wait_set.wait(timeout_nsec)
+[wait_for_non_zero_joints_node-13] KeyboardInterrupt
+[static_transform_publisher-12] [INFO] [1791580105.637453574] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[rviz2-10] [INFO] [1791580105.637465793] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-6] [INFO] [1791580105.637484031] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-3] [INFO] [1791580105.637491430] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[wait_for_non_zero_joints_node-5] Traceback (most recent call last):
+[wait_for_non_zero_joints_node-5]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/wait_for_non_zero_joints_node", line 33, in <module>
+[wait_for_non_zero_joints_node-5]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'wait_for_non_zero_joints_node')())
+[wait_for_non_zero_joints_node-5]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/wait_for_non_zero_joints_node.py", line 96, in main
+[wait_for_non_zero_joints_node-5]     rclpy.spin(wait_for_non_zero_joints_node)
+[wait_for_non_zero_joints_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[wait_for_non_zero_joints_node-5]     executor.spin_once()
+[wait_for_non_zero_joints_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 773, in spin_once
+[wait_for_non_zero_joints_node-5]     self._spin_once_impl(timeout_sec)
+[wait_for_non_zero_joints_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 762, in _spin_once_impl
+[wait_for_non_zero_joints_node-5]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[wait_for_non_zero_joints_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 745, in wait_for_ready_callbacks
+[wait_for_non_zero_joints_node-5]     return next(self._cb_iter)
+[wait_for_non_zero_joints_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 642, in _wait_for_ready_callbacks
+[wait_for_non_zero_joints_node-5]     wait_set.wait(timeout_nsec)
+[wait_for_non_zero_joints_node-5] KeyboardInterrupt
+[ign gazebo-2] [INFO] [1791580105.637618778] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[string_publisher-8] Traceback (most recent call last):
+[string_publisher-8]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher", line 33, in <module>
+[string_publisher-8]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'string_publisher')())
+[string_publisher-8]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 45, in main
+[string_publisher-8]     rclpy.shutdown()
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[string_publisher-8]     _shutdown(context=context)
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[string_publisher-8]     return context.shutdown()
+[string_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[string_publisher-8]     self.__context.shutdown()
+[string_publisher-8] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[string_publisher-7] Traceback (most recent call last):
+[string_publisher-7]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher", line 33, in <module>
+[string_publisher-7]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'string_publisher')())
+[string_publisher-7]   File "/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 45, in main
+[string_publisher-7]     rclpy.shutdown()
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[string_publisher-7]     _shutdown(context=context)
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[string_publisher-7]     return context.shutdown()
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[string_publisher-7]     self.__context.shutdown()
+[string_publisher-7] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[rviz2-10] [INFO] [1791580105.647567646] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [synthetic_capsules-1]: process has died [pid 346607, exit code -2, cmd '/workspace/handoff/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/synthetic_capsules --ros-args -r __node:=synthetic_capsules --params-file /tmp/launch_params_caecrihb'].
+[parameter_bridge-3] [INFO] [1791580105.654836193] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [parameter_bridge-3]: process has finished cleanly [pid 346611]
+[ERROR] [spawner-14]: process has died [pid 346980, exit code -2, cmd '/opt/ros/humble/lib/controller_manager/spawner joint_state_broadcaster gripper_action_controller --controller-manager controller_manager --ros-args'].
+[INFO] [rviz2-10]: process has finished cleanly [pid 346626]
+[ERROR] [ign gazebo-2]: process[ign gazebo-2] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [ign gazebo-2]: sending signal 'SIGTERM' to process[ign gazebo-2]
+[ERROR] [ign gazebo-2]: process has died [pid 346609, exit code -15, cmd 'ruby /usr/bin/ign gazebo /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/franka_description/share/franka_description/worlds/empty.sdf -r -s  --gui-config /workspace/handoff/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/share/agimus_demos_common/config/gz_gui.config --force-version 6'].
+[INFO] [launch]: process[ign gazebo-2] was required: shutting down launched system

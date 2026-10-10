@@ -1,0 +1,852 @@
+diff --git a/config/storm_mppi_planner_params.yaml b/config/storm_mppi_planner_params.yaml
+index 8e43d0b..580ce5c 100644
+--- a/config/storm_mppi_planner_params.yaml
++++ b/config/storm_mppi_planner_params.yaml
+@@ -16,15 +16,28 @@ storm_mppi_planner:
+     dynamic_collision_slots: 0
+     dynamic_cylinder_spheres_per_object: 5
+     use_base_world_collision: true
+-    ignore_collision_namespaces: ["pp_pick_object", "pp_place_target"] #pp_barrier
++    # ignore_collision_namespaces intentionally NOT set here: storm_mppi_planner_node.py's
++    # declare_parameter() default already provides ["pp_pick_object", "pp_place_target"]
++    # directly (see the declare_parameter call for the full rationale/rclpy-pitfall notes) --
++    # no override needed for the common case. If you do need to override it, the value must be
++    # a genuinely non-empty string list; never [] (see the code-side comment for why).
+ 
+-    # Frames 
++    # Frames
+     base_frame_name: fer_link0
+     ee_frame_name: fer_hand_tcp
+ 
++    # Drives which box gets excluded from cost.box_collision (the one currently held by the
++    # gripper -- see _filter_box_world_params in storm_mppi_planner_node.py). Must match the
++    # task manager's own gripper_open_width (pick_place_task_manager_params.yaml /
++    # tower_task_manager_params.yaml).
++    gripper_open_width: 0.07
++    gripper_open_tolerance: 0.005
++    gripper_joint_states_topic: "" # empty = auto-derive as /<arm_id>_gripper/joint_states
++
+     # MPPI rate
+     rate_hz: 50.0
+     debug_mppi_rate: true
++    debug_cost_breakdown: true
+     debug_collision_objects: false
+     debug_collision_objects_max_items: 12
+ 
+@@ -35,12 +48,16 @@ storm_mppi_planner:
+ 
+     mppi_device: cuda:0
+     gain_joint_names: [fer_joint1, fer_joint2, fer_joint3, fer_joint4, fer_joint5, fer_joint6, fer_joint7]
+-    kp: [100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
+-    kd: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
++    # kp: [100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
++    # kd: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
++    # kp: [120.0, 120.0, 120.0, 120.0, 50.0, 30.0, 10.0]
++    # kd: [10.0, 10.0, 10.0, 10.0, 6.0, 5.0, 3.0]
++    kp: [300.0,300.0,300.0,300.0,125.0,75.0,25.0]
++    kd: [25.0,25.0,25.0,25.0,15.0,12.5,12.5]
+     feedforward_mode: inverse_dynamics  # none | gravity | coriolis_gravity | inverse_dynamics
+     feedforward_accel_filter_coeff: 1.0
+-    enable_reference_smoothing: true
+-    ref_smoothing_rate_hz: 1000.0   # how fast the OTG publishes between STORM replans
++    enable_reference_smoothing: false
++    ref_smoothing_rate_hz: 200.0   # how fast the OTG publishes between STORM replans
+     ref_smoothing_max_vel: [2.0]    # rad/s, length 1 or 7
+     ref_smoothing_max_acc: [8.0]    # rad/s^2
+     ref_smoothing_max_jerk: [1000.0]   # rad/s^3
+diff --git a/package.xml b/package.xml
+index 4397ef6..c990a3d 100644
+--- a/package.xml
++++ b/package.xml
+@@ -16,6 +16,7 @@
+   <exec_depend>rcl_interfaces</exec_depend>
+   <exec_depend>geometry_msgs</exec_depend>
+   <exec_depend>std_msgs</exec_depend>
++  <exec_depend>sensor_msgs</exec_depend>
+   <exec_depend>tf2_ros</exec_depend>
+   <exec_depend>visualization_msgs</exec_depend>
+ 
+diff --git a/storm_agimus_bridge/storm_mppi_planner_node.py b/storm_agimus_bridge/storm_mppi_planner_node.py
+index fb98e79..0c36dd2 100644
+--- a/storm_agimus_bridge/storm_mppi_planner_node.py
++++ b/storm_agimus_bridge/storm_mppi_planner_node.py
+@@ -3,6 +3,7 @@ from __future__ import annotations
+ import copy
+ import math
+ import os
++import re
+ import sys
+ import time
+ import xml.etree.ElementTree as ET
+@@ -20,11 +21,19 @@ from rcl_interfaces.msg import ParameterDescriptor, ParameterType
+ from rclpy.node import Node
+ from rclpy.qos import DurabilityPolicy, QoSProfile, ReliabilityPolicy
+ from rclpy.time import Time
++from sensor_msgs.msg import JointState
+ from std_msgs.msg import String
+ from tf2_ros import Buffer, TransformException
+ from tf2_ros.transform_listener import TransformListener
+ from visualization_msgs.msg import Marker, MarkerArray
+ 
++# Official Franka joint position limits (rad), from franka_panda_no_gripper.urdf's own <limit>
++# tags -- identical across arm_id naming variants (fer_jointN / panda_jointN / fr3_jointN all
++# share the same physical hardware ranges). Used as a hard backstop on q_des (see
++# _clamp_q_des_to_joint_limits) independent of STORM's own soft state_bound cost.
++_FRANKA_JOINT_LOWER = [-2.8973, -1.7628, -2.8973, -3.0718, -2.8973, -0.0175, -2.8973]
++_FRANKA_JOINT_UPPER = [2.8973, 1.7628, 2.8973, -0.0698, 2.8973, 3.7525, 2.8973]
++
+ 
+ @dataclass
+ class _StormCfg:
+@@ -185,6 +194,11 @@ class StormMppiPlannerNode(Node):
+         self._tf_listener = TransformListener(self._tf_buffer, self)
+ 
+         self._armed: bool = bool(self.get_parameter("armed").value)
++        # Tracks armed's previous value across ticks so _tick() can detect the False->True
++        # edge specifically (e.g. right when a gripper close/open hold ends) and trigger a
++        # fresh-rollout reset -- see BaseTask.reset(). Seeded to the startup value so no
++        # spurious reset fires on the very first tick.
++        self._last_armed_for_reset: bool = self._armed
+ 
+         self._goal_pose_msg: Optional[PoseStamped] = None
+         self._objects_markers_msg: Optional[MarkerArray] = None
+@@ -196,6 +210,36 @@ class StormMppiPlannerNode(Node):
+         self._np_q: Optional[np.ndarray] = None
+         self._np_dq: Optional[np.ndarray] = None
+ 
++        # Cached per-joint hard position limits, built once _moving_joint_names is known (see
++        # _clamp_q_des_to_joint_limits).
++        self._joint_limit_lower: Optional[np.ndarray] = None
++        self._joint_limit_upper: Optional[np.ndarray] = None
++
++        # Live gripper width (both finger joint positions summed). Used to exclude the
++        # currently-*held* pick object from box_collision (see _filter_box_world_params) --
++        # every other box-tagged object stays checked regardless of gripper state.
++        self._gripper_width: Optional[float] = None
++        self._last_gripper_is_open: Optional[bool] = None
++        # Unfiltered box partition from the most recent world build, cached so a gripper
++        # open/closed transition can re-filter and re-push without rebuilding the whole world.
++        self._last_box_world_params_raw: Optional[dict] = None
++        gripper_topic = str(self.get_parameter("gripper_joint_states_topic").value)
++        if not gripper_topic:
++            base_frame_for_gripper = str(self.get_parameter("base_frame_name").value)
++            arm_id_for_gripper = (
++                base_frame_for_gripper.split("_link")[0]
++                if "_link" in base_frame_for_gripper
++                else base_frame_for_gripper
++            )
++            gripper_topic = f"/{arm_id_for_gripper}_gripper/joint_states"
++        self._sub_gripper_joint_states = self.create_subscription(
++            JointState,
++            gripper_topic,
++            self._gripper_joint_states_callback,
++            qos_profile=QoSProfile(depth=5, reliability=ReliabilityPolicy.BEST_EFFORT),
++        )
++        self.get_logger().info(f"Subscribing to gripper joint states on '{gripper_topic}'.")
++
+         # Causal low-pass state for the MPPI acceleration command used by inverse-dynamics
+         # feedforward (see `_filter_ddq_for_feedforward`).
+         self._ddq_ff_filt: Optional[np.ndarray] = None
+@@ -328,6 +372,22 @@ class StormMppiPlannerNode(Node):
+         )
+         self._rollout_viz_timer = None
+ 
++        self._pub_robot_collision_spheres = self.create_publisher(
++            MarkerArray,
++            str(self.get_parameter("robot_collision_spheres_topic").value),
++            qos_profile=QoSProfile(depth=1, reliability=ReliabilityPolicy.RELIABLE),
++        )
++        self._pub_world_collision_primitives = self.create_publisher(
++            MarkerArray,
++            str(self.get_parameter("world_collision_primitives_topic").value),
++            qos_profile=QoSProfile(depth=1, reliability=ReliabilityPolicy.RELIABLE),
++        )
++        self._collision_geometry_timer = None
++        # STORM link name (e.g. "panda_link3") -> list of (center_xyz_local, radius), loaded
++        # once from the same franka.yml STORM itself loads for primitive/self collision.
++        self._robot_collision_spheres: dict[str, list[tuple[np.ndarray, float]]] = {}
++
++
+         self._init_timer = self.create_timer(0.1, self._try_initialize)
+         self._loop_timer = None
+ 
+@@ -486,12 +546,53 @@ class StormMppiPlannerNode(Node):
+             ["pp_pick_object", "pp_place_target"],
+             ParameterDescriptor(
+                 type=ParameterType.PARAMETER_STRING_ARRAY,
+-                description="Marker namespaces to ignore when converting MarkerArray -> STORM collision objects. "
+-                "Pick/place visualization markers are ignored by default so the robot can reach the grasp pose.",
++                description="Marker namespaces to ignore when converting MarkerArray -> STORM collision "
++                "objects. pp_pick_object/pp_place_target are always the *active* task's own goal "
++                "target -- goal_pose drives the EE straight to that exact marker's center, so it "
++                "must never also be a box_collision obstacle (distance_threshold: 0.0 means "
++                "goal-center convergence = deep 'penetration' = huge cost fighting goal_pose, "
++                "deadlocking PREGRASP/GRASP and PREPLACE/PLACE just short of tolerance). "
++                "pp_tower_pending/pp_tower_stacked (other, non-active cubes) are deliberately NOT "
++                "listed here -- they must stay real box_collision obstacles. NOTE: do not default "
++                "or override this to [] (empty) -- rclpy infers an empty list's element type as "
++                "BYTE_ARRAY regardless of this descriptor's declared PARAMETER_STRING_ARRAY type, "
++                "which locks the parameter to BYTE_ARRAY for the node's lifetime and makes *any* "
++                "later string-array override (empty or not) raise InvalidParameterTypeException. "
++                "Always give this a genuinely non-empty string-list default/override.",
+             ),
+         )
+         self.declare_parameter("base_frame_name", "world")
+         self.declare_parameter("ee_frame_name", "fer_hand_tcp")
++
++        # Drives _filter_box_world_params: while the gripper is closed (not within tolerance
++        # of gripper_open_width), the currently-held pick object is excluded from the
++        # box_collision world -- touching/holding it is then intentional. Every other
++        # box-tagged object stays a real obstacle regardless of gripper state.
++        self.declare_parameter(
++            "gripper_open_width",
++            0.07,
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_DOUBLE,
++                description="Full-open gripper width in meters -- must match the task manager's gripper_open_width. box_collision only activates while live gripper width is within gripper_open_tolerance of this.",
++            ),
++        )
++        self.declare_parameter(
++            "gripper_open_tolerance",
++            0.005,
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_DOUBLE,
++                description="Tolerance band (meters) around gripper_open_width counted as \"fully open\".",
++            ),
++        )
++        self.declare_parameter(
++            "gripper_joint_states_topic",
++            "",
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_STRING,
++                description="Topic for the gripper's own JointState (both finger positions summed = width). Empty = auto-derive as /<arm_id>_gripper/joint_states from base_frame_name.",
++            ),
++        )
++
+         self.declare_parameter("rate_hz", 50.0)
+         self.declare_parameter(
+             "debug_mppi_rate",
+@@ -501,6 +602,14 @@ class StormMppiPlannerNode(Node):
+                 description="When true, print throttled timing diagnostics including effective MPPI optimization rate.",
+             ),
+         )
++        self.declare_parameter(
++            "debug_cost_breakdown",
++            False,
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_BOOL,
++                description="When true, print per-named-cost breakdown alongside MPPI timing (requires debug_mppi_rate: true).",
++            ),
++        )
+         self.declare_parameter(
+             "debug_collision_objects",
+             False,
+@@ -611,6 +720,14 @@ class StormMppiPlannerNode(Node):
+                 description="Clamp |q_des - q_meas| per joint to this radius before publishing. <=0 disables.",
+             ),
+         )
++        self.declare_parameter(
++            "joint_limit_reference_margin_rad",
++            0.0,
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_DOUBLE,
++                description="Inset joint position references by this margin and remove outward velocity/acceleration at the boundary. Zero keeps the original position-only clamp.",
++            ),
++        )
+ 
+         # Tier 3b: Cartesian-impedance-equivalent feedback gain, computed entirely in the bridge.
+         # The LFC's control law is tau = tau_ff + K @ [q_des(-)q_meas ; dq_des-dq_meas] with K a
+@@ -781,6 +898,38 @@ class StormMppiPlannerNode(Node):
+             ),
+         )
+ 
++        # Collision-geometry visualization: shows exactly what STORM's collision costs are
++        # checking against -- the robot's own collision spheres (from the same franka.yml
++        # STORM loads for primitive/self collision) and the resolved world collision
++        # primitives (static base world + live markers merged in, same dict actually passed to
++        # PrimitiveCollisionCost). Useful for visually verifying robot-to-obstacle margins.
++        self.declare_parameter(
++            "enable_collision_geometry_visualization",
++            True,
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_BOOL,
++                description="Publish the robot's collision spheres and the resolved world collision primitives as rviz MarkerArrays. Pure visualization, no control-path cost.",
++            ),
++        )
++        self.declare_parameter(
++            "collision_geometry_rate_hz",
++            5.0,
++            ParameterDescriptor(
++                type=ParameterType.PARAMETER_DOUBLE,
++                description="Publish rate for collision-geometry markers, decoupled from rate_hz since this is for human viewing only.",
++            ),
++        )
++        self.declare_parameter(
++            "robot_collision_spheres_topic",
++            "/storm_mppi/robot_collision_spheres",
++            ParameterDescriptor(type=ParameterType.PARAMETER_STRING),
++        )
++        self.declare_parameter(
++            "world_collision_primitives_topic",
++            "/storm_mppi/world_collision_primitives",
++            ParameterDescriptor(type=ParameterType.PARAMETER_STRING),
++        )
++
+     def _robot_description_callback(self, msg: String) -> None:
+         self._robot_description_msg = msg
+ 
+@@ -799,6 +948,13 @@ class StormMppiPlannerNode(Node):
+     def _goal_callback(self, msg: PoseStamped) -> None:
+         self._goal_pose_msg = msg
+ 
++    def _gripper_joint_states_callback(self, msg: JointState) -> None:
++        # franka_gripper's joint_states publishes both finger positions as width/2 each (see
++        # franka_gripper's gripper_action_server.cpp); summing recovers the actual live width.
++        if len(msg.position) < 2:
++            return
++        self._gripper_width = float(msg.position[0]) + float(msg.position[1])
++
+     def _create_collision_markers_subscription(self, topic_name: str) -> None:
+         if not topic_name:
+             return
+@@ -823,8 +979,16 @@ class StormMppiPlannerNode(Node):
+             return
+ 
+         marker_topics: list[str] = []
++        own_outputs = {
++            str(self.get_parameter("robot_collision_spheres_topic").value),
++            str(self.get_parameter("world_collision_primitives_topic").value),
++            str(self.get_parameter("rollout_reference_topic").value),
++        }
+         for topic_name, topic_types in self.get_topic_names_and_types():
+-            if "visualization_msgs/msg/MarkerArray" in topic_types:
++            if (
++                "visualization_msgs/msg/MarkerArray" in topic_types
++                and str(topic_name) not in own_outputs
++            ):
+                 marker_topics.append(str(topic_name))
+         if not marker_topics:
+             return
+@@ -915,6 +1079,12 @@ class StormMppiPlannerNode(Node):
+         if rollout_viz_rate_hz <= 0.0:
+             raise ValueError("rollout_viz_rate_hz must be > 0")
+         self._rollout_viz_timer = self.create_timer(1.0 / rollout_viz_rate_hz, self._publish_rollout_markers)
++        collision_geometry_rate_hz = float(self.get_parameter("collision_geometry_rate_hz").value)
++        if collision_geometry_rate_hz <= 0.0:
++            raise ValueError("collision_geometry_rate_hz must be > 0")
++        self._collision_geometry_timer = self.create_timer(
++            1.0 / collision_geometry_rate_hz, self._publish_collision_geometry
++        )
+         self.get_logger().info(
+             f"storm_mppi_planner initialized. Publishing linear_feedback_controller_msgs/Control at ~{rate_hz:.1f} Hz "
+             f"(armed={self._armed}), reference-smoothing fast timer ~{ref_smoothing_rate_hz:.1f} Hz "
+@@ -979,6 +1149,7 @@ class StormMppiPlannerNode(Node):
+             include_live_collision_inputs=not dynamic_collision_mode,
+         )
+         self._maybe_log_world_collision_objects(world_params, source="initialize")
++        world_params, box_world_params, table_world_params = self._partition_world_params(world_params)
+ 
+         # Resolve and inspect task YAML directly so we can prove exactly what file/values are being fed to STORM.
+         if Path(cfg.task_file).is_absolute():
+@@ -1034,6 +1205,18 @@ class StormMppiPlannerNode(Node):
+             f"mppi.cat_primitive_collision.enabled={cat_pc_enabled}, "
+             f"mppi.cat_state_bound.enabled={cat_sb_enabled}."
+         )
++        self.get_logger().info(
++            "STORM controller profile: "
++            f"control_space={task.exp_params.get('control_space')}, "
++            f"cat_equation_mode={mppi_cfg.get('cat_equation_mode', 'legacy')}, "
++            f"cat_self_collision={bool(mppi_cfg.get('cat_self_collision', {}).get('enabled', False))}, "
++            f"cat_joint_torque={bool(mppi_cfg.get('cat_joint_torque', {}).get('enabled', False))}, "
++            f"sampler={mppi_cfg.get('sample_params', {}).get('type')}, "
++            f"antithetic={bool(mppi_cfg.get('sample_params', {}).get('antithetic', False))}, "
++            f"torque_backend={cost_cfg.get('joint_torque', {}).get('backend', 'matrix')}, "
++            f"horizon={mppi_cfg.get('horizon')}, particles={mppi_cfg.get('num_particles')}, "
++            f"exact_latency_prediction={bool(task.exp_params.get('exact_latency_prediction', False))}."
++        )
+         if (
+             raw_cat_enabled is not None
+             and raw_cat_sb_enabled is not None
+@@ -1051,6 +1234,15 @@ class StormMppiPlannerNode(Node):
+                 "This indicates task config overrides or a different loader path is in effect."
+             )
+         self._storm_task = task
++        self._load_robot_collision_spheres(task.exp_params)
++        # box_collision_cost/table_collision_cost are constructed with an empty placeholder
++        # world (see _EMPTY_WORLD_PARAMS in arm_base.py); seed them with the real partitioned
++        # content now that the task exists.
++        self._last_box_world_params_raw = box_world_params
++        self._storm_task.update_params(
++            box_world_params=self._filter_box_world_params(box_world_params),
++            table_world_params=table_world_params,
++        )
+         self._storm_control_dt = float(task.exp_params["control_dt"])
+         self._storm_model_dt = float(task.exp_params["model"]["dt"])
+         dt_traj_params = dict(task.exp_params["model"].get("dt_traj_params", {}))
+@@ -1333,6 +1525,89 @@ class StormMppiPlannerNode(Node):
+                 ],
+             }
+ 
++    # Marker namespaces for every pick/place task cube -- object_manager_node's and
++    # pick_place_task_manager_node's *active* pick/place target (pp_pick_object/
++    # pp_place_target), plus tower_task_manager_node's other cubes waiting to be picked or
++    # already stacked (pp_tower_pending/pp_tower_stacked). All four are the *same kind* of
++    # object -- a task cube -- just in different states; which specific one is currently held
++    # by the gripper (and therefore excluded) is handled separately, by
++    # _filter_box_world_params, not by this categorization. All of them route to the
++    # dedicated box_collision cost, never the general primitive_collision one.
++    _BOX_OBJECT_NAMESPACES = ("pp_pick_object", "pp_place_target", "pp_tower_pending", "pp_tower_stacked")
++
++    # Static (non-marker) entries from collision_primitives_3d.yml that should also route to
++    # box_collision instead of the general primitive_collision bucket -- matched by exact name,
++    # the same way the static "table" entry is exact-name-matched to the table bucket below.
++    # "poto_l"/"poto_r" are the two floor-to-ceiling pole obstacles.
++    _STATIC_BOX_OBJECT_NAMES = ("poto_l", "poto_r")
++
++    def _partition_world_params(self, world_params: dict) -> tuple[dict, dict, dict]:
++        """Splits a fully-resolved world_params dict (as returned by _build_world_params) into
++        three disjoint parts: (general, box, table).
++
++        - box: entries merged from the _BOX_OBJECT_NAMESPACES marker namespaces, plus the
++          static _STATIC_BOX_OBJECT_NAMES entries -- feeds the dedicated box_collision cost
++          instead of the general one.
++        - table: the static "table" primitive from collision_primitives_3d.yml -- feeds the
++          dedicated table_collision cost instead of the general one.
++        - general: everything else, unchanged primitive_collision coverage.
++
++        Name-substring partitioning is safe here because _merge_marker_array_into_world
++        deterministically builds names as f"{name_prefix}_{marker.ns}_{marker.id}", and the
++        base world's static table/pole entries are always keyed exactly by their yaml name.
++        """
++        coll_objs = world_params.get("world_model", {}).get("coll_objs", {})
++        cubes = dict(coll_objs.get("cube", {}))
++        spheres = dict(coll_objs.get("sphere", {}))
++
++        def category(name: str) -> str:
++            if name in self._STATIC_BOX_OBJECT_NAMES:
++                return "box"
++            if any(f"_{ns}_" in name for ns in self._BOX_OBJECT_NAMESPACES):
++                return "box"
++            if name == "table":
++                return "table"
++            return "general"
++
++        buckets: dict[str, tuple[dict, dict]] = {
++            "general": ({}, {}),
++            "box": ({}, {}),
++            "table": ({}, {}),
++        }
++        for name, spec in cubes.items():
++            buckets[category(name)][0][name] = spec
++        for name, spec in spheres.items():
++            buckets[category(name)][1][name] = spec
++
++        def wrap(cubes_d: dict, spheres_d: dict) -> dict:
++            return {"world_model": {"coll_objs": {"cube": cubes_d, "sphere": spheres_d}}}
++
++        return (
++            wrap(*buckets["general"]),
++            wrap(*buckets["box"]),
++            wrap(*buckets["table"]),
++        )
++
++    def _filter_box_world_params(self, box_world_params: dict) -> dict:
++        """Excludes only the currently-*held* pick object (pp_pick_object) from the
++        box_collision world while the gripper is closed around it -- touching/holding it is
++        then intentional. pp_place_target entries (never held -- just a target location or,
++        in the tower demo, an empty slot in the stack) are never filtered, so they stay real
++        obstacles the whole time, exactly like every other box the gripper isn't currently
++        holding. If gripper width hasn't been observed yet, include everything (safe default).
++        """
++        if self._gripper_width is None:
++            return box_world_params
++        open_width = float(self.get_parameter("gripper_open_width").value)
++        tolerance = float(self.get_parameter("gripper_open_tolerance").value)
++        if abs(self._gripper_width - open_width) <= tolerance:
++            return box_world_params
++
++        coll_objs = box_world_params.get("world_model", {}).get("coll_objs", {})
++        cubes = {k: v for k, v in coll_objs.get("cube", {}).items() if "_pp_pick_object_" not in k}
++        spheres = {k: v for k, v in coll_objs.get("sphere", {}).items() if "_pp_pick_object_" not in k}
++        return {"world_model": {"coll_objs": {"cube": cubes, "sphere": spheres}}}
++
+     def _build_world_params(self, base_world: dict, *, include_live_collision_inputs: bool = True) -> dict:
+         base_frame_name = str(self.get_parameter("base_frame_name").value)
+         use_base_world = bool(self.get_parameter("use_base_world_collision").value)
+@@ -1746,8 +2021,14 @@ class StormMppiPlannerNode(Node):
+             self._storm_base_world,
+             include_live_collision_inputs=False,
+         )
+-        self._storm_task.update_params(world_params=world_params)
+         self._maybe_log_world_collision_objects(world_params, source="dynamic_static_update")
++        world_params, box_world_params, table_world_params = self._partition_world_params(world_params)
++        self._last_box_world_params_raw = box_world_params
++        self._storm_task.update_params(
++            world_params=world_params,
++            box_world_params=self._filter_box_world_params(box_world_params),
++            table_world_params=table_world_params,
++        )
+         self._last_dynamic_objects_signature = objects_signature
+         return True
+ 
+@@ -1822,8 +2103,14 @@ class StormMppiPlannerNode(Node):
+             return
+ 
+         world_params = self._build_world_params(self._storm_base_world, include_live_collision_inputs=True)
+-        self._storm_task.update_params(world_params=world_params)
+         self._maybe_log_world_collision_objects(world_params, source="world_update")
++        world_params, box_world_params, table_world_params = self._partition_world_params(world_params)
++        self._last_box_world_params_raw = box_world_params
++        self._storm_task.update_params(
++            world_params=world_params,
++            box_world_params=self._filter_box_world_params(box_world_params),
++            table_world_params=table_world_params,
++        )
+         self._last_world_inputs_signature = signature
+         self._last_world_inputs_apply_time = now
+         self._world_inputs_dirty = False
+@@ -2044,6 +2331,182 @@ class StormMppiPlannerNode(Node):
+                 throttle_duration_sec=5.0,
+             )
+ 
++    def _load_robot_collision_spheres(self, exp_params: dict) -> None:
++        """Loads the same collision-sphere set STORM's own PrimitiveCollisionCost/
++        RobotSelfCollisionCost load (see storm_kit/geom/sdf/robot.py:
++        join_path(get_mpc_configs_path(), robot_collision_params['collision_spheres'])),
++        purely for visualization -- resolved into a dict keyed by STORM link name so
++        _publish_robot_collision_spheres can FK each sphere to base_frame independently of the
++        GPU/CUDA rollout pipeline (which lives in a separate process; touching it here would add
++        cross-process/CUDA coupling and latency risk to a visualization-only feature).
++        """
++        try:
++            from storm_kit.util_file import get_mpc_configs_path, join_path, load_yaml
++
++            robot_collision_params = exp_params["model"]["robot_collision_params"]
++            coll_yaml_path = join_path(get_mpc_configs_path(), robot_collision_params["collision_spheres"])
++            coll_data = load_yaml(coll_yaml_path).get("collision_spheres", {})
++            self._robot_collision_spheres = {
++                str(link): [
++                    (np.asarray(s["center"], dtype=np.float64), float(s["radius"]))
++                    for s in spheres
++                ]
++                for link, spheres in coll_data.items()
++            }
++            self.get_logger().info(
++                f"Loaded {sum(len(v) for v in self._robot_collision_spheres.values())} robot collision "
++                f"spheres across {len(self._robot_collision_spheres)} links from '{coll_yaml_path}'."
++            )
++        except Exception as exc:  # noqa: BLE001
++            self.get_logger().warn(f"Failed to load robot collision spheres (visualization disabled): {exc}")
++            self._robot_collision_spheres = {}
++
++    def _publish_collision_geometry(self) -> None:
++        if not bool(self.get_parameter("enable_collision_geometry_visualization").value):
++            return
++        self._publish_robot_collision_spheres()
++        self._publish_world_collision_primitives()
++
++    def _publish_robot_collision_spheres(self) -> None:
++        """Publishes every collision sphere STORM loaded for this robot, FK'd to base_frame
++        using the live TF tree (robot_state_publisher already broadcasts every link at full
++        rate from /joint_states). STORM's own sphere-center frame names use the "panda_*"
++        convention from its own URDF variant (franka_panda_no_gripper.urdf) while the live TF
++        tree uses this robot's actual prefix (e.g. "fer_*") -- the same panda<->fer identity
++        this bridge already relies on for the ee/tcp goal-frame mapping (see "Goal frame
++        mapping" log line in _initialize_storm), so a simple prefix swap is sufficient.
++        """
++        if not self._robot_collision_spheres:
++            return
++        try:
++            base_frame_name = str(self.get_parameter("base_frame_name").value)
++            arm_id = base_frame_name.split("_link")[0] if "_link" in base_frame_name else base_frame_name
++            now = self.get_clock().now().to_msg()
++            lifetime_sec = max(1, int(3.0 / max(float(self.get_parameter("collision_geometry_rate_hz").value), 0.1)))
++
++            markers: list[Marker] = []
++            marker_id = 0
++            for storm_link, spheres in self._robot_collision_spheres.items():
++                ros_frame = storm_link.replace("panda", arm_id, 1)
++                try:
++                    tf = self._tf_buffer.lookup_transform(base_frame_name, ros_frame, Time())
++                except TransformException:
++                    continue
++                link_M = transform_msg_to_se3(tf.transform)
++                for center_local, radius in spheres:
++                    center_base = link_M.rotation @ center_local + link_M.translation
++                    marker = Marker()
++                    marker.header.stamp = now
++                    marker.header.frame_id = base_frame_name
++                    marker.ns = "storm_robot_collision_spheres"
++                    marker.id = marker_id
++                    marker_id += 1
++                    marker.type = Marker.SPHERE
++                    marker.action = Marker.ADD
++                    marker.pose.position.x = float(center_base[0])
++                    marker.pose.position.y = float(center_base[1])
++                    marker.pose.position.z = float(center_base[2])
++                    marker.pose.orientation.w = 1.0
++                    marker.scale.x = marker.scale.y = marker.scale.z = 2.0 * float(radius)
++                    marker.color.r = 1.0
++                    marker.color.g = 0.15
++                    marker.color.b = 0.15
++                    marker.color.a = 0.35
++                    marker.lifetime.sec = lifetime_sec
++                    markers.append(marker)
++
++            if markers:
++                self._pub_robot_collision_spheres.publish(MarkerArray(markers=markers))
++        except Exception as exc:  # noqa: BLE001
++            self.get_logger().warn(
++                f"Robot collision sphere visualization failed this tick (non-fatal): {exc}",
++                throttle_duration_sec=5.0,
++            )
++
++    def _publish_world_collision_primitives(self) -> None:
++        """Publishes the fully-resolved world collision dict -- static base world (table,
++        floor, ...) plus any live markers merged in -- exactly as built by
++        _build_world_params(), the same function that feeds STORM's PrimitiveCollisionCost.
++        Reusing it here (rather than re-deriving poses independently) guarantees this
++        visualization can never drift from what STORM is actually checking against.
++        """
++        if self._storm_base_world is None:
++            return
++        try:
++            world_params = self._build_world_params(self._storm_base_world, include_live_collision_inputs=True)
++            coll_objs = world_params.get("world_model", {}).get("coll_objs", {})
++            cubes = coll_objs.get("cube", {})
++            spheres = coll_objs.get("sphere", {})
++
++            base_frame_name = str(self.get_parameter("base_frame_name").value)
++            now = self.get_clock().now().to_msg()
++            lifetime_sec = max(1, int(3.0 / max(float(self.get_parameter("collision_geometry_rate_hz").value), 0.1)))
++
++            markers: list[Marker] = []
++            marker_id = 0
++            for name, spec in cubes.items():
++                pose = spec.get("pose")
++                dims = spec.get("dims")
++                if pose is None or dims is None:
++                    continue
++                marker = Marker()
++                marker.header.stamp = now
++                marker.header.frame_id = base_frame_name
++                marker.ns = "storm_world_collision"
++                marker.id = marker_id
++                marker_id += 1
++                marker.type = Marker.CUBE
++                marker.action = Marker.ADD
++                marker.pose.position.x = float(pose[0])
++                marker.pose.position.y = float(pose[1])
++                marker.pose.position.z = float(pose[2])
++                marker.pose.orientation.x = float(pose[3])
++                marker.pose.orientation.y = float(pose[4])
++                marker.pose.orientation.z = float(pose[5])
++                marker.pose.orientation.w = float(pose[6])
++                marker.scale.x = float(dims[0])
++                marker.scale.y = float(dims[1])
++                marker.scale.z = float(dims[2])
++                marker.color.r = 0.2
++                marker.color.g = 0.5
++                marker.color.b = 1.0
++                marker.color.a = 0.3
++                marker.lifetime.sec = lifetime_sec
++                markers.append(marker)
++
++            for name, spec in spheres.items():
++                position = spec.get("position")
++                radius = spec.get("radius")
++                if position is None or radius is None:
++                    continue
++                marker = Marker()
++                marker.header.stamp = now
++                marker.header.frame_id = base_frame_name
++                marker.ns = "storm_world_collision"
++                marker.id = marker_id
++                marker_id += 1
++                marker.type = Marker.SPHERE
++                marker.action = Marker.ADD
++                marker.pose.position.x = float(position[0])
++                marker.pose.position.y = float(position[1])
++                marker.pose.position.z = float(position[2])
++                marker.pose.orientation.w = 1.0
++                marker.scale.x = marker.scale.y = marker.scale.z = 2.0 * float(radius)
++                marker.color.r = 0.2
++                marker.color.g = 0.5
++                marker.color.b = 1.0
++                marker.color.a = 0.3
++                marker.lifetime.sec = lifetime_sec
++                markers.append(marker)
++
++            if markers:
++                self._pub_world_collision_primitives.publish(MarkerArray(markers=markers))
++        except Exception as exc:  # noqa: BLE001
++            self.get_logger().warn(
++                f"World collision primitive visualization failed this tick (non-fatal): {exc}",
++                throttle_duration_sec=5.0,
++            )
++
+     def _tick(self) -> None:
+         self._armed = bool(self.get_parameter("armed").value)
+         debug_mppi_rate = bool(self.get_parameter("debug_mppi_rate").value)
+@@ -2051,6 +2514,15 @@ class StormMppiPlannerNode(Node):
+ 
+         if not self._storm_initialized or self._storm_task is None or self._storm_control_dt is None:
+             return
++
++        if self._armed and not self._last_armed_for_reset:
++            # Just transitioned disarmed -> armed (e.g. a gripper close/open hold just ended).
++            # Start the resumed rollout fresh instead of hotstart continuing from whatever plan
++            # was active right before the hold -- see BaseTask.reset().
++            self._storm_task.reset()
++            self.get_logger().info("armed False->True: resetting MPPI rollout for a fresh start.")
++        self._last_armed_for_reset = self._armed
++
+         self._maybe_update_world_collision_inputs()
+         if self._np_q is None:
+             return
+@@ -2091,6 +2563,16 @@ class StormMppiPlannerNode(Node):
+             self._storm_task.update_params(goal_ee_pos=goal_ee_pos, goal_ee_rot=goal_ee_rot)
+             self._last_goal_storm_ee_xyzquat = goal_xyzquat
+ 
++        if self._gripper_width is not None and self._last_box_world_params_raw is not None:
++            open_width = float(self.get_parameter("gripper_open_width").value)
++            tolerance = float(self.get_parameter("gripper_open_tolerance").value)
++            gripper_is_open = abs(self._gripper_width - open_width) <= tolerance
++            if gripper_is_open != self._last_gripper_is_open:
++                self._storm_task.update_params(
++                    box_world_params=self._filter_box_world_params(self._last_box_world_params_raw)
++                )
++                self._last_gripper_is_open = gripper_is_open
++
+         if not self._armed:
+             self._publish_disarmed_control()
+             return
+@@ -2140,10 +2622,49 @@ class StormMppiPlannerNode(Node):
+                 f"N_eff~{n_eff:.1f}",
+                 throttle_duration_sec=1.0,
+             )
++            if bool(self.get_parameter("debug_cost_breakdown").value):
++                breakdown = getattr(self._storm_task, "cost_breakdown", {})
++                if breakdown:
++                    parts = "  |  ".join(f"{k}: {v:.2f}" for k, v in breakdown.items())
++                    self.get_logger().info(f"MPPI costs:  {parts}", throttle_duration_sec=1.0)
++
++                cov_diag = getattr(self._storm_task, "cov_diagonal", None)
++                if cov_diag:
++                    if isinstance(cov_diag[0], (list, tuple)):
++                        # full_HAxHA: genuinely varies per horizon step -- full list, one row
++                        # per horizon step, one column per action dim.
++                        rows = "; ".join(
++                            f"t{i}:[" + ", ".join(f"{v:.5f}" for v in row) + "]"
++                            for i, row in enumerate(cov_diag)
++                        )
++                        self.get_logger().info(
++                            f"MPPI cov (per horizon step, {len(cov_diag)} steps):  {rows}",
++                            throttle_duration_sec=1.0,
++                        )
++                    else:
++                        # sigma_I/diag_AxA/full_AxA: one width per action dim, applied
++                        # uniformly to every horizon step (not literally a per-step list).
++                        joints = ", ".join(f"j{i+1}: {v:.5f}" for i, v in enumerate(cov_diag))
++                        self.get_logger().info(
++                            f"MPPI cov (per-joint, applied uniformly across all horizon steps):  {joints}",
++                            throttle_duration_sec=1.0,
++                        )
++
++                phase_timing = getattr(self._storm_task, "phase_timing", {})
++                if phase_timing:
++                    parts = "  |  ".join(f"{k}: {1.0e3 * v:.1f}ms" for k, v in phase_timing.items())
++                    self.get_logger().info(f"MPPI phase timing:  {parts}", throttle_duration_sec=1.0)
+ 
+         q_des = np.asarray(cmd_des.get("position", self._np_q), dtype=np.float64)
+         dq_des = np.asarray(cmd_des.get("velocity", np.zeros_like(q_des)), dtype=np.float64)
+         ddq_des = np.asarray(cmd_des.get("acceleration", np.zeros_like(q_des)), dtype=np.float64)
++        q_des, dq_des, ddq_des = self._guard_joint_limit_reference(q_des, dq_des, ddq_des)
++        # Replan from the reference actually sent; do not retain the unclipped
++        # outward velocity in the native integrator after a boundary projection.
++        if float(self.get_parameter("joint_limit_reference_margin_rad").value) > 0:
++            filtered = self._storm_task.state_filter.cmd_joint_state
++            if filtered is not None:
++                filtered.update(position=q_des.copy(), velocity=dq_des.copy(), acceleration=ddq_des.copy())
+         self._dispatch_reference(q_des=q_des, dq_des=dq_des, ddq_des=ddq_des)
+ 
+     @staticmethod
+@@ -2191,6 +2712,7 @@ class StormMppiPlannerNode(Node):
+             raise ValueError("dq_des and ddq_des must match q_des size.")
+ 
+         q_des = self._clamp_q_des_to_measured(q_des)
++        q_des, dq_des, ddq_des = self._guard_joint_limit_reference(q_des, dq_des, ddq_des)
+ 
+         n = int(q_des.size)
+         K = np.zeros((n, 2 * n), dtype=np.float64)
+@@ -2311,6 +2833,70 @@ class StormMppiPlannerNode(Node):
+         clamped_err = np.clip(err, -max_err, max_err)
+         return self._np_q + clamped_err
+ 
++    def _clamp_q_des_to_joint_limits(self, q_des: np.ndarray) -> np.ndarray:
++        """Hard backstop: never publish a reference outside the robot's actual joint position
++        limits, regardless of what STORM's soft state_bound cost (or shifted-CaT) decided.
++        A guarantee, not a preference -- independent of and in addition to state_bound, since
++        a large soft-cost weight can still be outweighed by other costs in MPPI's
++        softmax-weighted average (see the "state_bound not winning" discussion this was added
++        for). Joint order is derived from self._moving_joint_names (matches q_des's own
++        indexing) via the trailing joint number, so it's correct regardless of arm_id naming
++        (fer_jointN / panda_jointN / fr3_jointN all share identical physical limits).
++        """
++        if not self._moving_joint_names or len(self._moving_joint_names) != q_des.size:
++            return q_des
++
++        if self._joint_limit_lower is None or self._joint_limit_upper is None:
++            lower = np.zeros(q_des.size, dtype=np.float64)
++            upper = np.zeros(q_des.size, dtype=np.float64)
++            for i, name in enumerate(self._moving_joint_names):
++                m = re.search(r"joint(\d+)$", name)
++                if not m:
++                    self.get_logger().warn(
++                        f"Cannot derive joint number from '{name}'; skipping hard joint-limit clamp.",
++                        throttle_duration_sec=5.0,
++                    )
++                    return q_des
++                idx = int(m.group(1)) - 1
++                if idx < 0 or idx >= len(_FRANKA_JOINT_LOWER):
++                    self.get_logger().warn(
++                        f"Joint index {idx + 1} from '{name}' out of range; skipping hard joint-limit clamp.",
++                        throttle_duration_sec=5.0,
++                    )
++                    return q_des
++                lower[i] = _FRANKA_JOINT_LOWER[idx]
++                upper[i] = _FRANKA_JOINT_UPPER[idx]
++            self._joint_limit_lower = lower
++            self._joint_limit_upper = upper
++
++        return np.clip(q_des, self._joint_limit_lower, self._joint_limit_upper)
++
++    def _guard_joint_limit_reference(self, q_des, dq_des, ddq_des):
++        """Keep the published position, velocity and acceleration consistent at limits.
++
++        A position-only clip can still command outward velocity and feedforward torque.
++        This was observed on joint 7 during the physical COSMIK replay trial.
++        The inset leaves tracking/braking room; it does not bound measured motion.
++        """
++        q_des = self._clamp_q_des_to_joint_limits(q_des)
++        margin = float(self.get_parameter("joint_limit_reference_margin_rad").value)
++        if not np.isfinite(margin) or margin < 0:
++            raise ValueError("joint_limit_reference_margin_rad must be finite and nonnegative")
++        if (margin == 0 or not self._armed or self._goal_pose_msg is None
++                or self._joint_limit_lower is None or self._joint_limit_upper is None):
++            return q_des, dq_des, ddq_des
++        lower = self._joint_limit_lower + margin
++        upper = self._joint_limit_upper - margin
++        if np.any(lower >= upper):
++            raise ValueError("joint_limit_reference_margin_rad leaves no joint range")
++        q_des = np.clip(q_des, lower, upper)
++        at_lower, at_upper = q_des <= lower, q_des >= upper
++        dq_des = np.asarray(dq_des, dtype=np.float64).copy()
++        ddq_des = np.asarray(ddq_des, dtype=np.float64).copy()
++        dq_des[(at_lower & (dq_des < 0)) | (at_upper & (dq_des > 0))] = 0.0
++        ddq_des[(at_lower & (ddq_des < 0)) | (at_upper & (ddq_des > 0))] = 0.0
++        return q_des, dq_des, ddq_des
++
+     def _safe_joint_feedback_gain(self, n: int) -> np.ndarray:
+         """Fallback K used by Cartesian mode's safety net: the same fixed diag(kp,kd) used by
+         feedback_mode=joint, so a rejected Cartesian gain degrades to the known-good behavior

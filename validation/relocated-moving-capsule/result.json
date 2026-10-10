@@ -1,0 +1,89 @@
+{
+  "pass": true,
+  "scope": "Simulation transport and reaching smoke check; does not certify collision avoidance or prediction.",
+  "human": "true",
+  "wall_seconds": 56.79719406401273,
+  "cat_profile_loaded": true,
+  "dynamic_geometry_update_logs": 21,
+  "simulated_seconds_after_first_goal": 50.0,
+  "messages": {
+    "clock": 51259,
+    "human_frames": 1539,
+    "joint_states": 1544,
+    "goals": 878,
+    "ee_samples": 1002,
+    "control": 1939
+  },
+  "target_visits": [
+    {
+      "target": "A",
+      "sim_time": 1.501
+    },
+    {
+      "target": "B",
+      "sim_time": 11.55
+    },
+    {
+      "target": "A",
+      "sim_time": 21.75
+    },
+    {
+      "target": "B",
+      "sim_time": 32.8
+    },
+    {
+      "target": "A",
+      "sim_time": 39.3
+    },
+    {
+      "target": "B",
+      "sim_time": 50.3
+    }
+  ],
+  "spatial_arrivals": {
+    "B": 2,
+    "A": 1
+  },
+  "minimum_target_error_m": {
+    "A": 0.01741304124454296,
+    "B": 0.001157208334341709
+  },
+  "timeout_events": 4,
+  "nonfinite_state_or_command": false,
+  "joint_excursion_rad": [
+    2.6894593116023344,
+    2.4628298254366414,
+    1.898966618241421,
+    0.8613899858876335,
+    3.055458458340278,
+    3.3816550937763945,
+    5.746724170546307
+  ],
+  "task_events": [
+    "[pick_place_task_manager_node-16] [INFO] [1791580463.940505568] [pick_place_task_manager]: [task-event] open",
+    "[pick_place_task_manager_node-16] [INFO] [1791580463.940869573] [pick_place_task_manager]: [task-event] pregrasp(A)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580474.950295481] [pick_place_task_manager]: [task-event] target-timeout(A, elapsed=10.00s); advancing to the other target.",
+    "[pick_place_task_manager_node-16] [INFO] [1791580474.950545119] [pick_place_task_manager]: [task-event] preplace(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580481.990293271] [pick_place_task_manager]: [task-event] place(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580482.040130515] [pick_place_task_manager]: [task-event] open",
+    "[pick_place_task_manager_node-16] [INFO] [1791580483.046096428] [pick_place_task_manager]: [task-event] lift(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580483.096835136] [pick_place_task_manager]: [task-event] swap(cycle=1, pick=B, place=A)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580483.097360458] [pick_place_task_manager]: [task-event] open",
+    "[pick_place_task_manager_node-16] [INFO] [1791580483.097579659] [pick_place_task_manager]: [task-event] pregrasp(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580484.101292053] [pick_place_task_manager]: [task-event] grasp(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580484.403004463] [pick_place_task_manager]: [task-event] close",
+    "[pick_place_task_manager_node-16] [INFO] [1791580485.156958443] [pick_place_task_manager]: [task-event] lift(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580485.207108532] [pick_place_task_manager]: [task-event] target-timeout(B, elapsed=10.15s); advancing to the other target.",
+    "[pick_place_task_manager_node-16] [INFO] [1791580485.207593963] [pick_place_task_manager]: [task-event] preplace(A)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580495.315283731] [pick_place_task_manager]: [task-event] target-timeout(A, elapsed=10.00s); advancing to the other target.",
+    "[pick_place_task_manager_node-16] [INFO] [1791580495.315831503] [pick_place_task_manager]: [task-event] open",
+    "[pick_place_task_manager_node-16] [INFO] [1791580495.316053701] [pick_place_task_manager]: [task-event] pregrasp(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580501.756248305] [pick_place_task_manager]: [task-event] grasp(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580502.057899049] [pick_place_task_manager]: [task-event] close",
+    "[pick_place_task_manager_node-16] [INFO] [1791580502.811995270] [pick_place_task_manager]: [task-event] lift(B)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580502.861907028] [pick_place_task_manager]: [task-event] preplace(A)",
+    "[pick_place_task_manager_node-16] [INFO] [1791580512.971550446] [pick_place_task_manager]: [task-event] target-timeout(A, elapsed=10.00s); advancing to the other target.",
+    "[pick_place_task_manager_node-16] [INFO] [1791580512.972267147] [pick_place_task_manager]: [task-event] open",
+    "[pick_place_task_manager_node-16] [INFO] [1791580512.972496461] [pick_place_task_manager]: [task-event] pregrasp(B)"
+  ]
+}

@@ -1,0 +1,15 @@
+ati_mini45:
+  origin:
+    xyz: 0 0 0.01635
+    rpy: 0 0 0
+  # Measured with scale
+  mass: 0.163
+  # Computed using an STL file
+  # and measured mass
+  inertia:
+    xx: 0.000070838
+    yy: 0.000070838
+    zz: 0.000107824
+    xy: 0
+    xz: 0
+    yz: 0
