@@ -124,3 +124,15 @@ in `validation/git-20261010/`. Subsequent changes before tagging are documentati
 validation records and their release hashes. No controller code or tuning changed.
 The new host image loader also verified the actual exported archive checksum and
 the existing Docker image ID on kurai.
+
+## Public GitHub image delivery — 2026-10-10
+
+The `v1.0.0` GitHub Release contains the exact previously validated Docker export
+in three assets. GitHub's server-side SHA-256 digests matched each local part.
+The public `host_fetch_image.sh` path was then exercised on kurai without GitHub
+CLI authentication on the download host. All parts and the assembled 4,683,075,340
+byte archive passed their checksums. An explicit `docker image load` of that
+downloaded archive succeeded and reproduced the original validated image ID.
+See `validation/github-release-20261010.json` for the delivery record. This check
+validates distribution of the existing image; the runtime checks above remain
+the evidence for its robot behavior.

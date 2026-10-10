@@ -1,0 +1,54 @@
+{
+  "pass": true,
+  "release_url": "https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/tag/v1.0.0",
+  "download_method": "Public GitHub Release URLs using host_fetch_image.sh; no GitHub CLI or token on the download host",
+  "archive_sha256": "bef4d055cfc3d435d2586e98a693c00e792ffde3b3fee4a6a9c59596267a0e73",
+  "image_id": "sha256:f22ff33ad9e5ab0673f78646c8f70168cb00fca8b4672391bc7873eb35453f1f",
+  "docker_load_passed": true,
+  "date": "2026-10-10",
+  "release_commit": "64ce07608f17873e2a79830a0b8dc9d5049a80d1",
+  "uploaded_assets": [
+    {
+      "name": "cosmik-mppi-sim-2026-10-10.image.tar.gz.image-id.txt",
+      "size": 72,
+      "digest": "sha256:b92a1eb650c1aa4b36c613fb191ed05302e1c7df4c89d28095201ce5c296973f",
+      "browser_download_url": "https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/download/untagged-8265ee961121554dea1f/cosmik-mppi-sim-2026-10-10.image.tar.gz.image-id.txt"
+    },
+    {
+      "name": "cosmik-mppi-sim-2026-10-10.image.tar.gz.part-01",
+      "size": 1610612736,
+      "digest": "sha256:7e43034952929657d50251e059922fd32c354fdb7f8ca0ba6aeebcf35c5ceaf9",
+      "browser_download_url": "https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/download/untagged-8265ee961121554dea1f/cosmik-mppi-sim-2026-10-10.image.tar.gz.part-01"
+    },
+    {
+      "name": "cosmik-mppi-sim-2026-10-10.image.tar.gz.part-02",
+      "size": 1610612736,
+      "digest": "sha256:913d32211c5c29d6ae662715e398ad241058751392e8c601c137ad51fbf410f1",
+      "browser_download_url": "https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/download/untagged-8265ee961121554dea1f/cosmik-mppi-sim-2026-10-10.image.tar.gz.part-02"
+    },
+    {
+      "name": "cosmik-mppi-sim-2026-10-10.image.tar.gz.part-03",
+      "size": 1461849868,
+      "digest": "sha256:92df09dd829e245e701c5d3e69861c1923ffbb8d40c2f0d750dc9dd6ba157550",
+      "browser_download_url": "https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/download/untagged-8265ee961121554dea1f/cosmik-mppi-sim-2026-10-10.image.tar.gz.part-03"
+    },
+    {
+      "name": "cosmik-mppi-sim-2026-10-10.image.tar.gz.sha256",
+      "size": 106,
+      "digest": "sha256:bf979f83fdd21dfa8a79fb688e767c1789a4e97afc8a9055a7d6a5846af1f1b3",
+      "browser_download_url": "https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/download/untagged-8265ee961121554dea1f/cosmik-mppi-sim-2026-10-10.image.tar.gz.sha256"
+    },
+    {
+      "name": "github-image.json",
+      "size": 1406,
+      "digest": "sha256:d6e5ff682fc6638d09932a61cca785e5eb07a044bf2405189c96ae15e7256e9b",
+      "browser_download_url": "https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/download/untagged-8265ee961121554dea1f/github-image.json"
+    },
+    {
+      "name": "SHA256SUMS",
+      "size": 342,
+      "digest": "sha256:2091a7985f9c6cad865636dbb99d2a463a8a340b2c40d99ef01361278d87c959",
+      "browser_download_url": "https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/download/untagged-8265ee961121554dea1f/SHA256SUMS"
+    }
+  ]
+}
