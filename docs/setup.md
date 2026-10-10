@@ -60,21 +60,23 @@ NVIDIA driver, and X11/Xwayland if using RViz. The headless path avoids display 
 The recipe uses Docker's documented [GPU reservations](https://docs.docker.com/compose/how-tos/gpu-support/)
 and [service inheritance](https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/).
 
-The easiest route is to load the supplied tested image, then check your GPU:
+The easiest route is to fetch the tested image from GitHub, then check your GPU:
 
 ```bash
-./scripts/host_load_image.sh /path/to/cosmik-mppi-sim-2026-10-10.image.tar.gz
+./scripts/host_fetch_image.sh
 DEMO_SKIP_BUILD=1 ./scripts/host_acceptance.sh
 ./scripts/host_rviz.sh
 ```
 
-The loader verifies the archive checksum against the Git record, then checks the
+The fetch helper downloads the public release assets and assembles them. The
+loader verifies the archive checksum against the Git record, then checks the
 loaded image ID. For a manual check, compare the adjacent `.sha256` and
 `docker image inspect cosmik-mppi-sim:baseline --format '{{.Id}}'` with
 `provenance/docker-image.json`. The source guide is the current handoff guide;
 the exported runtime image contains the source/docs that existed when it was tested.
 
-Without the image archive, `./scripts/host_acceptance.sh` builds the recipe and
+For an offline archive, use `./scripts/host_load_image.sh /path/to/image.tar.gz`.
+To rebuild instead, `./scripts/host_acceptance.sh` builds the recipe and
 runs the same acceptance sequence. For the complete user test and live log locations,
 see [host-testing.md](host-testing.md).
 
@@ -99,7 +101,8 @@ To export a tested image again, run on the Docker host:
 ```
 
 The helper writes the image archive, checksum and image ID. Keep the source archive
-alongside it; the `dev` workflow needs editable source. No registry publication is required.
+alongside it; the `dev` workflow needs editable source. The released baseline is
+already hosted on GitHub; see [sharing.md](sharing.md).
 
 ## Troubleshooting
 

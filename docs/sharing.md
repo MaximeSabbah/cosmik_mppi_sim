@@ -1,29 +1,27 @@
 # Share the baseline and start development
 
 Repository: <https://github.com/MaximeSabbah/cosmik_mppi_sim>.
-The initial reproducible snapshot is tagged `baseline-2026-10-10`.
+Use release `v1.0.0` for the student handoff. The original controller snapshot is
+also retained as `baseline-2026-10-10`; its tuning is unchanged.
 
-## Supervisor: send two links
+## Supervisor: send the repository link
 
-1. Invite the student to the repository and send its URL.
-2. Upload these three existing files to laboratory shared storage, keeping them
-   together, and send the student the download link:
+The source and tested Docker environment are available from the same GitHub
+project. Send the repository URL and this guide; grant write access when she is
+ready to push her research branch. Reading the public repository and downloading
+the image do not require GitHub authentication.
 
-   - `cosmik-mppi-sim-2026-10-10.image.tar.gz` (approximately 4.4 GiB)
-   - `cosmik-mppi-sim-2026-10-10.image.tar.gz.sha256`
-   - `cosmik-mppi-sim-2026-10-10.image.tar.gz.image-id.txt`
+The [v1.0.0 Release](https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/tag/v1.0.0)
+contains the exact tested Docker archive, approximately 4.4 GiB, in three parts.
+[GitHub limits each release asset to under 2 GiB](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases).
+`host_fetch_image.sh` handles downloading, assembly, checksums and Docker loading
+automatically. The student does not need to manipulate the parts manually.
 
-On kurai they are already in:
-
-```text
-/home/msabbah/cosmik_ral/cosmik_ral/workspace/handoff/docker_images/
-```
-
-Inside the original development container that directory is
-`/workspace/handoff/docker_images/`. The image has not been uploaded to a
-registry or file-sharing service. Git contains the expected checksum and image ID
-in `provenance/docker-image.json`, so the loader checks the download independently
-of the adjacent checksum file. There is no need to re-export or rebuild this image.
+`provenance/github-image.json` pins each part's URL, size and SHA-256.
+`provenance/docker-image.json` pins the complete archive and loaded image ID.
+Interrupted downloads can be resumed by rerunning the helper. Completed parts
+are verified before reuse; after assembly they are removed, leaving the complete
+archive under `.runtime/images/`.
 
 Git stores source, tuning, assets, weights, dependency recipes, tests, documentation
 and selected validation reports. Keep Docker exports, bags and bulk experiment
@@ -51,23 +49,27 @@ this is a planning allowance, not a measured minimum.
 
 ## Student: first run
 
-After accepting the repository invitation and configuring your GitHub SSH access:
+From a host terminal:
 
 ```bash
-git clone git@github.com:MaximeSabbah/cosmik_mppi_sim.git
+git clone --branch v1.0.0 https://github.com/MaximeSabbah/cosmik_mppi_sim.git
 cd cosmik_mppi_sim
-git switch -c human-prediction baseline-2026-10-10
+git switch -c human-prediction
 python3 scripts/verify-release.py
-./scripts/host_load_image.sh /path/to/cosmik-mppi-sim-2026-10-10.image.tar.gz
+./scripts/host_fetch_image.sh
 DEMO_SKIP_BUILD=1 ./scripts/host_acceptance.sh
 ./scripts/host_rviz.sh
 ```
 
-Replace `/path/to/` with the directory where you downloaded the image. The loader
-checks the archive and loaded image ID. The acceptance script checks CUDA, runs
+The fetch helper downloads and loads the tested image from GitHub. It checks
+the archive and loaded image ID. The acceptance script checks CUDA, runs
 17 unit tests, and runs reaching checks with and without the moving capsule.
 Both targets must be reached spatially; timeout-only alternation does not pass.
 Results stay in `.runtime/host-validation/`. Ctrl-C stops the interactive demo.
+
+If you already have an offline copy of the complete image archive, use
+`./scripts/host_load_image.sh /path/to/cosmik-mppi-sim-2026-10-10.image.tar.gz`
+instead of the fetch helper. No fresh dependency installation is needed.
 
 The first-run commands execute the frozen code inside the tested image. The Git
 snapshot also contains later documentation and host helper improvements; those do
@@ -113,8 +115,8 @@ Start the research work with [prediction.md](prediction.md); use
 
 ## Message to send the student
 
-> Clone the repository and follow docs/sharing.md. I will send the tested Docker
-> image separately. First reproduce the baseline and keep its CaT tuning intact.
+> Clone the v1.0.0 release and follow docs/sharing.md. The tested Docker image is
+> downloaded from GitHub by host_fetch_image.sh. First reproduce the baseline and keep its CaT tuning intact.
 > Use host_dev.sh when running your edits. Your first research milestone is to
 > connect time-indexed human geometry to the MPPI collision evaluation, prove that
 > a stationary forecast matches the baseline, and then compare constant velocity.

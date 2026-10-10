@@ -11,7 +11,8 @@ supervisor's workspace. The entry point explicitly selects
 This launch always uses Gazebo.
 
 Repository: [MaximeSabbah/cosmik_mppi_sim](https://github.com/MaximeSabbah/cosmik_mppi_sim).
-Start from the `baseline-2026-10-10` tag for the supervisor's reference version.
+Start from the `v1.0.0` release for the complete source and GitHub image installer.
+The earlier `baseline-2026-10-10` tag records the same controller tuning.
 The complete [student setup and sharing guide](docs/sharing.md) covers getting the
 Docker image, first acceptance checks and editing the source.
 
@@ -28,16 +29,19 @@ are already inside the supplied image. Follow [setup.md](docs/setup.md).
 
 After cloning the repository or extracting the source, check it with
 `python3 scripts/verify-release.py` before making edits.
-If you received the prebuilt image alongside the source:
+Download and load the tested image directly from the
+[GitHub Release](https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/tag/v1.0.0):
 
 ```bash
-./scripts/host_load_image.sh /path/to/cosmik-mppi-sim-2026-10-10.image.tar.gz
+./scripts/host_fetch_image.sh
 DEMO_SKIP_BUILD=1 ./scripts/host_acceptance.sh
 ./scripts/host_rviz.sh
 ```
 
-Run these in the host terminal. Without the image archive, run
-`./scripts/host_acceptance.sh` to build and test it first. For development, use
+Run these in the host terminal. The fetch helper downloads the release parts,
+assembles them, checks SHA-256 and verifies the loaded image ID. No GitHub login
+is needed for this public release. To build from source instead, run
+`./scripts/host_acceptance.sh`. For development, use
 `./scripts/host_dev.sh` (or append `with_rviz:=false` without a display). It mounts
 your source and builds it in separate container volumes. The simulation inside
 the fixed `sim` image does not pick up host source edits; the `dev` service does.

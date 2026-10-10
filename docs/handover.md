@@ -16,8 +16,10 @@ Suggested accompanying message:
 > constant velocity before integrating your prediction model. The standalone
 > predictor examples are scaffolding; they are not connected to MPPI yet.
 
-Also give her the tested `cosmik-mppi-sim-2026-10-10.image.tar.gz`, its checksum,
-and image-ID file. `docker load` then avoids a fresh dependency installation.
+The tested Docker image is distributed through the
+[v1.0.0 GitHub Release](https://github.com/MaximeSabbah/cosmik_mppi_sim/releases/tag/v1.0.0).
+She runs `./scripts/host_fetch_image.sh` to download, verify and load it, avoiding
+a fresh dependency installation or a separate file transfer from the supervisor.
 A clean Docker image was built and passed GPU, unit and both reaching checks on
 kurai on 2026-10-10. The supervisor subsequently reported the GUI looked acceptable;
 this feedback is recorded separately in `provenance/docker-image.json` and does
