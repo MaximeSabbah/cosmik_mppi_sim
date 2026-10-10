@@ -35,5 +35,6 @@
   "updated": "2026-10-10",
   "docker_acceptance": "validation/docker-20261010/result.json",
   "user_gui_review": "supervisor_reported_acceptable",
-  "user_gui_review_note": "Supervisor reported \"ok it seems quite ok\" after the kurai GUI runs on 2026-10-10; qualitative feedback only."
+  "user_gui_review_note": "Supervisor reported \"ok it seems quite ok\" after the kurai GUI runs on 2026-10-10; qualitative feedback only.",
+  "git_checkout_acceptance": "validation/git-20261010/result.json"
 }

@@ -1,0 +1,532 @@
+ Volume cosmik_student_gitcheck_demo_install Creating 
+ Volume cosmik_student_gitcheck_demo_install Creating 
+ Volume cosmik_student_gitcheck_demo_log Creating 
+ Volume cosmik_student_gitcheck_demo_log Creating 
+ Volume cosmik_student_gitcheck_demo_build Creating 
+ Volume cosmik_student_gitcheck_demo_build Creating 
+ Volume cosmik_student_gitcheck_demo_install Created 
+ Volume cosmik_student_gitcheck_demo_install Created 
+ Volume cosmik_student_gitcheck_demo_build Created 
+ Volume cosmik_student_gitcheck_demo_build Created 
+ Volume cosmik_student_gitcheck_demo_log Created 
+ Volume cosmik_student_gitcheck_demo_log Created 
+ Container cosmik_student_gitcheck-dev-run-91fbe41af28c Creating 
+ Container cosmik_student_gitcheck-dev-run-91fbe41af28c Created 
+Starting >>> franka_description
+--- stderr: franka_description
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+Finished <<< franka_description [1.02s]
+Starting >>> franka_msgs
+--- stderr: franka_msgs
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+Finished <<< franka_msgs [7.95s]
+Starting >>> libfranka
+--- stderr: libfranka
+CMake Warning at CMakeLists.txt:243 (MESSAGE):
+  Could not find clang-format-6.0
+
+
+CMake Warning at CMakeLists.txt:271 (MESSAGE):
+  Could not find clang-tidy-6.0
+
+
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_TESTING
+
+
+---
+Finished <<< libfranka [2.10s]
+Starting >>> linear_feedback_controller_msgs
+--- stderr: linear_feedback_controller_msgs
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+Finished <<< linear_feedback_controller_msgs [3.71s]
+Starting >>> franka_gripper
+Finished <<< franka_gripper [6.74s]
+--- stderr: franka_gripper
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+Starting >>> franka_hardware
+Finished <<< franka_hardware [4.52s]
+--- stderr: franka_hardware
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+Starting >>> linear_feedback_controller
+Finished <<< linear_feedback_controller [12.4s]
+--- stderr: linear_feedback_controller
+CMake Warning at /usr/share/cmake-3.22/Modules/FindBoost.cmake:2201 (message):
+  No header defined for python310; skipping header check (note: header-only
+  libraries have no designated component)
+Call Stack (most recent call first):
+  /opt/ros/humble/lib/x86_64-linux-gnu/cmake/eigenpy/boost.cmake:146 (find_package)
+  /opt/ros/humble/lib/x86_64-linux-gnu/cmake/eigenpy/eigenpyConfig.cmake:172 (SEARCH_FOR_BOOST_PYTHON)
+  /usr/share/cmake-3.22/Modules/CMakeFindDependencyMacro.cmake:47 (find_package)
+  /opt/ros/humble/lib/x86_64-linux-gnu/cmake/pinocchio/pinocchioConfig.cmake:184 (find_dependency)
+  /opt/ros/humble/share/ament_cmake_auto/cmake/ament_auto_find_build_dependencies.cmake:67 (find_package)
+  CMakeLists.txt:42 (ament_auto_find_build_dependencies)
+
+
+In this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/linear_feedback_controller` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:5,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+   19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:13:34: warning: extra ‘;’ [-Wpedantic]
+   13 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp: In member function ‘void linear_feedback_controller::LFController::initialize(const SharedPtr&)’:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:18:14: warning: unused variable ‘joint_nq’ [-Wunused-variable]
+   18 |   const auto joint_nq = rmb_->get_joint_nq();
+      |              ^~~~~~~~
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp: In member function ‘const VectorXd& linear_feedback_controller::LFController::compute_control(const linear_feedback_controller_msgs::Eigen::Sensor&, const linear_feedback_controller_msgs::Eigen::Control&)’:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:38:61: warning: unused variable ‘sensor_js’ [-Wunused-variable]
+   38 |   const linear_feedback_controller_msgs::Eigen::JointState& sensor_js =
+      |                                                             ^~~~~~~~~
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/lf_controller.cpp:40:61: warning: unused variable ‘ctrl_js’ [-Wunused-variable]
+   40 |   const linear_feedback_controller_msgs::Eigen::JointState& ctrl_js =
+      |                                                             ^~~~~~~
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/pd_controller.hpp:5,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/pd_controller.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+   19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/pd_controller.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/pd_controller.hpp:12:34: warning: extra ‘;’ [-Wpedantic]
+   12 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/robot_model_builder.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+   19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:5,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:13,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller_ros.hpp:28,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller_ros.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+   19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:5,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:13,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/robot_model_builder.hpp:19:34: warning: extra ‘;’ [-Wpedantic]
+   19 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:13,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller_ros.hpp:28,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller_ros.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:13:34: warning: extra ‘;’ [-Wpedantic]
+   13 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:13,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/lf_controller.hpp:13:34: warning: extra ‘;’ [-Wpedantic]
+   13 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:14,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller_ros.hpp:28,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller_ros.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/pd_controller.hpp:12:34: warning: extra ‘;’ [-Wpedantic]
+   12 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller_ros.hpp:28,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller_ros.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:55:34: warning: extra ‘;’ [-Wpedantic]
+   55 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:14,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/pd_controller.hpp:12:34: warning: extra ‘;’ [-Wpedantic]
+   12 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:1:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/include/linear_feedback_controller/linear_feedback_controller.hpp:55:34: warning: extra ‘;’ [-Wpedantic]
+   55 |   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+      |                                  ^
+      |                                  -
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp: In member function ‘const VectorXd& linear_feedback_controller::LinearFeedbackController::compute_control(const TimePoint&, const Sensor&, const Control&, bool)’:
+/work/cosmik-mppi-sim/ros2_ws/src/linear-feedback-controller/src/linear_feedback_controller.cpp:53:15: warning: unused variable ‘ctrl_js’ [-Wunused-variable]
+   53 |   const auto& ctrl_js = control.initial_state.joint_state;
+      |               ^~~~~~~
+---
+Starting >>> storm_agimus_bridge
+Finished <<< storm_agimus_bridge [0.59s]--- stderr: storm_agimus_bridge
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+
+Starting >>> franka_ign_ros2_control
+Finished <<< franka_ign_ros2_control [9.55s]
+--- stderr: franka_ign_ros2_control
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+Starting >>> franka_semantic_components
+--- stderr: franka_semantic_components
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+Finished <<< franka_semantic_components [1.90s]
+Starting >>> franka_robot_state_broadcaster
+--- stderr: franka_robot_state_broadcaster
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/franka_ros2/franka_robot_state_broadcaster/include/franka_robot_state_broadcaster/franka_robot_state_broadcaster.hpp:24,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/franka_ros2/franka_robot_state_broadcaster/src/franka_robot_state_broadcaster.cpp:15:
+/work/cosmik-mppi-sim/ros2_ws/build/franka_robot_state_broadcaster/include/franka_robot_state_broadcaster_parameters.hpp:1:193: note: ‘#pragma message: #include "franka_robot_state_broadcaster_parameters.hpp" is deprecated. Use #include <franka_robot_state_broadcaster/franka_robot_state_broadcaster_parameters.hpp> instead.’
+    1 | #pragma message("#include \"franka_robot_state_broadcaster_parameters.hpp\" is deprecated. Use #include <franka_robot_state_broadcaster/franka_robot_state_broadcaster_parameters.hpp> instead.")
+      |                                                                                                                                                                                                 ^
+In file included from /work/cosmik-mppi-sim/ros2_ws/src/franka_ros2/franka_robot_state_broadcaster/include/franka_robot_state_broadcaster/franka_robot_state_broadcaster.hpp:28,
+                 from /work/cosmik-mppi-sim/ros2_ws/src/franka_ros2/franka_robot_state_broadcaster/src/franka_robot_state_broadcaster.cpp:15:
+/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_publisher.h:22:103: note: ‘#pragma message: This header include is deprecated. Please update your code to use 'realtime_publisher.hpp' header.’
+   22 |   "This header include is deprecated. Please update your code to use 'realtime_publisher.hpp' header.")  //NOLINT
+      |                                                                                                       ^
+---
+Finished <<< franka_robot_state_broadcaster [5.41s]
+Starting >>> agimus_demos_common
+Finished <<< agimus_demos_common [1.20s]
+--- stderr: agimus_demos_common
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+---
+Starting >>> storm_pick_place_demo
+--- stderr: storm_pick_place_demo
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_DOCUMENTATION
+    BUILD_EXAMPLES
+    BUILD_TESTS
+
+
+---
+Finished <<< storm_pick_place_demo [0.69s]
+
+Summary: 13 packages finished [57.9s]
+  13 packages had stderr output: agimus_demos_common franka_description franka_gripper franka_hardware franka_ign_ros2_control franka_msgs franka_robot_state_broadcaster franka_semantic_components libfranka linear_feedback_controller linear_feedback_controller_msgs storm_agimus_bridge storm_pick_place_demo
+test_bad_history_or_times_rejected (test_prediction.PredictionTests) ... ok
+test_cv_preserves_geometry_and_matches_reordered_ids (test_prediction.PredictionTests) ... ok
+test_hold_is_stationary_at_all_rollout_times (test_prediction.PredictionTests) ... ok
+test_new_id_holds (test_prediction.PredictionTests) ... ok
+test_nonfinite_and_duplicate_id_rejected (test_prediction.PredictionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.010s
+
+OK
+test_backwards_simulation_time_restarts_target_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+test_cycle_cap_still_stops_after_place_timeout (test_target_timeout.TargetTimeoutTest) ... ok
+test_existing_phase_abort_is_preserved (test_target_timeout.TargetTimeoutTest) ... ok
+test_gripper_phase_finishes_before_switching (test_target_timeout.TargetTimeoutTest) ... ok
+test_phase_changes_do_not_restart_target_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+test_place_place_mode_also_switches (test_target_timeout.TargetTimeoutTest) ... ok
+test_role_swap_at_same_pose_keeps_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+test_simulation_pause_does_not_consume_timeout (test_target_timeout.TargetTimeoutTest) ... ok
+test_spatial_arrival_advances_before_deadline (test_target_timeout.TargetTimeoutTest) ... ok
+test_stalled_targets_alternate_at_ten_seconds (test_target_timeout.TargetTimeoutTest) ... ok
+test_wall_clock_adjustment_does_not_expire_target (test_target_timeout.TargetTimeoutTest) ... ok
+test_zero_disables_timed_alternation (test_target_timeout.TargetTimeoutTest) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.028s
+
+OK
+/usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+{
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "root": "/work/cosmik-mppi-sim",
+  "domain": "86",
+  "packages": {
+    "torch": {
+      "path": "/usr/local/lib/python3.10/dist-packages/torch/__init__.py",
+      "version": "2.5.1+cu124"
+    },
+    "numpy": {
+      "path": "/usr/local/lib/python3.10/dist-packages/numpy/__init__.py",
+      "version": "1.26.4"
+    },
+    "scipy": {
+      "path": "/usr/local/lib/python3.10/dist-packages/scipy/__init__.py",
+      "version": "1.15.3"
+    },
+    "yaml": {
+      "path": "/usr/local/lib/python3.10/dist-packages/yaml/__init__.py",
+      "version": "6.0.3"
+    },
+    "pinocchio": {
+      "path": "/opt/ros/humble/lib/python3.10/site-packages/pinocchio/__init__.py",
+      "version": "4.0.0"
+    },
+    "trimesh": {
+      "path": "/usr/local/lib/python3.10/dist-packages/trimesh/__init__.py",
+      "version": "4.11.2"
+    },
+    "urdf_parser_py": {
+      "path": "/usr/local/lib/python3.10/dist-packages/urdf_parser_py/__init__.py",
+      "version": ""
+    },
+    "storm_kit": {
+      "path": "/work/cosmik-mppi-sim/storm/storm_kit/__init__.py",
+      "version": ""
+    },
+    "storm_kit.mpc.task.reacher_task": {
+      "path": "/work/cosmik-mppi-sim/storm/storm_kit/mpc/task/reacher_task.py",
+      "version": ""
+    },
+    "storm_agimus_bridge.storm_mppi_planner_node": {
+      "path": "/work/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/local/lib/python3.10/dist-packages/storm_agimus_bridge/storm_mppi_planner_node.py",
+      "version": ""
+    },
+    "storm_pick_place_demo.pick_place_task_manager_node": {
+      "path": "/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/local/lib/python3.10/dist-packages/storm_pick_place_demo/pick_place_task_manager_node.py",
+      "version": ""
+    },
+    "linear_feedback_controller_msgs_py": {
+      "path": "/work/cosmik-mppi-sim/ros2_ws/install/linear_feedback_controller_msgs/local/lib/python3.10/dist-packages/linear_feedback_controller_msgs_py/__init__.py",
+      "version": ""
+    },
+    "franka_description": {
+      "prefix": "/work/cosmik-mppi-sim/ros2_ws/install/franka_description"
+    },
+    "franka_ign_ros2_control": {
+      "prefix": "/work/cosmik-mppi-sim/ros2_ws/install/franka_ign_ros2_control"
+    },
+    "linear_feedback_controller": {
+      "prefix": "/work/cosmik-mppi-sim/ros2_ws/install/linear_feedback_controller"
+    },
+    "agimus_demos_common": {
+      "prefix": "/work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common"
+    }
+  },
+  "gpu": "NVIDIA RTX 5000 Ada Generation",
+  "cuda": "12.4",
+  "baseline_config_changes": [],
+  "errors": [],
+  "pass": true
+}
+{
+  "pass": true,
+  "scope": "Simulation transport and reaching smoke check; does not certify collision avoidance or prediction.",
+  "human": "false",
+  "wall_seconds": 57.3114989149617,
+  "cat_profile_loaded": true,
+  "dynamic_geometry_update_logs": 0,
+  "simulated_seconds_after_first_goal": 50.0,
+  "messages": {
+    "clock": 51349,
+    "joint_states": 1540,
+    "goals": 663,
+    "ee_samples": 1001,
+    "control": 1320
+  },
+  "target_visits": [
+    {
+      "target": "A",
+      "sim_time": 1.35
+    },
+    {
+      "target": "B",
+      "sim_time": 11.4
+    },
+    {
+      "target": "A",
+      "sim_time": 22.4
+    },
+    {
+      "target": "B",
+      "sim_time": 28.2
+    },
+    {
+      "target": "A",
+      "sim_time": 32.8
+    },
+    {
+      "target": "B",
+      "sim_time": 37.55
+    },
+    {
+      "target": "A",
+      "sim_time": 42.15
+    },
+    {
+      "target": "B",
+      "sim_time": 46.8
+    }
+  ],
+  "spatial_arrivals": {
+    "A": 3,
+    "B": 3
+  },
+  "minimum_target_error_m": {
+    "A": 0.015343013742576557,
+    "B": 0.0009123788557164924
+  },
+  "timeout_events": 2,
+  "nonfinite_state_or_command": false,
+  "joint_excursion_rad": [
+    2.129991838234001,
+    1.50255109486226,
+    2.6810619908118083,
+    1.4470124882729287,
+    1.7554862364428534,
+    1.8712231394091865,
+    3.380251983482621
+  ]
+}
+{
+  "pass": true,
+  "scope": "Simulation transport and reaching smoke check; does not certify collision avoidance or prediction.",
+  "human": "true",
+  "wall_seconds": 66.55603095702827,
+  "cat_profile_loaded": true,
+  "dynamic_geometry_update_logs": 19,
+  "simulated_seconds_after_first_goal": 50.0,
+  "messages": {
+    "clock": 51399,
+    "joint_states": 1541,
+    "human_frames": 1541,
+    "goals": 780,
+    "ee_samples": 1002,
+    "control": 1763
+  },
+  "target_visits": [
+    {
+      "target": "A",
+      "sim_time": 1.4
+    },
+    {
+      "target": "B",
+      "sim_time": 11.45
+    },
+    {
+      "target": "A",
+      "sim_time": 21.75
+    },
+    {
+      "target": "B",
+      "sim_time": 32.8
+    },
+    {
+      "target": "A",
+      "sim_time": 35.2
+    },
+    {
+      "target": "B",
+      "sim_time": 42.15
+    },
+    {
+      "target": "A",
+      "sim_time": 48.1
+    }
+  ],
+  "spatial_arrivals": {
+    "B": 3,
+    "A": 2
+  },
+  "minimum_target_error_m": {
+    "A": 0.01351175808813923,
+    "B": 0.001937398112583554
+  },
+  "timeout_events": 3,
+  "nonfinite_state_or_command": false,
+  "joint_excursion_rad": [
+    2.6766049368154143,
+    2.3524544313241913,
+    2.2672603886845595,
+    1.4693210199287423,
+    2.157664600370384,
+    3.2723815650659898,
+    2.6632949746800656
+  ]
+}

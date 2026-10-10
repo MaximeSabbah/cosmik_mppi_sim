@@ -26,7 +26,8 @@ For a new workstation, use the tested container: Linux x86-64, an NVIDIA GPU,
 Docker with Compose, and NVIDIA Container Toolkit. ROS/Gazebo/Python dependencies
 are already inside the supplied image. Follow [setup.md](docs/setup.md).
 
-After extracting the source, check it with `python3 scripts/verify-release.py`.
+After cloning the repository or extracting the source, check it with
+`python3 scripts/verify-release.py` before making edits.
 If you received the prebuilt image alongside the source:
 
 ```bash

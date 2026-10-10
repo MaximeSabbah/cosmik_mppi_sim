@@ -1,0 +1,46 @@
+{
+  "pass": true,
+  "tested_commit": "8305f44b50c6ea7e90ce74380a27a4318d705d8c",
+  "scope": "Independent Git checkout, mounted source, fresh Compose dev build/install/log volumes; existing tested Docker dependencies. Later publication changes are documentation and validation metadata only.",
+  "ros_domain_id": 86,
+  "packages_built": 13,
+  "unit_tests_passed": 17,
+  "baseline_configs_unchanged": 7,
+  "image_archive_checksum_verified": true,
+  "existing_image_id_verified": true,
+  "results": {
+    "no-human": {
+      "pass": true,
+      "spatial_arrivals": {
+        "A": 3,
+        "B": 3
+      },
+      "timeout_events": 2,
+      "messages": {
+        "clock": 51349,
+        "joint_states": 1540,
+        "goals": 663,
+        "ee_samples": 1001,
+        "control": 1320
+      },
+      "nonfinite_state_or_command": false
+    },
+    "moving-capsule": {
+      "pass": true,
+      "spatial_arrivals": {
+        "B": 3,
+        "A": 2
+      },
+      "timeout_events": 3,
+      "messages": {
+        "clock": 51399,
+        "joint_states": 1541,
+        "human_frames": 1541,
+        "goals": 780,
+        "ee_samples": 1002,
+        "control": 1763
+      },
+      "nonfinite_state_or_command": false
+    }
+  }
+}

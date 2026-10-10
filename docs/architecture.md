@@ -67,7 +67,9 @@ The [original STORM Franka example](https://github.com/NVlabs/storm/blob/main/ex
 used Isaac Gym to simulate the robot receiving commands from STORM. The original
 supervisor workspace also contains an Isaac Sim/Isaac Lab port of that separate
 example. Those simulator examples are not the ROS/Gazebo entry point delivered
-here. The retained STORM core performs the predictive rollouts in this handoff.
+here. An unused adapter remains in `storm/storm_kit/sim/backends/` as part of the
+copied STORM source; the current ROS launch does not load it or require its Isaac
+dependencies. The retained STORM core performs the predictive rollouts in this handoff.
 
 ## Human motion and prediction
 

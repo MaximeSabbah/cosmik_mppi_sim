@@ -105,3 +105,22 @@ supervisor subsequently reported "ok it seems quite ok". This is qualitative GUI
 feedback, recorded separately from the automated arrival checks; it is not a
 measurement of human clearance. Legacy shutdown traces are retained in the test
 logs separately from running-period evidence.
+
+## Independent Git checkout — 2026-10-10
+
+Before publication, an independent Git clone was mounted into the Compose `dev`
+service with fresh build/install/log volumes, using the tested Docker image and
+ROS domain 86. All 13 packages built, all 17 tests passed, and the doctor verified
+CUDA, imports from the mounted checkout and unchanged baseline configurations.
+
+| 50-second check | Arrivals A / B | Timeout switches | Control messages | Result |
+| --- | ---: | ---: | ---: | --- |
+| No human | 3 / 3 | 2 | 1,320 | pass |
+| Moving capsule | 2 / 3 | 3 | 1,763 | pass |
+
+The capsule check received 1,541 human frames. Neither check detected nonfinite
+states or commands. Evidence, including the tested code commit and full logs, is
+in `validation/git-20261010/`. Subsequent changes before tagging are documentation,
+validation records and their release hashes. No controller code or tuning changed.
+The new host image loader also verified the actual exported archive checksum and
+the existing Docker image ID on kurai.

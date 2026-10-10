@@ -1,0 +1,732 @@
+[INFO] [launch]: All log files can be found below /work/cosmik-mppi-sim/.runtime/ros_logs/2026-10-10-17-19-39-776342-kurai-5409
+[INFO] [launch]: Default logging verbosity is set to INFO
+external_controllers_names_list =  ['linear_feedback_controller', 'joint_state_estimator']
+[INFO] [ign gazebo-1]: process started with pid [5458]
+[INFO] [parameter_bridge-2]: process started with pid [5460]
+[INFO] [create-3]: process started with pid [5463]
+[INFO] [wait_for_non_zero_joints_node-4]: process started with pid [5465]
+[INFO] [robot_state_publisher-5]: process started with pid [5467]
+[INFO] [string_publisher-6]: process started with pid [5469]
+[INFO] [string_publisher-7]: process started with pid [5471]
+[INFO] [joint_state_publisher-8]: process started with pid [5473]
+[INFO] [robot_state_publisher-9]: process started with pid [5475]
+[INFO] [static_transform_publisher-10]: process started with pid [5477]
+[INFO] [wait_for_non_zero_joints_node-11]: process started with pid [5479]
+[static_transform_publisher-10] [INFO] [1791652780.276699686] [static_transform_publisher_vWC4QNb3QIDBblv4]: Spinning until stopped - publishing transform
+[static_transform_publisher-10] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-10] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-10] from 'fer_link0' to 'robot_attachment_link'
+[create-3] [INFO] [1791652780.288173760] [ros_gz_sim]: Requesting list of world names.
+[robot_state_publisher-5] [INFO] [1791652780.294873984] [robot_state_publisher]: got segment fer_hand
+[robot_state_publisher-5] [INFO] [1791652780.294935698] [robot_state_publisher]: got segment fer_hand_tcp
+[robot_state_publisher-5] [INFO] [1791652780.294939343] [robot_state_publisher]: got segment fer_leftfinger
+[robot_state_publisher-5] [INFO] [1791652780.294941363] [robot_state_publisher]: got segment fer_link0
+[robot_state_publisher-5] [INFO] [1791652780.294943164] [robot_state_publisher]: got segment fer_link1
+[robot_state_publisher-5] [INFO] [1791652780.294944899] [robot_state_publisher]: got segment fer_link2
+[robot_state_publisher-5] [INFO] [1791652780.294946526] [robot_state_publisher]: got segment fer_link3
+[robot_state_publisher-5] [INFO] [1791652780.294948265] [robot_state_publisher]: got segment fer_link4
+[robot_state_publisher-5] [INFO] [1791652780.294949899] [robot_state_publisher]: got segment fer_link5
+[robot_state_publisher-5] [INFO] [1791652780.294951501] [robot_state_publisher]: got segment fer_link6
+[robot_state_publisher-5] [INFO] [1791652780.294953126] [robot_state_publisher]: got segment fer_link7
+[robot_state_publisher-5] [INFO] [1791652780.294954777] [robot_state_publisher]: got segment fer_link8
+[robot_state_publisher-5] [INFO] [1791652780.294956465] [robot_state_publisher]: got segment fer_rightfinger
+[robot_state_publisher-5] [INFO] [1791652780.294958217] [robot_state_publisher]: got segment world
+[robot_state_publisher-9] [INFO] [1791652780.298088990] [environment_publisher]: got segment robot_attachment_link
+[wait_for_non_zero_joints_node-11] [INFO] [1791652780.401794757] [wait_for_non_zero_joints_node]: Node initialized, waiting for '/joint_states' to be published...
+[wait_for_non_zero_joints_node-4] [INFO] [1791652780.414990354] [wait_for_non_zero_joints_node]: Node initialized, waiting for '/joint_states' to be published...
+[joint_state_publisher-8] [INFO] [1791652780.418574646] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[create-3] [INFO] [1791652780.621605619] [ros_gz_sim]: Waiting messages on topic [/robot_description].
+[create-3] [INFO] [1791652780.628356184] [ros_gz_sim]: Requested creation of entity.
+[create-3] [INFO] [1791652780.628370822] [ros_gz_sim]: OK creation of entity.
+[INFO] [create-3]: process has finished cleanly [pid 5463]
+[INFO] [spawner-12]: process started with pid [5768]
+[spawner-12] [INFO] [1791652780.876479585] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[parameter_bridge-2] [INFO] [1791652781.297385725] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[ign gazebo-1] [INFO] [1791652782.429359669] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_state_publisher
+[ign gazebo-1] [INFO] [1791652782.429377562] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_description
+[ign gazebo-1] [INFO] [1791652782.774827153] [gz_ros2_control]: [ign_ros2_control] Fixed joint [world_joint] (Entity=49)] is skipped
+[ign gazebo-1] [ERROR] [1791652783.276823051] [gz_ros2_control]: robot_state_publisher service not available, waiting again...
+[ign gazebo-1] [INFO] [1791652783.437610350] [gz_ros2_control]: connected to service!! robot_state_publisher asking for robot_description
+[ign gazebo-1] [INFO] [1791652783.438148725] [gz_ros2_control]: Received URDF from param server
+[ign gazebo-1] text not specified in the prefix tag
+[ign gazebo-1] text not specified in the prefix tag
+[ign gazebo-1] [INFO] [1791652783.445369334] [gz_ros2_control]: The position_proportional_gain has been set to: 0.1
+[ign gazebo-1] [INFO] [1791652783.445415775] [gz_ros2_control]: Loading joint: fer_joint1
+[ign gazebo-1] [INFO] [1791652783.445426887] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.445434469] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445445348] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-1] [INFO] [1791652783.445454179] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445461785] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445471001] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.445477954] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445493675] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445505519] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445519353] [gz_ros2_control]: Loading joint: fer_joint2
+[ign gazebo-1] [INFO] [1791652783.445526817] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.445533323] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445539934] [gz_ros2_control]: 			 found initial value: -0.780000
+[ign gazebo-1] [INFO] [1791652783.445547647] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445554249] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445560417] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.445566390] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445574751] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445582683] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445593654] [gz_ros2_control]: Loading joint: fer_joint3
+[ign gazebo-1] [INFO] [1791652783.445600679] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.445607058] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445612975] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-1] [INFO] [1791652783.445620111] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445626324] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445633486] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.445640107] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445649571] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445657431] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445674374] [gz_ros2_control]: Loading joint: fer_joint4
+[ign gazebo-1] [INFO] [1791652783.445681706] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.445688230] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445694724] [gz_ros2_control]: 			 found initial value: -2.350000
+[ign gazebo-1] [INFO] [1791652783.445702201] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445708637] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445714597] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.445720434] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445728708] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445736434] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445746870] [gz_ros2_control]: Loading joint: fer_joint5
+[ign gazebo-1] [INFO] [1791652783.445753792] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.445759980] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445765694] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-1] [INFO] [1791652783.445772496] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445778677] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445784739] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.445790888] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445798914] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445811152] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445822156] [gz_ros2_control]: Loading joint: fer_joint6
+[ign gazebo-1] [INFO] [1791652783.445828972] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.445835016] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445841137] [gz_ros2_control]: 			 found initial value: 1.570000
+[ign gazebo-1] [INFO] [1791652783.445848119] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445858083] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445864483] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.445870576] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445878719] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445887401] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445917479] [gz_ros2_control]: Loading joint: fer_joint7
+[ign gazebo-1] [INFO] [1791652783.445926130] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.445932763] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445938937] [gz_ros2_control]: 			 found initial value: 0.780000
+[ign gazebo-1] [INFO] [1791652783.445946143] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445952630] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445958664] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.445964843] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.445972942] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.445980314] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.445990950] [gz_ros2_control]: Loading joint: fer_finger_joint1
+[ign gazebo-1] [INFO] [1791652783.445997786] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.446003840] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.446009874] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-1] [INFO] [1791652783.446016747] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.446024330] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.446030856] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.446046314] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.446055886] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.446063112] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.446077817] [gz_ros2_control]: Loading joint: fer_finger_joint2
+[ign gazebo-1] [INFO] [1791652783.446089444] [gz_ros2_control]: Joint 'fer_finger_joint2'is mimicking joint 'fer_finger_joint1' with multiplier: 1
+[ign gazebo-1] [INFO] [1791652783.446100767] [gz_ros2_control]: 	State:
+[ign gazebo-1] [INFO] [1791652783.446107404] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.446114115] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.446121635] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.446129246] [gz_ros2_control]: 	Command:
+[ign gazebo-1] [INFO] [1791652783.446135471] [gz_ros2_control]: 		 position
+[ign gazebo-1] [INFO] [1791652783.446143647] [gz_ros2_control]: 		 velocity
+[ign gazebo-1] [INFO] [1791652783.446151266] [gz_ros2_control]: 		 effort
+[ign gazebo-1] [INFO] [1791652783.446221508] [resource_manager]: Initialize hardware 'FrankaHardwareInterface' 
+[ign gazebo-1] [WARN] [1791652783.446233798] [gz_ros2_control]: On init...
+[ign gazebo-1] [INFO] [1791652783.446284133] [resource_manager]: Successful initialization of hardware 'FrankaHardwareInterface'
+[ign gazebo-1] [INFO] [1791652783.446322511] [resource_manager]: 'configure' hardware 'FrankaHardwareInterface' 
+[ign gazebo-1] [INFO] [1791652783.446326708] [gz_ros2_control]: System Successfully configured!
+[ign gazebo-1] [INFO] [1791652783.446339628] [resource_manager]: Successful 'configure' of hardware 'FrankaHardwareInterface'
+[ign gazebo-1] [INFO] [1791652783.446349862] [resource_manager]: 'activate' hardware 'FrankaHardwareInterface' 
+[ign gazebo-1] [INFO] [1791652783.446354265] [resource_manager]: Successful 'activate' of hardware 'FrankaHardwareInterface'
+[ign gazebo-1] [INFO] [1791652783.446359485] [gz_ros2_control]: Loading controller_manager
+[wait_for_non_zero_joints_node-11] [INFO] [1791652783.496690552] [wait_for_non_zero_joints_node]: Joint state message received.
+[wait_for_non_zero_joints_node-11] [INFO] [1791652783.496876343] [wait_for_non_zero_joints_node]: Received non-zero joint position.
+[wait_for_non_zero_joints_node-11] [WARN] [1791652783.497080833] [wait_for_non_zero_joints_node]: Done waiting.
+[INFO] [wait_for_non_zero_joints_node-11]: process has finished cleanly [pid 5479]
+[INFO] [object_manager_node-13]: process started with pid [5865]
+[INFO] [storm_mppi_planner_node-14]: process started with pid [5867]
+[INFO] [pick_place_task_manager_node-15]: process started with pid [5869]
+[ign gazebo-1] [INFO] [1791652783.630350398] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-12] [INFO] [1791652783.637725791] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[ign gazebo-1] [INFO] [1791652783.638155209] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[ign gazebo-1] [INFO] [1791652783.638257389] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[wait_for_non_zero_joints_node-4] [INFO] [1791652783.646204017] [wait_for_non_zero_joints_node]: Joint state message received.
+[wait_for_non_zero_joints_node-4] [INFO] [1791652783.646602696] [wait_for_non_zero_joints_node]: Received non-zero joint position.
+[wait_for_non_zero_joints_node-4] [WARN] [1791652783.647056948] [wait_for_non_zero_joints_node]: Done waiting.
+[spawner-12] [INFO] [1791652783.650013073] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[ign gazebo-1] [INFO] [1791652783.651473197] [controller_manager]: Loading controller 'gripper_action_controller'
+[spawner-12] [INFO] [1791652783.678031608] [spawner_joint_state_broadcaster]: [94mLoaded [1mgripper_action_controller[0m
+[ign gazebo-1] [INFO] [1791652783.678225869] [controller_manager]: Configuring controller 'gripper_action_controller'
+[ign gazebo-1] [INFO] [1791652783.678288592] [gripper_action_controller]: Action status changes will be monitored at 20.000000 Hz.
+[spawner-12] [INFO] [1791652783.686560891] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mgripper_action_controller[0m
+[object_manager_node-13] [INFO] [1791652783.773108525] [object_manager]: object_manager publishing TF + markers on /storm_pick_place/objects_markers @ 10.0 Hz
+[pick_place_task_manager_node-15] [INFO] [1791652783.784879275] [pick_place_task_manager]: Using arm_id 'fer'.
+[INFO] [wait_for_non_zero_joints_node-4]: process has finished cleanly [pid 5465]
+[INFO] [spawner-16]: process started with pid [5990]
+[pick_place_task_manager_node-15] [INFO] [1791652783.810199025] [pick_place_task_manager]: PickPlace task manager ready. mode=pick_place armed=True auto_start=True
+[pick_place_task_manager_node-15] [INFO] [1791652783.811082401] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652783.811381691] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652783.811429869] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-15] [INFO] [1791652783.811786471] [pick_place_task_manager]: [task-event] pregrasp(A)
+[INFO] [spawner-12]: process has finished cleanly [pid 5768]
+[storm_mppi_planner_node-14] [INFO] [1791652784.457547273] [storm_mppi_planner]: Subscribing to gripper joint states on '/joint_states'.
+[storm_mppi_planner_node-14] [INFO] [1791652784.460595911] [storm_mppi_planner]: Using collision MarkerArray topic: /rtcosmik/collision_markers
+[storm_mppi_planner_node-14] [INFO] [1791652784.461676412] [storm_mppi_planner]: storm_mppi_planner ready. Waiting for robot_description + sensor. Collision inputs: objects_markers_topic=/storm_pick_place/objects_markers, collision_markers_topic=/rtcosmik/collision_markers, collision_poses_topic=<disabled>, dynamic_collision_mode=True. Goal topic: /goal_pose.
+[spawner-16] [INFO] [1791652785.011643805] [spawner_linear_feedback_controller]: [96mSetting controller param "params_file" to "['/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/linear_feedback_controller_params.yaml']" for [1mlinear_feedback_controller[0m
+[spawner-16] [INFO] [1791652785.015304049] [spawner_linear_feedback_controller]: [96mSetting controller param "type" to "linear_feedback_controller/LinearFeedbackController" for [1mlinear_feedback_controller[0m
+[ign gazebo-1] [INFO] [1791652785.015720257] [controller_manager]: Loading controller 'linear_feedback_controller'
+[ign gazebo-1] Robot model:
+[ign gazebo-1] Nb joints = 10 (nq=9,nv=9)
+[ign gazebo-1]   Joint 0 universe: parent=0
+[ign gazebo-1]   Joint 1 fer_joint1: parent=0
+[ign gazebo-1]   Joint 2 fer_joint2: parent=1
+[ign gazebo-1]   Joint 3 fer_joint3: parent=2
+[ign gazebo-1]   Joint 4 fer_joint4: parent=3
+[ign gazebo-1]   Joint 5 fer_joint5: parent=4
+[ign gazebo-1]   Joint 6 fer_joint6: parent=5
+[ign gazebo-1]   Joint 7 fer_joint7: parent=6
+[ign gazebo-1]   Joint 8 fer_finger_joint1: parent=7
+[ign gazebo-1]   Joint 9 fer_finger_joint2: parent=7
+[ign gazebo-1] 
+[spawner-16] [INFO] [1791652785.039642193] [spawner_linear_feedback_controller]: [94mLoaded [1mlinear_feedback_controller[0m
+[ign gazebo-1] [INFO] [1791652785.040379856] [controller_manager]: Configuring controller 'linear_feedback_controller'
+[spawner-16] [INFO] [1791652785.047177035] [spawner_linear_feedback_controller]: [96mSetting controller param "params_file" to "['/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/linear_feedback_controller_params.yaml']" for [1mjoint_state_estimator[0m
+[spawner-16] [INFO] [1791652785.050633712] [spawner_linear_feedback_controller]: [96mSetting controller param "type" to "linear_feedback_controller/JointStateEstimator" for [1mjoint_state_estimator[0m
+[ign gazebo-1] [INFO] [1791652785.050723834] [controller_manager]: Loading controller 'joint_state_estimator'
+[spawner-16] [INFO] [1791652785.056328742] [spawner_linear_feedback_controller]: [94mLoaded [1mjoint_state_estimator[0m
+[ign gazebo-1] [INFO] [1791652785.056417190] [controller_manager]: Configuring controller 'joint_state_estimator'
+[ign gazebo-1] [INFO] [1791652785.056448539] [joint_state_estimator]: configure successful
+[INFO] [spawner-16]: process has finished cleanly [pid 5990]
+[INFO] [ros2-17]: process started with pid [6048]
+[ign gazebo-1] [INFO] [1791652786.433627213] [linear_feedback_controller]: Successful activation.
+[storm_mppi_planner_node-14] [INFO] [1791652786.435034206] [storm_mppi_planner]: Derived moving_joint_names from sensor (7 joints).
+[ros2-17] Successfully switched controllers
+[INFO] [ros2-17]: process has finished cleanly [pid 6048]
+[storm_mppi_planner_node-14] /usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+[storm_mppi_planner_node-14]   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[storm_mppi_planner_node-14] [INFO] [1791652787.042176897] [storm_mppi_planner]: Raw STORM task YAML (pre-load): path='/work/cosmik-mppi-sim/storm/content/configs/mpc/franka_reacher_cat_real.yml', cost.collision.weight=0.0, cost.primitive_collision.weight=1000.0, mppi.cat_primitive_collision.enabled=True, mppi.cat_state_bound.enabled=True.
+[storm_mppi_planner_node-14] no dynamics information for link: base
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link0_sc
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link1_sc
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link2_sc
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link3_sc
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link4_sc
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link5_sc
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link6_sc
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link7_sc
+[storm_mppi_planner_node-14] no dynamics information for link: panda_link8
+[storm_mppi_planner_node-14] no dynamics information for link: panda_hand_sc
+[storm_mppi_planner_node-14] no dynamics information for link: ee_link
+[storm_mppi_planner_node-14] no dynamics information for link: panda_leftfinger
+[storm_mppi_planner_node-14] no dynamics information for link: panda_rightfinger
+[storm_mppi_planner_node-14] /usr/local/lib/python3.10/dist-packages/torch/functional.py:2033: UserWarning: torch.chain_matmul is deprecated and will be removed in a future PyTorch release. Use torch.linalg.multi_dot instead, which accepts a list of two or more tensors rather than multiple parameters. (Triggered internally at ../aten/src/ATen/native/LinearAlgebra.cpp:1105.)
+[storm_mppi_planner_node-14]   return _VF.chain_matmul(matrices)  # type: ignore[attr-defined]
+[storm_mppi_planner_node-14] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-14]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-14] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-14] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/mpc/cost/pose_cost.py:50: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3683.)
+[storm_mppi_planner_node-14]   self.px = torch.tensor([1.0,0.0,0.0], **self.tensor_args).T
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_utils.py:121: UserWarning: torch.cholesky is deprecated in favor of torch.linalg.cholesky and will be removed in a future PyTorch release.
+[storm_mppi_planner_node-14] L = torch.cholesky(A)
+[storm_mppi_planner_node-14] should be replaced with
+[storm_mppi_planner_node-14] L = torch.linalg.cholesky(A)
+[storm_mppi_planner_node-14] and
+[storm_mppi_planner_node-14] U = torch.cholesky(A, upper=True)
+[storm_mppi_planner_node-14] should be replaced with
+[storm_mppi_planner_node-14] U = torch.linalg.cholesky(A).mH
+[storm_mppi_planner_node-14] This transform will produce equivalent results for all valid (symmetric positive definite) inputs. (Triggered internally at ../aten/src/ATen/native/BatchLinearAlgebra.cpp:1691.)
+[storm_mppi_planner_node-14]   scale_tril = torch.cholesky(cov)
+[storm_mppi_planner_node-14] [INFO] [1791652787.607323654] [storm_mppi_planner]: Loaded STORM task config: storm_task_file='franka_reacher_cat_real.yml' (resolved='/work/cosmik-mppi-sim/storm/content/configs/mpc/franka_reacher_cat_real.yml'), cost.collision.weight=0.0, cost.primitive_collision.weight=1000.0, mppi.cat_primitive_collision.enabled=True, mppi.cat_state_bound.enabled=True.
+[storm_mppi_planner_node-14] [INFO] [1791652787.607518015] [storm_mppi_planner]: STORM controller profile: control_space=acc, cat_equation_mode=paper, cat_self_collision=True, cat_joint_torque=True, sampler=multiple, antithetic=True, torque_backend=fused, horizon=50, particles=1000, exact_latency_prediction=True.
+[storm_mppi_planner_node-14] [INFO] [1791652787.616396047] [storm_mppi_planner]: Loaded 62 robot collision spheres across 9 links from '/work/cosmik-mppi-sim/storm/content/configs/mpc/../../assets/robot/fer_real/fer_spheres.yml'.
+[storm_mppi_planner_node-14] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-14]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-14] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-14] [INFO] [1791652788.211771276] [storm_mppi_planner]: Goal frame mapping: ROS tcp parent='fer_hand' -> STORM ee parent='panda_hand' using fixed-joint transforms.
+[storm_mppi_planner_node-14] [INFO] [1791652788.212078786] [storm_mppi_planner]: Timing summary: loop rate_hz=50.000 (dt=0.0200s), control_dt=0.0200s, model.dt=0.0200s, dt_traj.base_dt=0.0200s, dt_traj.max_dt=0.0200s, dt_traj.base_ratio=0.500
+[storm_mppi_planner_node-14] [INFO] [1791652788.212302113] [storm_mppi_planner]: storm_mppi_planner initialized. Publishing linear_feedback_controller_msgs/Control at ~50.0 Hz (armed=True), reference-smoothing fast timer ~200.0 Hz (enabled=False). base=fer_link0 ee=fer_hand_tcp.
+[storm_mppi_planner_node-14] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/mpc/utils/mpc_process_wrapper.py:294: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-14]   controller = torch.load(control_string)
+[storm_mppi_planner_node-14] /usr/local/lib/python3.10/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+[storm_mppi_planner_node-14]   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[storm_mppi_planner_node-14] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/geom/nn_model/robot_self_collision.py:64: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+[storm_mppi_planner_node-14]   chk = torch.load(weights_path, map_location="cpu")
+[storm_mppi_planner_node-14] {'urdf': 'robot/fer_real/fer_storm.urdf', 'sample_points': 100, 'link_objs': ['panda_link0', 'panda_link1', 'panda_link2', 'panda_link3', 'panda_link4', 'panda_link5', 'panda_link6', 'panda_link7', 'panda_hand'], 'threshold': 0.35, 'bounds': [[-0.8, -0.8, 0.0], [0.8, 0.8, 2.0]], 'collision_spheres': '../../assets/robot/fer_real/fer_spheres.yml', 'self_collision_weights': 'robot_self/franka_self_sdf.pt', 'dof': 7}
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py:252: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+[storm_mppi_planner_node-14]   with torch.cuda.amp.autocast(enabled=True):
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/differentiable_robot_model/differentiable_robot_model.py:582: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+[storm_mppi_planner_node-14] Please either pass the dim explicitly or simply use torch.linalg.cross.
+[storm_mppi_planner_node-14] The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at ../aten/src/ATen/native/Cross.cpp:62.)
+[storm_mppi_planner_node-14]   lin_jac[:, :, i] = torch.cross(z_i, ee_pos - p_i)
+[storm_mppi_planner_node-14] /usr/local/lib/python3.10/dist-packages/torch/_inductor/compile_fx.py:167: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
+[storm_mppi_planner_node-14]   warnings.warn(
+[pick_place_task_manager_node-15] [INFO] [1791652794.902674432] [pick_place_task_manager]: [task-event] target-timeout(A, elapsed=10.00s); advancing to the other target.
+[pick_place_task_manager_node-15] [INFO] [1791652794.902942198] [pick_place_task_manager]: [task-event] preplace(B)
+[pick_place_task_manager_node-15] [INFO] [1791652804.952714443] [pick_place_task_manager]: [task-event] target-timeout(B, elapsed=10.00s); advancing to the other target.
+[pick_place_task_manager_node-15] [INFO] [1791652804.952957521] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652804.953199843] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652804.953343158] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-15] [INFO] [1791652804.953598780] [pick_place_task_manager]: [task-event] pregrasp(A)
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/mpc/control/mppi.py:209: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3683.)
+[storm_mppi_planner_node-14]   weighted_seq = w.T * actions.T
+[storm_mppi_planner_node-14] [INFO] [1791652808.518870810] [storm_mppi_planner]: MPPI timing: loop~nanHz, get_command~0.0Hz, opt~0.1Hz (opt_dt~18874.1ms), control_dt=0.0200s, mpc_dt=0.0000s, N_eff~267.2
+[storm_mppi_planner_node-14] [INFO] [1791652808.519096537] [storm_mppi_planner]: MPPI costs:  null_space: 6.96  |  stop_cost: 0.35  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 0.00  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 10.44  |  goal_pose: 485.54
+[storm_mppi_planner_node-14] [INFO] [1791652808.519475597] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652808.519891822] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 695.9ms  |  rollout_fn: 18146.5ms  |  update_distribution: 28.8ms  |  rollout_fn.robot_model: 108.1ms  |  rollout_fn.cost_fns: 18034.7ms
+[ign gazebo-1] [INFO] [1791652808.520776395] [linear_feedback_controller]: Received control msgs.
+[storm_mppi_planner_node-14] /work/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py:252: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+[storm_mppi_planner_node-14]   with torch.cuda.amp.autocast(enabled=True):
+[storm_mppi_planner_node-14] [INFO] [1791652809.532751067] [storm_mppi_planner]: MPPI timing: loop~8.9Hz, get_command~11.7Hz, opt~7.7Hz (opt_dt~130.0ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~388.8
+[storm_mppi_planner_node-14] [INFO] [1791652809.532962323] [storm_mppi_planner]: MPPI costs:  null_space: 19.42  |  stop_cost: 2.61  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 29.76  |  table_collision: 3346.27  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 7.58  |  goal_pose: 159.35
+[storm_mppi_planner_node-14] [INFO] [1791652809.533149646] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652809.533324650] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.3ms  |  update_distribution: 1.1ms  |  rollout_fn.robot_model: 6.6ms  |  rollout_fn.cost_fns: 14.2ms
+[storm_mppi_planner_node-14] [INFO] [1791652810.533098666] [storm_mppi_planner]: MPPI timing: loop~48.8Hz, get_command~534.8Hz, opt~44.5Hz (opt_dt~22.5ms), control_dt=0.0200s, mpc_dt=0.0201s, N_eff~211.9
+[storm_mppi_planner_node-14] [INFO] [1791652810.533519695] [storm_mppi_planner]: MPPI costs:  null_space: 33.79  |  stop_cost: 1.91  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 176.01  |  table_collision: 3348.31  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 52.04  |  goal_pose: 69.88
+[storm_mppi_planner_node-14] [INFO] [1791652810.533906112] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652810.534283200] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 21.3ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.6ms  |  rollout_fn.cost_fns: 14.1ms
+[pick_place_task_manager_node-15] [INFO] [1791652810.602821940] [pick_place_task_manager]: [task-event] grasp(A)
+[pick_place_task_manager_node-15] [INFO] [1791652810.653231944] [pick_place_task_manager]: Waiting for grasp server...
+[pick_place_task_manager_node-15] [WARN] [1791652810.904174334] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-15] [INFO] [1791652810.904591563] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652810.904835528] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652810.905338093] [pick_place_task_manager]: [task-event] close
+[storm_mppi_planner_node-14] [INFO] [1791652811.533132497] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~926.7Hz, opt~45.8Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~197.6
+[storm_mppi_planner_node-14] [INFO] [1791652811.533546243] [storm_mppi_planner]: MPPI costs:  null_space: 37.04  |  stop_cost: 1.17  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 165.45  |  table_collision: 3348.93  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 61.07  |  goal_pose: 65.13
+[storm_mppi_planner_node-14] [INFO] [1791652811.533927792] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652811.534306089] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.2ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.4ms  |  rollout_fn.cost_fns: 14.6ms
+[pick_place_task_manager_node-15] [INFO] [1791652811.652655103] [pick_place_task_manager]: [task-event] lift(A)
+[pick_place_task_manager_node-15] [INFO] [1791652811.702776300] [pick_place_task_manager]: [task-event] preplace(B)
+[storm_mppi_planner_node-14] [INFO] [1791652812.554469840] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~754.5Hz, opt~45.7Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0406s, N_eff~247.9
+[storm_mppi_planner_node-14] [INFO] [1791652812.554885677] [storm_mppi_planner]: MPPI costs:  null_space: 40.53  |  stop_cost: 1.64  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 237.67  |  table_collision: 3348.55  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 8125.48  |  goal_pose: 125.72
+[storm_mppi_planner_node-14] [INFO] [1791652812.555231010] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652812.555432574] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.5ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.7ms  |  rollout_fn.cost_fns: 14.5ms
+[pick_place_task_manager_node-15] [INFO] [1791652813.053492154] [pick_place_task_manager]: [task-event] place(B)
+[pick_place_task_manager_node-15] [INFO] [1791652813.102722954] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652813.102957191] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652813.103342856] [pick_place_task_manager]: [task-event] open
+[storm_mppi_planner_node-14] [INFO] [1791652813.574440758] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~628.0Hz, opt~45.8Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~294.0
+[storm_mppi_planner_node-14] [INFO] [1791652813.574651838] [storm_mppi_planner]: MPPI costs:  null_space: 30.77  |  stop_cost: 1.43  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 79.59  |  table_collision: 3347.73  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 4821.77  |  goal_pose: 54.40
+[storm_mppi_planner_node-14] [INFO] [1791652813.574850824] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652813.575023855] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.6ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.7ms  |  rollout_fn.cost_fns: 14.6ms
+[pick_place_task_manager_node-15] [INFO] [1791652814.102623080] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-15] [INFO] [1791652814.153337683] [pick_place_task_manager]: [task-event] swap(cycle=2, pick=B, place=A)
+[pick_place_task_manager_node-15] [INFO] [1791652814.153765351] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652814.153995237] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652814.154344442] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-15] [INFO] [1791652814.154837329] [pick_place_task_manager]: [task-event] pregrasp(B)
+[storm_mppi_planner_node-14] [INFO] [1791652814.575967768] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~716.2Hz, opt~45.8Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~261.4
+[storm_mppi_planner_node-14] [INFO] [1791652814.576387590] [storm_mppi_planner]: MPPI costs:  null_space: 26.59  |  stop_cost: 0.50  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 77.82  |  table_collision: 3347.19  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 19085.05  |  goal_pose: 45.33
+[storm_mppi_planner_node-14] [INFO] [1791652814.576769035] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652814.577146947] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.3ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.6ms
+[pick_place_task_manager_node-15] [INFO] [1791652815.152893570] [pick_place_task_manager]: [task-event] grasp(B)
+[pick_place_task_manager_node-15] [INFO] [1791652815.202721260] [pick_place_task_manager]: Waiting for grasp server...
+[pick_place_task_manager_node-15] [WARN] [1791652815.453285254] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-15] [INFO] [1791652815.453501178] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652815.453693295] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652815.453928938] [pick_place_task_manager]: [task-event] close
+[storm_mppi_planner_node-14] [INFO] [1791652815.594667337] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~545.1Hz, opt~45.8Hz (opt_dt~21.8ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~213.7
+[storm_mppi_planner_node-14] [INFO] [1791652815.594875855] [storm_mppi_planner]: MPPI costs:  null_space: 28.16  |  stop_cost: 0.50  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 96.12  |  table_collision: 3346.69  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 21396.77  |  goal_pose: 41.49
+[storm_mppi_planner_node-14] [INFO] [1791652815.595055112] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652815.595229047] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.2ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.5ms
+[pick_place_task_manager_node-15] [INFO] [1791652816.252716228] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-15] [INFO] [1791652816.302885111] [pick_place_task_manager]: [task-event] preplace(A)
+[storm_mppi_planner_node-14] [INFO] [1791652816.615075762] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~818.1Hz, opt~45.8Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~414.8
+[storm_mppi_planner_node-14] [INFO] [1791652816.615303104] [storm_mppi_planner]: MPPI costs:  null_space: 27.77  |  stop_cost: 5.13  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 9.88  |  table_collision: 3346.22  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 13992.95  |  goal_pose: 266.41
+[storm_mppi_planner_node-14] [INFO] [1791652816.615488018] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652816.615665545] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.0ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.3ms
+[storm_mppi_planner_node-14] [INFO] [1791652817.635205867] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~703.4Hz, opt~45.8Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0400s, N_eff~240.0
+[storm_mppi_planner_node-14] [INFO] [1791652817.635411852] [storm_mppi_planner]: MPPI costs:  null_space: 24.39  |  stop_cost: 1.99  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 138.26  |  table_collision: 3346.86  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 61.85  |  goal_pose: 69.38
+[storm_mppi_planner_node-14] [INFO] [1791652817.635585809] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652817.635755723] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.3ms  |  rollout_fn: 21.3ms  |  update_distribution: 1.0ms  |  rollout_fn.robot_model: 6.2ms  |  rollout_fn.cost_fns: 14.8ms
+[pick_place_task_manager_node-15] [INFO] [1791652817.852832187] [pick_place_task_manager]: [task-event] place(A)
+[pick_place_task_manager_node-15] [INFO] [1791652817.903138655] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652817.903403508] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652817.903900737] [pick_place_task_manager]: [task-event] open
+[storm_mppi_planner_node-14] [INFO] [1791652818.635610044] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652818.636009072] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.4ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.7ms
+[storm_mppi_planner_node-14] [INFO] [1791652818.654947581] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~585.8Hz, opt~45.6Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~226.0
+[storm_mppi_planner_node-14] [INFO] [1791652818.655153822] [storm_mppi_planner]: MPPI costs:  null_space: 27.30  |  stop_cost: 1.49  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 137.93  |  table_collision: 3347.30  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 1916.25  |  goal_pose: 50.80
+[pick_place_task_manager_node-15] [INFO] [1791652818.902671577] [pick_place_task_manager]: [task-event] lift(A)
+[pick_place_task_manager_node-15] [INFO] [1791652818.952811647] [pick_place_task_manager]: [task-event] swap(cycle=3, pick=A, place=B)
+[pick_place_task_manager_node-15] [INFO] [1791652818.953038556] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652818.953231720] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652818.953364211] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-15] [INFO] [1791652818.953596628] [pick_place_task_manager]: [task-event] pregrasp(A)
+[storm_mppi_planner_node-14] [INFO] [1791652819.654823643] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652819.655228208] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 20.3ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.5ms
+[storm_mppi_planner_node-14] [INFO] [1791652819.674458966] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~670.2Hz, opt~45.8Hz (opt_dt~21.8ms), control_dt=0.0200s, mpc_dt=0.0199s, N_eff~202.5
+[storm_mppi_planner_node-14] [INFO] [1791652819.674673753] [storm_mppi_planner]: MPPI costs:  null_space: 33.91  |  stop_cost: 0.67  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 147.76  |  table_collision: 3348.37  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 15208.23  |  goal_pose: 54.69
+[pick_place_task_manager_node-15] [INFO] [1791652819.952900154] [pick_place_task_manager]: [task-event] grasp(A)
+[pick_place_task_manager_node-15] [INFO] [1791652820.002697503] [pick_place_task_manager]: Waiting for grasp server...
+[pick_place_task_manager_node-15] [WARN] [1791652820.253364549] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-15] [INFO] [1791652820.253580836] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652820.253758826] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652820.254068951] [pick_place_task_manager]: [task-event] close
+[storm_mppi_planner_node-14] [INFO] [1791652820.655142298] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652820.655469764] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.5ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-14] [INFO] [1791652820.674681098] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~681.3Hz, opt~46.3Hz (opt_dt~21.6ms), control_dt=0.0200s, mpc_dt=0.0199s, N_eff~167.4
+[storm_mppi_planner_node-14] [INFO] [1791652820.674887239] [storm_mppi_planner]: MPPI costs:  null_space: 35.51  |  stop_cost: 0.44  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 165.65  |  table_collision: 3348.58  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 19389.72  |  goal_pose: 51.90
+[pick_place_task_manager_node-15] [INFO] [1791652821.002655413] [pick_place_task_manager]: [task-event] lift(A)
+[pick_place_task_manager_node-15] [INFO] [1791652821.053420286] [pick_place_task_manager]: [task-event] preplace(B)
+[storm_mppi_planner_node-14] [INFO] [1791652821.655277396] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652821.655473096] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.3ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.5ms
+[storm_mppi_planner_node-14] [INFO] [1791652821.675618122] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~604.7Hz, opt~45.7Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~298.2
+[storm_mppi_planner_node-14] [INFO] [1791652821.675834401] [storm_mppi_planner]: MPPI costs:  null_space: 38.71  |  stop_cost: 4.09  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 74.00  |  table_collision: 3346.62  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 23892.04  |  goal_pose: 176.93
+[pick_place_task_manager_node-15] [INFO] [1791652822.452836136] [pick_place_task_manager]: [task-event] place(B)
+[pick_place_task_manager_node-15] [INFO] [1791652822.503193886] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652822.503462988] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652822.503956279] [pick_place_task_manager]: [task-event] open
+[storm_mppi_planner_node-14] [INFO] [1791652822.673914318] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652822.674121411] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 21.5ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.5ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-14] [INFO] [1791652822.694081927] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~870.3Hz, opt~46.0Hz (opt_dt~21.8ms), control_dt=0.0200s, mpc_dt=0.0202s, N_eff~236.6
+[storm_mppi_planner_node-14] [INFO] [1791652822.694498926] [storm_mppi_planner]: MPPI costs:  null_space: 28.80  |  stop_cost: 1.97  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 126.84  |  table_collision: 3347.87  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 4066.97  |  goal_pose: 56.31
+[pick_place_task_manager_node-15] [INFO] [1791652823.503080642] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-15] [INFO] [1791652823.554279166] [pick_place_task_manager]: [task-event] swap(cycle=4, pick=B, place=A)
+[pick_place_task_manager_node-15] [INFO] [1791652823.554523068] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652823.554714283] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652823.554849362] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-15] [INFO] [1791652823.555102775] [pick_place_task_manager]: [task-event] pregrasp(B)
+[storm_mppi_planner_node-14] [INFO] [1791652823.674734060] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652823.674931312] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.0ms  |  update_distribution: 0.7ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.3ms
+[storm_mppi_planner_node-14] [INFO] [1791652823.694809478] [storm_mppi_planner]: MPPI timing: loop~49.9Hz, get_command~732.6Hz, opt~46.2Hz (opt_dt~21.7ms), control_dt=0.0200s, mpc_dt=0.0202s, N_eff~253.5
+[storm_mppi_planner_node-14] [INFO] [1791652823.695020816] [storm_mppi_planner]: MPPI costs:  null_space: 26.71  |  stop_cost: 1.03  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 91.46  |  table_collision: 3346.59  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 15848.50  |  goal_pose: 44.82
+[pick_place_task_manager_node-15] [INFO] [1791652824.553439253] [pick_place_task_manager]: [task-event] grasp(B)
+[pick_place_task_manager_node-15] [INFO] [1791652824.603151722] [pick_place_task_manager]: Waiting for grasp server...
+[storm_mppi_planner_node-14] [INFO] [1791652824.694812300] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652824.695210375] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 21.2ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 6.2ms  |  rollout_fn.cost_fns: 14.8ms
+[storm_mppi_planner_node-14] [INFO] [1791652824.715089725] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~761.3Hz, opt~45.7Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~221.0
+[storm_mppi_planner_node-14] [INFO] [1791652824.715302896] [storm_mppi_planner]: MPPI costs:  null_space: 31.40  |  stop_cost: 0.67  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 110.20  |  table_collision: 3346.89  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 20382.97  |  goal_pose: 42.87
+[pick_place_task_manager_node-15] [WARN] [1791652824.854116226] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-15] [INFO] [1791652824.854544626] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652824.854833939] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652824.855290134] [pick_place_task_manager]: [task-event] close
+[pick_place_task_manager_node-15] [INFO] [1791652825.602654196] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-15] [INFO] [1791652825.653345277] [pick_place_task_manager]: [task-event] preplace(A)
+[storm_mppi_planner_node-14] [INFO] [1791652825.695739713] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652825.695940874] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.2ms  |  update_distribution: 1.1ms  |  rollout_fn.robot_model: 6.3ms  |  rollout_fn.cost_fns: 13.7ms
+[storm_mppi_planner_node-14] [INFO] [1791652825.718983811] [storm_mppi_planner]: MPPI timing: loop~48.7Hz, get_command~632.4Hz, opt~46.0Hz (opt_dt~21.7ms), control_dt=0.0200s, mpc_dt=0.0251s, N_eff~203.9
+[storm_mppi_planner_node-14] [INFO] [1791652825.719402797] [storm_mppi_planner]: MPPI costs:  null_space: 33.27  |  stop_cost: 0.53  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 107.46  |  table_collision: 3346.99  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 20310.55  |  goal_pose: 40.94
+[storm_mppi_planner_node-14] [INFO] [1791652826.714518052] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652826.714720142] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.2ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.5ms
+[storm_mppi_planner_node-14] [INFO] [1791652826.733393386] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~680.6Hz, opt~44.9Hz (opt_dt~22.3ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~248.0
+[storm_mppi_planner_node-14] [INFO] [1791652826.733598203] [storm_mppi_planner]: MPPI costs:  null_space: 26.48  |  stop_cost: 1.99  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 115.43  |  table_collision: 3347.93  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 1782.79  |  goal_pose: 84.46
+[pick_place_task_manager_node-15] [INFO] [1791652827.103267449] [pick_place_task_manager]: [task-event] place(A)
+[pick_place_task_manager_node-15] [INFO] [1791652827.153173946] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652827.153462781] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652827.153950315] [pick_place_task_manager]: [task-event] open
+[storm_mppi_planner_node-14] [INFO] [1791652827.734826279] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~696.5Hz, opt~45.7Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0400s, N_eff~254.9
+[storm_mppi_planner_node-14] [INFO] [1791652827.735094913] [storm_mppi_planner]: MPPI costs:  null_space: 27.88  |  stop_cost: 1.50  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 98.08  |  table_collision: 3347.01  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 101.61  |  goal_pose: 52.63
+[storm_mppi_planner_node-14] [INFO] [1791652827.735363686] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652827.735542825] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 21.6ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 6.5ms  |  rollout_fn.cost_fns: 14.8ms
+[pick_place_task_manager_node-15] [INFO] [1791652828.153029746] [pick_place_task_manager]: [task-event] lift(A)
+[pick_place_task_manager_node-15] [INFO] [1791652828.202840886] [pick_place_task_manager]: [task-event] swap(cycle=5, pick=A, place=B)
+[pick_place_task_manager_node-15] [INFO] [1791652828.203063139] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652828.203246694] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652828.203382522] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-15] [INFO] [1791652828.203617904] [pick_place_task_manager]: [task-event] pregrasp(A)
+[storm_mppi_planner_node-14] [INFO] [1791652828.754557557] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~707.0Hz, opt~45.7Hz (opt_dt~21.9ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~211.3
+[storm_mppi_planner_node-14] [INFO] [1791652828.754763170] [storm_mppi_planner]: MPPI costs:  null_space: 30.50  |  stop_cost: 0.52  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 137.96  |  table_collision: 3347.98  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 472.92  |  goal_pose: 50.11
+[storm_mppi_planner_node-14] [INFO] [1791652828.754951943] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652828.755141125] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.2ms  |  rollout_fn: 20.3ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.5ms
+[pick_place_task_manager_node-15] [INFO] [1791652829.202872057] [pick_place_task_manager]: [task-event] grasp(A)
+[pick_place_task_manager_node-15] [INFO] [1791652829.252791234] [pick_place_task_manager]: Waiting for grasp server...
+[pick_place_task_manager_node-15] [WARN] [1791652829.503457374] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-15] [INFO] [1791652829.503676702] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652829.503852719] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652829.504168937] [pick_place_task_manager]: [task-event] close
+[storm_mppi_planner_node-14] [INFO] [1791652829.754793259] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~533.7Hz, opt~45.4Hz (opt_dt~22.0ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~228.4
+[storm_mppi_planner_node-14] [INFO] [1791652829.755003147] [storm_mppi_planner]: MPPI costs:  null_space: 28.69  |  stop_cost: 0.41  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 132.69  |  table_collision: 3347.51  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 20.84  |  goal_pose: 50.68
+[storm_mppi_planner_node-14] [INFO] [1791652829.755187178] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652829.755358470] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.6ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.8ms  |  rollout_fn.cost_fns: 14.6ms
+[pick_place_task_manager_node-15] [INFO] [1791652830.252771124] [pick_place_task_manager]: [task-event] lift(A)
+[pick_place_task_manager_node-15] [INFO] [1791652830.302809225] [pick_place_task_manager]: [task-event] preplace(B)
+[storm_mppi_planner_node-14] [INFO] [1791652830.755445347] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~648.1Hz, opt~45.0Hz (opt_dt~22.2ms), control_dt=0.0200s, mpc_dt=0.0201s, N_eff~344.4
+[storm_mppi_planner_node-14] [INFO] [1791652830.755846620] [storm_mppi_planner]: MPPI costs:  null_space: 34.02  |  stop_cost: 4.08  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 72.59  |  table_collision: 3346.98  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 1473.21  |  goal_pose: 226.46
+[storm_mppi_planner_node-14] [INFO] [1791652830.756222418] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652830.756587607] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.3ms  |  update_distribution: 0.9ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.5ms
+[pick_place_task_manager_node-15] [INFO] [1791652831.652992076] [pick_place_task_manager]: [task-event] place(B)
+[pick_place_task_manager_node-15] [INFO] [1791652831.702752610] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652831.702974379] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652831.703369247] [pick_place_task_manager]: [task-event] open
+[storm_mppi_planner_node-14] [INFO] [1791652831.774205663] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~731.9Hz, opt~45.8Hz (opt_dt~21.8ms), control_dt=0.0200s, mpc_dt=0.0201s, N_eff~290.3
+[storm_mppi_planner_node-14] [INFO] [1791652831.774622832] [storm_mppi_planner]: MPPI costs:  null_space: 29.85  |  stop_cost: 1.44  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 91.86  |  table_collision: 3347.67  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 157.82  |  goal_pose: 62.50
+[storm_mppi_planner_node-14] [INFO] [1791652831.774973707] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652831.775187881] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.5ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.8ms  |  rollout_fn.cost_fns: 14.5ms
+[pick_place_task_manager_node-15] [INFO] [1791652832.702643340] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-15] [INFO] [1791652832.753335553] [pick_place_task_manager]: [task-event] swap(cycle=6, pick=B, place=A)
+[pick_place_task_manager_node-15] [INFO] [1791652832.753773775] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652832.754002541] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652832.754357498] [pick_place_task_manager]: [task-event] open
+[pick_place_task_manager_node-15] [INFO] [1791652832.754844784] [pick_place_task_manager]: [task-event] pregrasp(B)
+[storm_mppi_planner_node-14] [INFO] [1791652832.792730520] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~952.4Hz, opt~46.0Hz (opt_dt~21.7ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~269.4
+[storm_mppi_planner_node-14] [INFO] [1791652832.792938253] [storm_mppi_planner]: MPPI costs:  null_space: 27.72  |  stop_cost: 0.86  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 86.39  |  table_collision: 3346.63  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 9482.73  |  goal_pose: 45.50
+[storm_mppi_planner_node-14] [INFO] [1791652832.793119431] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652832.793304888] [storm_mppi_planner]: MPPI phase timing:  shift: 0.1ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.5ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.8ms  |  rollout_fn.cost_fns: 14.5ms
+[pick_place_task_manager_node-15] [INFO] [1791652833.752876986] [pick_place_task_manager]: [task-event] grasp(B)
+[storm_mppi_planner_node-14] [INFO] [1791652833.794181315] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~651.6Hz, opt~46.2Hz (opt_dt~21.6ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~228.7
+[storm_mppi_planner_node-14] [INFO] [1791652833.794407884] [storm_mppi_planner]: MPPI costs:  null_space: 29.64  |  stop_cost: 0.39  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 103.33  |  table_collision: 3346.93  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 20461.74  |  goal_pose: 42.62
+[storm_mppi_planner_node-14] [INFO] [1791652833.794618289] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652833.794795312] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.4ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.6ms
+[pick_place_task_manager_node-15] [INFO] [1791652833.802882672] [pick_place_task_manager]: Waiting for grasp server...
+[pick_place_task_manager_node-15] [WARN] [1791652834.053416079] [pick_place_task_manager]: Timeout waiting for grasp server.
+[pick_place_task_manager_node-15] [INFO] [1791652834.053638764] [pick_place_task_manager]: Waiting for gripper_action server...
+[ign gazebo-1] [INFO] [1791652834.053839471] [gripper_action_controller]: Received & accepted new action goal
+[pick_place_task_manager_node-15] [INFO] [1791652834.054094621] [pick_place_task_manager]: [task-event] close
+[storm_mppi_planner_node-14] [INFO] [1791652834.794413271] [storm_mppi_planner]: MPPI timing: loop~50.0Hz, get_command~666.7Hz, opt~45.8Hz (opt_dt~21.8ms), control_dt=0.0200s, mpc_dt=0.0200s, N_eff~186.6
+[storm_mppi_planner_node-14] [INFO] [1791652834.794629944] [storm_mppi_planner]: MPPI costs:  null_space: 30.33  |  stop_cost: 0.38  |  smooth: 0.00  |  robot_self_collision: 0.00  |  box_collision: 108.80  |  table_collision: 3346.77  |  joint_torque: 0.00  |  primitive_collision: 0.00  |  state_bound: 19390.34  |  goal_pose: 42.00
+[storm_mppi_planner_node-14] [INFO] [1791652834.794811561] [storm_mppi_planner]: MPPI cov (per-joint, applied uniformly across all horizon steps):  j1: 1.00000, j2: 1.00000, j3: 1.00000, j4: 1.00000, j5: 1.00000, j6: 1.00000, j7: 1.00000
+[storm_mppi_planner_node-14] [INFO] [1791652834.794983490] [storm_mppi_planner]: MPPI phase timing:  shift: 0.0ms  |  sample_actions: 0.1ms  |  rollout_fn: 20.4ms  |  update_distribution: 0.8ms  |  rollout_fn.robot_model: 5.5ms  |  rollout_fn.cost_fns: 14.6ms
+[pick_place_task_manager_node-15] [INFO] [1791652834.802651558] [pick_place_task_manager]: [task-event] lift(B)
+[pick_place_task_manager_node-15] [INFO] [1791652834.852886460] [pick_place_task_manager]: [task-event] preplace(A)
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[robot_state_publisher-9] [INFO] [1791652834.902238498] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-5] [INFO] [1791652834.902250931] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[static_transform_publisher-10] [INFO] [1791652834.902250276] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [pick_place_task_manager_node-15]: sending signal 'SIGINT' to process[pick_place_task_manager_node-15]
+[INFO] [storm_mppi_planner_node-14]: sending signal 'SIGINT' to process[storm_mppi_planner_node-14]
+[INFO] [object_manager_node-13]: sending signal 'SIGINT' to process[object_manager_node-13]
+[INFO] [static_transform_publisher-10]: sending signal 'SIGINT' to process[static_transform_publisher-10]
+[INFO] [robot_state_publisher-9]: sending signal 'SIGINT' to process[robot_state_publisher-9]
+[INFO] [joint_state_publisher-8]: sending signal 'SIGINT' to process[joint_state_publisher-8]
+[INFO] [string_publisher-7]: sending signal 'SIGINT' to process[string_publisher-7]
+[ERROR] [object_manager_node-13]: process has died [pid 5865, exit code -2, cmd '/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/object_manager_node --ros-args -r __node:=object_manager --params-file /tmp/launch_params_1gdt7rvr --params-file /work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/object_manager_params.yaml'].
+[ERROR] [static_transform_publisher-10]: process has died [pid 5477, exit code -2, cmd '/opt/ros/humble/lib/tf2_ros/static_transform_publisher --frame-id fer_link0 --child-frame-id robot_attachment_link --x 0.0 --y 0.0 --z 0.0 --qx 0.0 --qy 0.0 --qz 0.0 --qw 1.0 --ros-args'].
+[INFO] [string_publisher-6]: sending signal 'SIGINT' to process[string_publisher-6]
+[ERROR] [robot_state_publisher-9]: process has died [pid 5475, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __node:=environment_publisher --params-file /tmp/launch_params_ztf1xyd7 -r robot_description:=environment_description'].
+[ERROR] [pick_place_task_manager_node-15]: process has died [pid 5869, exit code -2, cmd '/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/pick_place_task_manager_node --ros-args -r __node:=pick_place_task_manager --params-file /tmp/launch_params_9giy73g3 --params-file /work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/share/storm_pick_place_demo/config/pick_place_task_manager_params.yaml --params-file /tmp/launch_params_xglr_iwh -r /fer_gripper/gripper_action:=/gripper_action_controller/gripper_cmd'].
+[INFO] [robot_state_publisher-5]: sending signal 'SIGINT' to process[robot_state_publisher-5]
+[INFO] [parameter_bridge-2]: sending signal 'SIGINT' to process[parameter_bridge-2]
+[INFO] [ign gazebo-1]: sending signal 'SIGINT' to process[ign gazebo-1]
+[ERROR] [robot_state_publisher-5]: process has died [pid 5467, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args --params-file /tmp/launch_params_070fmo1a --params-file /tmp/launch_params_6mk6z7k1'].
+[parameter_bridge-2] [INFO] [1791652834.902238430] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [string_publisher-7]: process has died [pid 5471, exit code -2, cmd '/work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher --ros-args -r __node:=robot_srdf_description_publisher --params-file /tmp/launch_params_z2czjt8i'].
+[ERROR] [string_publisher-6]: process has died [pid 5469, exit code -2, cmd '/work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher --ros-args -r __node:=robot_description_with_collision_publisher --params-file /tmp/launch_params_wkt3oykz --params-file /tmp/launch_params_9kx9dw6j'].
+[ign gazebo-1] [INFO] [1791652834.902316474] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-1] [INFO] [1791652834.902379967] [controller_manager]: Shutdown request received....
+[ign gazebo-1] [INFO] [1791652834.902417419] [controller_manager]: Shutting down all controllers in the controller manager.
+[ign gazebo-1] [INFO] [1791652834.902436619] [controller_manager]: Deactivating controller 'joint_state_broadcaster'
+[ign gazebo-1] [INFO] [1791652834.902473216] [controller_manager]: Shutting down controller 'joint_state_broadcaster'
+[ign gazebo-1] [INFO] [1791652834.902506616] [controller_manager]: Deactivating controller 'gripper_action_controller'
+[ign gazebo-1] [INFO] [1791652834.902531194] [controller_manager]: Shutting down controller 'gripper_action_controller'
+[ign gazebo-1] [INFO] [1791652834.902545818] [controller_manager]: Deactivating controller 'joint_state_estimator'
+[ign gazebo-1] [INFO] [1791652834.902568642] [controller_manager]: Shutting down controller 'joint_state_estimator'
+[ign gazebo-1] [INFO] [1791652834.902582435] [controller_manager]: Deactivating controller 'linear_feedback_controller'
+[ERROR] [joint_state_publisher-8]: process has died [pid 5473, exit code -2, cmd '/opt/ros/humble/lib/joint_state_publisher/joint_state_publisher --ros-args --params-file /tmp/launch_params_0tdro5it --params-file /tmp/launch_params_izhlb39z'].
+[joint_state_publisher-8] Traceback (most recent call last):
+[joint_state_publisher-8]   File "/opt/ros/humble/lib/joint_state_publisher/joint_state_publisher", line 33, in <module>
+[joint_state_publisher-8]     sys.exit(load_entry_point('joint-state-publisher==2.4.0', 'console_scripts', 'joint_state_publisher')())
+[joint_state_publisher-8]   File "/opt/ros/humble/lib/python3.10/site-packages/joint_state_publisher/joint_state_publisher.py", line 466, in main
+[joint_state_publisher-8]     rclpy.spin(jsp)
+[joint_state_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[joint_state_publisher-8]     executor.spin_once()
+[joint_state_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[ign gazebo-1] [INFO] [1791652834.902601911] [linear_feedback_controller]: Successful deactivation.
+[ign gazebo-1] [INFO] [1791652834.902623711] [controller_manager]: Shutting down controller 'linear_feedback_controller'
+[ign gazebo-1] [INFO] [1791652834.902648672] [resource_manager]: 'deactivate' hardware 'FrankaHardwareInterface' 
+[ign gazebo-1] [INFO] [1791652834.902655382] [resource_manager]: Successful 'deactivate' of hardware 'FrankaHardwareInterface'
+[ign gazebo-1] [INFO] [1791652834.902659093] [resource_manager]: 'shutdown' hardware 'FrankaHardwareInterface' 
+[ign gazebo-1] [INFO] [1791652834.902663625] [resource_manager]: Successful 'shutdown' of hardware 'FrankaHardwareInterface'
+[ign gazebo-1] [INFO] [1791652834.902667579] [controller_manager]: Shutting down the controller manager.
+[storm_mppi_planner_node-14] Process Process-1:
+[storm_mppi_planner_node-14] Traceback (most recent call last):
+[storm_mppi_planner_node-14]   File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+[storm_mppi_planner_node-14]     self.run()
+[storm_mppi_planner_node-14]   File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+[storm_mppi_planner_node-14]     self._target(*self._args, **self._kwargs)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/utils/mpc_process_wrapper.py", line 337, in optimize_process
+[storm_mppi_planner_node-14]     command = list(controller.optimize(state_tensor, shift_steps=shift_steps))
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/control/control_base.py", line 256, in optimize
+[storm_mppi_planner_node-14]     trajectory = self.generate_rollouts(state)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/control/olgaussian_mpc.py", line 243, in generate_rollouts
+[storm_mppi_planner_node-14]     trajectories = self._rollout_fn(state, act_seq)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/rollout/arm_base.py", line 500, in __call__
+[storm_mppi_planner_node-14]     return self.rollout_fn(start_state, act_seq)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/rollout/arm_base.py", line 427, in rollout_fn
+[storm_mppi_planner_node-14]     cost_seq, cost_breakdown = self.cost_fn(state_dict, act_seq, return_breakdown=True)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/rollout/arm_reacher.py", line 65, in cost_fn
+[storm_mppi_planner_node-14]     cost, breakdown = super(ArmReacher, self).cost_fn(
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/rollout/arm_base.py", line 353, in cost_fn
+[storm_mppi_planner_node-14]     box_cost = self.box_collision_cost.forward(link_pos_batch, link_rot_batch)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/cost/primitive_collision_cost.py", line 191, in forward
+[storm_mppi_planner_node-14]     dist = self._compute_signed_link_distance_batch(link_pos_batch, link_rot_batch)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/cost/primitive_collision_cost.py", line 153, in _compute_signed_link_distance_batch
+[storm_mppi_planner_node-14]     dist = self.robot_world_coll.check_robot_sphere_collisions(link_pos_batch, link_rot_batch)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/geom/sdf/robot_world.py", line 119, in check_robot_sphere_collisions
+[storm_mppi_planner_node-14]     sdf = self.world_coll.check_pts_sdf(spheres[:,:3]) + spheres[:,3]
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/geom/sdf/world.py", line 155, in check_pts_sdf
+[storm_mppi_planner_node-14]     pt_idx = self.voxel_inds(pts)
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/geom/sdf/world.py", line 177, in voxel_inds
+[storm_mppi_planner_node-14]     ind_pt = ind_pt.to(dtype=torch.int64)
+[storm_mppi_planner_node-14] KeyboardInterrupt
+[joint_state_publisher-8]     self._spin_once_impl(timeout_sec)
+[joint_state_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 805, in _spin_once_impl
+[joint_state_publisher-8]     raise handler.exception()
+[joint_state_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 272, in _execute_coroutine_step
+[joint_state_publisher-8]     result = coro.send(None)
+[joint_state_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 478, in handler
+[joint_state_publisher-8]     arg = take_from_wait_list(entity)
+[joint_state_publisher-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 400, in _take_subscription
+[joint_state_publisher-8]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[joint_state_publisher-8] RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[string_publisher-7] Traceback (most recent call last):
+[string_publisher-7]   File "/work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher", line 33, in <module>
+[string_publisher-7]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'string_publisher')())
+[string_publisher-7]   File "/work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 45, in main
+[string_publisher-7]     rclpy.shutdown()
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[string_publisher-7]     _shutdown(context=context)
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[string_publisher-7]     return context.shutdown()
+[string_publisher-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[string_publisher-7]     self.__context.shutdown()
+[string_publisher-7] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[pick_place_task_manager_node-15] Traceback (most recent call last):
+[pick_place_task_manager_node-15]   File "/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/pick_place_task_manager_node", line 6, in <module>
+[pick_place_task_manager_node-15]     main()
+[pick_place_task_manager_node-15]   File "/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/local/lib/python3.10/dist-packages/storm_pick_place_demo/pick_place_task_manager_node.py", line 969, in main
+[pick_place_task_manager_node-15]     rclpy.shutdown()
+[pick_place_task_manager_node-15]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[pick_place_task_manager_node-15]     _shutdown(context=context)
+[pick_place_task_manager_node-15]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[pick_place_task_manager_node-15]     return context.shutdown()
+[pick_place_task_manager_node-15]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[pick_place_task_manager_node-15]     self.__context.shutdown()
+[pick_place_task_manager_node-15] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[object_manager_node-13] Traceback (most recent call last):
+[object_manager_node-13]   File "/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/lib/storm_pick_place_demo/object_manager_node", line 6, in <module>
+[object_manager_node-13]     main()
+[object_manager_node-13]   File "/work/cosmik-mppi-sim/ros2_ws/install/storm_pick_place_demo/local/lib/python3.10/dist-packages/storm_pick_place_demo/object_manager_node.py", line 260, in main
+[object_manager_node-13]     rclpy.shutdown()
+[object_manager_node-13]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[object_manager_node-13]     _shutdown(context=context)
+[object_manager_node-13]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[object_manager_node-13]     return context.shutdown()
+[object_manager_node-13]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[object_manager_node-13]     self.__context.shutdown()
+[object_manager_node-13] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[string_publisher-6] Traceback (most recent call last):
+[string_publisher-6]   File "/work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 40, in main
+[string_publisher-6]     rclpy.spin(node)
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[string_publisher-6]     executor.spin_once()
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[string_publisher-6]     self._spin_once_impl(timeout_sec)
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 805, in _spin_once_impl
+[string_publisher-6]     raise handler.exception()
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 272, in _execute_coroutine_step
+[string_publisher-6]     result = coro.send(None)
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 478, in handler
+[string_publisher-6]     arg = take_from_wait_list(entity)
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 400, in _take_subscription
+[string_publisher-6]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[string_publisher-6] RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[string_publisher-6] 
+[string_publisher-6] During handling of the above exception, another exception occurred:
+[string_publisher-6] 
+[string_publisher-6] Traceback (most recent call last):
+[string_publisher-6]   File "/work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/lib/agimus_demos_common/string_publisher", line 33, in <module>
+[string_publisher-6]     sys.exit(load_entry_point('agimus-demos-common==0.0.0', 'console_scripts', 'string_publisher')())
+[string_publisher-6]   File "/work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/local/lib/python3.10/dist-packages/agimus_demos_common/string_publisher.py", line 45, in main
+[string_publisher-6]     rclpy.shutdown()
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[string_publisher-6]     _shutdown(context=context)
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[string_publisher-6]     return context.shutdown()
+[string_publisher-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[string_publisher-6]     self.__context.shutdown()
+[string_publisher-6] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[parameter_bridge-2] [INFO] [1791652834.917451132] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-1] terminate called after throwing an instance of 'std::runtime_error'
+[ign gazebo-1]   what():  Node needs to be associated with an executor.
+[ign gazebo-1] Stack trace (most recent call last):
+[ign gazebo-1] #31   Object "ign gazebo /work/cosmik-mppi-sim/ros2_ws/install/franka_description/share/franka_description/worlds/empty.sdf -r -s --gui-config /work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/share/agimus_demos_common/config/gz_gui.config", at 0x56f3d34f117e, in 
+[ign gazebo-1] #30   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x75b100410e19, in ruby_run_node
+[ign gazebo-1] #29   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x75b10040d317, in 
+[ign gazebo-1] #28   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x75b1005a230c, in rb_vm_exec
+[ign gazebo-1] #27   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x75b10059cc96, in 
+[ign gazebo-1] #26   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x75b100599fc5, in 
+[ign gazebo-1] #25   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x75b100597c34, in 
+[ign gazebo-1] #24   Object "/usr/lib/x86_64-linux-gnu/ruby/3.0.0/fiddle.so", at 0x75b0fc95a44b, in 
+[ign gazebo-1] #23   Object "/lib/x86_64-linux-gnu/libruby-3.0.so.3.0", at 0x75b100565088, in rb_nogvl
+[ign gazebo-1] #22   Object "/usr/lib/x86_64-linux-gnu/ruby/3.0.0/fiddle.so", at 0x75b0fc959d6b, in 
+[ign gazebo-1] #21   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x75b0fc904492, in 
+[ign gazebo-1] #20   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x75b0fc907e2d, in 
+[ign gazebo-1] #19   Object "/usr/lib/x86_64-linux-gnu/libignition-gazebo6-ign.so.6.18.0", at 0x75b0fbe57e5c, in runServer
+[ign gazebo-1] #18   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x75b0fba3ad94, in ignition::gazebo::v6::Server::~Server()
+[ign gazebo-1] #17   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x75b0fba477d6, in 
+[ign gazebo-1] #16   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x75b0fba542fc, in ignition::gazebo::v6::SimulationRunner::~SimulationRunner()
+[ign gazebo-1] #15   Object "/lib/x86_64-linux-gnu/libignition-gazebo6.so.6", at 0x75b0fba537d1, in 
+[ign gazebo-1] #14   Object "/lib/x86_64-linux-gnu/libignition-gazebo6-gui.so.6", at 0x75b0fbc45b0c, in ignition::plugin::SpecializedPlugin<ignition::gazebo::v6::System, ignition::gazebo::v6::ISystemConfigure, ignition::gazebo::v6::ISystemPreUpdate, ignition::gazebo::v6::ISystemUpdate, ignition::gazebo::v6::ISystemPostUpdate>::~SpecializedPlugin()
+[ign gazebo-1] #13   Object "/lib/x86_64-linux-gnu/libignition-plugin1.so.1", at 0x75b0fc91b5ec, in ignition::plugin::Plugin::~Plugin()
+[ign gazebo-1] #12   Object "/lib/x86_64-linux-gnu/libignition-plugin1.so.1", at 0x75b0fc91b1d0, in 
+[ign gazebo-1] #11   Object "/work/cosmik-mppi-sim/ros2_ws/install/franka_ign_ros2_control/lib/libfranka_ign_ros2_control-system.so", at 0x75b0e9fe57b8, in std::_Function_handler<void (void*), ignition::plugin::detail::Registrar<ign_ros2_control::IgnitionROS2ControlPlugin, ignition::gazebo::v6::System, ignition::gazebo::v6::ISystemConfigure, ignition::gazebo::v6::ISystemPreUpdate, ignition::gazebo::v6::ISystemPostUpdate>::MakeInfo()::{lambda(void*)#2}>::_M_invoke(std::_Any_data const&, void*&&)
+[ign gazebo-1] #10   Object "/work/cosmik-mppi-sim/ros2_ws/install/franka_ign_ros2_control/lib/libfranka_ign_ros2_control-system.so", at 0x75b0e9fb0a39, in ign_ros2_control::IgnitionROS2ControlPlugin::~IgnitionROS2ControlPlugin()
+[ign gazebo-1] #9    Object "/opt/ros/humble/lib/librclcpp.so", at 0x75b0e9c6761e, in 
+[ign gazebo-1] #8    Object "/lib/x86_64-linux-gnu/libgcc_s.so.1", at 0x75b0fc6bf2dc, in _Unwind_Resume
+[ign gazebo-1] #7    Object "/lib/x86_64-linux-gnu/libgcc_s.so.1", at 0x75b0fc6be883, in 
+[ign gazebo-1] #6    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x75b0fc775958, in __gxx_personality_v0
+[ign gazebo-1] #5    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x75b0fc7751e8, in 
+[ign gazebo-1] #4    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x75b0fc77620b, in 
+[ign gazebo-1] #3    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x75b0fc76ab9d, in 
+[ign gazebo-1] #2    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x75b1001677f2, in abort
+[ign gazebo-1] #1    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x75b100181475, in raise
+[ign gazebo-1] #0    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x75b1001d59bc, in pthread_kill
+[ign gazebo-1] Aborted (Signal sent by tkill() 5461 0)
+[INFO] [parameter_bridge-2]: process has finished cleanly [pid 5460]
+[ign gazebo-1] Aborted (core dumped)
+[ERROR] [ign gazebo-1]: process has died [pid 5458, exit code -2, cmd 'ruby /usr/bin/ign gazebo /work/cosmik-mppi-sim/ros2_ws/install/franka_description/share/franka_description/worlds/empty.sdf -r -s  --gui-config /work/cosmik-mppi-sim/ros2_ws/install/agimus_demos_common/share/agimus_demos_common/config/gz_gui.config --force-version 6'].
+[storm_mppi_planner_node-14] [W1010 17:20:35.655074393 CudaIPCTypes.cpp:16] Producer process has been terminated before all shared CUDA tensors released. See Note [Sharing CUDA tensors]
+[storm_mppi_planner_node-14] Traceback (most recent call last):
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/local/lib/python3.10/dist-packages/storm_agimus_bridge/storm_mppi_planner_node.py", line 3025, in main
+[storm_mppi_planner_node-14]     rclpy.spin(node)
+[storm_mppi_planner_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[storm_mppi_planner_node-14]     executor.spin_once()
+[storm_mppi_planner_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[storm_mppi_planner_node-14]     self._spin_once_impl(timeout_sec)
+[storm_mppi_planner_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 805, in _spin_once_impl
+[storm_mppi_planner_node-14]     raise handler.exception()
+[storm_mppi_planner_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 272, in _execute_coroutine_step
+[storm_mppi_planner_node-14]     result = coro.send(None)
+[storm_mppi_planner_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 478, in handler
+[storm_mppi_planner_node-14]     arg = take_from_wait_list(entity)
+[storm_mppi_planner_node-14]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 400, in _take_subscription
+[storm_mppi_planner_node-14]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[storm_mppi_planner_node-14] RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[storm_mppi_planner_node-14] 
+[storm_mppi_planner_node-14] During handling of the above exception, another exception occurred:
+[storm_mppi_planner_node-14] 
+[storm_mppi_planner_node-14] Traceback (most recent call last):
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/lib/storm_agimus_bridge/storm_mppi_planner_node", line 6, in <module>
+[storm_mppi_planner_node-14]     main()
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/local/lib/python3.10/dist-packages/storm_agimus_bridge/storm_mppi_planner_node.py", line 3031, in main
+[storm_mppi_planner_node-14]     node.destroy_node()
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/local/lib/python3.10/dist-packages/storm_agimus_bridge/storm_mppi_planner_node.py", line 3011, in destroy_node
+[storm_mppi_planner_node-14]     self._storm_task.close()
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/task/task_base.py", line 157, in close
+[storm_mppi_planner_node-14]     self.control_process.close()
+[storm_mppi_planner_node-14]   File "/work/cosmik-mppi-sim/storm/storm_kit/mpc/utils/mpc_process_wrapper.py", line 274, in close
+[storm_mppi_planner_node-14]     self.opt_process.join()
+[storm_mppi_planner_node-14]   File "/usr/lib/python3.10/multiprocessing/process.py", line 149, in join
+[storm_mppi_planner_node-14]     res = self._popen.wait(timeout)
+[storm_mppi_planner_node-14]   File "/usr/lib/python3.10/multiprocessing/popen_fork.py", line 43, in wait
+[storm_mppi_planner_node-14]     return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+[storm_mppi_planner_node-14]   File "/usr/lib/python3.10/multiprocessing/popen_fork.py", line 27, in poll
+[storm_mppi_planner_node-14]     pid, sts = os.waitpid(self.pid, flag)
+[storm_mppi_planner_node-14] KeyboardInterrupt
+[ERROR] [storm_mppi_planner_node-14]: process has died [pid 5867, exit code -2, cmd '/work/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/lib/storm_agimus_bridge/storm_mppi_planner_node --ros-args -r __node:=storm_mppi_planner --params-file /work/cosmik-mppi-sim/ros2_ws/install/storm_agimus_bridge/share/storm_agimus_bridge/config/storm_mppi_planner_params.yaml --params-file /tmp/launch_params_1zbvxg4k -r robot_description:=robot_description_with_collision'].
